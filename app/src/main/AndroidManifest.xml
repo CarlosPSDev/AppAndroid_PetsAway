@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".onBoarding.AvisoLegal"></activity>
+        <activity android:name=".onBoarding.PerfilUsuario"></activity>
+        <activity android:name=".onBoarding.AvisoLegal" />
         <activity android:name=".onBoarding.ActivityLanzador" />
         <activity android:name=".MainActivity">
             <intent-filter>

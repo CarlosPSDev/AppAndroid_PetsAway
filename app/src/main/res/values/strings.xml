@@ -6,4 +6,5 @@
     <string name="tv_polit_privacidad">Política de Privacidad</string>
     <string name="tv_polit_privacidad_text">PETS AWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de
         registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales en petsawaypfc@gmail.com indicando sus datos de registro</string>
+    <string name="tv_nom_usuario">Nombre de Usuario</string>
 </resources>
