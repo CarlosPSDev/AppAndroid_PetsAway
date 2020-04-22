@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding"
+    tools:context=".onBoarding.AvisoLegal">
+
+
+    <ImageView
+        android:id="@+id/ivAvLegal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[3]" />
+
+    <TextView
+        android:id="@+id/tvAvLegal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/tv_aviso_legal"
+        android:textSize="22sp"
+        android:textColor="@color/colorBack"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvLegal"
+        />
+
+    <TextView
+        android:id="@+id/tvTextAvLegal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_aviso_legal_text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAvLegal"
+         />
+
+    <TextView
+        android:id="@+id/tvPolitPriv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/tv_polit_privacidad"
+        android:textSize="22sp"
+        android:textColor="@color/colorBack"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextAvLegal"
+        />
+    <TextView
+        android:id="@+id/tvTextPolitPriv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_polit_privacidad_text"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPolitPriv"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
