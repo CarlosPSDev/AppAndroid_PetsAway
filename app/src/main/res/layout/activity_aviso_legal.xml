@@ -30,11 +30,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ivAvLegal"
         />
 
-    <TextView
+    <com.codesgood.views.JustifiedTextView
         android:id="@+id/tvTextAvLegal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/tv_aviso_legal_text"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/tvAvLegal"
@@ -51,14 +51,13 @@
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/tvTextAvLegal"
         />
-    <TextView
-        android:id="@+id/tvTextPolitPriv"
+
+    <com.codesgood.views.JustifiedTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/tv_polit_privacidad_text"
-        android:layout_gravity="center_horizontal"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvPolitPriv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvPolitPriv"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
