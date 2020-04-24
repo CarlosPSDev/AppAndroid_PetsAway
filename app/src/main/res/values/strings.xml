@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Petsaway</string>
+    <string name="btn_nuevo_usuario">Nuevo usuario</string>
+    <string name="btn_entrar">Entrar</string>
+    <string name="hint_usuario">usuario</string>
+    <string name="hint_password">contraseña</string>
+    <string name="tv_olvidado_contrasenia">¿Has olvidado la contraseña?</string>
+    <string name="tv_conectar_con">-o inicia sesión con-</string>
 </resources>

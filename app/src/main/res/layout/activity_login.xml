@@ -4,6 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/colorGrisClaro">
+
+    <ImageView
+        android:id="@+id/ivLogoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/etNombreLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNombreLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="12"
+        android:hint="@string/hint_usuario"
+        android:textColor="@color/colorMagenta"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:fontFamily="@font/robotolight"
+        app:layout_constraintBottom_toTopOf="@+id/etPasswordLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoLogin"
+        android:drawableLeft="@drawable/icono_usuario"/>
+
+    <EditText
+        android:id="@+id/etPasswordLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:hint="@string/hint_password"
+        android:textColor="@color/colorMagenta"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:fontFamily="@font/robotolight"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreLogin"
+        android:drawableLeft="@drawable/icono_candado"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tvConectarCon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin">
+
+
+        <Button
+            android:id="@+id/btnNuevoUsuario"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/estilo_boton_nuevo_usuario"
+            android:text="@string/btn_nuevo_usuario"
+            android:textAllCaps="false"
+            android:textColor="@color/colorMagenta"
+            android:textSize="20sp"
+            android:fontFamily="@font/robotomedium"
+            android:onClick="accesoRegistro"/>
+
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/estilo_boton_entrar"
+            android:text="@string/btn_entrar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="20sp"
+            android:fontFamily="@font/robotomedium"
+            android:onClick="accesoAplicacion"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvConectarCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/tv_conectar_con"
+        android:fontFamily="@font/robotomedium"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/tvConectarCon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvConectarCon">
+
+        <ImageButton
+            android:id="@+id/imgBtnGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGrisClaro"
+            app:srcCompat="@drawable/google"
+            android:onClick="loginGmail"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorGrisClaro"
+            app:srcCompat="@drawable/facebook"
+            android:onClick="loginFacebook"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvContraseniaOlvidada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="contraseniaOlvidada"
+        android:text="@string/tv_olvidado_contrasenia"
+        android:fontFamily="@font/robotomedium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
