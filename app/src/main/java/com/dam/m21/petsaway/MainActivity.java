@@ -39,13 +39,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
         drawer = findViewById(R.id.drawer_layout);
         toogle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
+
         drawer.addDrawerListener(toogle);
         toogle.syncState();
 
-        navController = (NavigationView) findViewById(R.id.nav_view);
+        navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
 
         navController.setItemIconTintList(null);
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
