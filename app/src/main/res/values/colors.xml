@@ -16,5 +16,6 @@
 
     <!-- Colores extra -->
     <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorBack">#000000</color>
 
 </resources>
