@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.openDrawer(Gravity.START);
             }
         });
-
-
+        
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
 
