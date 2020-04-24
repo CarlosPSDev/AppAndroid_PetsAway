@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
-
+        
         navController.setItemIconTintList(null);
     }
 
