@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="ColorPrimarySlides">#109689</color>
+    <color name="ColorAccentSlides">#B5E577</color>
+
     <!-- Paleta de colores -->
     <color name="colorMagenta">#993955</color>
     <color name="colorPurpura">#AE76A6</color>
