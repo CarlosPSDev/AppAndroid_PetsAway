@@ -18,7 +18,7 @@
             android:id="@+id/ivSlide3"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             android:src="@drawable/slide_three_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +77,16 @@
             android:focusable="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/tvSl3Dot"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/dot3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
