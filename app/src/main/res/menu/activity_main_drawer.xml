@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/user"
+            android:title="@string/menu_perfil" />
+
+        <item
+            android:id="@+id/nav_alerta"
+            android:icon="@drawable/alerta_icon"
+            android:title="@string/menu_alerta" />
+
+        <item
+            android:id="@+id/nav_mapa"
+            android:icon="@drawable/maps_icon"
+            android:title="@string/menu_mapa" />
+
+        <item
+            android:id="@+id/nav_adoptar"
+            android:icon="@drawable/adopta_icon"
+            android:title="@string/menu_adoptar" />
+
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/chat_icon"
+            android:title="@string/menu_chat" />
+
+        <item
+            android:id="@+id/nav_ajustes"
+            android:icon="@drawable/ajustes_icon"
+            android:title="@string/menu_ajustes" />
+
+    </group>
+
+    <item android:title="@string/nav_otros">
+        <menu>
+
+            <item
+                android:id="@+id/nav_aviso_legal"
+                android:icon="@drawable/aviso_legal_icon"
+                android:title="@string/menu_aviso_legal" />
+
+            <item
+                android:id="@+id/nav_acerca_de"
+
+                android:title="@string/menu_acerca_de" />
+
+            <item
+                android:id="@+id/nav_salir"
+                android:icon="@drawable/logout_icon"
+                android:title="@string/menu_salir" />
+
+        </menu>
+    </item>
+
+</menu>
