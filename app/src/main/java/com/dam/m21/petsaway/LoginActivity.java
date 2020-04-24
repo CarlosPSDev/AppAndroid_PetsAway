@@ -2,6 +2,7 @@ package com.dam.m21.petsaway;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,7 +13,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getSupportActionBar().hide();
     }
 
     public void contraseniaOlvidada(View view) {
@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void accesoAplicacion(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     public void loginGmail(View view) {

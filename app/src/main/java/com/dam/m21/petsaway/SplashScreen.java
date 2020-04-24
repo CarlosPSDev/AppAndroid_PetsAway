@@ -17,8 +17,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        getSupportActionBar().hide();
-
         View tvTitulo = findViewById(R.id.tvTituloSplash);
         ImageView ivLogo = findViewById(R.id.ivLogoSplash);
 

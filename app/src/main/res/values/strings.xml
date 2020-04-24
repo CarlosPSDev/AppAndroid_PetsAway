@@ -31,4 +31,7 @@
     <string name="menu_acerca_de">Acerca de PetsAway</string>
     <string name="menu_salir">Salir</string>
     <string name="menu_chat">Chat</string>
+    <string name="tv_home">Home</string>
+    <string name="tv_nombre_usuario_header">Nombre de usuario</string>
+    <string name="tv_mail_usuario_header">xxxxxx@gmail.com</string>
 </resources>

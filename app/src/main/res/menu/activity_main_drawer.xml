@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/user"
-            android:title="@string/menu_perfil" />
+            android:title="@string/menu_perfil"/>
 
         <item
             android:id="@+id/nav_alerta"
@@ -46,7 +46,7 @@
 
             <item
                 android:id="@+id/nav_acerca_de"
-
+                android:icon="@drawable/logo_24"
                 android:title="@string/menu_acerca_de" />
 
             <item
