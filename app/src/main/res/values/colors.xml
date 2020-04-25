@@ -3,6 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Paleta de colores -->
+    <color name="colorMagenta">#993955</color>
+    <color name="colorPurpura">#AE76A6</color>
+    <color name="colorAzul">#A3C3D9</color>
+    <color name="colorGris">#CCD6EB</color>
+    <color name="colorGrisClaro">#E9ECF5</color>
+
+    <!-- Colores extra -->
+    <color name="colorBlanco">#FFFFFF</color>
+
     <color name="colorBack">#000000</color>
     <color name="ColorPrimarySlides">#109689</color>
     <color name="ColorAccentSlides">#B5E577</color>
