@@ -18,7 +18,7 @@ public class LanzadorOnBoard extends AppCompatActivity {
          /*Este bloque debería descomentarse al lanzar la app final. También podría ir tras validar el login
         para que compruebe si hay q llamar a este activity o directamente no*/
 
-      /*  SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
+       /* SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
         int numVeces = sharedPrefs.getInt("vecesEjecutado", 0);
 
         if (numVeces > 0) {
