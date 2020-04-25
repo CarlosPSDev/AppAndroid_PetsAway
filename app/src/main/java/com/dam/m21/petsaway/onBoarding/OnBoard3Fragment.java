@@ -1,6 +1,7 @@
 package com.dam.m21.petsaway.onBoarding;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 
 /**
@@ -44,7 +46,9 @@ public class OnBoard3Fragment extends Fragment {
         tvFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Llamar método para pasar a la ejecución
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+                //Llamar al NavigationDrawer
             }
         });
 
