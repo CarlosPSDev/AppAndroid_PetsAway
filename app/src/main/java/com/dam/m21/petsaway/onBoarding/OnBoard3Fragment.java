@@ -48,7 +48,7 @@ public class OnBoard3Fragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
-                //Llamar método para pasar a la ejecución
+                //Llamar al NavigationDrawer
             }
         });
 
