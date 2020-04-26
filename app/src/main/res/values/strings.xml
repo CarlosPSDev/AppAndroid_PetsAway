@@ -48,11 +48,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_slide1_tit">Bienvenido a Petsaway</string>
     <string name="tv_slide1_desc">Te damos la bienvenida a tu nueva aplicación con la que ya no temerás que tu mascota se extravíe, y además con la que podrás conocer a otras personas amantes de las mascotas</string>
-    <string name="tv_slide1_sig">Siguiente</string>
-    <string name="tv_slide2_ante">Anterior</string>
     <string name="tv_slide2_tit">Conoce todas las funciones</string>
     <string name="tv_slide3_tit">Para finalizar</string>
-    <string name="tv_slide3_fin">Finalizar</string>
     <string name="tv_email_usuario">Email</string>
     <string name="tv_ciudad_usuario">Ciudad</string>
     <string name="tv_mascotas_usuario">Mascotas</string>

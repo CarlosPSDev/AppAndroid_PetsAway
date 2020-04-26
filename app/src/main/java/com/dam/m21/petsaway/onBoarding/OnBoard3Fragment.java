@@ -33,8 +33,8 @@ public class OnBoard3Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_onboard3, container, false);
         viewPager = getActivity().findViewById(R.id.viewPager);
-        ivFin = view.findViewById(R.id.ivFlechaCerrar);
-        ivAnterior = view.findViewById(R.id.ivFlechaIzquierda);
+        ivFin = view.findViewById(R.id.ivSl3Sig);
+        ivAnterior = view.findViewById(R.id.ivSl3Ant);
 
         ivFin.setOnClickListener(new View.OnClickListener() {
             @Override

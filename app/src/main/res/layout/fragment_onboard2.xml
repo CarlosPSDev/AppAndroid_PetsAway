@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding"
-    android:background="@drawable/estilo_on_boarding"
     tools:context=".onBoarding.OnBoard2Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/estilo_on_boarding">
 
         <ImageView
             android:id="@+id/ivSlide2"
@@ -24,7 +23,7 @@
 
         <TextView
             android:id="@+id/tvSl2Tit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/robotomedium"
@@ -38,7 +37,7 @@
 
         <TextView
             android:id="@+id/tvSl2Desc"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/robotolight"
@@ -52,28 +51,30 @@
 
 
         <ImageView
-            android:id="@+id/ivFlechaDerecha"
+            android:id="@+id/ivSl2Sig"
             android:layout_width="22dp"
             android:layout_height="22dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:src="@drawable/ic_derecha"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            android:id="@+id/ivFlechaIzquierda"
+            android:id="@+id/ivSl2Ant"
             android:layout_width="22dp"
             android:layout_height="22dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
             android:src="@drawable/ic_izquierda"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <ImageView
             android:id="@+id/tvSl2Dot"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
+            android:layout_width="45dp"
+            android:layout_height="18dp"
             android:layout_marginTop="150dp"
             android:src="@drawable/dot_center"
             app:layout_constraintEnd_toEndOf="parent"

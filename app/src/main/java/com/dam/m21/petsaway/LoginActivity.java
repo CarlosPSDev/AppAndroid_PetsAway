@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.dam.m21.petsaway.onBoarding.ActivityLanzador;
+import com.dam.m21.petsaway.onBoarding.LanzadorOnBoard;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirOnBoarding(View view) {
-        Intent i = new Intent(this, ActivityLanzador.class);
+        Intent i = new Intent(this, LanzadorOnBoard.class);
         startActivity(i);
     }
 }
