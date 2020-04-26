@@ -11,28 +11,21 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnBoard3Fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
 public class OnBoard3Fragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
-    TextView tvFin;
-    TextView tvAnterior;
+    ImageView ivFin;
+    ImageView ivAnterior;
     ViewPager viewPager;
 
     public OnBoard3Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,10 +33,10 @@ public class OnBoard3Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_onboard3, container, false);
         viewPager = getActivity().findViewById(R.id.viewPager);
-        tvFin = view.findViewById(R.id.tvSl3Fin);
-        tvAnterior = view.findViewById(R.id.tvSl3Ant);
+        ivFin = view.findViewById(R.id.ivFlechaCerrar);
+        ivAnterior = view.findViewById(R.id.ivFlechaIzquierda);
 
-        tvFin.setOnClickListener(new View.OnClickListener() {
+        ivFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
@@ -52,7 +45,7 @@ public class OnBoard3Fragment extends Fragment {
             }
         });
 
-        tvAnterior.setOnClickListener(new View.OnClickListener() {
+        ivAnterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(1);

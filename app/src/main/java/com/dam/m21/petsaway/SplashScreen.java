@@ -20,11 +20,11 @@ public class SplashScreen extends AppCompatActivity {
         View tvTitulo = findViewById(R.id.tvTituloSplash);
         ImageView ivLogo = findViewById(R.id.ivLogoSplash);
 
-        Animation translate1 = AnimationUtils.loadAnimation(this, R.anim.emerger_y_escalar);
-        tvTitulo.startAnimation(translate1);
+        Animation animacionTitulo = AnimationUtils.loadAnimation(this, R.anim.emerger_y_escalar);
+        tvTitulo.startAnimation(animacionTitulo);
 
-        Animation translate2 = AnimationUtils.loadAnimation(this, R.anim.slidedown);
-        ivLogo.startAnimation(translate2);
+        Animation animacionLogo = AnimationUtils.loadAnimation(this, R.anim.slidedown);
+        ivLogo.startAnimation(animacionLogo);
 
         openApp(true);
     }

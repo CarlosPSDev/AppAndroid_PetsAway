@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.dam.m21.petsaway.onBoarding.ActivityLanzador;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -29,5 +31,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginFacebook(View view) {
+    }
+
+    public void abrirOnBoarding(View view) {
+        Intent i = new Intent(this, ActivityLanzador.class);
+        startActivity(i);
     }
 }

@@ -9,16 +9,14 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dam.m21.petsaway.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class OnBoard2Fragment extends Fragment {
-    TextView tvSiguiente;
-    TextView tvAnterior;
+    ImageView ivSiguiente;
+    ImageView ivAnterior;
     ViewPager viewPager;
 
 
@@ -26,24 +24,23 @@ public class OnBoard2Fragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_onboard2, container, false);
         viewPager = getActivity().findViewById(R.id.viewPager);
-        tvSiguiente = view.findViewById(R.id.tvSl2Sig);
-        tvAnterior = view.findViewById(R.id.tvSl2Ant);
+        ivSiguiente = view.findViewById(R.id.ivFlechaDerecha);
+        ivAnterior = view.findViewById(R.id.ivFlechaIzquierda);
 
-        tvSiguiente.setOnClickListener(new View.OnClickListener() {
+        ivSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(2);
             }
         });
 
-        tvAnterior.setOnClickListener(new View.OnClickListener() {
+        ivAnterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(0);
