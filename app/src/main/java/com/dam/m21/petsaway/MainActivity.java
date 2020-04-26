@@ -11,14 +11,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.dam.m21.petsaway.onBoarding.AvisoLegal;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -90,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_mapa){
             //TODO:
+            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_aviso_legal){
+            startActivity(new Intent(MainActivity.this, AvisoLegal.class));
             //TODO:
 
         } else if (id == R.id.nav_acerca_de){
