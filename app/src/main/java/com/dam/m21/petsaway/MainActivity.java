@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.dam.m21.petsaway.onBoarding.AvisoLegal;
+import com.dam.m21.petsaway.onBoarding.PerfilUsuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_perfil){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, PerfilUsuario.class));
 
         } else if (id == R.id.nav_alerta){
             //TODO:
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_aviso_legal){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AvisoLegal.class));
 
         } else if (id == R.id.nav_acerca_de){
             startActivity(new Intent(MainActivity.this, AcercaDeActivity.class));

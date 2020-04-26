@@ -53,4 +53,8 @@
     <string name="tv_slide2_tit">Conoce todas las funciones</string>
     <string name="tv_slide3_tit">Para finalizar</string>
     <string name="tv_slide3_fin">Finalizar</string>
+    <string name="tv_email_usuario">Email</string>
+    <string name="tv_ciudad_usuario">Ciudad</string>
+    <string name="tv_mascotas_usuario">Mascotas</string>
+    <string name="btn_editar_perfil">Editar Perfil</string>
 </resources>

@@ -18,4 +18,6 @@
     <color name="colorBlanco">#FFFFFF</color>
     <color name="colorBack">#000000</color>
 
+    <color name="colorFondoPerfil">#40ae75ae</color>
+
 </resources>
