@@ -4,75 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding"
-    android:background="@color/ColorPrimarySlides"
     tools:context=".onBoarding.OnBoard1Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding"
+        android:background="@drawable/estilo_on_boarding">
 
 
         <ImageView
-            android:id="@+id/tvSlide1"
+            android:id="@+id/ivSlide1"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/slide_one_img"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img1_onboarding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvSl1Tit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_slide1_tit"
-            android:textSize="26sp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/robotomedium"
             android:gravity="center"
-            android:layout_marginTop="32dp"
-            android:textColor="@color/ColorAccentSlides"
-            android:fontFamily="@font/lato_regular"
+            android:text="@string/tv_slide1_tit"
+            android:textColor="@color/colorGrisClaro"
+            android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSlide1" />
+            app:layout_constraintTop_toBottomOf="@id/ivSlide1" />
 
         <TextView
             android:id="@+id/tvSl1Desc"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_slide1_desc"
-            android:textSize="19sp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/robotolight"
             android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/lato_light"
+            android:text="@string/tv_slide1_desc"
+            android:textColor="@color/colorGrisClaro"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSl1Tit" />
 
-        <TextView
-            android:id="@+id/tvSl1Sig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_slide1_sig"
-            android:textSize="20sp"
-            android:textColor="@color/ColorAccentSlides"
-            android:fontFamily="@font/lato_light"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
         <ImageView
-            android:id="@+id/tvSl1Dot"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="40dp"
-            android:src="@drawable/dot1"
+            android:id="@+id/ivFlechaDerecha"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_derecha"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            />
+
+        <ImageView
+            android:id="@+id/ivSl1Dot"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/dot_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSl1Desc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- TODO: Update blank fragment layout -->
