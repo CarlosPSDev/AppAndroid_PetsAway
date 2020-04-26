@@ -78,29 +78,7 @@ ImageButton bt_add;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        bt_encuentra.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
-        bt_busca.setBackgroundResource(R.drawable.toolbar_style);
-        dbr.child("alertas").child("encontrados").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                    PojoFormulario pf=childDataSnapshot.getValue(PojoFormulario.class);
-                    double longitude=pf.getLongitude();
-                    double latitude=pf.getLatitude();
-                    String tipoAnimal=pf.getTipoAnimal();
-                    miLoc=new LatLng(latitude,longitude);
-                    mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
-                            BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
-        //e();
+        e();
     }
 
     public void goForm(View view) {
@@ -136,6 +114,7 @@ ImageButton bt_add;
     public void e(){
         bt_encuentra.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_busca.setBackgroundResource(R.drawable.toolbar_style);
+        mMap.clear();
         dbr.child("alertas").child("encontrados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -164,6 +143,7 @@ ImageButton bt_add;
     public void b(){
         bt_busca.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_encuentra.setBackgroundResource(R.drawable.toolbar_style);
+        mMap.clear();
         dbr.child("alertas").child("buscados").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

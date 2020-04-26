@@ -1,20 +1,22 @@
 package com.dam.m21.petsaway.pojos;
 
 public class PojoFormulario {
-    String tipoAletra,tipoAnimal,color,fecha,raza,desc;
+    String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush;
     Double latitude,longitude;
-
-    public PojoFormulario(String tipoAletra, String tipoAnimal, String color, String fecha, String raza, String desc, Double latitude, Double longitude) {
+    public PojoFormulario() {
+    }
+    public PojoFormulario(String tipoAletra, String tipoAnimal, String color, String fecha, String raza, String desc, String fPush, String userPush, Double latitude, Double longitude) {
         this.tipoAletra = tipoAletra;
         this.tipoAnimal = tipoAnimal;
         this.color = color;
         this.fecha = fecha;
         this.raza = raza;
         this.desc = desc;
+        this.fPush = fPush;
+        this.userPush = userPush;
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
     public String getDesc() {
         return desc;
     }
