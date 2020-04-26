@@ -54,4 +54,5 @@
     <string name="tv_ciudad_usuario">Ciudad</string>
     <string name="tv_mascotas_usuario">Mascotas</string>
     <string name="btn_editar_perfil">Editar Perfil</string>
+    <string name="tv_aclaracion_perfil">(Pulsa para mostrar, editar o borrar la información)</string>
 </resources>
