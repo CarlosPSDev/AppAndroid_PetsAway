@@ -7,16 +7,15 @@
     android:padding="@dimen/padding"
     tools:context=".onBoarding.AvisoLegal">
 
-
     <ImageView
         android:id="@+id/ivAvLegal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        android:src="@drawable/aviso_legal" />
 
     <TextView
         android:id="@+id/tvAvLegal"
