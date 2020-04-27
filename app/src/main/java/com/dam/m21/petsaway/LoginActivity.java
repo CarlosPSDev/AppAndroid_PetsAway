@@ -1,30 +1,93 @@
 package com.dam.m21.petsaway;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dam.m21.petsaway.onBoarding.LanzadorOnBoard;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private FirebaseAuth fbAuth;
+    private FirebaseUser fbUser;
+
+    EditText etContrasenia;
+    EditText etEmail;
+    String email;
+    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        etEmail = findViewById(R.id.etMailLogin);
+        etContrasenia = findViewById(R.id.etPasswordLogin);
+
+        fbAuth = FirebaseAuth.getInstance();
+        fbUser = fbAuth.getCurrentUser();
+
+        String mailCierreSesion = getIntent().getStringExtra(MainActivity.CLAVE_EMAIL);
+        etEmail.setText(mailCierreSesion);
+
+        if (fbUser != null) {
+            etEmail.setText(fbUser.getEmail());
+        }
     }
 
     public void contraseniaOlvidada(View view) {
     }
 
     public void accesoRegistro(View view) {
+        Intent i = new Intent(this, RegistroActivity.class);
+        startActivity(i);
     }
 
     public void accesoAplicacion(View view) {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        if (validarDatos() == true) {
+            fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                    this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+
+                                //TODO: Animaciones
+                                //Animation rotarIcono = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.rotate_icon);
+                                //ivLogo.startAnimation(rotarIcono);
+
+                                fbUser = fbAuth.getCurrentUser();
+
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(i);
+                                        finish();
+                                        overridePendingTransition(R.anim.leftin, R.anim.leftout);
+                                    }
+                                }, 2000);
+
+
+
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.toast_error_acceso), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+            );
+        }
     }
 
     public void loginGmail(View view) {
@@ -36,5 +99,21 @@ public class LoginActivity extends AppCompatActivity {
     public void abrirOnBoarding(View view) {
         Intent i = new Intent(this, LanzadorOnBoard.class);
         startActivity(i);
+    }
+
+    private boolean validarDatos() {
+        email = etEmail.getText().toString().trim();
+        password = etContrasenia.getText().toString().trim();
+
+        boolean continuar;
+
+        if (email.isEmpty() ||  password.isEmpty()) {
+            Toast.makeText(this, getString(R.string.toast_msj_no_datos), Toast.LENGTH_LONG).show();
+            continuar = false;
+
+        } else {
+            continuar = true;
+        }
+        return continuar;
     }
 }

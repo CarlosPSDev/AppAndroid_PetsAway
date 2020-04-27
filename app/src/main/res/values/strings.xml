@@ -35,7 +35,6 @@
     <string name="tv_nombre_usuario_header">Nombre de usuario</string>
     <string name="tv_mail_usuario_header">xxxxxx@gmail.com</string>
 
-
     <string name="tv_aviso_legal">Aviso Legal</string>
     <string name="tv_aviso_legal_text">PETSAWAY no se hace responsable del uso fraudulento que puedan realizar los usuarios suplantando identidades
         y pertenencias de las mascotas. Compruebe siempre los datos facilitados para asegurarse de a quién se le entrega la mascota o con quién queda.</string>
@@ -68,5 +67,11 @@
     <string name="bt_guardar">Guardar</string>
     <string name="h_desc">Descripcion</string>
     <string name="toast_faltanDatos">Faltan Datos</string>
+    <string name="hint_mail">email</string>
+    <string name="btn_crear_cuenta">Crear cuenta</string>
+    <string name="toast_registro_correcto">¡Registrado!</string>
+    <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
+    <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
+    <string name="toast_error_acceso">Error de conexión</string>
 
 </resources>
