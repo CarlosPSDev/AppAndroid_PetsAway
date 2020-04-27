@@ -75,7 +75,7 @@
             android:id="@+id/tvSl3Dot"
             android:layout_width="45dp"
             android:layout_height="18dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="60dp"
             android:src="@drawable/dot_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
