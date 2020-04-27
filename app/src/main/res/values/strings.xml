@@ -55,4 +55,18 @@
     <string name="tv_mascotas_usuario">Mascotas</string>
     <string name="btn_editar_perfil">Editar Perfil</string>
     <string name="tv_aclaracion_perfil">(Pulsa para mostrar, editar o borrar la información)</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="h_menu_search">Search</string>
+    <string name="mascEncontradas">Encuentra</string>
+    <string name="mascBuscadas">Busca</string>
+    <string name="h_tipo_alerta">Tipo de alerta</string>
+    <string name="h_tipo_animal">Tipo de animal</string>
+    <string name="h_color">Color</string>
+    <string name="h_fecha_p_e">Fecha de Perdida/Encuentro</string>
+    <string name="h_raza">Raza de mascota</string>
+    <string name="bt_guardar">Guardar</string>
+    <string name="h_desc">Descripcion</string>
+    <string name="toast_faltanDatos">Faltan Datos</string>
+
 </resources>

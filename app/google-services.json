@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "833617305129",
+    "firebase_url": "https://petsaway-6b286.firebaseio.com",
+    "project_id": "petsaway-6b286",
+    "storage_bucket": "petsaway-6b286.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833617305129:android:1522f07c1c650d0c0ec638",
+        "android_client_info": {
+          "package_name": "com.dam.m21.petsaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833617305129-cr7ocef7pe7u4fg3rgpohv6rjo6ms66a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dam.m21.petsaway",
+            "certificate_hash": "e23270455d2d5853f2db483763ef43c9de9c3b4a"
+          }
+        },
+        {
+          "client_id": "833617305129-3eh2bt1bh0b01u5fve9n70v1ho25h9ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB8m5nopQsT7tRezk5d9YhAMEgWk3zPjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833617305129-3eh2bt1bh0b01u5fve9n70v1ho25h9ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
-        
+
         navController.setItemIconTintList(null);
     }
 
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_mapa){
             //TODO:
+            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
