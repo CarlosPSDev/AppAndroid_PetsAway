@@ -11,7 +11,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
@@ -23,6 +26,10 @@ public class OnBoard3Fragment extends Fragment {
     ImageView ivAnterior;
     ViewPager viewPager;
 
+    ImageView ivFoto;
+    TextView tvTitulo;
+    TextView tvDesc;
+
     public OnBoard3Fragment() {
         // Required empty public constructor
     }
@@ -31,7 +38,7 @@ public class OnBoard3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_onboard3, container, false);
+        final View view = inflater.inflate(R.layout.fragment_onboard3, container, false);
         
         viewPager = getActivity().findViewById(R.id.viewPager);
         ivFin = view.findViewById(R.id.ivSl3Sig);
@@ -50,6 +57,7 @@ public class OnBoard3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(1);
+
             }
         });
 
