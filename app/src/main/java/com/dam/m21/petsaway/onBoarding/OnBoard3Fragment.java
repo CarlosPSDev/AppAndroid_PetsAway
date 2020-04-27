@@ -26,10 +26,6 @@ public class OnBoard3Fragment extends Fragment {
     ImageView ivAnterior;
     ViewPager viewPager;
 
-    ImageView ivFoto;
-    TextView tvTitulo;
-    TextView tvDesc;
-
     public OnBoard3Fragment() {
         // Required empty public constructor
     }
