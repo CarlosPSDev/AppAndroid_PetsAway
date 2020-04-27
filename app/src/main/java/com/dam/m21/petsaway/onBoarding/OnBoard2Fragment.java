@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,9 @@ public class OnBoard2Fragment extends Fragment {
     ImageView ivAnterior;
     ViewPager viewPager;
 
+    ImageView ivFoto;
+    TextView tvTitulo;
+    TextView tvDesc;
 
     public OnBoard2Fragment() {
         // Required empty public constructor
@@ -33,10 +38,27 @@ public class OnBoard2Fragment extends Fragment {
         ivSiguiente = view.findViewById(R.id.ivSl2Sig);
         ivAnterior = view.findViewById(R.id.ivSl2Ant);
 
+        ivFoto = view.findViewById(R.id.ivSlide2);
+        tvTitulo = view.findViewById(R.id.tvSl2Tit);
+        tvDesc  =view.findViewById(R.id.tvSl2Desc);
+
+        final Animation animImg = AnimationUtils.loadAnimation(getContext(), R.anim.slidedown_slide);
+        final Animation animTit = AnimationUtils.loadAnimation(getContext(), R.anim.leftin_slide);
+        final Animation animDesc = AnimationUtils.loadAnimation(getContext(), R.anim.rightin_slide);
+
         ivSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(2);
+
+                ivFoto = viewPager.findViewById(R.id.ivSlide3);
+                ivFoto.startAnimation(animImg);
+
+                tvTitulo = viewPager.findViewById(R.id.tvSl3Tit);
+                tvTitulo.startAnimation(animTit);
+
+                tvDesc = viewPager.findViewById(R.id.tvSl3Desc);
+                tvDesc.startAnimation(animDesc);
             }
         });
 
@@ -44,6 +66,7 @@ public class OnBoard2Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(0);
+
             }
         });
         return view;
