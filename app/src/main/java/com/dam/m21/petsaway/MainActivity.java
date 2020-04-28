@@ -21,6 +21,8 @@ import com.dam.m21.petsaway.onBoarding.PerfilUsuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,11 +30,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
+    private FirebaseAuth fbAuth;
+    static final String CLAVE_EMAIL = "EMAIL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fbAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,12 +116,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AcercaDeActivity.class));
 
         } else if (id == R.id.nav_salir){
-            //TODO:
-
+            Intent i = new Intent(this, LoginActivity.class);
+            i.putExtra(CLAVE_EMAIL, fbAuth.getCurrentUser().getEmail());
+            startActivity(i);
+            finish();
+            fbAuth.signOut();
+            //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
