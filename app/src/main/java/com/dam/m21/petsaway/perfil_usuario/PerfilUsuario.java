@@ -1,16 +1,20 @@
-package com.dam.m21.petsaway.onBoarding;
+package com.dam.m21.petsaway.perfil_usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.dam.m21.petsaway.R;
 
-public class AvisoLegal extends AppCompatActivity {
+public class PerfilUsuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aviso_legal);
+        setContentView(R.layout.perfil_usuario);
+    }
+
+    public void modificarPerfil(View view) {
     }
 }

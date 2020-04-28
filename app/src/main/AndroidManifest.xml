@@ -7,7 +7,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -15,10 +15,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <permission
-        android:name="com.jertt.yummymap.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
-    <uses-permission android:name="com.jertt.yummymap.permission.MAPS_RECEIVE"/>
 
     <application
         android:allowBackup="true"
@@ -27,17 +23,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".onBoarding.PerfilUsuario"></activity>
-        <activity android:name=".onBoarding.AvisoLegal"></activity>
-        <activity android:name=".onBoarding.LanzadorOnBoard"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".AcercaDeActivity"></activity>
-
-        <activity android:name=".FormularioActivity"></activity>
-        <activity android:name=".AlertasMapaActivity"></activity>
+        <activity android:name=".perfil_usuario.PerfilUsuario"></activity>
+        <activity android:name=".aviso_legal.AvisoLegal"></activity>
+        <activity android:name=".on_boarding.LanzadorOnBoard"></activity>
+        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".acerca_de.AcercaDeActivity"></activity>
+        <activity android:name=".ajustes.AjustesActivity"></activity>
+        <activity android:name=".formulario.FormularioActivity"></activity>
+        <activity android:name=".alertas_mapa.AlertasMapaActivity"></activity>
+        <activity android:name=".registro.RegistroActivity"></activity>
         <activity
-            android:name=".MapsActivity"
+            android:name=".alertas_mapa.fragments.MapsActivity"
             android:label="@string/title_activity_maps" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -51,7 +48,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".SplashScreen">
+        <activity android:name=".splash_screen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
