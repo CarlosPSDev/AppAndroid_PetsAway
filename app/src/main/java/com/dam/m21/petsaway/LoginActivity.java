@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validarDatos() {
         email = etEmail.getText().toString().trim();
         password = etContrasenia.getText().toString().trim();
-
         boolean continuar;
 
         if (email.isEmpty() ||  password.isEmpty()) {
