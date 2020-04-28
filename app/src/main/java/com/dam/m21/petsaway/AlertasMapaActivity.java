@@ -40,8 +40,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
-Button bt_encuentra,bt_busca;
+public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback { Button bt_encuentra,bt_busca;
 ImageButton bt_add;
 ImageView ImgM;
 TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
