@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_ajustes){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AjustesActivity.class));
 
         } else if (id == R.id.nav_aviso_legal){
             startActivity(new Intent(MainActivity.this, AvisoLegal.class));

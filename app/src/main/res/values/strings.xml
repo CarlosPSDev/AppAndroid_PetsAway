@@ -68,5 +68,17 @@
     <string name="bt_guardar">Guardar</string>
     <string name="h_desc">Descripcion</string>
     <string name="toast_faltanDatos">Faltan Datos</string>
+    <string name="maarker_encontrado">encontrado</string>
+    <string name="msjBtDialogImage">Elige</string>
+    <string name="encontrados">Encontrados</string>
+    <string name="encontrado">encontrado</string>
+    <string name="buscado">buscado</string>
+    <string name="modTema">Midificar el tema</string>
+    <string name="modPass">Cambiar contraseña</string>
+    <string name="modEmail">Cambiar correo electronico</string>
+    <string name="modFondoChat">Modificar fondo del chat</string>
+    <string name="invitAm">Invitar amigos</string>
+    <string name="borrarCuenta">Borrar mi cuenta</string>
+    <string name="notif">Notificaciones</string>
 
 </resources>

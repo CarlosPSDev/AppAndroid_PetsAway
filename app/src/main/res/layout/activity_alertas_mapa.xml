@@ -58,5 +58,13 @@
     android:background="@drawable/style_bt_add"
     android:scaleType="centerCrop"
     android:onClick="goForm"/>
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <include
+            android:id="@+id/bottomJsoft"
+            layout="@layout/detalle_marker_layout"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>
