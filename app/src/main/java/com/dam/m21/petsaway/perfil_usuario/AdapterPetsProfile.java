@@ -1,16 +1,13 @@
-package com.dam.m21.petsaway.onBoarding;
+package com.dam.m21.petsaway.perfil_usuario;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dam.m21.petsaway.R;
-
 import java.util.ArrayList;
 
 public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.ViewHolderPets> {

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import com.dam.m21.petsaway.R;
+
 import java.util.ArrayList;
 
 public class PerfilUsuario extends AppCompatActivity {

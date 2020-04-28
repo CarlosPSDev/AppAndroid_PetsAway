@@ -1,6 +1,4 @@
-package com.dam.m21.petsaway.onBoarding;
-
-import android.graphics.drawable.Drawable;
+package com.dam.m21.petsaway.perfil_usuario;
 
 public class PojoPruebasCarlos {
     private String nombre;
