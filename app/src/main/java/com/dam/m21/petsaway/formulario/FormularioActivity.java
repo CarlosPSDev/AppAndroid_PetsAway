@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.formulario;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -57,8 +59,8 @@ public class FormularioActivity extends AppCompatActivity {
 
     public void guardar(View view) {
         if(!tipoAnimal.getText().toString().isEmpty()&&!color.getText().toString().isEmpty()) {
-            latitud = getIntent().getExtras().getDouble(AlertasMapaActivity.CLAVE_LAT, 1);
-            longitud = getIntent().getExtras().getDouble(AlertasMapaActivity.CLAVE_LONG, 1);
+            latitud = getIntent().getExtras().getDouble("LAT", 1);
+            longitud = getIntent().getExtras().getDouble("LONG", 1);
             Date fechaAct = new Date();
             String fPush = fechaAct.toString();
             ubiPunto = new HashMap<>();

@@ -1,9 +1,11 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.ajustes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.dam.m21.petsaway.R;
 
 public class AjustesActivity extends AppCompatActivity {
 

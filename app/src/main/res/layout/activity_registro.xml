@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroActivity"
+    tools:context=".registro.RegistroActivity"
     android:background="@color/colorGrisClaro">
 
     <ImageView
@@ -29,41 +29,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etNombreRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:drawableLeft="@drawable/icono_usuario"
-        android:ems="12"
-        android:fontFamily="@font/robotolight"
-        android:hint="@string/hint_usuario"
-        android:inputType="text"
-        android:textColor="@color/colorMagenta"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogoRegistro" />
-
-    <EditText
-        android:id="@+id/etPasswordRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icono_candado"
-        android:ems="12"
-        android:fontFamily="@font/robotolight"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:textColor="@color/colorMagenta"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombreRegistro" />
-
-    <EditText
         android:id="@+id/etMailRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_correo"
+        android:layout_marginTop="40dp"
+        android:drawableStart="@drawable/ic_correo"
         android:ems="12"
         android:fontFamily="@font/robotolight"
         android:hint="@string/hint_mail"
@@ -71,8 +41,41 @@
         android:textColor="@color/colorMagenta"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPasswordRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoRegistro" />
+
+    <EditText
+        android:id="@+id/etNombreRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/icono_usuario"
+        android:ems="12"
+        android:fontFamily="@font/robotolight"
+        android:hint="@string/hint_usuario"
+        android:inputType="text"
+        android:textColor="@color/colorMagenta"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMailRegistro" />
+
+    <EditText
+        android:id="@+id/etPasswordRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/icono_candado"
+        android:ems="12"
+        android:fontFamily="@font/robotolight"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorMagenta"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreRegistro" />
 
     <Button
         android:id="@+id/btnCrearCuenta"
