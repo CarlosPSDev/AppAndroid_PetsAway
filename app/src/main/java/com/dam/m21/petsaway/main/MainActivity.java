@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-
     /**
      * En este método controlamos los diferentes eventos del NavigationDrawer
      * @param menuItem
