@@ -73,5 +73,17 @@
     <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
     <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
     <string name="toast_error_acceso">Error de conexión</string>
+    <string name="maarker_encontrado">encontrado</string>
+    <string name="msjBtDialogImage">Elige</string>
+    <string name="encontrados">Encontrados</string>
+    <string name="encontrado">encontrado</string>
+    <string name="buscado">buscado</string>
+    <string name="modTema">Midificar el tema</string>
+    <string name="modPass">Cambiar contraseña</string>
+    <string name="modEmail">Cambiar correo electronico</string>
+    <string name="modFondoChat">Modificar fondo del chat</string>
+    <string name="invitAm">Invitar amigos</string>
+    <string name="borrarCuenta">Borrar mi cuenta</string>
+    <string name="notif">Notificaciones</string>
 
 </resources>

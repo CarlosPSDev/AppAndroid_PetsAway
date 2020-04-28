@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_mapa){
             //TODO:
-            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+            startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_ajustes){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AjustesActivity.class));
 
         } else if (id == R.id.nav_aviso_legal){
             startActivity(new Intent(MainActivity.this, AvisoLegal.class));
