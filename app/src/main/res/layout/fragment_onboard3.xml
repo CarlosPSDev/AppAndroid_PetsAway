@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".onBoarding.OnBoard3Fragment"
+    tools:context=".on_boarding.fragmentos.OnBoard3Fragment"
     android:background="@drawable/estilo_on_boarding">
 
     <!-- TODO: Update blank fragment layout -->

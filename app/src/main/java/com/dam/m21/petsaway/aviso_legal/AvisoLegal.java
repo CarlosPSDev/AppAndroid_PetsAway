@@ -1,14 +1,17 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.aviso_legal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AcercaDeActivity extends AppCompatActivity {
+import com.dam.m21.petsaway.R;
+
+public class AvisoLegal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acerca_de);
+        setContentView(R.layout.activity_aviso_legal);
+        
     }
 }

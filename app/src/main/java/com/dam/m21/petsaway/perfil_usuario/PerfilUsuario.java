@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.onBoarding;
+package com.dam.m21.petsaway.perfil_usuario;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

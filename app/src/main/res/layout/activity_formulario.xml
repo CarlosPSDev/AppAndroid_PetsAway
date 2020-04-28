@@ -4,24 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormularioActivity"
+    tools:context=".formulario.FormularioActivity"
     android:background="@color/colorGris">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <ImageButton
+        android:id="@+id/bt_add_foto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginVertical="10dp"
         android:src="@drawable/ic_add_photo"
-        android:background="@color/colorBlanco"/>
-    <EditText
-        android:id="@+id/tipoAletra"
+        android:background="@color/colorBlanco"
+        android:onClick="addFoto"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_tipo_alerta"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_encontrado"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/toolbar_style"
+            android:onClick="encontrado"
+            android:text="@string/encontrado"/>
+        <Button
+            android:id="@+id/bt_buscado"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@drawable/toolbar_style"
+            android:onClick="buscado"
+            android:text="@string/buscado"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/tipoAnimal"
