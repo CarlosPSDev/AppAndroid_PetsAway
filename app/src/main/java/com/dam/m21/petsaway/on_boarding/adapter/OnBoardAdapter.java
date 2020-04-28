@@ -1,9 +1,13 @@
-package com.dam.m21.petsaway.onBoarding;
+package com.dam.m21.petsaway.on_boarding.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.dam.m21.petsaway.on_boarding.fragmentos.OnBoard1Fragment;
+import com.dam.m21.petsaway.on_boarding.fragmentos.OnBoard2Fragment;
+import com.dam.m21.petsaway.on_boarding.fragmentos.OnBoard3Fragment;
 
 public class OnBoardAdapter extends FragmentPagerAdapter {
 

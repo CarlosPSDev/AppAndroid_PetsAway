@@ -1,8 +1,9 @@
-package com.dam.m21.petsaway.pojos;
+package com.dam.m21.petsaway.model;
 
 public class PojoFormulario {
-    String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto;
-    Double latitude,longitude;
+    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto;
+    private Double latitude,longitude;
+
     public PojoFormulario() {
     }
     public PojoFormulario(String tipoAletra, String tipoAnimal, String color, String fecha, String raza, String desc, String fPush, String userPush, String idFoto, Double latitude, Double longitude) {
