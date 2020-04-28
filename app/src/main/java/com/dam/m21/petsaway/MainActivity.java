@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_mapa){
             //TODO:
-            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+            startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
