@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -11,16 +11,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.dam.m21.petsaway.onBoarding.AvisoLegal;
-import com.dam.m21.petsaway.onBoarding.PerfilUsuario;
+import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
+import com.dam.m21.petsaway.ajustes.AjustesActivity;
+import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
+import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.login.LoginActivity;
+import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
+import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,11 +31,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
+    private FirebaseAuth fbAuth;
+    static final String CLAVE_EMAIL = "EMAIL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fbAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
-        
+
         navController.setItemIconTintList(null);
     }
 
@@ -74,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-
     /**
      * En este método controlamos los diferentes eventos del NavigationDrawer
      * @param menuItem
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_mapa){
             //TODO:
+            startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_ajustes){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AjustesActivity.class));
 
         } else if (id == R.id.nav_aviso_legal){
             startActivity(new Intent(MainActivity.this, AvisoLegal.class));
@@ -109,12 +116,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AcercaDeActivity.class));
 
         } else if (id == R.id.nav_salir){
-            //TODO:
-
+            Intent i = new Intent(this, LoginActivity.class);
+            i.putExtra(CLAVE_EMAIL, fbAuth.getCurrentUser().getEmail());
+            startActivity(i);
+            finish();
+            fbAuth.signOut();
+            //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

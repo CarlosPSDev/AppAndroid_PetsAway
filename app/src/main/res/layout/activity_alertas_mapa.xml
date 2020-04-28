@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alertas_mapa.AlertasMapaActivity"
+    tools:ignore="Autofill,LabelFor,RtlHardcoded,TextFields,ButtonStyle,UnusedAttribute,VectorDrawableCompat,ContentDescription,ObsoleteLayoutParam">
+
+
+    <FrameLayout
+        android:id="@+id/fl_mapa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/activity_maps"/>
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/map_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+    </FrameLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_marginTop="14dp"
+    android:layout_below="@+id/map_toolbar">
+    <Button
+        android:id="@+id/bt_encuentra"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/mascEncontradas"
+        android:onClick="encuentra"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/toolbar_style" />
+    <Button
+        android:id="@+id/bt_busca"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/mascBuscadas"
+        android:onClick="busca"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/toolbar_style"/>
+</LinearLayout>
+<ImageButton
+    android:id="@+id/bt_add"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_margin="10dp"
+    android:src="@drawable/ic_add"
+    android:background="@drawable/style_bt_add"
+    android:scaleType="centerCrop"
+    android:onClick="goForm"/>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <include
+            android:id="@+id/bottomJsoft"
+            layout="@layout/detalle_marker_layout"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

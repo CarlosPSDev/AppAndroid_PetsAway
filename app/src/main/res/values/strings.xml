@@ -35,7 +35,6 @@
     <string name="tv_nombre_usuario_header">Nombre de usuario</string>
     <string name="tv_mail_usuario_header">xxxxxx@gmail.com</string>
 
-
     <string name="tv_aviso_legal">Aviso Legal</string>
     <string name="tv_aviso_legal_text">PETSAWAY no se hace responsable del uso fraudulento que puedan realizar los usuarios suplantando identidades
         y pertenencias de las mascotas. Compruebe siempre los datos facilitados para asegurarse de a quién se le entrega la mascota o con quién queda.</string>
@@ -55,4 +54,38 @@
     <string name="tv_mascotas_usuario">Mascotas</string>
     <string name="btn_editar_perfil">Editar Perfil</string>
     <string name="tv_aclaracion_perfil">(Pulsa para mostrar, editar o borrar la información)</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="h_menu_search">Search</string>
+    <string name="mascEncontradas">Encuentra</string>
+    <string name="mascBuscadas">Busca</string>
+    <string name="h_tipo_alerta">Tipo de alerta</string>
+    <string name="h_tipo_animal">Tipo de animal</string>
+    <string name="h_color">Color</string>
+    <string name="h_fecha_p_e">Fecha de Perdida/Encuentro</string>
+    <string name="h_raza">Raza de mascota</string>
+    <string name="bt_guardar">Guardar</string>
+    <string name="h_desc">Descripcion</string>
+    <string name="hint_mail">email</string>
+    <string name="btn_crear_cuenta">Crear cuenta</string>
+
+    <string name="toast_faltanDatos">Faltan Datos</string>
+    <string name="toast_registro_correcto">¡Registrado!</string>
+    <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
+    <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
+    <string name="toast_error_acceso">Error de acceso</string>
+
+    <string name="maarker_encontrado">encontrado</string>
+    <string name="msjBtDialogImage">Elige</string>
+    <string name="encontrados">Encontrados</string>
+    <string name="encontrado">encontrado</string>
+    <string name="buscado">buscado</string>
+    <string name="modTema">Midificar el tema</string>
+    <string name="modPass">Cambiar contraseña</string>
+    <string name="modEmail">Cambiar correo electronico</string>
+    <string name="modFondoChat">Modificar fondo del chat</string>
+    <string name="invitAm">Invitar amigos</string>
+    <string name="borrarCuenta">Borrar mi cuenta</string>
+    <string name="notif">Notificaciones</string>
+
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/toolbar_style"
+    android:elevation="10dp"
+    android:layout_marginHorizontal="10dp"
+    tools:ignore="Autofill,LabelFor,RtlHardcoded,TextFields,UnusedAttribute,VectorDrawableCompat,ContentDescription">
+
+    <EditText
+        android:id="@+id/searchCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColorHint="@color/colorBack"
+        android:hint="@string/h_menu_search"
+        android:background="@android:color/transparent"/>
+
+</androidx.appcompat.widget.Toolbar>
