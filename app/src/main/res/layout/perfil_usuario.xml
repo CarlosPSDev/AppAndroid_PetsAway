@@ -4,12 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorFondoPerfil">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorFondoPerfil"
+
         android:padding="@dimen/padding"
         tools:context=".perfil_usuario.PerfilUsuario">
 
@@ -33,6 +34,17 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/btnCambiarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
+            android:onClick="cambiarFoto"
+            android:text="@string/btn_cambiar_foto"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@id/roundCardView"
+            app:layout_constraintStart_toEndOf="@id/roundCardView"/>
+
+        <Button
             android:id="@+id/btnModifPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,6 +56,20 @@
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" /> <!--O bien ponerle el drawable con borde-->
+
+        <Button
+            android:id="@+id/btnGuardarCambios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/icono_candado"
+            android:onClick="guardarCambios"
+            android:text="@string/btn_guardar_cambios"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/btnModifPerfil" />
 
         <TextView
             android:id="@+id/tvNomUsuario"
@@ -57,8 +83,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/roundCardView" />
 
-        <TextView
-            android:id="@+id/tvValNomUsuario"
+        <EditText
+            android:id="@+id/etValNomUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -71,13 +97,13 @@
             android:id="@+id/tvEmailUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/tv_email_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvValNomUsuario" />
+            app:layout_constraintTop_toBottomOf="@+id/etValNomUsuario" />
 
         <TextView
             android:id="@+id/tvValEmailUsuario"
@@ -101,13 +127,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvValEmailUsuario" />
 
-        <TextView
-            android:id="@+id/tvValCiudadUsuario"
+        <EditText
+            android:id="@+id/etValCiudadUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Madrid"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
 
@@ -119,10 +145,11 @@
             android:text="@string/tv_mascotas_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvValCiudadUsuario" />
+            app:layout_constraintTop_toBottomOf="@+id/etValCiudadUsuario" /> <!--app:layout_constraintEnd_toEndOf="parent"-->
 
         <TextView
             android:id="@+id/tvAclaracPerfil"
@@ -137,11 +164,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerProfilPets"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:paddingBottom="60dp"
             app:layout_constrainedHeight="true"
-            app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" />
+            app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" /><!--android:nestedScrollingEnabled="false"-->
 
         <Button
             android:id="@+id/btnAgregarMasc"
@@ -153,7 +180,7 @@
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@id/tvMascotasUsuario"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -161,7 +188,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="193dp" />
+            app:layout_constraintGuide_begin="193dp"
+            app:layout_constraintDimensionRatio=""
+            app:layout_constraintGuide_end="493dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

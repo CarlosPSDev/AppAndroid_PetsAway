@@ -1,6 +1,6 @@
 package com.dam.m21.petsaway.perfil_usuario;
 
-public class PojoPruebasCarlos {
+public class PojoMascotas {
     private String nombre;
     private String raza;
     private String color;
@@ -9,7 +9,7 @@ public class PojoPruebasCarlos {
     private int edad;
     private String urlImg;
 
-    public PojoPruebasCarlos(String nombre, String raza, String color, String identificacion, String descrip, int edad, String urlImg) {
+    public PojoMascotas(String nombre, String raza, String color, String identificacion, String descrip, int edad, String urlImg) {
         this.nombre = nombre;
         this.raza = raza;
         this.color = color;
@@ -18,11 +18,11 @@ public class PojoPruebasCarlos {
         this.edad = edad;
         this.urlImg = urlImg;
     }
-    public PojoPruebasCarlos(String nombre, String urlImg) {
+    public PojoMascotas(String nombre, String urlImg) {
         this.nombre = nombre;
         this.urlImg = urlImg;
     }
-    public PojoPruebasCarlos() {}
+    public PojoMascotas() {}
 
     public String getNombre() {
         return nombre;
