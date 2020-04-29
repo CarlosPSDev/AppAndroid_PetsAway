@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.m21.petsaway.main.MainActivity;
+import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
@@ -87,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                                         overridePendingTransition(R.anim.leftin, R.anim.leftout);
                                     }
                                 }, 2000);
-
 
 
                             } else {

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.dam.m21.petsaway.main.MainActivity;
+import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 
 public class OnBoard3Fragment extends Fragment {
