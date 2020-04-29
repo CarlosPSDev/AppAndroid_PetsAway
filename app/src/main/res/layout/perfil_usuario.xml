@@ -147,8 +147,6 @@
             android:id="@+id/btnAgregarMasc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_bg_border"
-            android:drawableTop="@drawable/icono_tortuga"
             android:onClick="agregarMascota"
             android:padding="5dp"
             android:text="@string/btn_agregar_mascota"
