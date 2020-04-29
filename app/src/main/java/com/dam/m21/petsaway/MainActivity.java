@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.main;
+package com.dam.m21.petsaway;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,7 +17,6 @@ import android.view.View;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
-import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
