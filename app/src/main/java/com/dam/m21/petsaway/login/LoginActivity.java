@@ -79,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 fbUser = fbAuth.getCurrentUser();
 
+                                Toast.makeText(LoginActivity.this, fbUser.toString(), Toast.LENGTH_SHORT).show();
+
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
@@ -89,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                                         overridePendingTransition(R.anim.leftin, R.anim.leftout);
                                     }
                                 }, 2000);
-
 
 
                             } else {

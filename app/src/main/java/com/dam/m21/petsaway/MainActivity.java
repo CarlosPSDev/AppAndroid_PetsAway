@@ -16,10 +16,14 @@ import android.view.View;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_mapa.fragments.AlertasMapaActivity;
+import com.dam.m21.petsaway.ajustes.AjustesActivity;
+import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
+import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,15 +32,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
+    private FirebaseAuth fbAuth;
+    static final String CLAVE_EMAIL = "EMAIL";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fbAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         toogle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
@@ -72,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
     }
-
     /**
      * En este método controlamos los diferentes eventos del NavigationDrawer
      * @param menuItem
@@ -86,11 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, PerfilUsuario.class));
 
         } else if (id == R.id.nav_alerta){
-            //TODO:
-
-        } else if (id == R.id.nav_mapa){
-            //TODO:
-            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+            startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
             //TODO:
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_ajustes){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AjustesActivity.class));
 
         } else if (id == R.id.nav_aviso_legal){
             startActivity(new Intent(MainActivity.this, AvisoLegal.class));
@@ -108,12 +113,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AcercaDeActivity.class));
 
         } else if (id == R.id.nav_salir){
-            //TODO:
-
+            Intent i = new Intent(this, LoginActivity.class);
+            i.putExtra(CLAVE_EMAIL, fbAuth.getCurrentUser().getEmail());
+            startActivity(i);
+            finish();
+            fbAuth.signOut();
+            //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

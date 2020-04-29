@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.alertas_mapa.fragments;
+package com.dam.m21.petsaway.alertas_mapa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
