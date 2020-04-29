@@ -34,6 +34,17 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/btnCambiarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
+            android:onClick="cambiarFoto"
+            android:text="@string/btn_cambiar_foto"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@id/roundCardView"
+            app:layout_constraintStart_toEndOf="@id/roundCardView"/>
+
+        <Button
             android:id="@+id/btnModifPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
