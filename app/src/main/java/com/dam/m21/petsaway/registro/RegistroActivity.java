@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -59,7 +61,18 @@ public class RegistroActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 fbUser = fbAuth.getCurrentUser();
-                                Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(user).build();
+
+                                fbUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Log.d("almacenarN", "User profile updated.");
+                                    }
+                                });
+
+                                        Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
                                 overridePendingTransition(R.anim.rightin, R.anim.rightout);

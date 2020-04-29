@@ -32,7 +32,7 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
 
-        String nombreUsuario = fbUser.getUid();
+        String nombreUsuario = fbUser.getDisplayName();
         tvNomUsuario.setText(nombreUsuario);
 
         rv = findViewById(R.id.recyclerProfilPets);
