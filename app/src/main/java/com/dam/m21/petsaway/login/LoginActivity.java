@@ -13,10 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.m21.petsaway.main.MainActivity;
+import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
+import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -53,6 +54,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void contraseniaOlvidada(View view) {
+        Intent i = new Intent(this, ResetPasswordActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public void accesoRegistro(View view) {

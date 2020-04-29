@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.R;
-import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
+import com.dam.m21.petsaway.alertas_mapa.fragments.AlertasMapaActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;

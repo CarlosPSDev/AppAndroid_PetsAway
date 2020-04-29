@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.alertas_mapa.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -19,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dam.m21.petsaway.pojos.PojoFormulario;
+import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.formulario.FormularioActivity;
+import com.dam.m21.petsaway.model.PojoFormulario;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

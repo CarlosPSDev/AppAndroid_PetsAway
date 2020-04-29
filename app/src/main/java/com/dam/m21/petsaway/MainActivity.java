@@ -14,8 +14,10 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.dam.m21.petsaway.onBoarding.AvisoLegal;
-import com.dam.m21.petsaway.onBoarding.PerfilUsuario;
+import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
+import com.dam.m21.petsaway.alertas_mapa.fragments.AlertasMapaActivity;
+import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
+import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

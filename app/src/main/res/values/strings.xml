@@ -87,5 +87,8 @@
     <string name="invitAm">Invitar amigos</string>
     <string name="borrarCuenta">Borrar mi cuenta</string>
     <string name="notif">Notificaciones</string>
+    <string name="hint_mail_recuperar_password">Introduce tu e-mail</string>
+    <string name="toast_recuperar_password">Debes introducir tu email</string>
+    <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
 
 </resources>
