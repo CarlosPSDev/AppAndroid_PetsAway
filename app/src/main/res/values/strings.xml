@@ -88,5 +88,6 @@
     <string name="borrarCuenta">Borrar mi cuenta</string>
     <string name="notif">Notificaciones</string>
     <string name="btn_agregar_mascota">Agregar Mascota</string>
+    <string name="btn_guardar_cambios">Guardar Cambios</string>
 
 </resources>
