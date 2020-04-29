@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,7 +37,9 @@ public class FormularioActivity extends AppCompatActivity {
     Map<String, Object> ubiPunto;
 
     private StorageReference msr;
-    Boolean fotoDesc=false;
+    private FirebaseAuth fa;
+    private FirebaseUser fu;
+    Boolean fotoDesc;
     Uri miPath;
     DatabaseReference dbr;
     @Override
@@ -52,6 +56,9 @@ public class FormularioActivity extends AppCompatActivity {
         bt_encontrado=findViewById(R.id.bt_encontrado);
         btAddFoto=findViewById(R.id.bt_add_foto);
         msr= FirebaseStorage.getInstance().getReference();
+        fa = FirebaseAuth.getInstance();
+        fu = fa.getCurrentUser();
+        fotoDesc=false;
 
     }
 
@@ -72,7 +79,7 @@ public class FormularioActivity extends AppCompatActivity {
             ubiPunto.put("desc", desc.getText().toString());
             ubiPunto.put("idFoto",  miPath.getLastPathSegment());
             ubiPunto.put("fPush", fPush);
-            ubiPunto.put("userPush", "userPush");
+            ubiPunto.put("userPush", fu.getEmail());
 
             StorageReference sr = msr.child("fotosAnimales").child(miPath.getLastPathSegment());
             sr.putFile(miPath);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.widget.NestedScrollView;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,10 +17,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.pojos.PojoFormulario;
+import com.dam.m21.petsaway.pojos.PojoUser;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,6 +33,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +49,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
 Button bt_encuentra,bt_busca;
 ImageButton bt_add;
 ImageView ImgM;
+LinearLayout dMP;
 TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     private GoogleMap mMap;
     private static final int PETICION_PERMISO_LOCALIZACION = 101;
@@ -52,12 +58,14 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     static final String CLAVE_LONG = "LONG";
 
     private StorageReference msr;
+    private FirebaseAuth fa;
+    private FirebaseUser fu;
     private int cont;
     DatabaseReference dbr;
     private LatLng miLoc;
     private Marker mark;
+    String temaActual;
 
-    Toolbar toolbar;
 
     private BottomSheetBehavior bsb;
     View bottomSheet;
@@ -87,7 +95,8 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         userPushM=findViewById(R.id.userPushM);
         ImgM=findViewById(R.id.ImgM);
 
-
+        fa = FirebaseAuth.getInstance();
+        fu = fa.getCurrentUser();
         msr= FirebaseStorage.getInstance().getReference();
         dbr = FirebaseDatabase.getInstance().getReference();
 
@@ -115,8 +124,32 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
 
             }
         });
+        datosUser();
     }
+    public void datosUser() {
+        dbr.child("usuarios").child(fu.getEmail().substring(0, fu.getEmail().indexOf("."))).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
+                if(pUser!=null) {
+                    temaActual = pUser.getTema();
+                    dMP = findViewById(R.id.dMP);
+                    int idColor = R.color.colorPurpura;
+                    if (temaActual.equals("oscuro")) {
+                        dMP.setBackgroundResource(idColor);
+                        bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
+                        bt_add.setImageResource(R.drawable.ic_add_tema_oscuro);
+                    } else {
 
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -154,10 +187,14 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             });
     }
 
-    public void goForm(View view) {
+    public void goForm(View view){
         cont=cont+1;
         if(cont%2!=0) {
-            bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+            if(temaActual.equals("oscuro")||temaActual!=null){
+                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
+            }else {
+                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+            }
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -169,6 +206,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                                 .icon(BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_GREEN))
                         );
+                        finish();
                         startActivity(new Intent(getApplicationContext(), FormularioActivity.class).putExtra(CLAVE_LAT, mark.getPosition().latitude).putExtra(CLAVE_LONG, mark.getPosition().longitude));
 
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -176,7 +214,11 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 }
             });
         }else{
-            bt_add.setBackgroundResource(R.drawable.style_bt_add);
+            if(temaActual.equals("oscuro")){
+                bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
+            }else {
+                bt_add.setBackgroundResource(R.drawable.style_bt_add);
+            }
         }
     }
 
