@@ -18,6 +18,7 @@ public class PerfilUsuario extends AppCompatActivity {
     ArrayList<PojoPruebasCarlos> listaMascotas;
     RecyclerView rv;
     AdapterPetsProfile adapter;
+    
     FirebaseAuth fbAuth;
     FirebaseUser fbUser;
 
