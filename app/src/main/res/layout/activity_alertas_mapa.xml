@@ -14,20 +14,10 @@
         android:layout_height="match_parent">
         <include layout="@layout/activity_maps"/>
     </FrameLayout>
-    <FrameLayout
-        android:id="@+id/map_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
-    </FrameLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="30dp"
-    android:layout_marginTop="14dp"
-    android:layout_below="@+id/map_toolbar">
+    android:layout_marginTop="14dp">
     <Button
         android:id="@+id/bt_encuentra"
         android:layout_width="match_parent"
