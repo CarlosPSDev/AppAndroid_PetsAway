@@ -14,7 +14,6 @@ public class OnBoardAdapter extends FragmentPagerAdapter {
     public OnBoardAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
-
     @NonNull
     @Override
     public Fragment getItem(int position) {
