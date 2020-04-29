@@ -66,13 +66,15 @@
     <string name="h_raza">Raza de mascota</string>
     <string name="bt_guardar">Guardar</string>
     <string name="h_desc">Descripcion</string>
-    <string name="toast_faltanDatos">Faltan Datos</string>
     <string name="hint_mail">email</string>
     <string name="btn_crear_cuenta">Crear cuenta</string>
+
+    <string name="toast_faltanDatos">Faltan Datos</string>
     <string name="toast_registro_correcto">¡Registrado!</string>
     <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
     <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
-    <string name="toast_error_acceso">Error de conexión</string>
+    <string name="toast_error_acceso">Error de acceso</string>
+
     <string name="maarker_encontrado">encontrado</string>
     <string name="msjBtDialogImage">Elige</string>
     <string name="encontrados">Encontrados</string>

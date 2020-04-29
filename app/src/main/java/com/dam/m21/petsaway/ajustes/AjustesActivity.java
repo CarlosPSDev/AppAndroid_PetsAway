@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.ajustes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +28,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.dam.m21.petsaway.R;
 
 public class AjustesActivity extends AppCompatActivity {
     private FirebaseAuth fa;

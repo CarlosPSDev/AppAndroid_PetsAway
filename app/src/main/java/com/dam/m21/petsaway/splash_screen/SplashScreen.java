@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.splash_screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.login.LoginActivity;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -1,18 +1,15 @@
-package com.dam.m21.petsaway;
+package com.dam.m21.petsaway.alertas_mapa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dam.m21.petsaway.formulario.FormularioActivity;
+import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.model.PojoFormulario;
 import com.dam.m21.petsaway.pojos.PojoFormulario;
 import com.dam.m21.petsaway.pojos.PojoUser;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,8 +42,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
 
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 Button bt_encuentra,bt_busca;
@@ -187,7 +185,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             });
     }
 
-    public void goForm(View view){
+    public void goForm(View view) {
         cont=cont+1;
         if(cont%2!=0) {
             if(temaActual.equals("oscuro")||temaActual!=null){

@@ -1,8 +1,6 @@
-package com.dam.m21.petsaway.onBoarding;
+package com.dam.m21.petsaway.on_boarding.fragmentos;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
@@ -22,9 +17,9 @@ import com.dam.m21.petsaway.R;
 public class OnBoard3Fragment extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
-    ImageView ivFin;
-    ImageView ivAnterior;
-    ViewPager viewPager;
+    private ImageView ivFin;
+    private ImageView ivAnterior;
+    private ViewPager viewPager;
 
     public OnBoard3Fragment() {
         // Required empty public constructor
