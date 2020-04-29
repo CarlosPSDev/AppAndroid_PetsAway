@@ -3,15 +3,14 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.dam.m21.petsaway.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 import java.util.ArrayList;
 
 public class PerfilUsuario extends AppCompatActivity {
@@ -30,6 +29,8 @@ public class PerfilUsuario extends AppCompatActivity {
 
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
+        /*user user = datasnapshot.getValue(User.Class);
+        username.setText(user.getUsername);*/
 
         String nombreUsuario = fbUser.getDisplayName();
         tvNomUsuario.setText(nombreUsuario);
