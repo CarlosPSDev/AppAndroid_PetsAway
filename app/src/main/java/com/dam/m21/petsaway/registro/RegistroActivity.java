@@ -68,11 +68,11 @@ public class RegistroActivity extends AppCompatActivity {
                                 fbUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Log.d("almacenarN", "User profile updated.");
+                                        Log.d("almacenarN", "Nombre guardado: " + user);
                                     }
                                 });
 
-                                        Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
                                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
                                 overridePendingTransition(R.anim.rightin, R.anim.rightout);
