@@ -79,6 +79,7 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
+        
         /*user user = datasnapshot.getValue(User.Class);
         username.setText(user.getUsername);*/
 
