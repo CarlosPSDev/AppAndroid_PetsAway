@@ -11,9 +11,9 @@ import com.dam.m21.petsaway.R;
 import java.util.ArrayList;
 
 public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.ViewHolderPets> {
-    ArrayList<PojoPruebasCarlos>listaMascotas;
+    ArrayList<PojoMascotas>listaMascotas;
 
-    public AdapterPetsProfile(ArrayList<PojoPruebasCarlos> listaMascotas) {
+    public AdapterPetsProfile(ArrayList<PojoMascotas> listaMascotas) {
         this.listaMascotas = listaMascotas;
     }
 
@@ -43,7 +43,7 @@ public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.
             nombreMascota = itemView.findViewById(R.id.tvRcNombre);
         }
 
-        public void asignarDatos(PojoPruebasCarlos pojoPruebasCarlos) {
+        public void asignarDatos(PojoMascotas pojoPruebasCarlos) {
             fotoMascota.setImageResource(Integer.parseInt(pojoPruebasCarlos.getUrlImg()));
             nombreMascota.setText(pojoPruebasCarlos.getNombre());
         }
