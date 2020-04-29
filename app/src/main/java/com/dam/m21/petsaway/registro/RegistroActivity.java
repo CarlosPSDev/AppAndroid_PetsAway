@@ -23,7 +23,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegistroActivity extends AppCompatActivity {
-
     private FirebaseAuth fbAuth;
     private FirebaseUser fbUser;
 
