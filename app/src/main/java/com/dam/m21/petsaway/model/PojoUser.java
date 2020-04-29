@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.pojos;
+package com.dam.m21.petsaway.model;
 
 public class PojoUser {
     String idFotoFondoChat,tema,userNombre;
