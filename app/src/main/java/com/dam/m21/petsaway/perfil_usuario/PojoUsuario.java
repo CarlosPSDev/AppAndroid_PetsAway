@@ -5,6 +5,20 @@ public class PojoUsuario {
     private String email;
     private String ciudad;
     private String url;
+    private boolean visto;
+    private String send;
+    private String receive;
+    private int id;
+    private String status;
+
+    public PojoUsuario(String nombre, boolean visto, String send, String receive, int id, String status) {
+        this.nombre = nombre;
+        this.visto = visto;
+        this.send = send;
+        this.receive = receive;
+        this.id = id;
+        this.status = status;
+    }
 
     public PojoUsuario(String nombre, String email, String ciudad, String url) {
         this.nombre = nombre;
