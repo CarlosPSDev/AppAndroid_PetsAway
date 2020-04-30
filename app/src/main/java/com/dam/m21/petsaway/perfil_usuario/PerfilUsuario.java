@@ -42,8 +42,10 @@ public class PerfilUsuario extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference ref;
     StorageReference referenciaStor;
-    ArrayList<PojoUsuario> objetoUser;
+    //ArrayList<PojoUsuario> datosUsuario;
+    String clave;
     PojoUsuario usuario;
+    ValueEventListener vel;
 
     ImageView ivFotoUsuario;
     EditText etNombre;
@@ -73,7 +75,7 @@ public class PerfilUsuario extends AppCompatActivity {
         progres = new ProgressDialog(this);
         referenciaStor = FirebaseStorage.getInstance().getReference();
         db = FirebaseDatabase.getInstance();
-
+        //datosUsuario = new ArrayList<>();
 
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
@@ -91,8 +93,12 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-        ref = db.getReference().child("perfilesUsuario").child(email);
-        rellenarDatosonLoad();
+        clave = obtenerClave();
+        Log.d("Usuario", "El email logado es " + email);
+        //ref = db.getReference().child("perfilesUsuarios").child(email);
+        ref = db.getReference().child("perfilesUsuarios");
+        recuperarDatosFirebase();
+        //rellenarDatosonLoad();
 
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
@@ -112,21 +118,24 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void rellenarDatosonLoad() {
-        objetoUser = recuperarDatosFirebase();
-        if (!objetoUser.isEmpty()){
-            usuario = objetoUser.get(0);
-
+        //ArrayList<PojoUsuario> objetoUser = recuperarDatosFirebase();
+        if (usuario != null){
+            //usuario = datosUsuario.get(0);
             etNombre.setText(usuario.getNombre());
-            etCiudad.setText(usuario.getCiudad());
+            ciudad = usuario.getCiudad();
+            etCiudad.setText(ciudad);
+            tvEmail.setText(email);
             uriImgGuardada = usuario.getUrl();
-            Glide.with(PerfilUsuario.this).load(uriImgGuardada)
-                    //.fitCenter().centerCrop()
-                    .into(ivFotoUsuario);
+            if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
+            else ivFotoUsuario.setImageResource(R.color.colorBlanco);
+
         } else {
+            Toast.makeText(this, "No hay usuario en la base de datos, cargo datos de serie", Toast.LENGTH_SHORT).show();
             nombre = fbUser.getDisplayName();
             etNombre.setText(nombre);
             tvEmail.setText(email);
-            etCiudad.setText("");
+            ciudad = "";
+            etCiudad.setText(ciudad);
             uriImgGuardada = "";
             ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
@@ -134,10 +143,38 @@ public class PerfilUsuario extends AppCompatActivity {
             /*user user = datasnapshot.getValue(User.Class);
             username.setText(user.getUsername);*/
         }
+        eliminarListener(); //Eliminamos el listener para que ya no siga actualizando los datos
+    }
+    private void recuperarDatosFirebase() {
+
+        if (vel == null){
+            vel = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //PojoUsuario user;
+                    if (dataSnapshot.exists()){
+                        for (DataSnapshot datos : dataSnapshot.getChildren()){
+                            if (datos.getKey().equals(clave)) usuario = datos.getValue(PojoUsuario.class);
+                            //Log.d("Usuario", "Nombre recopilado " + usuario.getNombre());
+                            /*if (user.getEmail().equals(email)){
+                                //datosUsuario.add(user);
+                                usuario = user;
+                                Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
+                            }*/
+                        }
+                        rellenarDatosonLoad();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
+                }
+            };
+            ref.addValueEventListener(vel);
+        }
     }
 
-    private ArrayList<PojoUsuario> recuperarDatosFirebase() {
-        final ArrayList<PojoUsuario> datosUsuario = new ArrayList<PojoUsuario>();
+    /*private void recuperarDatosFirebase() {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -146,7 +183,9 @@ public class PerfilUsuario extends AppCompatActivity {
                         PojoUsuario user = datos.getValue(PojoUsuario.class);
                         Log.d("Usuario", "Nombre recopilado " + user.getNombre());
                         datosUsuario.add(user);
+                        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
                     }
+                    rellenarDatosonLoad();
                 }
             }
             @Override
@@ -154,9 +193,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
             }
         });
-        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
-        return datosUsuario;
-    }
+    }*/
 
 
     public void modificarPerfil(View view) {
@@ -165,12 +202,16 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     public void guardarCambios(View view) {
+
         String nombreModif = etNombre.getText().toString();
         String ciudadModif = etCiudad.getText().toString();
-        if (!nombre.isEmpty() & !ciudad.isEmpty()){
-            if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | uriImgNueva.equals(uriImgGuardada)){
+        if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()){
+            if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | !uriImgNueva.equals(uriImgGuardada)){
                 PojoUsuario usuarioModif = new PojoUsuario(nombreModif, email, ciudadModif, uriImgNueva);
                 //Guardar en FireCloud
+
+                ref.child(clave).setValue(usuarioModif); //ref.child("perfilesUsuarios").setValue(usuarioModif); genera nodo
+
             }
 
 
@@ -241,6 +282,7 @@ public class PerfilUsuario extends AppCompatActivity {
         }
     }
 
+
     private void deshabilitarEditext(Boolean hd){
         etNombre.setFocusable(!hd);
         etNombre.setFocusableInTouchMode(!hd);
@@ -271,5 +313,17 @@ public class PerfilUsuario extends AppCompatActivity {
             etCiudad.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             rv.setVisibility(View.GONE);
         }
+    }
+    private void eliminarListener(){
+        if(vel != null){ //quitar el listener
+            ref.removeEventListener(vel);
+            vel = null; //y lo anulamos
+        }
+    }
+    private String obtenerClave(){
+        int indice = email.indexOf('.');
+        System.out.println(indice);
+        String clave = email.substring(0, indice) + email.substring(indice+1);
+        return clave;
     }
 }
