@@ -26,6 +26,7 @@ public class PojoUsuario {
         this.ciudad = ciudad;
         this.url = url;
     }
+    public PojoUsuario() {}
 
     public String getNombre() {
         return nombre;

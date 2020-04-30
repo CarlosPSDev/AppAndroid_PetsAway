@@ -25,6 +25,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -34,7 +39,11 @@ import java.util.ArrayList;
 public class PerfilUsuario extends AppCompatActivity {
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
+    FirebaseDatabase db;
+    DatabaseReference ref;
     StorageReference referenciaStor;
+    ArrayList<PojoUsuario> objetoUser;
+    PojoUsuario usuario;
 
     ImageView ivFotoUsuario;
     EditText etNombre;
@@ -47,7 +56,8 @@ public class PerfilUsuario extends AppCompatActivity {
     String email;
     String ciudad;
     String nombre;
-    String uriImg;
+    String uriImgGuardada;
+    String uriImgNueva;
 
     ArrayList<PojoMascotas> listaMascotas;
     RecyclerView rv;
@@ -62,6 +72,8 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.perfil_usuario);
         progres = new ProgressDialog(this);
         referenciaStor = FirebaseStorage.getInstance().getReference();
+        db = FirebaseDatabase.getInstance();
+
 
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
@@ -79,11 +91,8 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-        /*user user = datasnapshot.getValue(User.Class);
-        username.setText(user.getUsername);*/
-
-        nombre = fbUser.getDisplayName();
-        etNombre.setText(nombre);
+        ref = db.getReference().child("perfilesUsuario").child(email);
+        rellenarDatosonLoad();
 
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
@@ -102,16 +111,69 @@ public class PerfilUsuario extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
+    private void rellenarDatosonLoad() {
+        objetoUser = recuperarDatosFirebase();
+        if (!objetoUser.isEmpty()){
+            usuario = objetoUser.get(0);
+
+            etNombre.setText(usuario.getNombre());
+            etCiudad.setText(usuario.getCiudad());
+            uriImgGuardada = usuario.getUrl();
+            Glide.with(PerfilUsuario.this).load(uriImgGuardada)
+                    //.fitCenter().centerCrop()
+                    .into(ivFotoUsuario);
+        } else {
+            nombre = fbUser.getDisplayName();
+            etNombre.setText(nombre);
+            tvEmail.setText(email);
+            etCiudad.setText("");
+            uriImgGuardada = "";
+            ivFotoUsuario.setImageResource(R.color.colorBlanco);
+
+            Toast.makeText(this, getString(R.string.toast_bienvenida), Toast.LENGTH_SHORT).show();
+            /*user user = datasnapshot.getValue(User.Class);
+            username.setText(user.getUsername);*/
+        }
+    }
+
+    private ArrayList<PojoUsuario> recuperarDatosFirebase() {
+        final ArrayList<PojoUsuario> datosUsuario = new ArrayList<PojoUsuario>();
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot datos : dataSnapshot.getChildren()){
+                        PojoUsuario user = datos.getValue(PojoUsuario.class);
+                        Log.d("Usuario", "Nombre recopilado " + user.getNombre());
+                        datosUsuario.add(user);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
+            }
+        });
+        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
+        return datosUsuario;
+    }
+
+
     public void modificarPerfil(View view) {
+        uriImgNueva = uriImgGuardada;
         deshabilitarEditext(false);
     }
 
     public void guardarCambios(View view) {
-        nombre = etNombre.getText().toString();
-        ciudad = etCiudad.getText().toString();
+        String nombreModif = etNombre.getText().toString();
+        String ciudadModif = etCiudad.getText().toString();
         if (!nombre.isEmpty() & !ciudad.isEmpty()){
-            PojoUsuario usuario = new PojoUsuario(nombre, email, ciudad, uriImg);
-            //Guardar en FireCloud
+            if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | uriImgNueva.equals(uriImgGuardada)){
+                PojoUsuario usuarioModif = new PojoUsuario(nombreModif, email, ciudadModif, uriImgNueva);
+                //Guardar en FireCloud
+            }
+
+
             deshabilitarEditext(true);
         } else {
             Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
@@ -154,9 +216,9 @@ public class PerfilUsuario extends AppCompatActivity {
                     uriDireccFire.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            uriImg = uri.toString();
+                            uriImgNueva = uri.toString();
                             //Log.d("foto", "uri en Storage " + uri.toString());
-                            Glide.with(PerfilUsuario.this).load(uri.toString())
+                            Glide.with(PerfilUsuario.this).load(uriImgNueva)
                                     //.fitCenter().centerCrop()
                                     .into(ivFotoUsuario);
 
