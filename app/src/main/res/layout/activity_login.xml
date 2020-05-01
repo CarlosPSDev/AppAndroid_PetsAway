@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/etMailLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:drawableLeft="@drawable/icono_usuario"
@@ -28,14 +28,14 @@
         android:hint="@string/hint_mail"
         android:inputType="text"
         android:textColor="@color/colorMagenta"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogoLogin" />
 
     <EditText
         android:id="@+id/etPasswordLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/icono_candado"
         android:ems="12"
@@ -43,7 +43,7 @@
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:textColor="@color/colorMagenta"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMailLogin" />
@@ -61,27 +61,23 @@
 
         <Button
             android:id="@+id/btnNuevoUsuario"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="40dp"
             android:background="@drawable/estilo_boton_nuevo_usuario"
             android:fontFamily="@font/robotomedium"
             android:onClick="accesoRegistro"
             android:text="@string/btn_nuevo_usuario"
-            android:textAllCaps="false"
-            android:textColor="@color/colorMagenta"
-            android:textSize="20sp" />
+            android:textColor="@color/colorMagenta" />
 
         <Button
             android:id="@+id/btnEntrar"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="40dp"
             android:background="@drawable/estilo_boton_entrar"
             android:fontFamily="@font/robotomedium"
             android:onClick="accesoAplicacion"
             android:text="@string/btn_entrar"
-            android:textAllCaps="false"
-            android:textColor="@color/colorBlanco"
-            android:textSize="20sp" />
+            android:textColor="@color/colorBlanco" />
     </LinearLayout>
 
     <TextView

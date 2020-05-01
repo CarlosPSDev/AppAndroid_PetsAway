@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alertas_mapa.AlertasMapaActivity"
+    tools:context=".alertas_map.AlertasMapaActivity"
     tools:ignore="Autofill,LabelFor,RtlHardcoded,TextFields,ButtonStyle,UnusedAttribute,VectorDrawableCompat,ContentDescription,ObsoleteLayoutParam">
 
 

@@ -47,6 +47,11 @@ public class RegistroActivity extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
 
+        String email = getIntent().getStringExtra("MAIL");
+        if (email != null) {
+            etEmail.setText(email);
+        }
+
         if (fbUser != null) {
             etEmail.setText(fbUser.getEmail());
         }
@@ -71,7 +76,7 @@ public class RegistroActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
+                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_registro_correcto));
                                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
                                 overridePendingTransition(R.anim.rightin, R.anim.rightout);
@@ -103,7 +108,9 @@ public class RegistroActivity extends AppCompatActivity {
     public void cerrarRegistro(View view) {
         email = etEmail.getText().toString().trim();
         Intent i = new Intent(this, LoginActivity.class);
-        i.putExtra(CLAVE_EMAIL, email);
+        if (!email.equals("")) {
+            i.putExtra(CLAVE_EMAIL, email);
+        }
         startActivity(i);
         finish();
     }
@@ -113,8 +120,6 @@ public class RegistroActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);
-        TextView titulo = customToast.findViewById(R.id.tvTituloToast);
-        titulo.setText(tit);
         texto.setText(text);
         Toast toast = new Toast(RegistroActivity.this);
         toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);

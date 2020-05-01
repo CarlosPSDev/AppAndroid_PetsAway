@@ -33,10 +33,10 @@
         <activity android:name=".acerca_de.AcercaDeActivity" />
         <activity android:name=".ajustes.AjustesActivity" />
         <activity android:name=".formulario.FormularioActivity" />
-        <activity android:name=".alertas_mapa.fragments.AlertasMapaActivity" />
+        <activity android:name=".alertas_map.AlertasMapaActivity" />
         <activity android:name=".registro.RegistroActivity" />
         <activity
-            android:name=".alertas_mapa.fragments.MapsActivity"
+            android:name=".alertas_map.fragmentos.MapsActivity"
             android:label="@string/title_activity_maps" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
