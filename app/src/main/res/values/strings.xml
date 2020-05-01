@@ -95,5 +95,6 @@
     <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
     <string name="toast_revisa_email">¡Revisa tu correo!</string>
     <string name="toast_error_envio_correo">Se ha producido un error</string>
+    <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
 
 </resources>
