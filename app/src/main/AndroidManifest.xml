@@ -35,6 +35,8 @@
         <activity android:name=".formulario.FormularioActivity" />
         <activity android:name=".alertas_map.AlertasMapaActivity" />
         <activity android:name=".registro.RegistroActivity" />
+        <activity android:name=".chat.MainActivityChat"/>
+        <activity android:name=".chat.MessageActivity"/>
         <activity
             android:name=".alertas_map.fragmentos.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -57,6 +59,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".chat.notificationes.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".chat.notificationes.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
