@@ -67,6 +67,7 @@ public class MainActivityChat extends AppCompatActivity {
                     Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
                 }
             }
+            
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
