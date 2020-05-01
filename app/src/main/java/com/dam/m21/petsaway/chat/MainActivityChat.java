@@ -98,7 +98,6 @@ public class MainActivityChat extends AppCompatActivity {
                 }
 
                 viewPagerAdapter.addFragment(new UsersFragment(),"Usuarios");
-                //viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
 
                 viewPager.setAdapter(viewPagerAdapter);
 
