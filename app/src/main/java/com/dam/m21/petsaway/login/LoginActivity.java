@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }, 2000);
 
 
-
                             } else {
                                 toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_error_acceso));
                             }

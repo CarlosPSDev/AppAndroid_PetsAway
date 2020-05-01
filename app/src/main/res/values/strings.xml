@@ -53,7 +53,7 @@
     <string name="tv_ciudad_usuario">Ciudad</string>
     <string name="tv_mascotas_usuario">Mascotas</string>
     <string name="btn_editar_perfil">Editar Perfil</string>
-    <string name="tv_aclaracion_perfil">(Pulsa para mostrar, editar o borrar la información)</string>
+    <string name="tv_aclaracion_perfil">(Pulsa para mostrar, editar o borrar)</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="h_menu_search">Search</string>
@@ -80,14 +80,17 @@
     <string name="encontrados">Encontrados</string>
     <string name="encontrado">encontrado</string>
     <string name="buscado">buscado</string>
-    <string name="modTema">Midificar el tema</string>
+    <string name="modTema">Modificar el tema</string>
     <string name="modPass">Cambiar contraseña</string>
     <string name="modEmail">Cambiar correo electronico</string>
     <string name="modFondoChat">Modificar fondo del chat</string>
     <string name="invitAm">Invitar amigos</string>
     <string name="borrarCuenta">Borrar mi cuenta</string>
     <string name="notif">Notificaciones</string>
-    <string name="hint_mail_recuperar_password">Introduce tu e-mail</string>
+    <string name="btn_agregar_mascota">Agregar Mascota</string>
+    <string name="btn_guardar_cambios">Guardar Cambios</string>
+    <string name="btn_cambiar_foto">Cambiar Foto</string>
+    <string name="toast_datos_vacios">Se deben rellenar los datos</string>
     <string name="toast_recuperar_password">Debes introducir tu email</string>
     <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
 

@@ -14,10 +14,6 @@
             android:icon="@drawable/alerta_icon"
             android:title="@string/menu_alerta" />
 
-        <item
-            android:id="@+id/nav_mapa"
-            android:icon="@drawable/maps_icon"
-            android:title="@string/menu_mapa" />
 
         <item
             android:id="@+id/nav_adoptar"
