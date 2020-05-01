@@ -21,17 +21,22 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegistroActivity extends AppCompatActivity {
     private FirebaseAuth fbAuth;
     private FirebaseUser fbUser;
+    DatabaseReference reference;
 
     EditText etNombre;
     EditText etContrasenia;
     EditText etEmail;
     String email;
     String password;
-    String user;
+    static String userName = "";
 
     static final String CLAVE_EMAIL = "EMAIL";
 
@@ -54,30 +59,37 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void registrar(View view) {
         if (validarDatos()) {
-            fbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                    this, new OnCompleteListener<AuthResult>() {
+            fbAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                fbUser = fbAuth.getCurrentUser();
+                            if (task.isSuccessful()){
+                                FirebaseUser firebaseUser = fbAuth.getCurrentUser();
+                                assert firebaseUser != null;
+                                String userid = firebaseUser.getUid();
 
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(user).build();
+                                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
-                                fbUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("id", userid);
+                                hashMap.put("username", userName);
+                                hashMap.put("imageURL", "default");
+                                hashMap.put("status", "offline");
+                                hashMap.put("search", userName.toLowerCase());
+
+                                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Log.d("almacenarN", "Nombre guardado: " + user);
+                                        if (task.isSuccessful()){
+                                            Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intent);
+                                            finish();
+                                        }
                                     }
                                 });
-
-                                Toast.makeText(getApplicationContext(), R.string.toast_registro_correcto, Toast.LENGTH_LONG).show();
-                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(i);
-                                overridePendingTransition(R.anim.rightin, R.anim.rightout);
-
                             } else {
-                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_user_no_registrado));
+                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_error_datos_registro));
                             }
                         }
                     });
@@ -85,12 +97,12 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     private boolean validarDatos() {
-        user = etNombre.getText().toString().trim();
+        userName = etNombre.getText().toString().trim();
         password = etContrasenia.getText().toString().trim();
         email = etEmail.getText().toString().trim();
         boolean continuar;
 
-        if (user.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_no_datos));
             continuar = false;
 

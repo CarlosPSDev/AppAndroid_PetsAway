@@ -15,9 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
-import com.dam.m21.petsaway.alertas_mapa.fragments.AlertasMapaActivity;
+
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
+import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //TODO:
 
         } else if (id == R.id.nav_chat){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, MainActivityChat.class));
 
         } else if (id == R.id.nav_ajustes){
             startActivity(new Intent(MainActivity.this, AjustesActivity.class));
@@ -125,4 +126,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
