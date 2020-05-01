@@ -217,7 +217,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
             deshabilitarEditext(true);
         } else {
-            Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_faltanDatos), Toast.LENGTH_SHORT).show();
         }
     }
 
