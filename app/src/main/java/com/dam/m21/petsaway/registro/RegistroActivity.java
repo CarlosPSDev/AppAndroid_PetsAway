@@ -108,9 +108,11 @@ public class RegistroActivity extends AppCompatActivity {
     public void cerrarRegistro(View view) {
         email = etEmail.getText().toString().trim();
         Intent i = new Intent(this, LoginActivity.class);
+        
         if (!email.equals("")) {
             i.putExtra(CLAVE_EMAIL, email);
         }
+
         startActivity(i);
         finish();
     }
