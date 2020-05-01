@@ -116,8 +116,7 @@ public class RegistroActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-
-
+    
     private void toastPersonalizado(String tit, String text) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
