@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ajustes.ModEmailPass">
+
+    <EditText
+        android:id="@+id/etPassAnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:drawableLeft="@drawable/icono_usuario"
+        android:ems="12"
+        android:fontFamily="@font/robotolight"
+        android:hint="@string/hint_pass_ant"
+        android:inputType="text"
+        android:textColor="@color/colorMagenta"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/etPassNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icono_usuario"
+        android:ems="12"
+        android:fontFamily="@font/robotolight"
+        android:hint="@string/hint_pass_new"
+        android:inputType="text"
+        android:textColor="@color/colorMagenta"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassAnt"/>
+    <EditText
+        android:id="@+id/etPassNewRep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icono_usuario"
+        android:ems="12"
+        android:fontFamily="@font/robotolight"
+        android:hint="@string/hint_pass_new_rep"
+        android:inputType="text"
+        android:textColor="@color/colorMagenta"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassNew" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassNewRep">
+
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/estilo_boton_nuevo_usuario"
+            android:fontFamily="@font/robotomedium"
+            android:onClick="cancelar"
+            android:text="@string/btn_cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorMagenta"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/estilo_boton_entrar"
+            android:fontFamily="@font/robotomedium"
+            android:onClick="guardar"
+            android:text="@string/bt_guardar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

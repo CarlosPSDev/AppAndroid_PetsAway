@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
+import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
+            startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
+
             //TODO:
 
         } else if (id == R.id.nav_chat){

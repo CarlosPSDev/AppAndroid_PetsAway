@@ -91,5 +91,16 @@
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
     <string name="toast_datos_vacios">Se deben rellenar los datos</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="hint_pass_ant">Anterior %1$s</string>
+    <string name="hint_pass_new">Nueva %1$s</string>
+    <string name="hint_pass_new_rep">Repetir nueva %1$s</string>
+    <string name="msg_cancel">Los cambios no guardados</string>
+    <string name="msg_wrongPass">tienes que introducir tu ultima contraseña correctamente</string>
+    <string name="msg_newPass">la contraseña cambiada correctamente</string>
+    <string name="msg_newPassDist">Tu nueva contraseña no esta bien repetida</string>
+    <string name="msg_newEmailDist">Tu nuevo email no esta bien repetido</string>
+    <string name="msg_newEmail">Tu nuevo email se ha cambiado correctamente</string>
+    <string name="msg_wrongEmail">Tu email Antiguo no es correcto</string>
 
 </resources>
