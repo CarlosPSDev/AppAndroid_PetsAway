@@ -102,5 +102,11 @@
     <string name="mensaje_chat_enviado">Enviado</string>
     <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
     <string name="msg_error_enviar_notif">¡Ha fallado!</string>
+    <string name="texto_acerca_de">PetsAway es una marca creada y registrada por un grupo de cuatro alumnos de la Universidad Europea de Madrid.
+    Con ella queremos acercar a todos los propietarios de cualquier tipo de mascota de una manera rápida, dinámica y sencilla.
+    A través de sus diferentes funciones, nuestro objetivo es desarrollar una comunicación entre todos los usuarios mediante el chat del que dispone nuestra App.
+    Además de las diferentes opciones entre las que disponemos de un innovador servicio de alertas personalizadas o o la posibilidad de compartir este servicio con cualquier persona.
+    El usuario tiene a su disposición un servicio de alerta en caso de pérdida de su mascota.</string>
+    <string name="texto_inferior_acerca_de">Madrid (España) PetsAway \npetsawaypfc@gmail.com</string>
 
 </resources>
