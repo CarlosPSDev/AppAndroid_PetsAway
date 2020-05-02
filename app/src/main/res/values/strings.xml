@@ -96,5 +96,16 @@
     <string name="toast_revisa_email">¡Revisa tu correo!</string>
     <string name="toast_error_envio_correo">Se ha producido un error</string>
     <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
+    <string name="hint_nombre_mascota">*Nombre de la mascota</string>
+    <string name="tv_aniadir_mascota">Añadir Mascota</string>
+    <string name="hint_especie_mascota">*Otro (serpiente, cerdo, etc.)</string>
+    <string name="hint_raza_mascota">*Raza (bull dog, persa, cotorra del sol)</string>
+    <string name="hint_color_mascota">*Color o colores principales</string>
+    <string name="hint_identificacion_mascota">Nº de identificación (chip, anilla, etc.)</string>
+    <string name="hint_fechaNac_mascota">*Fecha de nacimiento (ejemplo 12/05/2020)</string>
+    <string name="hint_descripcion_mascota">Descripción o comentarios</string>
+    <string name="btn_guardar_mascA">Guarda tu Mascota</string>
+    <string name="btn_cancelar_mascA">Cancelar</string>
+    <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
 
 </resources>

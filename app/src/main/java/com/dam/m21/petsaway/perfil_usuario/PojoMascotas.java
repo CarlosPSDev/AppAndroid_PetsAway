@@ -2,20 +2,22 @@ package com.dam.m21.petsaway.perfil_usuario;
 
 public class PojoMascotas {
     private String nombre;
+    private String especie;
     private String raza;
     private String color;
     private String identificacion;
     private String descrip;
-    private int edad;
+    private String fechaNac;
     private String urlImg;
 
-    public PojoMascotas(String nombre, String raza, String color, String identificacion, String descrip, int edad, String urlImg) {
+    public PojoMascotas(String nombre, String especie, String raza, String color, String identificacion, String descrip, String fechaNac, String urlImg) {
         this.nombre = nombre;
+        this.especie = especie;
         this.raza = raza;
         this.color = color;
         this.identificacion = identificacion;
         this.descrip = descrip;
-        this.edad = edad;
+        this.fechaNac = fechaNac;
         this.urlImg = urlImg;
     }
     public PojoMascotas(String nombre, String urlImg) {
@@ -44,9 +46,13 @@ public class PojoMascotas {
         return descrip;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getFechaNac() {
+        return fechaNac;
     }
 
     public String getUrlImg() {return urlImg;}
+
+    public String getEspecie() {
+        return especie;
+    }
 }
