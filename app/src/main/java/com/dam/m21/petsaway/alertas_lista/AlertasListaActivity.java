@@ -10,7 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.dam.m21.petsaway.R;
-import com.dam.m21.petsaway.alertas_mapa.AlertasMapaActivity;
+
+import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
