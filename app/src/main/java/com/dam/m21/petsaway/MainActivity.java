@@ -27,7 +27,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     //Implementaciones Navigation Drawer !
     DrawerLayout drawer;
     ActionBarDrawerToggle toogle;
