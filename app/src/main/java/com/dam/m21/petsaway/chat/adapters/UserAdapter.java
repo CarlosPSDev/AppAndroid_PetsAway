@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.chat.MessageActivity;
 import com.dam.m21.petsaway.chat.Model.Chat;
-import com.dam.m21.petsaway.chat.Model.User;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +28,12 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<User> mUsers;
+    private List<PojoUser> mUsers;
     private boolean ischat;
 
     String theLastMessage;
 
-    public UserAdapter(Context mContext, List<User> mUsers, boolean ischat){
+    public UserAdapter(Context mContext, List<PojoUser> mUsers, boolean ischat){
         this.mUsers = mUsers;
         this.mContext = mContext;
         this.ischat = ischat;
@@ -49,12 +49,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        final User user = mUsers.get(position);
-        holder.username.setText(user.getUsername());
-        if (user.getImageURL().equals("default")){
+        final PojoUser user = mUsers.get(position);
+        holder.username.setText(user.getNombre());
+        if (user.getUrlFotoUser().equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         } else {
-            Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
+            Glide.with(mContext).load(user.getUrlFotoUser()).into(holder.profile_image);
         }
 
         if (ischat){

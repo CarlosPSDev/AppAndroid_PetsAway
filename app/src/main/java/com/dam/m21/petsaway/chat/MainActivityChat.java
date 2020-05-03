@@ -2,6 +2,8 @@ package com.dam.m21.petsaway.chat;
 
 import android.os.Bundle;
 
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -16,9 +18,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.chat.Model.Chat;
-import com.dam.m21.petsaway.chat.Model.User;
 import com.dam.m21.petsaway.chat.fragments.ChatsFragment;
 import com.dam.m21.petsaway.chat.fragments.UsersFragment;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,18 +55,17 @@ public class MainActivityChat extends AppCompatActivity {
         username = findViewById(R.id.username);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getUsername());
+                PojoUser user = dataSnapshot.getValue(PojoUser.class);
+                username.setText(user.getNombre());
 
-                if ("default".equals(user.getImageURL())){
+                if ("default".equals(user.getUrlFotoUser())){
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
-                    Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
+                    Glide.with(getApplicationContext()).load(user.getUrlFotoUser()).into(profile_image);
                 }
             }
 
@@ -151,7 +152,7 @@ public class MainActivityChat extends AppCompatActivity {
     }
 
     private void status(String status){
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(firebaseUser.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);

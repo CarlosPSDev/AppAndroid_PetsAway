@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.m21.petsaway.R;
-import com.dam.m21.petsaway.chat.Model.User;
 import com.dam.m21.petsaway.chat.adapters.UserAdapter;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +34,7 @@ public class UsersFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private UserAdapter userAdapter;
-    private List<User> mUsers;
+    private List<PojoUser> mUsers;
 
     EditText search_users;
 
@@ -76,7 +76,7 @@ public class UsersFragment extends Fragment {
     private void searchUsers(String s) {
 
         final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("search")
+        Query query = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").orderByChild("search")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
 
@@ -85,11 +85,12 @@ public class UsersFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
+                    PojoUser user = snapshot.getValue(PojoUser.class);
 
                     assert user != null;
                     assert fuser != null;
-                    if (!user.getId().equals(fuser.getUid())){
+                    ///////////////////modZori
+                    if (!snapshot.getKey().equals(fuser.getUid())){
                         mUsers.add(user);
                     }
                 }
@@ -109,7 +110,7 @@ public class UsersFragment extends Fragment {
     private void readUsers() {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -117,9 +118,9 @@ public class UsersFragment extends Fragment {
                 if (search_users.getText().toString().equals("")) {
                     mUsers.clear();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        User user = snapshot.getValue(User.class);
+                        PojoUser user = snapshot.getValue(PojoUser.class);
 
-                        if (firebaseUser.getUid().equals(user.getId())) {
+                        if (!firebaseUser.getUid().equals(user.getId())) {
                             mUsers.add(user);
                         }
 
