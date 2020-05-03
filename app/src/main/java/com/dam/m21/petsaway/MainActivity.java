@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navController.setItemIconTintList(null);
     }
-
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
      */
