@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
+import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navController.setItemIconTintList(null);
     }
-
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
      */
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
 
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));

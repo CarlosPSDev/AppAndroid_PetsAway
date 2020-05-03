@@ -1,6 +1,7 @@
 package com.dam.m21.petsaway.ajustes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,8 +15,12 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dam.m21.petsaway.model.PojoUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,13 +40,16 @@ public class AjustesActivity extends AppCompatActivity {
     private FirebaseAuth fa;
     private FirebaseUser fu;
     Map<String, Object> userAjustes;
-    EditText nuevoEmail,nuevoPass;
+    EditText nuevoEmail;
     private StorageReference msr;
     Uri miPath;
     DatabaseReference dbr;
     String tema;
     Button bt_tO,bt_tC;
 
+    static final int REQUEST_CODE_PASS =1;
+    static final int REQUEST_CODE_EMAIL =2;
+    static final String CODE_DATO ="DATO";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +61,6 @@ public class AjustesActivity extends AppCompatActivity {
         dbr = FirebaseDatabase.getInstance().getReference();
         bt_tO=findViewById(R.id.bt_tO);
         bt_tC=findViewById(R.id.bt_tC);
-        nuevoEmail=findViewById(R.id.nuevoEmail);
-        nuevoPass=findViewById(R.id.nuevoPass);
         tema="";
         datosUser();
     }
@@ -103,6 +109,46 @@ public class AjustesActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode== REQUEST_CODE_EMAIL||requestCode== REQUEST_CODE_PASS) {
+            if (resultCode == RESULT_OK) {
+                String texto1 = data.getStringExtra(ModEmailPass.CLAVE_ANT);
+                final String texto2 = data.getStringExtra(ModEmailPass.CLAVE_NEW);
+                final String texto3 = data.getStringExtra(ModEmailPass.CLAVE_NEW_REP);
+                if (requestCode == REQUEST_CODE_EMAIL) {
+                    if(texto1.equals(fu.getEmail())) {
+                        if (texto2.equals(texto3)) {
+                            fu.updateEmail(texto3);
+                            Toast.makeText(getApplicationContext(), R.string.msg_newEmail, Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), R.string.msg_newEmailDist, Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Toast.makeText(getApplicationContext(), R.string.msg_wrongEmail, Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+
+                    fa.signInWithEmailAndPassword(fu.getEmail(), texto1).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                if (texto2.equals(texto3)) {
+                                    fu.updatePassword(texto3);
+                                    Toast.makeText(getApplicationContext(), R.string.msg_newPass, Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), R.string.msg_newPassDist, Toast.LENGTH_LONG).show();
+                                }
+                            } else{
+                                Toast.makeText(getApplicationContext(), R.string.msg_wrongPass, Toast.LENGTH_LONG).show();
+                                }
+                            } });
+                }
+
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, R.string.msg_cancel, Toast.LENGTH_LONG).show();
+            }
+        }
         if (resultCode==RESULT_OK && requestCode==10){
             miPath=data.getData();
             userAjustes = new HashMap<>();
@@ -129,10 +175,18 @@ public class AjustesActivity extends AppCompatActivity {
     }
 
     public void cambiarCorreo(View view) {
-        fu.updateEmail(nuevoEmail.getText().toString());
+        Intent intent= new Intent(this,ModEmailPass.class);
+        intent.putExtra(CODE_DATO,"email");
+        startActivityForResult(intent, REQUEST_CODE_EMAIL);
+
     }
 
     public void cambiarPass(View view) {
-        fu.updatePassword(nuevoPass.getText().toString());
+
+        Intent intent= new Intent(this,ModEmailPass.class);
+        intent.putExtra(CODE_DATO,"contraseña");
+        startActivityForResult(intent, REQUEST_CODE_PASS);
+
     }
+
 }
