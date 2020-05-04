@@ -3,8 +3,6 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.Group;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -37,17 +35,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
+public class PerfilUsuario extends AppCompatActivity {
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
     FirebaseDatabase db;
     DatabaseReference ref;
-    DatabaseReference refMascotas;
     StorageReference referenciaStor;
     //ArrayList<PojoUsuario> datosUsuario;
     String clave;
-    PojoUsuario usuario;
+    PojoUser usuario;
     ValueEventListener vel;
 
     ImageView ivFotoUsuario;
@@ -68,6 +66,7 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     
     FirebaseAuth fbAuth;
     FirebaseUser fbUser;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,15 +87,32 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
 
         deshabilitarEditext(true);
         //TODO Recopilar el nombre del usuario según si el login ha sido con firebase, facebook o google
-        listaMascotas = new ArrayList<>();
+
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
         clave = obtenerClave();
+
+
+
+
+
+
+        ///////////////////modZori
+        userid = fbUser.getUid();
+        ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
+        ///////////////////modZori
+
+
+
+
+
+
         Log.d("Usuario", "El email logado es " + email);
         //ref = db.getReference().child("perfilesUsuarios").child(email);
+        /*comentZori
         ref = db.getReference().child("perfilesUsuarios");
-        refMascotas = db.getReference().child("mascotasUsuarios");
+         */
         recuperarDatosFirebase();
         recuperarMascotasFirebase();
         //rellenarDatosonLoad();
@@ -120,15 +136,29 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
 
     private void rellenarDatosonLoad() {
         //ArrayList<PojoUsuario> objetoUser = recuperarDatosFirebase();
+
+        ///////////////////modZori
+        etNombre.setText(usuario.getNombre());
+        ciudad = usuario.getCiudad();
+        etCiudad.setText(ciudad);
+        tvEmail.setText(email);
+        uriImgGuardada = usuario.getUrlFotoUser();
+        if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
+        else ivFotoUsuario.setImageResource(R.color.colorBlanco);
+
+        ///////////////////modZori
+
+        /*comentZori
+
         if (usuario != null){
             //usuario = datosUsuario.get(0);
             etNombre.setText(usuario.getNombre());
             ciudad = usuario.getCiudad();
             etCiudad.setText(ciudad);
             tvEmail.setText(email);
-            uriImgGuardada = usuario.getUrl();
+            uriImgGuardada = usuario.getUrlFotoUser();
             if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
-            else ivFotoUsuario.setImageResource(R.drawable.usuario);
+            else ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
         } else {
             Toast.makeText(this, "No hay usuario en la base de datos, cargo datos de serie", Toast.LENGTH_SHORT).show();
@@ -140,10 +170,10 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
             uriImgGuardada = "";
             ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
-            Toast.makeText(this, getString(R.string.toast_bienvenida), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_bienvenida), Toast.LENGTH_SHORT).show();*/
             /*user user = datasnapshot.getValue(User.Class);
             username.setText(user.getUsername);*/
-        }
+      //comentZori }
         eliminarListener(); //Eliminamos el listener para que ya no siga actualizando los datos
     }
     private void recuperarDatosFirebase() {
@@ -154,15 +184,21 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //PojoUsuario user;
                     if (dataSnapshot.exists()){
-                        for (DataSnapshot datos : dataSnapshot.getChildren()){
-                            if (datos.getKey().equals(clave)) usuario = datos.getValue(PojoUsuario.class);
+                        ///////////////////modZori
+                        usuario = dataSnapshot.getValue(PojoUser.class);
+                        ///////////////////modZori
+
+
+
+                      //comentZori  for (DataSnapshot datos : dataSnapshot.getChildren()){
+                           // if (datos.getKey().equals(clave)) usuario = datos.getValue(PojoUser.class);
                             //Log.d("Usuario", "Nombre recopilado " + usuario.getNombre());
                             /*if (user.getEmail().equals(email)){
                                 //datosUsuario.add(user);
                                 usuario = user;
                                 Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
-                            }*/
-                        }
+                            }comentZori*/
+                      //comentZori  }
                         rellenarDatosonLoad();
                     }
                 }
@@ -175,18 +211,16 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
         }
     }
 
-    private void recuperarMascotasFirebase() {
-        refMascotas.addValueEventListener(new ValueEventListener() {
+    /*private void recuperarDatosFirebase() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot datos : dataSnapshot.getChildren()){
-                        if (datos.getKey().equals(clave)) refMascotas = db.getReference().child("mascotasUsuarios").child(clave);
-                        PojoMascotas mascota = datos.getValue(PojoMascotas.class);
-                        Log.d("Usuario", "Mascota recopilada " + mascota.getNombre());
-                        //datosUsuario.add(user);
-                        listaMascotas.add(mascota);
-                        Log.d("Usuario", "Tamaño arraylist " + listaMascotas.size());
+                        PojoUsuario user = datos.getValue(PojoUsuario.class);
+                        Log.d("Usuario", "Nombre recopilado " + user.getNombre());
+                        datosUsuario.add(user);
+                        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
                     }
                     rellenarDatosonLoad();
                 }
@@ -196,7 +230,7 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
                 Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
             }
         });
-    }
+    }*/
 
 
     public void modificarPerfil(View view) {
@@ -210,11 +244,19 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
         String ciudadModif = etCiudad.getText().toString();
         if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()){
             if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | !uriImgNueva.equals(uriImgGuardada)){
-                PojoUsuario usuarioModif = new PojoUsuario(nombreModif, email, ciudadModif, uriImgNueva);
+               //comentZori PojoUser usuarioModif = new PojoUser(nombreModif, email, ciudadModif, uriImgNueva);
                 //Guardar en FireCloud
 
-                ref.child(clave).setValue(usuarioModif); //ref.child("perfilesUsuarios").setValue(usuarioModif); genera nodo
+               // comentZoriref.child(clave).setValue(usuarioModif); //ref.child("perfilesUsuarios").setValue(usuarioModif); genera nodo
 
+                ///////////////////modZori
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("nombre", nombreModif);
+                hashMap.put("status", "offline");
+                hashMap.put("ciudad", ciudadModif);
+                hashMap.put("search", nombreModif.toLowerCase());
+                ref.updateChildren(hashMap);
+                ///////////////////modZori
             }
 
 
@@ -255,7 +297,7 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
             progres.show();
 
             Uri uri = data.getData();
-            final StorageReference filePath = referenciaStor.child("fotos de perfil").child(email)
+            final StorageReference filePath = referenciaStor.child("fotosPerfil").child(userid)
                     .child(uri.getLastPathSegment());
 
             Log.d("foto", "mostramos la uri en el movil " + uri.toString());
@@ -271,12 +313,20 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
                         @Override
                         public void onSuccess(Uri uri) {
                             uriImgNueva = uri.toString();
-                            Log.d("foto", "uri en Storage " + uri.toString());
+                            //Log.d("foto", "uri en Storage " + uri.toString());
                             Glide.with(PerfilUsuario.this).load(uriImgNueva)
                                     //.fitCenter().centerCrop()
                                     .into(ivFotoUsuario);
+
+                            ///////////////////modZori
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("urlFotoUser", uriImgNueva);
+                            ref.updateChildren(hashMap);
+                            ///////////////////modZori
+
                         }
                     });
+
                     Toast.makeText(PerfilUsuario.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
