@@ -3,6 +3,8 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -36,11 +38,12 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
-public class PerfilUsuario extends AppCompatActivity {
+public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
     FirebaseDatabase db;
     DatabaseReference ref;
+    DatabaseReference refMascotas;
     StorageReference referenciaStor;
     //ArrayList<PojoUsuario> datosUsuario;
     String clave;
@@ -51,10 +54,8 @@ public class PerfilUsuario extends AppCompatActivity {
     EditText etNombre;
     EditText etCiudad;
     TextView tvEmail;
-    Button btnEditarP;
-    Button btnAgregarPet;
-    Button btnGuardarCambios;
-    Button btnCambiarFoto;
+    Group gFase1;
+    Group gFase2;
     String email;
     String ciudad;
     String nombre;
@@ -79,17 +80,15 @@ public class PerfilUsuario extends AppCompatActivity {
 
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
-        btnEditarP = findViewById(R.id.btnModifPerfil);
-        btnAgregarPet = findViewById(R.id.btnAgregarMasc);
-        btnGuardarCambios = findViewById(R.id.btnGuardarCambios);
-        btnCambiarFoto = findViewById(R.id.btnCambiarFoto);
+        gFase1 = findViewById(R.id.group);
+        gFase2 = findViewById(R.id.group2);
         tvEmail = findViewById(R.id.tvValEmailUsuario);
         ivFotoUsuario = findViewById(R.id.ivImgUser);
         rv = findViewById(R.id.recyclerProfilPets);
 
         deshabilitarEditext(true);
         //TODO Recopilar el nombre del usuario según si el login ha sido con firebase, facebook o google
-
+        listaMascotas = new ArrayList<>();
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
@@ -97,18 +96,20 @@ public class PerfilUsuario extends AppCompatActivity {
         Log.d("Usuario", "El email logado es " + email);
         //ref = db.getReference().child("perfilesUsuarios").child(email);
         ref = db.getReference().child("perfilesUsuarios");
+        refMascotas = db.getReference().child("mascotasUsuarios");
         recuperarDatosFirebase();
+        recuperarMascotasFirebase();
         //rellenarDatosonLoad();
 
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
-        listaMascotas = new ArrayList<>();
-        listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
+
+       /* listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
         listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
         listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));
         listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
         listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
-        listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));
+        listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));*/
         /*listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
         listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
         listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));*/
@@ -127,7 +128,7 @@ public class PerfilUsuario extends AppCompatActivity {
             tvEmail.setText(email);
             uriImgGuardada = usuario.getUrl();
             if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
-            else ivFotoUsuario.setImageResource(R.color.colorBlanco);
+            else ivFotoUsuario.setImageResource(R.drawable.usuario);
 
         } else {
             Toast.makeText(this, "No hay usuario en la base de datos, cargo datos de serie", Toast.LENGTH_SHORT).show();
@@ -174,16 +175,18 @@ public class PerfilUsuario extends AppCompatActivity {
         }
     }
 
-    /*private void recuperarDatosFirebase() {
-        ref.addValueEventListener(new ValueEventListener() {
+    private void recuperarMascotasFirebase() {
+        refMascotas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot datos : dataSnapshot.getChildren()){
-                        PojoUsuario user = datos.getValue(PojoUsuario.class);
-                        Log.d("Usuario", "Nombre recopilado " + user.getNombre());
-                        datosUsuario.add(user);
-                        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
+                        if (datos.getKey().equals(clave)) refMascotas = db.getReference().child("mascotasUsuarios").child(clave);
+                        PojoMascotas mascota = datos.getValue(PojoMascotas.class);
+                        Log.d("Usuario", "Mascota recopilada " + mascota.getNombre());
+                        //datosUsuario.add(user);
+                        listaMascotas.add(mascota);
+                        Log.d("Usuario", "Tamaño arraylist " + listaMascotas.size());
                     }
                     rellenarDatosonLoad();
                 }
@@ -193,7 +196,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
             }
         });
-    }*/
+    }
 
 
     public void modificarPerfil(View view) {
@@ -228,6 +231,16 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     public void agregarMascota(View view) {
+        lanzarFragmento(new AniadirMascota());
+    }
+
+    private void lanzarFragmento(Fragment fragmenLanzar) {
+        getSupportFragmentManager().beginTransaction().add(R.id.flContenedor, fragmenLanzar).commit(); //abreviado
+        /*FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.flContenedor, fragmenLanzar); //No hay que referenciar el fragment, aqui ya le das el id
+        ft.addToBackStack(null); //Por si se da a retroceder q sepa q el fragmento tb esta
+        ft.commit();*/
     }
 
     @Override
@@ -258,14 +271,12 @@ public class PerfilUsuario extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             uriImgNueva = uri.toString();
-                            //Log.d("foto", "uri en Storage " + uri.toString());
+                            Log.d("foto", "uri en Storage " + uri.toString());
                             Glide.with(PerfilUsuario.this).load(uriImgNueva)
                                     //.fitCenter().centerCrop()
                                     .into(ivFotoUsuario);
-
                         }
                     });
-
                     Toast.makeText(PerfilUsuario.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
@@ -276,39 +287,35 @@ public class PerfilUsuario extends AppCompatActivity {
                             Toast.makeText(PerfilUsuario.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+
         } else {
             Log.d("foto", "El activityResult no fue OK");
             Toast.makeText(PerfilUsuario.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
         }
     }
 
-
     private void deshabilitarEditext(Boolean hd){
         etNombre.setFocusable(!hd);
         etNombre.setFocusableInTouchMode(!hd);
+        etNombre.setCursorVisible(!hd);
         etNombre.setClickable(!hd);
         etCiudad.setFocusable(!hd);
         etCiudad.setFocusableInTouchMode(!hd);
+        etCiudad.setCursorVisible(!hd);
         etCiudad.setClickable(!hd);
         tvEmail.setEnabled(hd);
-        btnAgregarPet.setEnabled(hd);
-        btnEditarP.setEnabled(hd);
-        btnGuardarCambios.setEnabled(!hd);
-        btnCambiarFoto.setEnabled(!hd);
+        gFase1.setEnabled(hd);
+        gFase2.setEnabled(!hd);
         rv.setEnabled(hd);
         if (hd) {
-            btnEditarP.setVisibility(View.VISIBLE);
-            btnAgregarPet.setVisibility(View.VISIBLE);
-            btnGuardarCambios.setVisibility(View.INVISIBLE);
-            btnCambiarFoto.setVisibility(View.INVISIBLE);
+            gFase1.setVisibility(View.VISIBLE);
+            gFase2.setVisibility(View.INVISIBLE);
             etNombre.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             rv.setVisibility(View.VISIBLE);
         } else{
-            btnEditarP.setVisibility(View.INVISIBLE);
-            btnAgregarPet.setVisibility(View.INVISIBLE);
-            btnGuardarCambios.setVisibility(View.VISIBLE);
-            btnCambiarFoto.setVisibility(View.VISIBLE);
+            gFase1.setVisibility(View.INVISIBLE);
+            gFase2.setVisibility(View.VISIBLE);
             etNombre.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             rv.setVisibility(View.GONE);
@@ -325,5 +332,23 @@ public class PerfilUsuario extends AppCompatActivity {
         System.out.println(indice);
         String clave = email.substring(0, indice) + email.substring(indice+1);
         return clave;
+    }
+
+    @Override
+    public void guardarMascota(PojoMascotas mascota) {
+        refMascotas.child(clave).setValue(mascota);
+        Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT).show();
+        recuperarDatosFirebase();
+        //listaMascotas.add(mascota)
+
+    }
+
+    @Override
+    public void cancelarOpcion() {
+       getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.flContenedor)).commit();
+       /*FragmentManager fragmentManager = getSupportFragmentManager();
+       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+       fragmentTransaction.remove(new AniadirMascota());
+       fragmentTransaction.commit();*/
     }
 }
