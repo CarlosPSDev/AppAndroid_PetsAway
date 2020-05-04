@@ -3,6 +3,8 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -13,13 +15,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PerfilUsuario extends AppCompatActivity {
+public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
     FirebaseDatabase db;
@@ -76,7 +78,7 @@ public class PerfilUsuario extends AppCompatActivity {
         referenciaStor = FirebaseStorage.getInstance().getReference();
         db = FirebaseDatabase.getInstance();
         //datosUsuario = new ArrayList<>();
-
+        listaMascotas = new ArrayList<>();
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
         gFase1 = findViewById(R.id.group);
@@ -132,6 +134,9 @@ public class PerfilUsuario extends AppCompatActivity {
 
         adapter = new AdapterPetsProfile(listaMascotas);
         rv.setAdapter(adapter);
+    }
+
+    private void recuperarMascotasFirebase() {
     }
 
     private void rellenarDatosonLoad() {
@@ -259,7 +264,6 @@ public class PerfilUsuario extends AppCompatActivity {
                 ///////////////////modZori
             }
 
-
             deshabilitarEditext(true);
         } else {
             Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
@@ -354,7 +358,7 @@ public class PerfilUsuario extends AppCompatActivity {
         etCiudad.setCursorVisible(!hd);
         etCiudad.setClickable(!hd);
         tvEmail.setEnabled(hd);
-        gFase1.setEnabled(hd);
+        gFase1.setEnabled(!hd);
         gFase2.setEnabled(!hd);
         rv.setEnabled(hd);
         if (hd) {
@@ -386,7 +390,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
     @Override
     public void guardarMascota(PojoMascotas mascota) {
-        refMascotas.child(clave).setValue(mascota);
+        //refMascotas.child(clave).setValue(mascota);
         Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT).show();
         recuperarDatosFirebase();
         //listaMascotas.add(mascota)
