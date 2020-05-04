@@ -23,6 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ajustes.ModEmailPass"></activity>
+        <activity android:name=".alertas_lista.DetalleAlerta" />
+        <activity android:name=".alertas_lista.AlertasListaActivity" />
         <activity android:name=".registro.SignWithGoogleActivity" />
         <activity android:name=".registro.reset_password.ResetPasswordActivity" />
         <activity android:name=".perfil_usuario.PerfilUsuario" />

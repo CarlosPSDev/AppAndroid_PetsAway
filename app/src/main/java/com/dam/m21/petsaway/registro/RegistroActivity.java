@@ -37,9 +37,8 @@ public class RegistroActivity extends AppCompatActivity {
     String email;
     String password;
     static String userName = "";
-
     static final String CLAVE_EMAIL = "EMAIL";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +72,14 @@ public class RegistroActivity extends AppCompatActivity {
                                 assert firebaseUser != null;
                                 String userid = firebaseUser.getUid();
 
-                                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                                reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
 
                                 HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("nombre", userName);
                                 hashMap.put("id", userid);
-                                hashMap.put("username", userName);
-                                hashMap.put("imageURL", "default");
+                                hashMap.put("urlFotoUser", "default");
                                 hashMap.put("status", "offline");
+                                hashMap.put("ciudad", "default");
                                 hashMap.put("search", userName.toLowerCase());
 
                                 reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -90,11 +90,12 @@ public class RegistroActivity extends AppCompatActivity {
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
                                             finish();
+                                            toastPersonalizado(getString(R.string.toast_registro_correcto));
                                         }
                                     }
                                 });
                             } else {
-                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_user_no_registrado));
+                                toastPersonalizado(getString(R.string.toast_user_no_registrado));
                             }
                         }
                     });
@@ -108,7 +109,7 @@ public class RegistroActivity extends AppCompatActivity {
         boolean continuar;
 
         if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_no_datos));
+            toastPersonalizado(getString(R.string.toast_msj_no_datos));
             continuar = false;
 
         } else {
@@ -129,7 +130,7 @@ public class RegistroActivity extends AppCompatActivity {
         finish();
     }
     
-    private void toastPersonalizado(String tit, String text) {
+    private void toastPersonalizado(String text) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);

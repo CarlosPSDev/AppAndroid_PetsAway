@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
+import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
@@ -27,9 +28,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
-    //Implementaciones Navigation Drawer
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    //Implementaciones Navigation Drawer !
     DrawerLayout drawer;
     ActionBarDrawerToggle toogle;
     NavigationView navController;
@@ -69,10 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
+
         navController.setItemIconTintList(null);
-
     }
-
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
      */
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
-            //TODO:
+            startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
 
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));
