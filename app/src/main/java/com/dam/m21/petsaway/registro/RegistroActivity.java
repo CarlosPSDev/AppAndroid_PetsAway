@@ -91,11 +91,12 @@ public class RegistroActivity extends AppCompatActivity {
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
                                             finish();
+                                            toastPersonalizado(getString(R.string.toast_registro_correcto));
                                         }
                                     }
                                 });
                             } else {
-                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_user_no_registrado));
+                                toastPersonalizado(getString(R.string.toast_user_no_registrado));
                             }
                         }
                     });
@@ -109,7 +110,7 @@ public class RegistroActivity extends AppCompatActivity {
         boolean continuar;
 
         if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_no_datos));
+            toastPersonalizado(getString(R.string.toast_msj_no_datos));
             continuar = false;
 
         } else {
@@ -130,7 +131,7 @@ public class RegistroActivity extends AppCompatActivity {
         finish();
     }
     
-    private void toastPersonalizado(String tit, String text) {
+    private void toastPersonalizado(String text) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);
