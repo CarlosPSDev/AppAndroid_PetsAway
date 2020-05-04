@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
@@ -21,19 +22,23 @@ import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    //Implementaciones Navigation Drawer !
+    //Implementaciones Navigation Drawer
     DrawerLayout drawer;
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
-    private FirebaseAuth fbAuth;
+    GoogleSignInClient googleSignInClient;
+    FirebaseAuth fbAuth;
+
     static final String CLAVE_EMAIL = "EMAIL";
+    TextView tvInfoEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         fbAuth = FirebaseAuth.getInstance();
+        tvInfoEmail = findViewById(R.id.textViewPrueba);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
-        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-
         toogle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
 
@@ -65,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
-
         navController.setItemIconTintList(null);
+
     }
 
     /**
@@ -118,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
             finish();
             fbAuth.signOut();
+            //googleSignInClient.signOut();
             //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 

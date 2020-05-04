@@ -107,7 +107,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorGrisClaro"
-            android:onClick="loginGmail"
             app:srcCompat="@drawable/google" />
 
         <ImageButton

@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
 import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +27,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    //Login con Google
+    private static final String TAG = "LoginActivity";
+    private static final int RC_SIGN_IN = 1001;
+    GoogleSignInClient googleSignInClient;
+    ImageButton signInGoogle;
 
     private FirebaseAuth fbAuth;
     private FirebaseUser fbUser;
@@ -55,6 +63,16 @@ public class LoginActivity extends AppCompatActivity {
         if (fbUser != null) {
             etEmail.setText(fbUser.getEmail());
         }
+
+        signInGoogle = findViewById(R.id.imgBtnGoogle);
+        signInGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                //signInToGoogle();
+            }
+        });
+        //Configurar Google Client
+        //configureGoogleClient();
+
     }
 
     public void contraseniaOlvidada(View view) {
@@ -78,11 +96,9 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-
                                 //TODO: Animaciones
                                 //Animation rotarIcono = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.rotate_icon);
                                 //ivLogo.startAnimation(rotarIcono);
-
                                 fbUser = fbAuth.getCurrentUser();
 
                                 Handler handler = new Handler();
@@ -106,8 +122,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void loginGmail(View view) {
-    }
+    /**public void loginGmail(View view) {
+        Intent i = new Intent(this, SignWithGoogleActivity.class);
+        startActivity(i);
+    }**/
 
     public void loginFacebook(View view) {
     }
@@ -143,4 +161,5 @@ public class LoginActivity extends AppCompatActivity {
         toast.setView(customToast);
         toast.show();
     }
+
 }
