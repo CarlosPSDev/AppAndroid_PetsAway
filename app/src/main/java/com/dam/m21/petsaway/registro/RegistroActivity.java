@@ -73,13 +73,14 @@ public class RegistroActivity extends AppCompatActivity {
                                 assert firebaseUser != null;
                                 String userid = firebaseUser.getUid();
 
-                                reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                                reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
 
                                 HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("nombre", userName);
                                 hashMap.put("id", userid);
-                                hashMap.put("username", userName);
-                                hashMap.put("imageURL", "default");
+                                hashMap.put("urlFotoUser", "default");
                                 hashMap.put("status", "offline");
+                                hashMap.put("ciudad", "default");
                                 hashMap.put("search", userName.toLowerCase());
 
                                 reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

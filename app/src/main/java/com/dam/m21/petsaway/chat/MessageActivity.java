@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.chat.Model.Chat;
-import com.dam.m21.petsaway.chat.Model.User;
 import com.dam.m21.petsaway.chat.adapters.MessageAdapter;
 import com.dam.m21.petsaway.chat.fragments.APIService;
 import com.dam.m21.petsaway.chat.notificationes.Client;
@@ -26,6 +26,7 @@ import com.dam.m21.petsaway.chat.notificationes.Data;
 import com.dam.m21.petsaway.chat.notificationes.MyResponse;
 import com.dam.m21.petsaway.chat.notificationes.Sender;
 import com.dam.m21.petsaway.chat.notificationes.Token;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +61,7 @@ public class MessageActivity extends AppCompatActivity {
     String userid;
     APIService apiService;
     boolean notify = false;
+    ImageView pChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,24 +112,42 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fuser.getUid());
+        /////////////////////modZori
+        pChat=findViewById(R.id.pChat);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getUsername());
+                PojoUser user = dataSnapshot.getValue(PojoUser.class);
+
+                if (user.getIdFotoFondoChat()!=null){
+                    Glide.with(getApplicationContext()).load(user.getIdFotoFondoChat()).into(pChat);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        /////////////////////modZori
+
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                PojoUser user = dataSnapshot.getValue(PojoUser.class);
+                username.setText(user.getNombre());
                 userstatus.setText(user.getStatus());
 
-                if (user.getImageURL().equals("default")){
+                if (user.getUrlFotoUser().equals("default")){
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {
                     //and this
-                    Glide.with(getApplicationContext()).load(user.getImageURL()).into(profile_image);
+                    Glide.with(getApplicationContext()).load(user.getUrlFotoUser()).into(profile_image);
                 }
 
-                readMesagges(fuser.getUid(), userid, user.getImageURL());
+                readMesagges(fuser.getUid(), userid, user.getUrlFotoUser());
             }
 
             @Override
@@ -198,13 +218,13 @@ public class MessageActivity extends AppCompatActivity {
 
         final String msg = message;
 
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                PojoUser user = dataSnapshot.getValue(PojoUser.class);
                 if (notify) {
-                    sendNotifiaction(receiver, user.getUsername(), msg);
+                    sendNotifiaction(receiver, user.getNombre(), msg);
                 }
                 notify = false;
             }
@@ -289,7 +309,7 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void status(String status){
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fuser.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);

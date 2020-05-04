@@ -18,7 +18,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.model.PojoUser;
+import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.dam.m21.petsaway.R;
+import com.google.firebase.storage.UploadTask;
 
 public class AjustesActivity extends AppCompatActivity {
     private FirebaseAuth fa;
@@ -44,7 +48,7 @@ public class AjustesActivity extends AppCompatActivity {
     private StorageReference msr;
     Uri miPath;
     DatabaseReference dbr;
-    String tema;
+    String tema,idUser;
     Button bt_tO,bt_tC;
 
     static final int REQUEST_CODE_PASS =1;
@@ -58,6 +62,8 @@ public class AjustesActivity extends AppCompatActivity {
         fa = FirebaseAuth.getInstance();
         msr= FirebaseStorage.getInstance().getReference();
         fu = fa.getCurrentUser();
+
+        idUser = fu.getUid();
         dbr = FirebaseDatabase.getInstance().getReference();
         bt_tO=findViewById(R.id.bt_tO);
         bt_tC=findViewById(R.id.bt_tC);
@@ -66,16 +72,18 @@ public class AjustesActivity extends AppCompatActivity {
     }
 
     public void datosUser() {
-        dbr.child("usuarios").child(fu.getEmail().substring(0, fu.getEmail().indexOf("."))).addValueEventListener(new ValueEventListener() {
+        dbr.child("PETSAWAYusers").child(idUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
                 if(pUser!=null) {
                     String temaActual = pUser.getTema();
-                    if (temaActual.equals("oscuro")) {
-                        bt_tO.setBackgroundResource(R.drawable.bt_tema2_style_habilitado);
-                    } else {
-                        bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
+                    if(temaActual!=null) {
+                        if (temaActual.equals("oscuro")) {
+                            bt_tO.setBackgroundResource(R.drawable.bt_tema2_style_habilitado);
+                        } else {
+                            bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
+                        }
                     }
                 }
             }
@@ -88,7 +96,7 @@ public class AjustesActivity extends AppCompatActivity {
     public void modTema() {
         userAjustes = new HashMap<>();
         userAjustes.put("tema", tema);
-        dbr.child("usuarios").child(fu.getEmail().substring(0, fu.getEmail().indexOf("."))).setValue(userAjustes);
+        dbr.child("PETSAWAYusers").child(idUser).updateChildren(userAjustes);
     }
 
     public void temaClaro(View view) {
@@ -151,11 +159,31 @@ public class AjustesActivity extends AppCompatActivity {
         }
         if (resultCode==RESULT_OK && requestCode==10){
             miPath=data.getData();
-            userAjustes = new HashMap<>();
-            userAjustes.put("idFotoFondoChat", miPath.getLastPathSegment());
             StorageReference sr = msr.child("fondoChat").child(miPath.getLastPathSegment());
-            sr.putFile(miPath);
-            dbr.child("usuariosFondoChat").child(fu.getEmail().substring(0, fu.getEmail().indexOf("."))).setValue(userAjustes);
+           // sr.putFile(miPath);
+
+            sr.putFile(miPath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> uriDireccFire = taskSnapshot.getStorage().getDownloadUrl();
+                    uriDireccFire.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            userAjustes = new HashMap<>();
+                            userAjustes.put("idFotoFondoChat", uri.toString());
+                            dbr.child("PETSAWAYusers").child(idUser).updateChildren(userAjustes);
+                        }
+                    });
+
+                    Toast.makeText(AjustesActivity.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AjustesActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
     }

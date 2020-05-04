@@ -59,7 +59,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     DatabaseReference dbr;
     private LatLng miLoc;
     private Marker mark;
-    String temaActual;
+    String temaActual,idUser;
 
     Toolbar toolbar;
 
@@ -93,6 +93,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
 
         fa = FirebaseAuth.getInstance();
         fu = fa.getCurrentUser();
+        idUser = fu.getUid();
         msr= FirebaseStorage.getInstance().getReference();
         dbr = FirebaseDatabase.getInstance().getReference();
 
@@ -123,7 +124,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         datosUser();
     }
     public void datosUser() {
-        dbr.child("usuarios").child(fu.getEmail().substring(0, fu.getEmail().indexOf("."))).addValueEventListener(new ValueEventListener() {
+        dbr.child("PETSAWAYusers").child(idUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
@@ -131,13 +132,12 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                     temaActual = pUser.getTema();
                     dMP = findViewById(R.id.dMP);
                     int idColor = R.color.colorPurpura;
+                    if(temaActual!=null) {
                     if (temaActual.equals("oscuro")) {
                         dMP.setBackgroundResource(idColor);
                         bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
                         bt_add.setImageResource(R.drawable.ic_add_tema_oscuro);
-                    } else {
-
-                    }
+                    } }
                 }
             }
             @Override
@@ -186,10 +186,12 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     public void goForm(View view) {
         cont=cont+1;
         if(cont%2!=0) {
-            if(temaActual.equals("oscuro")||temaActual!=null){
-                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
-            }else {
-                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+            if(temaActual!=null) {
+                if (temaActual.equals("oscuro")) {
+                    bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
+                } else {
+                    bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+                }
             }
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
@@ -210,10 +212,12 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 }
             });
         }else{
-            if(temaActual.equals("oscuro")){
-                bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
-            }else {
-                bt_add.setBackgroundResource(R.drawable.style_bt_add);
+            if(temaActual!=null) {
+                if (temaActual.equals("oscuro")) {
+                    bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
+                } else {
+                    bt_add.setBackgroundResource(R.drawable.style_bt_add);
+                }
             }
         }
     }
