@@ -37,9 +37,8 @@ public class RegistroActivity extends AppCompatActivity {
     String email;
     String password;
     static String userName = "";
-
     static final String CLAVE_EMAIL = "EMAIL";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
