@@ -17,6 +17,7 @@ import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
+import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     String email;
     String password;
 
+    static final String CLAVE_EMAIL = "MAIL";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         fbUser = fbAuth.getCurrentUser();
 
         String mail = getIntent().getStringExtra("EMAIL");
-        etEmail.setText(mail);
+        if (mail != null) {
+            etEmail.setText(mail);
+        }
 
         if (fbUser != null) {
             etEmail.setText(fbUser.getEmail());
@@ -53,12 +58,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void contraseniaOlvidada(View view) {
+        Intent i = new Intent(this, ResetPasswordActivity.class);
+        startActivity(i);
     }
 
     public void accesoRegistro(View view) {
+        email = etEmail.getText().toString().trim();
         Intent i = new Intent(this, RegistroActivity.class);
+        if (!email.equals("")) {
+            i.putExtra(CLAVE_EMAIL, email);
+        }
         startActivity(i);
-        finish();
     }
 
     public void accesoAplicacion(View view) {
@@ -126,8 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);
-        TextView titulo = customToast.findViewById(R.id.tvTituloToast);
-        titulo.setText(tit);
         texto.setText(text);
         Toast toast = new Toast(LoginActivity.this);
         toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);

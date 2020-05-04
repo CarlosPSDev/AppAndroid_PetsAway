@@ -80,17 +80,41 @@
     <string name="encontrados">Encontrados</string>
     <string name="encontrado">encontrado</string>
     <string name="buscado">buscado</string>
-    <string name="modTema">Midificar el tema</string>
+    <string name="modTema">Modificar el tema</string>
     <string name="modPass">Cambiar contraseña</string>
     <string name="modEmail">Cambiar correo electronico</string>
     <string name="modFondoChat">Modificar fondo del chat</string>
     <string name="invitAm">Invitar amigos</string>
     <string name="borrarCuenta">Borrar mi cuenta</string>
     <string name="notif">Notificaciones</string>
+
+    <string name="hint_mail_recuperar_password">Introduce tu e-mail</string>
+    <string name="toast_recuperar_password">Debes introducir tu email</string>
+    <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
+    <string name="toast_revisa_email">¡Revisa tu correo!</string>
+    <string name="toast_error_envio_correo">Se ha producido un error</string>
+    <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
+
     <string name="toast_datos_vacios">Se deben rellenar los datos</string>
-    <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="hint_pass_ant">Anterior %1$s</string>
+    <string name="hint_pass_new">Nueva %1$s</string>
+    <string name="hint_pass_new_rep">Repetir nueva %1$s</string>
+    <string name="msg_cancel">Los cambios no guardados</string>
+    <string name="msg_wrongPass">tienes que introducir tu ultima contraseña correctamente</string>
+    <string name="msg_newPass">la contraseña cambiada correctamente</string>
+    <string name="msg_newPassDist">Tu nueva contraseña no esta bien repetida</string>
+    <string name="msg_newEmailDist">Tu nuevo email no esta bien repetido</string>
+    <string name="msg_newEmail">Tu nuevo email se ha cambiado correctamente</string>
+    <string name="msg_wrongEmail">Tu email Antiguo no es correcto</string>
+
+    <string name="toast_msj_error_datos_registro">Email o contraseña inválido</string>
+    <string name="mensaje_chat_visto">Visto</string>
+    <string name="mensaje_chat_enviado">Enviado</string>
+    <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
+    <string name="msg_error_enviar_notif">¡Ha fallado!</string>
 
 </resources>

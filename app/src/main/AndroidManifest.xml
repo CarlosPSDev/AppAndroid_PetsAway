@@ -23,18 +23,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".perfil_usuario.PerfilUsuario"></activity>
-        <activity android:name=".aviso_legal.AvisoLegal"></activity>
-        <activity android:name=".on_boarding.LanzadorOnBoard"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".login.LoginActivity"></activity>
-        <activity android:name=".acerca_de.AcercaDeActivity"></activity>
-        <activity android:name=".ajustes.AjustesActivity"></activity>
-        <activity android:name=".formulario.FormularioActivity"></activity>
-        <activity android:name=".alertas_mapa.AlertasMapaActivity"></activity>
-        <activity android:name=".registro.RegistroActivity"></activity>
+        <activity android:name=".ajustes.ModEmailPass"></activity>
+        <activity android:name=".alertas_lista.DetalleAlerta" />
+        <activity android:name=".alertas_lista.AlertasListaActivity" />
+        <activity android:name=".registro.SignWithGoogleActivity" />
+        <activity android:name=".registro.reset_password.ResetPasswordActivity" />
+        <activity android:name=".perfil_usuario.PerfilUsuario" />
+        <activity android:name=".aviso_legal.AvisoLegal" />
+        <activity android:name=".on_boarding.LanzadorOnBoard" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".acerca_de.AcercaDeActivity" />
+        <activity android:name=".ajustes.AjustesActivity" />
+        <activity android:name=".formulario.FormularioActivity" />
+        <activity android:name=".alertas_map.AlertasMapaActivity" />
+        <activity android:name=".registro.RegistroActivity" />
+        <activity android:name=".chat.MainActivityChat"/>
+        <activity android:name=".chat.MessageActivity"/>
         <activity
-            android:name=".alertas_mapa.fragments.MapsActivity"
+            android:name=".alertas_map.fragmentos.MapsActivity"
             android:label="@string/title_activity_maps" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -55,6 +62,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".chat.notificationes.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".chat.notificationes.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
