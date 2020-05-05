@@ -96,7 +96,7 @@
     <string name="hint_nombre_mascota">*Nombre de la mascota</string>
     <string name="tv_aniadir_mascota">Añadir Mascota</string>
     <string name="hint_especie_mascota">*Otro (serpiente, cerdo, etc.)</string>
-    <string name="hint_raza_mascota">*Raza (bull dog, persa, cotorra del sol)</string>
+    <string name="hint_raza_mascota">Raza (bull dog, persa, cotorra del sol)</string>
     <string name="hint_color_mascota">*Color o colores principales</string>
     <string name="hint_identificacion_mascota">Nº de identificación (chip, anilla, etc.)</string>
     <string name="hint_fechaNac_mascota">*Fecha de nacimiento (ejemplo 12/05/2020)</string>
@@ -104,7 +104,7 @@
     <string name="btn_guardar_mascA">Guarda tu Mascota</string>
     <string name="btn_cancelar_mascA">Cancelar</string>
     <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
-    <string name="toast_guardado_ok">Se han guardaod los datos de la mascota correctamente</string>
+    <string name="toast_guardado_ok">Se han guardado los datos de la mascota correctamente</string>
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
@@ -127,5 +127,13 @@
     <string name="mensaje_chat_enviado">Enviado</string>
     <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
     <string name="msg_error_enviar_notif">¡Ha fallado!</string>
+    <string name="btn_subir_fotoM">Subir Imagen</string>
+    <string name="rdbtn_macho">Macho</string>
+    <string name="rdbtn_hembra">Hembra</string>
+    <string name="tv_modif_mascota">Modificar Mascota</string>
+    <string name="btn_cambiar_fotoM">Subir nueva imagen</string>
+    <string name="btn_eliminar_mascA">Eliminar Mascota</string>
+    <string name="btn_cancelar_mascM">Cancelar y Volver</string>
+    <string name="btn_guardar_mascM">Guardar Cambios</string>
 
 </resources>
