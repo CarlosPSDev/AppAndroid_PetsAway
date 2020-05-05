@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/ivMascA"
+            android:id="@+id/ivMascAa"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"
@@ -34,24 +34,24 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAdd" />
 
         <EditText
-            android:id="@+id/etNomMascA"
+            android:id="@+id/etNomMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/hint_nombre_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivMascA" />
+            app:layout_constraintTop_toBottomOf="@+id/ivMascAa" />
 
         <Spinner
-            android:id="@+id/spinnerEspecies"
+            android:id="@+id/spinnerEspeciesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNomMascA"/>
+            app:layout_constraintTop_toBottomOf="@+id/etNomMascAa"/>
 
         <EditText
-            android:id="@+id/etTipoMascA"
+            android:id="@+id/etTipoMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -59,66 +59,66 @@
             android:visibility="invisible"
             android:hint="@string/hint_especie_mascota"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/spinnerEspecies"
-            app:layout_constraintTop_toBottomOf="@+id/etNomMascA" />
+            app:layout_constraintStart_toEndOf="@+id/spinnerEspeciesa"
+            app:layout_constraintTop_toBottomOf="@+id/etNomMascAa" />
         <EditText
-            android:id="@+id/etRazaMascA"
+            android:id="@+id/etRazaMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/hint_raza_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerEspecies" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerEspeciesa" />
         <EditText
-            android:id="@+id/etColorMascA"
+            android:id="@+id/etColorMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/hint_color_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etRazaMascA" />
+            app:layout_constraintTop_toBottomOf="@+id/etRazaMascAa" />
         <EditText
-            android:id="@+id/etIdMascA"
+            android:id="@+id/etIdMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/hint_identificacion_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etColorMascA" />
+            app:layout_constraintTop_toBottomOf="@+id/etColorMascAa" />
         <EditText
-            android:id="@+id/etFechaMascA"
+            android:id="@+id/etFechaMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:clickable="true"
             android:hint="@string/hint_fechaNac_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etIdMascA" />
+            app:layout_constraintTop_toBottomOf="@+id/etIdMascAa" />
         <EditText
-            android:id="@+id/etDescMascA"
+            android:id="@+id/etDescMascAa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/hint_descripcion_mascota"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etFechaMascA" />
+            app:layout_constraintTop_toBottomOf="@+id/etFechaMascAa" />
 
         <Button
-            android:id="@+id/btnGuardarMascA"
+            android:id="@+id/btnGuardarMascAa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_guardar_mascA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnCancelarMascA"/>
+            app:layout_constraintEnd_toStartOf="@id/btnCancelarMascAa"/>
         <Button
-            android:id="@+id/btnCancelarMascA"
+            android:id="@+id/btnCancelarMascAa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_cancelar_mascA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnGuardarMascA" />
+            app:layout_constraintStart_toEndOf="@+id/btnGuardarMascAa" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

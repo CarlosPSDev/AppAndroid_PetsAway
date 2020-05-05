@@ -52,9 +52,7 @@ public class ActAgregarMascota extends AppCompatActivity {
     EditText etTipoM;
     String especieSeleccionada;
     String urlM;
-    Button btnGuardar;
-    Button btnCancelar;
-    Button cargarImagen;
+
     ProgressDialog progres;
     String userId;
 
@@ -62,17 +60,17 @@ public class ActAgregarMascota extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_agregar_mascota);
-        btnGuardar = findViewById(R.id.btnGuardarMascA);
+
         etNombreM = findViewById(R.id.etNomMascA);
         etRazaM = findViewById(R.id.etRazaMascA);
         etColor = findViewById(R.id.etColorMascA);
         etIdM = findViewById(R.id.etIdMascA);
         etDescripcion = findViewById(R.id.etDescMascA);
         etFecha = findViewById(R.id.etFechaMascA);
-        btnCancelar = findViewById(R.id.btnCancelarMascA);
+        imagenMascota = findViewById(R.id.ivMascA);
         spinEspecie = findViewById(R.id.spinnerEspecies);
         etTipoM = findViewById(R.id.etTipoMascA);
-        etFecha.setPaintFlags(View.VISIBLE);
+        etFecha.setPaintFlags(View.INVISIBLE);
         progres = new ProgressDialog(this);
 
         userId = getIntent().getStringExtra("userId");
@@ -80,9 +78,8 @@ public class ActAgregarMascota extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference("MascotasUsers").child(userId);
 
         cargarSpinner();
-
-
     }
+
     public void guardarMascota(View view) {
 
         boolean especieOk = true;
