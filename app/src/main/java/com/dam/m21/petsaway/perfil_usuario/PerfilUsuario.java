@@ -58,7 +58,6 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     Group gFase1;
     Group gFase2;
     String email;
-    String nombre;
     String uriImgGuardada;
     String uriImgNueva;
 
@@ -93,7 +92,6 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-
 
         ///////////////////modZori
         userid = fbUser.getUid();
