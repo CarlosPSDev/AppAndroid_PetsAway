@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class ActAgregarMascota extends AppCompatActivity {
     EditText etRazaM;
     EditText etColor;
     EditText etIdM;
+    RadioButton rdbM, rdbH;
     EditText etDescripcion;
     TextView etFecha;
     EditText etTipoM;
@@ -66,6 +68,8 @@ public class ActAgregarMascota extends AppCompatActivity {
         etRazaM = findViewById(R.id.etRazaMascA);
         etColor = findViewById(R.id.etColorMascA);
         etIdM = findViewById(R.id.etIdMascA);
+        rdbM = findViewById(R.id.rdbtMacho);
+        rdbH = findViewById(R.id.rdbtHembra);
         etDescripcion = findViewById(R.id.etDescMascA);
         etFecha = findViewById(R.id.etFechaMascA);
         imagenMascota = findViewById(R.id.ivMascA);
@@ -83,20 +87,22 @@ public class ActAgregarMascota extends AppCompatActivity {
 
     public void guardarMascota(View view) {
         Toast t;
-
+        String especieOtro = "";
+        String sexoM = "";
         boolean especieOk = true;
         String nombreM = etNombreM.getText().toString();
         String razaM = etRazaM.getText().toString();
         String colorM = etColor.getText().toString();
         String idM = etIdM.getText().toString();
+        if (rdbM.isChecked()) sexoM = "Macho"; if (rdbH.isChecked()) sexoM = "Hembra";
         String descripM = etDescripcion.getText().toString();
         String fechaM = etFecha.getText().toString();
-        String especieOtro = "";
+        especieOtro = etTipoM.getText().toString();
         if (especieSeleccionada.equals("Otro") & especieOtro.isEmpty()) especieOk = false;
 
         if (!especieSeleccionada.equals("-*especie-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
-            PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, fechaM);
-            Toast.makeText(this, "Se ha guardado " + mascotaGuardar.getNombre(), Toast.LENGTH_SHORT).show(); //
+            if (!especieOtro.isEmpty()) especieSeleccionada = especieOtro;
+            PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, sexoM, fechaM);
 
             HashMap<String, Object> mapaMascota = new HashMap<>();
             mapaMascota.put("nombre", nombreM);
@@ -105,11 +111,12 @@ public class ActAgregarMascota extends AppCompatActivity {
             mapaMascota.put("color", colorM);
             mapaMascota.put("identificacion", idM);
             mapaMascota.put("descripcion", descripM);
+            mapaMascota.put("sexo", sexoM);
             mapaMascota.put("fecha", fechaM);
 
             ref.child(userId + "-" + nombreM).updateChildren(mapaMascota);
-            t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
-            t. setMargin(50,50); t.show();
+            t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            t.show();
             cancelarG(view);
         } else {
             Toast.makeText(this, getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT).show();
@@ -186,7 +193,7 @@ public class ActAgregarMascota extends AppCompatActivity {
 
                             ///////////////////modZori
                             HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("urlFotoUser", urlM);
+                            hashMap.put("urlFotoMascota", urlM);
                             ref.updateChildren(hashMap);
                             ///////////////////modZori
 

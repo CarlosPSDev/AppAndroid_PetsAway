@@ -6,16 +6,18 @@ public class PojoMascotas {
     private String raza;
     private String color;
     private String identificacion;
+    private String sexo;
     private String descrip;
     private String fechaNac;
     private String urlImg;
 
-    public PojoMascotas(String nombre, String especie, String raza, String color, String identificacion, String descrip, String fechaNac) {
+    public PojoMascotas(String nombre, String especie, String raza, String color, String identificacion, String sexo, String descrip, String fechaNac) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
         this.color = color;
         this.identificacion = identificacion;
+        this.sexo = sexo;
         this.descrip = descrip;
         this.fechaNac = fechaNac;
     }
@@ -45,6 +47,9 @@ public class PojoMascotas {
         return descrip;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
     public String getFechaNac() {
         return fechaNac;
     }
