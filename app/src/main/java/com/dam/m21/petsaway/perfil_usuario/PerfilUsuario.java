@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -39,14 +41,13 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
+public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
     FirebaseDatabase db;
     DatabaseReference ref;
     StorageReference referenciaStor;
-    //ArrayList<PojoUsuario> datosUsuario;
-    String clave;
+
     PojoUser usuario;
     ValueEventListener vel;
 
@@ -57,7 +58,6 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
     Group gFase1;
     Group gFase2;
     String email;
-    String ciudad;
     String nombre;
     String uriImgGuardada;
     String uriImgNueva;
@@ -93,22 +93,12 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-        clave = obtenerClave();
-
-
-
-
 
 
         ///////////////////modZori
         userid = fbUser.getUid();
         ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
         ///////////////////modZori
-
-
-
-
-
 
         Log.d("Usuario", "El email logado es " + email);
         //ref = db.getReference().child("perfilesUsuarios").child(email);
@@ -118,7 +108,6 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
         recuperarDatosFirebase();
         recuperarMascotasFirebase();
         //rellenarDatosonLoad();
-
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
 
@@ -140,15 +129,13 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
     }
 
     private void rellenarDatosonLoad() {
-        //ArrayList<PojoUsuario> objetoUser = recuperarDatosFirebase();
 
         ///////////////////modZori
         etNombre.setText(usuario.getNombre());
-        ciudad = usuario.getCiudad();
-        etCiudad.setText(ciudad);
+        if(usuario.getCiudad() == null) etCiudad.setText("Introduce tu ciudad"); else etCiudad.setText(usuario.getCiudad());
         tvEmail.setText(email);
         uriImgGuardada = usuario.getUrlFotoUser();
-        if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
+        if (uriImgGuardada != null) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
         else ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
         ///////////////////modZori
@@ -193,8 +180,6 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
                         usuario = dataSnapshot.getValue(PojoUser.class);
                         ///////////////////modZori
 
-
-
                       //comentZori  for (DataSnapshot datos : dataSnapshot.getChildren()){
                            // if (datos.getKey().equals(clave)) usuario = datos.getValue(PojoUser.class);
                             //Log.d("Usuario", "Nombre recopilado " + usuario.getNombre());
@@ -215,7 +200,6 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
             ref.addValueEventListener(vel);
         }
     }
-
     /*private void recuperarDatosFirebase() {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -248,10 +232,9 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
         String nombreModif = etNombre.getText().toString();
         String ciudadModif = etCiudad.getText().toString();
         if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()){
-            if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | !uriImgNueva.equals(uriImgGuardada)){
+            if (!nombreModif.equals(usuario.getNombre()) | !ciudadModif.equals(usuario.getCiudad())){
                //comentZori PojoUser usuarioModif = new PojoUser(nombreModif, email, ciudadModif, uriImgNueva);
                 //Guardar en FireCloud
-
                // comentZoriref.child(clave).setValue(usuarioModif); //ref.child("perfilesUsuarios").setValue(usuarioModif); genera nodo
 
                 ///////////////////modZori
@@ -263,7 +246,6 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
                 ref.updateChildren(hashMap);
                 ///////////////////modZori
             }
-
             deshabilitarEditext(true);
         } else {
             Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
@@ -381,17 +363,11 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
             vel = null; //y lo anulamos
         }
     }
-    private String obtenerClave(){
-        int indice = email.indexOf('.');
-        System.out.println(indice);
-        String clave = email.substring(0, indice) + email.substring(indice+1);
-        return clave;
-    }
 
     @Override
     public void guardarMascota(PojoMascotas mascota) {
         //refMascotas.child(clave).setValue(mascota);
-        Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT).show();
         recuperarDatosFirebase();
         //listaMascotas.add(mascota)
 
@@ -400,9 +376,9 @@ public class PerfilUsuario extends AppCompatActivity  implements PerfilListener{
     @Override
     public void cancelarOpcion() {
        getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.flContenedor)).commit();
-       /*FragmentManager fragmentManager = getSupportFragmentManager();
+       FragmentManager fragmentManager = getSupportFragmentManager();
        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
        fragmentTransaction.remove(new AniadirMascota());
-       fragmentTransaction.commit();*/
+       fragmentTransaction.commit();
     }
 }
