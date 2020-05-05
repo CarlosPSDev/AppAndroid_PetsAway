@@ -85,15 +85,15 @@
             android:hint="@string/hint_identificacion_mascota"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etColorMascA" />
-        <EditText
+        <TextView
             android:id="@+id/etFechaMascA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:clickable="true"
             android:hint="@string/hint_fechaNac_mascota"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etIdMascA" />
+
         <EditText
             android:id="@+id/etDescMascA"
             android:layout_width="wrap_content"

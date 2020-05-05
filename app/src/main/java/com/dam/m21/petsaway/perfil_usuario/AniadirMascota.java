@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.R;
@@ -34,7 +35,7 @@ public class AniadirMascota extends Fragment {
     EditText etColor;
     EditText etIdM;
     EditText etDescripcion;
-    EditText etFecha;
+    TextView etFecha;
     EditText etTipoM;
     String especieSeleccionada;
     String urlM;
