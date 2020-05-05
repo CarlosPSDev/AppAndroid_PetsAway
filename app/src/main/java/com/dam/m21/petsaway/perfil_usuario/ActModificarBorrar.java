@@ -202,7 +202,7 @@ public class ActModificarBorrar extends AppCompatActivity {
 
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("urlFotoMascota", urlM);
-                            ref.updateChildren(hashMap);
+                            ref.child(refMasc).updateChildren(hashMap);
                         }
                     });
 
