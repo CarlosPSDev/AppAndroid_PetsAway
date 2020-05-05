@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -81,6 +82,7 @@ public class ActAgregarMascota extends AppCompatActivity {
     }
 
     public void guardarMascota(View view) {
+        Toast t;
 
         boolean especieOk = true;
         String nombreM = etNombreM.getText().toString();
@@ -90,7 +92,7 @@ public class ActAgregarMascota extends AppCompatActivity {
         String descripM = etDescripcion.getText().toString();
         String fechaM = etFecha.getText().toString();
         String especieOtro = "";
-        if (especieSeleccionada.equals("otro") & especieOtro.isEmpty()) especieOk = false;
+        if (especieSeleccionada.equals("Otro") & especieOtro.isEmpty()) especieOk = false;
 
         if (!especieSeleccionada.equals("-*especie-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
             PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, fechaM);
@@ -104,7 +106,10 @@ public class ActAgregarMascota extends AppCompatActivity {
             mapaMascota.put("identificacion", idM);
             mapaMascota.put("descripcion", descripM);
             mapaMascota.put("fecha", fechaM);
-            ref.updateChildren(mapaMascota);
+
+            ref.child(userId + "-" + nombreM).updateChildren(mapaMascota);
+            t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+            t. setMargin(50,50); t.show();
             cancelarG(view);
         } else {
             Toast.makeText(this, getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT).show();

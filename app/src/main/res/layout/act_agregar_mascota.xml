@@ -24,8 +24,19 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
+        android:src="@drawable/img_perro_pet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAdd" />
+
+    <Button
+        android:id="@+id/subirFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_subir_fotoM"
+        android:layout_marginStart="@dimen/padding"
+        android:onClick="subirImagen"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMascA"
+        app:layout_constraintStart_toEndOf="@+id/ivMascA" />
 
     <EditText
         android:id="@+id/etNomMascA"
@@ -84,9 +95,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textSize="18sp"
         android:onClick="mostrarCalendar"
         android:hint="@string/hint_fechaNac_mascota"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIdMascA" />
 
@@ -96,6 +107,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/hint_descripcion_mascota"
+        android:minLines="2"
+        android:maxLines="3"
+        android:maxLength="200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etFechaMascA" />
 
@@ -119,13 +133,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnGuardarMascA" />
 
-    <Button
-        android:id="@+id/subirFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_subir_fotoM"
-        android:onClick="subirImagen"
-        app:layout_constraintBottom_toBottomOf="@+id/ivMascA"
-        app:layout_constraintStart_toEndOf="@+id/ivMascA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
