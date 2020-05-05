@@ -60,7 +60,6 @@ public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.
         }
 
         public void asignarDatos(PojoMascotas mascota) {
-            Log.d("mascotas", "Adapter urlMascota: " + mascota.getUrlImg());
             if (mascota.getUrlImg() != null) {
                 Glide.with(context).load(mascota.getUrlImg())
                         .into(fotoMascota);
