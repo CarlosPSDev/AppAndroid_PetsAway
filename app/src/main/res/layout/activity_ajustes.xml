@@ -37,42 +37,20 @@
             android:background="@drawable/bt_tema2_style"/>
 
     </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/nuevoPass"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/modPass"
                 android:onClick="cambiarPass"
                 android:background="@color/colorPurpura"/>
-        </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/nuevoEmail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/modEmail"
             android:onClick="cambiarCorreo"
             android:background="@color/colorGris"/>
-    </LinearLayout>
 
         <Button
             android:id="@+id/btModFondoDelChat"

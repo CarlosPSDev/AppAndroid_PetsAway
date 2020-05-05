@@ -9,206 +9,217 @@
     >-->
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/padding"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/colorFondoPerfil"
-        tools:context=".perfil_usuario.PerfilUsuario">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorFondoPerfil"
+    android:padding="@dimen/padding"
+    tools:context=".perfil_usuario.PerfilUsuario">
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/roundCardView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="48dp"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/roundCardView"
+        <ImageView
+            android:id="@+id/ivImgUser"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="48dp"
-            app:cardCornerRadius="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:scaleType="centerCrop"
+             /><!--android:src="@drawable/usuario"-->
+    </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/ivImgUser"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/usuario" />
-        </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btnCambiarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
+        android:onClick="cambiarFoto"
+        android:text="@string/btn_cambiar_foto"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/roundCardView"
+        app:layout_constraintStart_toEndOf="@id/roundCardView" />
 
-        <Button
-            android:id="@+id/btnCambiarFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
-            android:onClick="cambiarFoto"
-            android:text="@string/btn_cambiar_foto"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@id/roundCardView"
-            app:layout_constraintStart_toEndOf="@id/roundCardView"/>
+    <Button
+        android:id="@+id/btnModifPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/editar_perfil64"
+        android:onClick="modificarPerfil"
+        android:text="@string/btn_editar_perfil"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /> <!--O bien ponerle el drawable con borde-->
 
-        <Button
-            android:id="@+id/btnModifPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/editar_perfil64"
-            android:onClick="modificarPerfil"
-            android:text="@string/btn_editar_perfil"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" /> <!--O bien ponerle el drawable con borde-->
+    <Button
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/icono_candado"
+        android:onClick="guardarCambios"
+        android:text="@string/btn_guardar_cambios"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btnModifPerfil" />
 
-        <Button
-            android:id="@+id/btnGuardarCambios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/icono_candado"
-            android:onClick="guardarCambios"
-            android:text="@string/btn_guardar_cambios"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/btnModifPerfil" />
+    <TextView
+        android:id="@+id/tvNomUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_nom_usuario"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roundCardView" />
 
-        <TextView
-            android:id="@+id/tvNomUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/tv_nom_usuario"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roundCardView" />
-
-        <EditText
-            android:id="@+id/etValNomUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Pepito"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNomUsuario" />
+    <EditText
+        android:id="@+id/etValNomUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomUsuario" />
 
 
-        <TextView
-            android:id="@+id/tvEmailUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/tv_email_usuario"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etValNomUsuario" />
+    <TextView
+        android:id="@+id/tvEmailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_email_usuario"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etValNomUsuario" />
 
-        <TextView
-            android:id="@+id/tvValEmailUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="...@xxx.com"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailUsuario" />
+    <TextView
+        android:id="@+id/tvValEmailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="...@xxx.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailUsuario" />
 
-        <TextView
-            android:id="@+id/tvCiudadUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/tv_ciudad_usuario"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvValEmailUsuario" />
+    <TextView
+        android:id="@+id/tvCiudadUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_ciudad_usuario"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvValEmailUsuario" />
 
-        <EditText
-            android:id="@+id/etValCiudadUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Madrid"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
+    <EditText
+        android:id="@+id/etValCiudadUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ciudad"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
 
-        <TextView
-            android:id="@+id/tvMascotasUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/tv_mascotas_usuario"
-            android:textSize="20sp"
-            android:textStyle="bold"
+    <TextView
+        android:id="@+id/tvMascotasUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_mascotas_usuario"
+        android:textSize="20sp"
+        android:textStyle="bold"
 
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etValCiudadUsuario" /> <!--app:layout_constraintEnd_toEndOf="parent"-->
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etValCiudadUsuario" /> <!--app:layout_constraintEnd_toEndOf="parent"-->
 
-        <TextView
-            android:id="@+id/tvAclaracPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_aclaracion_perfil"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMascotasUsuario" />
+    <TextView
+        android:id="@+id/tvAclaracPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_aclaracion_perfil"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMascotasUsuario" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerProfilPets"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="60dp"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" /><!--android:nestedScrollingEnabled="false"-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProfilPets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="60dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" /><!--android:nestedScrollingEnabled="false"-->
 
-        <Button
-            android:id="@+id/btnAgregarMasc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="agregarMascota"
-            android:padding="5dp"
-            android:text="@string/btn_agregar_mascota"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
+    <Button
+        android:id="@+id/btnAgregarMasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="agregarMascota"
+        android:padding="5dp"
+        android:text="@string/btn_agregar_mascota"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="193dp"
-            app:layout_constraintDimensionRatio=""
-            app:layout_constraintGuide_end="493dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio=""
+        app:layout_constraintGuide_begin="193dp"
+        app:layout_constraintGuide_end="493dp" />
 
     <FrameLayout
         android:id="@+id/flContenedor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-   <!-- <fragment
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnAgregarMasc,btnModifPerfil"
+        />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnCambiarFoto,btnGuardarCambios"
+        />
+    <!-- <fragment
         android:id="@+id/flContenedor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_aniadir_mascota"></fragment>-->
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 <!--
 </ScrollView>-->

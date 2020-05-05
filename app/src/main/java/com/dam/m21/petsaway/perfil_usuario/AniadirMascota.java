@@ -1,5 +1,6 @@
 package com.dam.m21.petsaway.perfil_usuario;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -12,12 +13,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.R;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,14 +53,13 @@ public class AniadirMascota extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_aniadir_mascota, container, false);
-        especieSeleccionada = "";
         btnGuardar = v.findViewById(R.id.btnGuardarMascA);
         etNombreM = v.findViewById(R.id.etNomMascA);
         etRazaM = v.findViewById(R.id.etRazaMascA);
         etColor = v.findViewById(R.id.etColorMascA);
         etIdM = v.findViewById(R.id.etIdMascA);
         etDescripcion = v.findViewById(R.id.etDescMascA);
-        etFecha = v.findViewById(R.id.etDescMascA);
+        etFecha = v.findViewById(R.id.etFechaMascA);
         btnCancelar = v.findViewById(R.id.btnCancelarMascA);
         spinEspecie = v.findViewById(R.id.spinnerEspecies);
         etTipoM = v.findViewById(R.id.etTipoMascA);
@@ -76,8 +79,8 @@ public class AniadirMascota extends Fragment {
 
                 if (!especieSeleccionada.equals("-*especie-") & !nombreM.isEmpty() & !razaM.isEmpty()
                 & !!fechaM.isEmpty() & especieOk){
-                    PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, fechaM, urlM);
-                    mListener.guardarMascota(mascotaGuardar);
+                    //PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, fechaM, urlM);
+                    //mListener.guardarMascota(mascotaGuardar);
                 } else {
                     Toast.makeText(getContext(), getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT).show();
                 }
@@ -99,9 +102,8 @@ public class AniadirMascota extends Fragment {
             @Override //Ojo, aunque no pinches ya selecciona el primer item
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String seleccion = (String) parent.getItemAtPosition(position);
-                Toast.makeText(parent.getContext(), "Se ha seleccionado " + seleccion, Toast.LENGTH_SHORT).show();
                 especieSeleccionada = seleccion;
-                Log.d("Seleccion", especieSeleccionada );
+
                 if (seleccion.equals("Otro")) habilitarEditext(true);
                 else habilitarEditext(false);
 
@@ -109,6 +111,26 @@ public class AniadirMascota extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                return;
+            }
+        });
+
+        etFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int anio = cal.get(Calendar.YEAR);
+                int mes = cal.get(Calendar.MONTH);
+                int dia = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dpd = new DatePickerDialog(getActivity(), //android.R.style.Theme_Holo_Light_Dialog_MinWidth, para cambiar formato
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                etFecha.setText(dayOfMonth + "/" + month + "/" + year);
+                            }
+                        }, dia, mes, anio); //dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); para cambiar el color
+                dpd.show();
+
             }
         });
         return v;
