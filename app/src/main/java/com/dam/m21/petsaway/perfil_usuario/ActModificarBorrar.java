@@ -129,9 +129,9 @@ public class ActModificarBorrar extends AppCompatActivity {
             mapaMascota.put("raza", razaM);
             mapaMascota.put("color", colorM);
             mapaMascota.put("identificacion", idM);
-            mapaMascota.put("descripcion", descripM);
+            mapaMascota.put("descrip", descripM);
             mapaMascota.put("sexo", sexoM);
-            mapaMascota.put("fecha", fechaM);
+            mapaMascota.put("fechaNac", fechaM);
 
             ref.child(refMasc).updateChildren(mapaMascota);
             t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
