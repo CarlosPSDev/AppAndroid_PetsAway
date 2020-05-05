@@ -10,7 +10,7 @@ public class PojoMascotas {
     private String fechaNac;
     private String urlImg;
 
-    public PojoMascotas(String nombre, String especie, String raza, String color, String identificacion, String descrip, String fechaNac, String urlImg) {
+    public PojoMascotas(String nombre, String especie, String raza, String color, String identificacion, String descrip, String fechaNac) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
@@ -18,7 +18,6 @@ public class PojoMascotas {
         this.identificacion = identificacion;
         this.descrip = descrip;
         this.fechaNac = fechaNac;
-        this.urlImg = urlImg;
     }
     public PojoMascotas(String nombre, String urlImg) {
         this.nombre = nombre;

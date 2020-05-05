@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ajustes.ModEmailPass"></activity>
+        <activity android:name=".perfil_usuario.ActAgregarMascota"></activity>
+        <activity android:name=".ajustes.ModEmailPass" />
         <activity android:name=".alertas_lista.DetalleAlerta" />
         <activity android:name=".alertas_lista.AlertasListaActivity" />
         <activity android:name=".registro.SignWithGoogleActivity" />
@@ -38,8 +39,8 @@
         <activity android:name=".formulario.FormularioActivity" />
         <activity android:name=".alertas_map.AlertasMapaActivity" />
         <activity android:name=".registro.RegistroActivity" />
-        <activity android:name=".chat.MainActivityChat"/>
-        <activity android:name=".chat.MessageActivity"/>
+        <activity android:name=".chat.MainActivityChat" />
+        <activity android:name=".chat.MessageActivity" />
         <activity
             android:name=".alertas_map.fragmentos.MapsActivity"
             android:label="@string/title_activity_maps" />

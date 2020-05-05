@@ -96,7 +96,7 @@
     <string name="hint_nombre_mascota">*Nombre de la mascota</string>
     <string name="tv_aniadir_mascota">Añadir Mascota</string>
     <string name="hint_especie_mascota">*Otro (serpiente, cerdo, etc.)</string>
-    <string name="hint_raza_mascota">*Raza (bull dog, persa, cotorra del sol)</string>
+    <string name="hint_raza_mascota">Raza (bull dog, persa, cotorra del sol)</string>
     <string name="hint_color_mascota">*Color o colores principales</string>
     <string name="hint_identificacion_mascota">Nº de identificación (chip, anilla, etc.)</string>
     <string name="hint_fechaNac_mascota">*Fecha de nacimiento (ejemplo 12/05/2020)</string>
@@ -127,5 +127,6 @@
     <string name="mensaje_chat_enviado">Enviado</string>
     <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
     <string name="msg_error_enviar_notif">¡Ha fallado!</string>
+    <string name="btn_subir_fotoM">Subir Imagen</string>
 
 </resources>

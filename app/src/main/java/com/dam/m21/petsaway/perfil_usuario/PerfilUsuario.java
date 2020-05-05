@@ -43,7 +43,7 @@ import java.util.HashMap;
 public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
-    FirebaseDatabase db;
+    //FirebaseDatabase db;
     DatabaseReference ref;
     StorageReference referenciaStor;
 
@@ -74,7 +74,7 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
         setContentView(R.layout.perfil_usuario);
         progres = new ProgressDialog(this);
         referenciaStor = FirebaseStorage.getInstance().getReference();
-        db = FirebaseDatabase.getInstance();
+        //db = FirebaseDatabase.getInstance();
         //datosUsuario = new ArrayList<>();
         listaMascotas = new ArrayList<>();
         etNombre = findViewById(R.id.etValNomUsuario);
@@ -256,7 +256,10 @@ public class PerfilUsuario extends AppCompatActivity implements PerfilListener{
     }
 
     public void agregarMascota(View view) {
-        lanzarFragmento(new AniadirMascota());
+        Intent i = new Intent(this, ActAgregarMascota.class);
+        i.putExtra("userId", userid);
+        startActivity(i);
+        //
     }
 
     private void lanzarFragmento(Fragment fragmenLanzar) {

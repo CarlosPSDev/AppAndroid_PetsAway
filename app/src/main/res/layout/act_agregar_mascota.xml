@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding"
+    tools:context=".perfil_usuario.ActAgregarMascota">
+
+    <TextView
+        android:id="@+id/tvAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_aniadir_mascota"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/violetaDeep"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivMascA"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAdd" />
+
+    <EditText
+        android:id="@+id/etNomMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_nombre_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMascA" />
+
+    <Spinner
+        android:id="@+id/spinnerEspecies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascA"/>
+
+    <EditText
+        android:id="@+id/etTipoMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:hint="@string/hint_especie_mascota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinnerEspecies"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascA" />
+    <EditText
+        android:id="@+id/etRazaMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_raza_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEspecies" />
+    <EditText
+        android:id="@+id/etColorMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_color_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRazaMascA" />
+    <EditText
+        android:id="@+id/etIdMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_identificacion_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etColorMascA" />
+    <TextView
+        android:id="@+id/etFechaMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="mostrarCalendar"
+        android:hint="@string/hint_fechaNac_mascota"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIdMascA" />
+
+    <EditText
+        android:id="@+id/etDescMascA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_descripcion_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaMascA" />
+
+    <Button
+        android:id="@+id/btnGuardarMascA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_guardar_mascA"
+        android:onClick="guardarMascota"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnCancelarMascA"/>
+
+    <Button
+        android:id="@+id/btnCancelarMascA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cancelar_mascA"
+        android:onClick="cancelarG"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGuardarMascA" />
+
+    <Button
+        android:id="@+id/subirFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_subir_fotoM"
+        android:onClick="subirImagen"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMascA"
+        app:layout_constraintStart_toEndOf="@+id/ivMascA" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

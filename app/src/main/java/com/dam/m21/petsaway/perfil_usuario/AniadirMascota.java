@@ -128,7 +128,7 @@ public class AniadirMascota extends Fragment {
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                 etFecha.setText(dayOfMonth + "/" + month + "/" + year);
                             }
-                        }, dia, mes, anio); //dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); para cambiar el color
+                        }, anio, mes, dia); //dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); para cambiar el color
                 dpd.show();
 
             }
