@@ -130,5 +130,10 @@
     <string name="btn_subir_fotoM">Subir Imagen</string>
     <string name="rdbtn_macho">Macho</string>
     <string name="rdbtn_hembra">Hembra</string>
+    <string name="tv_modif_mascota">Modificar Mascota</string>
+    <string name="btn_cambiar_fotoM">Subir nueva imagen</string>
+    <string name="btn_eliminar_mascA">Eliminar Mascota</string>
+    <string name="btn_cancelar_mascM">Cancelar y Volver</string>
+    <string name="btn_guardar_mascM">Guardar Cambios</string>
 
 </resources>

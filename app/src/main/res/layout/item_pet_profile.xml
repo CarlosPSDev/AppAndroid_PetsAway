@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:padding="@dimen/padding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +16,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
+            android:src="@drawable/img_perro_pet"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvRcNombre"
             app:layout_constraintTop_toTopOf="parent" />
@@ -25,12 +25,13 @@
             android:id="@+id/tvRcNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginLeft="@dimen/padding"
             android:text="Nombre Mascota"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivRcPet"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivRcPet"
+            app:layout_constraintTop_toTopOf="@+id/ivRcPet" />
 
         <!--<TextView
             android:id="@+id/tvRcEdad"

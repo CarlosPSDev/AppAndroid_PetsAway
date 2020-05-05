@@ -14,18 +14,15 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,11 +33,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
-public class ActAgregarMascota extends AppCompatActivity {
-    private static final int REFERENCIA_FOTO = 2;
+public class ActModificarBorrar extends AppCompatActivity {
+    private static final int REFERENCIA_IMG = 3;
     DatabaseReference ref;
     StorageReference referenciaStor;
     ImageView imagenMascota;
@@ -55,37 +54,57 @@ public class ActAgregarMascota extends AppCompatActivity {
     EditText etTipoM;
     String especieSeleccionada;
     String urlM;
-
+    PojoMascotas mascotaSel;
+    String refMasc;
     ProgressDialog progres;
     String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_agregar_mascota);
-        urlM = "";
-        etNombreM = findViewById(R.id.etNomMascA);
-        etRazaM = findViewById(R.id.etRazaMascA);
-        etColor = findViewById(R.id.etColorMascA);
-        etIdM = findViewById(R.id.etIdMascA);
-        rdbM = findViewById(R.id.rdbtMacho);
-        rdbH = findViewById(R.id.rdbtHembra);
-        etDescripcion = findViewById(R.id.etDescMascA);
-        etFecha = findViewById(R.id.etFechaMascA);
-        imagenMascota = findViewById(R.id.ivMascA);
-        spinEspecie = findViewById(R.id.spinnerEspecies);
-        etTipoM = findViewById(R.id.etTipoMascA);
-        etFecha.setPaintFlags(View.INVISIBLE);
+        setContentView(R.layout.act_modificar_borrar);
+        etNombreM = findViewById(R.id.etNomMascM);
+        etRazaM = findViewById(R.id.etRazaMascM);
+        etColor = findViewById(R.id.etColorMascM);
+        etIdM = findViewById(R.id.etIdMascM);
+        rdbM = findViewById(R.id.rdbtMachoM);
+        rdbH = findViewById(R.id.rdbtHembraM);
+        etDescripcion = findViewById(R.id.etDescMascM);
+        etFecha = findViewById(R.id.etFechaMascM);
+        imagenMascota = findViewById(R.id.ivMascM);
+        spinEspecie = findViewById(R.id.spinnerEspeciesM);
+        etTipoM = findViewById(R.id.etTipoMascM);
+
         progres = new ProgressDialog(this);
 
-        userId = getIntent().getStringExtra("userId");
+        userId = getIntent().getStringExtra("userUid");
+        mascotaSel = getIntent().getParcelableExtra("mascotaSelecc");
+        refMasc = userId + "-" + mascotaSel.getNombre();
+        cargarDatos();
+
         referenciaStor = FirebaseStorage.getInstance().getReference();
         ref = FirebaseDatabase.getInstance().getReference("MascotasUsers").child(userId);
 
         cargarSpinner();
     }
 
-    public void guardarMascota(View view) {
+    private void cargarDatos() {
+        etNombreM.setText(mascotaSel.getNombre());
+        etRazaM.setText(mascotaSel.getRaza());
+        etColor.setText(mascotaSel.getColor());
+        etIdM.setText(mascotaSel.getIdentificacion());
+        etDescripcion.setText(mascotaSel.getDescrip());
+        etFecha.setText(mascotaSel.getFechaNac());
+        if (mascotaSel.getSexo().equals("Macho")) rdbM.setChecked(true); if (mascotaSel.getSexo().equals("Hembra")) rdbH.setChecked(true);
+        if (mascotaSel.getUrlImg() != null) Glide.with(ActModificarBorrar.this).load(urlM).into(imagenMascota);
+    }
+
+    public void cancelarM(View view) {
+        Intent i = new Intent(this, PerfilUsuario.class);
+        startActivity(i);
+    }
+
+    public void guardarCambiosM(View view) {
         Toast t;
         String especieOtro = "";
         String sexoM = "";
@@ -110,36 +129,26 @@ public class ActAgregarMascota extends AppCompatActivity {
             mapaMascota.put("raza", razaM);
             mapaMascota.put("color", colorM);
             mapaMascota.put("identificacion", idM);
-            mapaMascota.put("descrip", descripM);
+            mapaMascota.put("descripcion", descripM);
             mapaMascota.put("sexo", sexoM);
-            mapaMascota.put("fechaNac", fechaM);
-            if (!urlM.isEmpty()) mapaMascota.put("urlImg", urlM);
+            mapaMascota.put("fecha", fechaM);
 
-            ref.child(userId + "-" + nombreM).updateChildren(mapaMascota);
+            ref.child(refMasc).updateChildren(mapaMascota);
             t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             t.show();
-            cancelarG(view);
+
+            cancelarM(view);
         } else {
             t = Toast.makeText(this, getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             t.show();
         }
     }
 
-    public void cancelarG(View view) {
-        Intent i = new Intent(this, PerfilUsuario.class);
-        startActivity(i);
+    public void eliminarMascota(View view) {
+        ref.child(refMasc).removeValue();
     }
 
-    private void habilitarEditext(boolean habilitar){
-        etTipoM.setEnabled(habilitar);
-        if (habilitar) etTipoM.setVisibility(View.VISIBLE);
-        else {
-            etTipoM.setVisibility(View.INVISIBLE);
-            etTipoM.setText("");
-        }
-    }
-
-    public void mostrarCalendar(View view) {
+    public void mostrarCalendario(View view) {
         Calendar cal = Calendar.getInstance();
         int anio = cal.get(Calendar.YEAR);
         int mes = cal.get(Calendar.MONTH);
@@ -155,19 +164,18 @@ public class ActAgregarMascota extends AppCompatActivity {
         dpd.show();
     }
 
-    public void subirImagen(View view) {
+    public void cambiarImagen(View view) {
         Intent i = new Intent(Intent.ACTION_PICK);
         i.setType("image/*"); //Si quisiéramos que sólo cogiera imágenes png o jpg lo especificaríamos
-        startActivityForResult(i, REFERENCIA_FOTO);
+        startActivityForResult(i, REFERENCIA_IMG);
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REFERENCIA_FOTO & resultCode == RESULT_OK){
+        if (requestCode == REFERENCIA_IMG & resultCode == RESULT_OK){
             progres.setTitle("Subiendo foto...");
-            progres.setMessage("Subiendo foto a Base de Datos");
+            progres.setMessage("Subiendo imagen a Base de Datos");
             progres.setCancelable(false);
             progres.show();
 
@@ -183,35 +191,34 @@ public class ActAgregarMascota extends AppCompatActivity {
                     progres.dismiss();
 
                     Task<Uri> uriDireccFire = taskSnapshot.getStorage().getDownloadUrl();
-
                     uriDireccFire.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             urlM = uri.toString();
 
-                            Glide.with(ActAgregarMascota.this).load(urlM)
+                            Glide.with(ActModificarBorrar.this).load(urlM)
                                     //.fitCenter().centerCrop()
                                     .into(imagenMascota);
 
-                           /* HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("urlFotoMascota", urlM);  */
-
+                            HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("urlFotoMascota", urlM);
+                            ref.updateChildren(hashMap);
                         }
                     });
 
-                    Toast.makeText(ActAgregarMascota.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActModificarBorrar.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ActAgregarMascota.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActModificarBorrar.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
         } else {
             Log.d("foto", "El activityResult no fue OK");
-            Toast.makeText(ActAgregarMascota.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActModificarBorrar.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -219,6 +226,18 @@ public class ActAgregarMascota extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales,
                 android.R.layout.simple_spinner_item);
         spinEspecie.setAdapter(adapter);
+        String[] especies = new String[]{"Perro", "Gato", "Ave", "Conejo", "Hurón", "Chinchilla"};
+
+        List<String> list = Arrays.asList(especies);
+        String especieGuardada = mascotaSel.getEspecie();
+        if(list.contains(especieGuardada)){
+            spinEspecie.setSelection(adapter.getPosition(especieGuardada));
+        } else {
+            spinEspecie.setSelection(adapter.getPosition("Otro"));
+            etTipoM.setText(especieGuardada);
+        }
+
+
 
         spinEspecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -235,5 +254,12 @@ public class ActAgregarMascota extends AppCompatActivity {
             }
         });
     }
-
+    private void habilitarEditext(boolean habilitar){
+        etTipoM.setEnabled(habilitar);
+        if (habilitar) etTipoM.setVisibility(View.VISIBLE);
+        else {
+            etTipoM.setVisibility(View.INVISIBLE);
+            etTipoM.setText("");
+        }
+    }
 }
