@@ -128,6 +128,7 @@ public class ActAgregarMascota extends AppCompatActivity {
     public void cancelarG(View view) {
         Intent i = new Intent(this, PerfilUsuario.class);
         startActivity(i);
+        ActAgregarMascota.this.finish();
     }
 
     private void habilitarEditext(boolean habilitar){

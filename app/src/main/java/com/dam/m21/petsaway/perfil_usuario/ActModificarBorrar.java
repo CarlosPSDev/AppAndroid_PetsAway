@@ -55,7 +55,6 @@ public class ActModificarBorrar extends AppCompatActivity {
     String especieSeleccionada;
     String urlM;
     PojoMascotas mascotaSel;
-    String refMasc;
     ProgressDialog progres;
     String userId;
 
@@ -74,12 +73,11 @@ public class ActModificarBorrar extends AppCompatActivity {
         imagenMascota = findViewById(R.id.ivMascM);
         spinEspecie = findViewById(R.id.spinnerEspeciesM);
         etTipoM = findViewById(R.id.etTipoMascM);
-
+        urlM = "";
         progres = new ProgressDialog(this);
 
         userId = getIntent().getStringExtra("userUid");
         mascotaSel = getIntent().getParcelableExtra("mascotaSelecc");
-        refMasc = userId + "-" + mascotaSel.getNombre();
         cargarDatos();
 
         referenciaStor = FirebaseStorage.getInstance().getReference();
@@ -96,12 +94,7 @@ public class ActModificarBorrar extends AppCompatActivity {
         etDescripcion.setText(mascotaSel.getDescrip());
         etFecha.setText(mascotaSel.getFechaNac());
         if (mascotaSel.getSexo().equals("Macho")) rdbM.setChecked(true); if (mascotaSel.getSexo().equals("Hembra")) rdbH.setChecked(true);
-        if (mascotaSel.getUrlImg() != null) Glide.with(ActModificarBorrar.this).load(urlM).into(imagenMascota);
-    }
-
-    public void cancelarM(View view) {
-        Intent i = new Intent(this, PerfilUsuario.class);
-        startActivity(i);
+        if (mascotaSel.getUrlImg() != null) Glide.with(ActModificarBorrar.this).load(mascotaSel.getUrlImg()).into(imagenMascota);
     }
 
     public void guardarCambiosM(View view) {
@@ -132,8 +125,17 @@ public class ActModificarBorrar extends AppCompatActivity {
             mapaMascota.put("descrip", descripM);
             mapaMascota.put("sexo", sexoM);
             mapaMascota.put("fechaNac", fechaM);
+            if (!urlM.isEmpty()) {
+                if (mascotaSel.getUrlImg() != null){
+                    if(!mascotaSel.getUrlImg().equals(urlM)) mapaMascota.put("urlImg", urlM);
+                } else mapaMascota.put("urlImg", urlM);
+            }
+            if (!mascotaSel.getNombre().equals(nombreM)){
+                eliminarMascota(view); //Cambiaría la referencia así que la borramos y creamos nueva
+                if (urlM.isEmpty()) mapaMascota.put("urlImg", urlM);
+            }
 
-            ref.child(refMasc).updateChildren(mapaMascota);
+            ref.child(userId+"-"+nombreM).updateChildren(mapaMascota);
             t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             t.show();
 
@@ -145,7 +147,7 @@ public class ActModificarBorrar extends AppCompatActivity {
     }
 
     public void eliminarMascota(View view) {
-        ref.child(refMasc).removeValue();
+        ref.child(userId + "-" + mascotaSel.getNombre()).removeValue();
     }
 
     public void mostrarCalendario(View view) {
@@ -199,10 +201,9 @@ public class ActModificarBorrar extends AppCompatActivity {
                             Glide.with(ActModificarBorrar.this).load(urlM)
                                     //.fitCenter().centerCrop()
                                     .into(imagenMascota);
-
-                            HashMap<String, Object> hashMap = new HashMap<>();
-                            hashMap.put("urlFotoMascota", urlM);
-                            ref.child(refMasc).updateChildren(hashMap);
+                           /* HashMap<String, Object> hashMap = new HashMap<>();
+                            hashMap.put("urlImg", urlM);
+                            ref.child(refMasc).updateChildren(hashMap);*/
                         }
                     });
 
@@ -237,8 +238,6 @@ public class ActModificarBorrar extends AppCompatActivity {
             etTipoM.setText(especieGuardada);
         }
 
-
-
         spinEspecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -261,5 +260,11 @@ public class ActModificarBorrar extends AppCompatActivity {
             etTipoM.setVisibility(View.INVISIBLE);
             etTipoM.setText("");
         }
+    }
+
+    public void cancelarM(View view) {
+        Intent i = new Intent(this, PerfilUsuario.class);
+        startActivity(i);
+        ActModificarBorrar.this.finish();
     }
 }

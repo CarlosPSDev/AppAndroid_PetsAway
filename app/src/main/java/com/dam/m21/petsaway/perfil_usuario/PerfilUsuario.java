@@ -104,7 +104,7 @@ public class PerfilUsuario extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         adapter = new AdapterPetsProfile(listaMascotas, this);
-        adapter = new AdapterPetsProfile(listaMascotas, this);
+
         adapter.asignacionOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +119,18 @@ public class PerfilUsuario extends AppCompatActivity {
         });
 
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recuperarMascotasFirebase();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarMascotasFirebase();
     }
 
     private void recuperarMascotasFirebase() {
@@ -153,8 +165,7 @@ public class PerfilUsuario extends AppCompatActivity {
             Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
         else ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
-
-        eliminarListener();
+        //eliminarListener();
     }
 
     private void recuperarDatosFirebase() {
@@ -215,6 +226,7 @@ public class PerfilUsuario extends AppCompatActivity {
         Intent i = new Intent(this, ActAgregarMascota.class);
         i.putExtra("userId", userId);
         startActivity(i);
+        PerfilUsuario.this.finish();
     }
 
 
@@ -310,4 +322,14 @@ public class PerfilUsuario extends AppCompatActivity {
         }
     }
 
+    public void modifMascota(View view) {
+        //Método provisional hasta que funciona el onclick del recycler
+        PojoMascotas mascotaSelecc = listaMascotas.get(1);
+        Intent i = new Intent(getApplicationContext(), ActModificarBorrar.class);
+        i.putExtra("mascotaSelecc", mascotaSelecc);
+        i.putExtra("userUid", userId);
+        startActivity(i);
+        PerfilUsuario.this.finish();
+        //finish();
+    }
 }

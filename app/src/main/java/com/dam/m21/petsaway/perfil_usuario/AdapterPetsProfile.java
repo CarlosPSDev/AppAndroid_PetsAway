@@ -53,6 +53,7 @@ public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.
     public class ViewHolderPets extends RecyclerView.ViewHolder {
         ImageView fotoMascota;
         TextView nombreMascota;
+
         public ViewHolderPets(@NonNull View itemView) {
             super(itemView);
             fotoMascota = itemView.findViewById(R.id.ivRcPet);
