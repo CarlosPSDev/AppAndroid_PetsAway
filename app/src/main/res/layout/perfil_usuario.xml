@@ -171,36 +171,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-
+            android:clipToPadding="false"
             android:paddingBottom="2dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" />
         <!--android:nestedScrollingEnabled="false"-->
         <!--android:clipToPadding="false"
-        android:clipToPadding="false"
         android:paddingBottom="60dp"-->
 
-        <Button
-            android:id="@+id/btnAgregarMasc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="agregarMascota"
-            android:padding="5dp"
-            android:text="@string/btn_agregar_mascota"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
+    <Button
+        android:id="@+id/btnAgregarMasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="agregarMascota"
+        android:padding="5dp"
+        android:text="@string/btn_agregar_mascota"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:onClick="modifMascota"
         android:text="Modificar Mascota"
         android:textAllCaps="false"
-        android:onClick="modifMascota"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/btnAgregarMasc" />
 

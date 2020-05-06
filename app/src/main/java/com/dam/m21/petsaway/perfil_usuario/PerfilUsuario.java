@@ -165,7 +165,7 @@ public class PerfilUsuario extends AppCompatActivity {
             Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
         else ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
-        //eliminarListener();
+        eliminarListener();
     }
 
     private void recuperarDatosFirebase() {
