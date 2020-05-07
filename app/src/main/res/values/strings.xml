@@ -122,5 +122,6 @@
     Además de las diferentes opciones entre las que disponemos de un innovador servicio de alertas personalizadas o o la posibilidad de compartir este servicio con cualquier persona.
     El usuario tiene a su disposición un servicio de alerta en caso de pérdida de su mascota.</string>
     <string name="texto_inferior_acerca_de">Madrid (España) PetsAway \npetsawaypfc@gmail.com</string>
+    <string name="toast_msj_error_google">ERROR al acceder a tu cuenta de Google</string>
 
 </resources>

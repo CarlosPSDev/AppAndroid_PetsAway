@@ -1,9 +1,6 @@
 package com.dam.m21.petsaway.chat;
 
 import android.os.Bundle;
-
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
