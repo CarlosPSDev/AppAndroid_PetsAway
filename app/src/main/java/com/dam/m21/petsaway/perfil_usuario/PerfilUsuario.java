@@ -40,7 +40,6 @@ import java.util.HashMap;
 public class PerfilUsuario extends AppCompatActivity {
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
-    //FirebaseDatabase db;
     DatabaseReference ref;
     DatabaseReference refM;
     StorageReference referenciaStor;
@@ -72,8 +71,7 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.perfil_usuario);
         progres = new ProgressDialog(this);
         referenciaStor = FirebaseStorage.getInstance().getReference();
-        //db = FirebaseDatabase.getInstance();
-        //datosUsuario = new ArrayList<>();
+
         listaMascotas = new ArrayList<>();
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
@@ -92,14 +90,12 @@ public class PerfilUsuario extends AppCompatActivity {
 
         userId = fbUser.getUid();
         ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userId);
-
         refM = FirebaseDatabase.getInstance().getReference("MascotasUsers").child(userId);
 
         Log.d("Usuario", "El email logado es " + email);
 
         recuperarDatosFirebase();
         recuperarMascotasFirebase();
-        //rellenarDatosonLoad();
 
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
