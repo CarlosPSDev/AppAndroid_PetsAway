@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
-import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
 import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
@@ -28,9 +27,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApi;
-import com.google.android.gms.common.api.GoogleApiActivity;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
