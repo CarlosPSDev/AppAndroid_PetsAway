@@ -160,7 +160,7 @@ public class ActModificarBorrar extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        etFecha.setText(dayOfMonth + "/" + month + "/" + year);
+                        etFecha.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
                 }, anio, mes, dia); //dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); para cambiar el color
         dpd.show();
