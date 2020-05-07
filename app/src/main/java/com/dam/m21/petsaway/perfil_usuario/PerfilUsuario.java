@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -87,7 +88,7 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-
+        recuperarDatosUserSP();
         userId = fbUser.getUid();
         ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userId);
         refM = FirebaseDatabase.getInstance().getReference("MascotasUsers").child(userId);
@@ -302,5 +303,17 @@ public class PerfilUsuario extends AppCompatActivity {
             ref.removeEventListener(vel);
             vel = null;
         }
+    }
+    private void recuperarDatosUserSP(){
+        /*LLamar a este método desde cualquier activity para recuperar los datos dle usuario sin importar
+         si se logó con firebase, google o facebook)!!*/
+        SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
+
+        String nombre = sharedPrefs.getString("nombreUser", "Nombre no disponible");
+        String email = sharedPrefs.getString("emailUser", "xxxxxx@...com");
+        String id = sharedPrefs.getString("idUser", "0");
+        Log.d("RecuperarDatos", "nombre: " + nombre);
+        Log.d("RecuperarDatos", "email: " + email);
+        Log.d("RecuperarDatos", "id: " + id);
     }
 }
