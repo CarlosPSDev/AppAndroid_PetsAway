@@ -121,18 +121,6 @@ public class PerfilUsuario extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-  /*  @Override
-    protected void onResume() {
-        super.onResume();
-        recuperarMascotasFirebase();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        recuperarMascotasFirebase();
-    }
-*/
     private void recuperarMascotasFirebase() {
         refM.addValueEventListener(new ValueEventListener() {
             @Override
