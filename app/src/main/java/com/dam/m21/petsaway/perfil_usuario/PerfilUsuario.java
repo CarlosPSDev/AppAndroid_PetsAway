@@ -124,9 +124,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot datos : dataSnapshot.getChildren()) {
                         PojoMascotas mascota = datos.getValue(PojoMascotas.class);
-                        Log.d("mascotas", "Nombre recopilado " + mascota.getNombre());
                         listaMascotas.add(mascota);
-                        Log.d("mascotas", "Tamaño arraylist " + listaMascotas.size());
                     }
                 }
             }
