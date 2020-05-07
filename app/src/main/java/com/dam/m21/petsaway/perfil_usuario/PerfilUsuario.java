@@ -109,12 +109,12 @@ public class PerfilUsuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int itemIndex = rv.indexOfChild(v);
-                Log.d("abrirModif", "tamaño array List: " + listaMascotas.size());
                 PojoMascotas mascotaSelecc = listaMascotas.get(itemIndex);
                 Intent i = new Intent(getApplicationContext(), ActModificarBorrar.class);
                 i.putExtra("mascotaSelecc", mascotaSelecc);
                 i.putExtra("userUid", userId);
                 startActivity(i);
+                PerfilUsuario.this.finish();
             }
         });
 
@@ -320,16 +320,5 @@ public class PerfilUsuario extends AppCompatActivity {
             ref.removeEventListener(vel);
             vel = null;
         }
-    }
-
-    public void modifMascota(View view) {
-        //Método provisional hasta que funciona el onclick del recycler
-        PojoMascotas mascotaSelecc = listaMascotas.get(1);
-        Intent i = new Intent(getApplicationContext(), ActModificarBorrar.class);
-        i.putExtra("mascotaSelecc", mascotaSelecc);
-        i.putExtra("userUid", userId);
-        startActivity(i);
-        PerfilUsuario.this.finish();
-        //finish();
     }
 }
