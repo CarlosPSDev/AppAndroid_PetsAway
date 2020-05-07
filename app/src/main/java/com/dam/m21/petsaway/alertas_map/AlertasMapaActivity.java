@@ -51,7 +51,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
 
     static final String CLAVE_LAT = "LAT";
     static final String CLAVE_LONG = "LONG";
-
+    String ta;
     private StorageReference msr;
     private FirebaseAuth fa;
     private FirebaseUser fu;
@@ -97,6 +97,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         msr= FirebaseStorage.getInstance().getReference();
         dbr = FirebaseDatabase.getInstance().getReference();
 
+        ta=getIntent().getStringExtra("TA");
         bottomSheet = findViewById(R.id.bottomJsoft);
         bsb = BottomSheetBehavior.from(bottomSheet);
         bsb.setPeekHeight(0);
@@ -149,14 +150,18 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        e();
-
+        if (ta != null) {
+            if (ta.equals("encontrado")) {
+                e();
+            } else {
+                b();
+            }
+        }else{e();}
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 pf = (PojoFormulario) marker.getTag();
                 if (pf.getTipoAnimal() != null) {
-
                     tipoAnimalM.setText(pf.getTipoAnimal());
                     fechaEPAnimalM.setText(pf.getFecha());
                     colorAnimalM.setText(pf.getColor());
@@ -241,7 +246,12 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                     miLoc=new LatLng(latitude,longitude);
                     mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
                             BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+                    if (ta != null) {
+                        Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                        Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+                        LatLng locA = new LatLng(latAletra, lonAletra);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+                    }else{ mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));}
                 }
             }
             @Override
@@ -270,7 +280,13 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                     miLoc=new LatLng(latitude,longitude);
                     mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
                             BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+
+                    if (ta != null) {
+                        Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                        Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+                        LatLng locA = new LatLng(latAletra, lonAletra);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+                    }else{ mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));}
                 }
             }
             @Override
