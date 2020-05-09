@@ -195,8 +195,8 @@ public class PerfilUsuario extends AppCompatActivity {
                 hashMap.put("ciudad", ciudadModif);
                 hashMap.put("search", nombreModif.toLowerCase());
                 ref.updateChildren(hashMap);
-
             }
+
             toastPersonalizado(getString(R.string.toast_cambios_ok));
             deshabilitarEditext(true);
         } else {
