@@ -3,10 +3,10 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -14,9 +14,13 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -49,14 +53,17 @@ public class PerfilUsuario extends AppCompatActivity {
     ValueEventListener vel;
 
     ImageView ivFotoUsuario;
+    ImageView ivGuardarCambios;
+    ImageView ivIconoCamara;
     EditText etNombre;
     EditText etCiudad;
     TextView tvEmail;
-    Group gFase1;
-    Group gFase2;
+    LinearLayout llMascotas;
+
     String email;
     String uriImgGuardada;
     String uriImgNueva;
+    String userId;
 
     ArrayList<PojoMascotas> listaMascotas;
     RecyclerView rv;
@@ -64,7 +71,6 @@ public class PerfilUsuario extends AppCompatActivity {
 
     FirebaseAuth fbAuth;
     FirebaseUser fbUser;
-    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +82,12 @@ public class PerfilUsuario extends AppCompatActivity {
         listaMascotas = new ArrayList<>();
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
-        gFase1 = findViewById(R.id.group);
-        gFase2 = findViewById(R.id.group2);
         tvEmail = findViewById(R.id.tvValEmailUsuario);
         ivFotoUsuario = findViewById(R.id.ivImgUser);
+        ivGuardarCambios = findViewById(R.id.btnGuardarCambios);
+        ivIconoCamara = findViewById(R.id.ivIconoCamara);
+        llMascotas = findViewById(R.id.llMascotas);
+
         rv = findViewById(R.id.recyclerProfilPets);
 
         deshabilitarEditext(true);
@@ -114,8 +122,6 @@ public class PerfilUsuario extends AppCompatActivity {
                 PerfilUsuario.this.finish();
             }
         });
-
-        rv.setAdapter(adapter);
     }
 
     private void recuperarMascotasFirebase() {
@@ -127,6 +133,7 @@ public class PerfilUsuario extends AppCompatActivity {
                         PojoMascotas mascota = datos.getValue(PojoMascotas.class);
                         listaMascotas.add(mascota);
                     }
+                    rv.setAdapter(adapter);
                 }
             }
 
@@ -152,12 +159,10 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void recuperarDatosFirebase() {
-
         if (vel == null) {
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     if (dataSnapshot.exists()) {
                         usuario = dataSnapshot.getValue(PojoUser.class);
                         rellenarDatosonLoad();
@@ -179,7 +184,6 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     public void guardarCambios(View view) {
-
         String nombreModif = etNombre.getText().toString();
         String ciudadModif = etCiudad.getText().toString();
         if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()) {
@@ -193,10 +197,15 @@ public class PerfilUsuario extends AppCompatActivity {
                 ref.updateChildren(hashMap);
 
             }
+            toastPersonalizado(getString(R.string.toast_cambios_ok));
             deshabilitarEditext(true);
         } else {
-            Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
+            toastPersonalizado(getString(R.string.toast_datos_vacios));
         }
+        // Estas líneas esconden el teclado al guardar los cambios
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(etNombre.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(etCiudad.getWindowToken(), 0);
     }
 
     public void cambiarFoto(View view) {
@@ -218,7 +227,6 @@ public class PerfilUsuario extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REFERENCIA_FOTO & resultCode == RESULT_OK) {
-
             progres.setTitle("Subiendo foto...");
             progres.setMessage("Subiendo foto a Base de Datos");
             progres.setCancelable(false);
@@ -252,21 +260,20 @@ public class PerfilUsuario extends AppCompatActivity {
 
                         }
                     });
+                    toastPersonalizado(getString(R.string.toast_foto_guardada));
 
-                    Toast.makeText(PerfilUsuario.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(PerfilUsuario.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(PerfilUsuario.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
         } else {
             Log.d("foto", "El activityResult no fue OK");
-            Toast.makeText(PerfilUsuario.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(PerfilUsuario.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -280,21 +287,23 @@ public class PerfilUsuario extends AppCompatActivity {
         etCiudad.setCursorVisible(!hd);
         etCiudad.setClickable(!hd);
         tvEmail.setEnabled(hd);
-        gFase1.setEnabled(!hd);
-        gFase2.setEnabled(!hd);
+        ivGuardarCambios.setEnabled(!hd);
+        ivIconoCamara.setClickable(hd);
         rv.setEnabled(hd);
+        rv.setVisibility(View.VISIBLE);
+        llMascotas.setEnabled(hd);
+
         if (hd) {
-            gFase1.setVisibility(View.VISIBLE);
-            gFase2.setVisibility(View.INVISIBLE);
             etNombre.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
-            rv.setVisibility(View.VISIBLE);
+            ivGuardarCambios.setVisibility(View.INVISIBLE);
+
         } else {
-            gFase1.setVisibility(View.INVISIBLE);
-            gFase2.setVisibility(View.VISIBLE);
-            etNombre.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-            etCiudad.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            etNombre.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+            etCiudad.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+            ivGuardarCambios.setVisibility(View.VISIBLE);
             rv.setVisibility(View.GONE);
+            llMascotas.setEnabled(hd);
         }
     }
 
@@ -315,5 +324,17 @@ public class PerfilUsuario extends AppCompatActivity {
         Log.d("RecuperarDatos", "nombre: " + nombre);
         Log.d("RecuperarDatos", "email: " + email);
         Log.d("RecuperarDatos", "id: " + id);
+    }
+
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(PerfilUsuario.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
     }
 }

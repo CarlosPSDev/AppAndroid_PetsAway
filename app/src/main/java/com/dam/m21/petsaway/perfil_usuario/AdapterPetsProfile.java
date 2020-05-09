@@ -54,11 +54,19 @@ public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.
     public class ViewHolderPets extends RecyclerView.ViewHolder {
         ImageView fotoMascota;
         TextView nombreMascota;
+        TextView especieMascota;
+        TextView colorMascota;
+        TextView fechaNacMascota;
+        ImageView ivSexoMascota;
 
         public ViewHolderPets(@NonNull View itemView) {
             super(itemView);
             fotoMascota = itemView.findViewById(R.id.ivRcPet);
             nombreMascota = itemView.findViewById(R.id.tvRcNombre);
+            especieMascota = itemView.findViewById(R.id.tvRcValEspecie);
+            colorMascota = itemView.findViewById(R.id.tvRcValColor);
+            fechaNacMascota = itemView.findViewById(R.id.tvRcValFechaNac);
+            ivSexoMascota = itemView.findViewById(R.id.ivSexoMascota);
         }
 
         public void asignarDatos(PojoMascotas mascota) {
@@ -67,6 +75,16 @@ public class AdapterPetsProfile extends RecyclerView.Adapter<AdapterPetsProfile.
                         .into(fotoMascota);
             }
             nombreMascota.setText(mascota.getNombre());
+            especieMascota.setText(mascota.getEspecie());
+            colorMascota.setText(mascota.getColor());
+            fechaNacMascota.setText("Nac. " + mascota.getFechaNac());
+
+            if (mascota.getSexo().trim().equalsIgnoreCase("macho")) {
+                ivSexoMascota.setImageResource(R.drawable.ic_macho);
+
+            } else if (mascota.getSexo().trim().equalsIgnoreCase("hembra")) {
+                ivSexoMascota.setImageResource(R.drawable.ic_hembra);
+            }
         }
     }
 }
