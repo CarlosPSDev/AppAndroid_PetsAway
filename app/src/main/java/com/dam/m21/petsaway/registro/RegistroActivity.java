@@ -94,6 +94,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
+                                
                             } else {
                                 toastPersonalizado(getString(R.string.toast_user_no_registrado));
                             }
