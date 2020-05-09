@@ -49,8 +49,6 @@ public class AlertasListaActivity extends AppCompatActivity {
                 la.asignacionOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int i = rv_la.indexOfChild(v);
-
                         Intent intent = new Intent(getApplicationContext(), DetalleAlerta.class);
                         intent.putExtra(CLAVE_LIST, listaDatos);
                         startActivity(intent);
@@ -81,9 +79,8 @@ public class AlertasListaActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int i = rv_la.indexOfChild(v);
-
                         Intent intent = new Intent(getApplicationContext(), DetalleAlerta.class);
-                        intent.putExtra(CLAVE_LIST, listaDatos);
+                        intent.putExtra(CLAVE_LIST, listaDatos.get(i));
                         startActivity(intent);
                     }
                 });

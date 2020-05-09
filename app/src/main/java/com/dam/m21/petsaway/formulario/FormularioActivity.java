@@ -87,6 +87,7 @@ public class FormularioActivity extends AppCompatActivity {
             sr.putFile(miPath);
             dbr = FirebaseDatabase.getInstance().getReference();
             dbr.child("alertas").child(tipoAletra).push().setValue(ubiPunto);
+            finish();
             startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
         }else{
             Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();

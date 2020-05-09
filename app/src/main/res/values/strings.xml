@@ -135,6 +135,7 @@
     <string name="btn_eliminar_mascA">Eliminar Mascota</string>
     <string name="btn_cancelar_mascM">Cancelar y Volver</string>
     <string name="btn_guardar_mascM">Guardar Cambios</string>
+    <string name="tx_detalle_verEnMapa">Ver en el mapa</string>
 
 
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
