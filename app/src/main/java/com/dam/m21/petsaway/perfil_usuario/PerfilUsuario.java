@@ -3,6 +3,7 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -13,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,18 +34,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PerfilUsuario extends AppCompatActivity {
     static final int REFERENCIA_FOTO = 1;
     ProgressDialog progres;
-    FirebaseDatabase db;
     DatabaseReference ref;
+    DatabaseReference refM;
     StorageReference referenciaStor;
-    //ArrayList<PojoUsuario> datosUsuario;
-    String clave;
+
     PojoUser usuario;
     ValueEventListener vel;
 
@@ -53,23 +51,19 @@ public class PerfilUsuario extends AppCompatActivity {
     EditText etNombre;
     EditText etCiudad;
     TextView tvEmail;
-    Button btnEditarP;
-    Button btnAgregarPet;
-    Button btnGuardarCambios;
-    Button btnCambiarFoto;
+    Group gFase1;
+    Group gFase2;
     String email;
-    String ciudad;
-    String nombre;
     String uriImgGuardada;
     String uriImgNueva;
 
     ArrayList<PojoMascotas> listaMascotas;
     RecyclerView rv;
     AdapterPetsProfile adapter;
-    
+
     FirebaseAuth fbAuth;
     FirebaseUser fbUser;
-    String userid;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,15 +71,12 @@ public class PerfilUsuario extends AppCompatActivity {
         setContentView(R.layout.perfil_usuario);
         progres = new ProgressDialog(this);
         referenciaStor = FirebaseStorage.getInstance().getReference();
-        db = FirebaseDatabase.getInstance();
-        //datosUsuario = new ArrayList<>();
 
+        listaMascotas = new ArrayList<>();
         etNombre = findViewById(R.id.etValNomUsuario);
         etCiudad = findViewById(R.id.etValCiudadUsuario);
-        btnEditarP = findViewById(R.id.btnModifPerfil);
-        btnAgregarPet = findViewById(R.id.btnAgregarMasc);
-        btnGuardarCambios = findViewById(R.id.btnGuardarCambios);
-        btnCambiarFoto = findViewById(R.id.btnCambiarFoto);
+        gFase1 = findViewById(R.id.group);
+        gFase2 = findViewById(R.id.group2);
         tvEmail = findViewById(R.id.tvValEmailUsuario);
         ivFotoUsuario = findViewById(R.id.ivImgUser);
         rv = findViewById(R.id.recyclerProfilPets);
@@ -96,116 +87,82 @@ public class PerfilUsuario extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
         email = fbUser.getEmail();
-        clave = obtenerClave();
 
-
-
-
-
-
-        ///////////////////modZori
-        userid = fbUser.getUid();
-        ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
-        ///////////////////modZori
-
-
-
-
-
+        userId = fbUser.getUid();
+        ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userId);
+        refM = FirebaseDatabase.getInstance().getReference("MascotasUsers").child(userId);
 
         Log.d("Usuario", "El email logado es " + email);
-        //ref = db.getReference().child("perfilesUsuarios").child(email);
-        /*comentZori
-        ref = db.getReference().child("perfilesUsuarios");
-         */
+
         recuperarDatosFirebase();
-        //rellenarDatosonLoad();
+        recuperarMascotasFirebase();
 
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
-        listaMascotas = new ArrayList<>();
-        listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
-        listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
-        listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));
-        listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
-        listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
-        listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));
-        /*listaMascotas.add(new PojoMascotas("Pompon", String.valueOf(R.drawable.slide_one_img)));
-        listaMascotas.add(new PojoMascotas("Harry", String.valueOf(R.drawable.slide_two_img)));
-        listaMascotas.add(new PojoMascotas("Luna", String.valueOf(R.drawable.slide_three_img)));*/
+        adapter = new AdapterPetsProfile(listaMascotas, this);
 
-        adapter = new AdapterPetsProfile(listaMascotas);
+        adapter.asignacionOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemIndex = rv.indexOfChild(v);
+                PojoMascotas mascotaSelecc = listaMascotas.get(itemIndex);
+                Intent i = new Intent(getApplicationContext(), ActModificarBorrar.class);
+                i.putExtra("mascotaSelecc", mascotaSelecc);
+                i.putExtra("userUid", userId);
+                startActivity(i);
+                PerfilUsuario.this.finish();
+            }
+        });
+
         rv.setAdapter(adapter);
     }
 
-    private void rellenarDatosonLoad() {
-        //ArrayList<PojoUsuario> objetoUser = recuperarDatosFirebase();
+    private void recuperarMascotasFirebase() {
+        refM.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot datos : dataSnapshot.getChildren()) {
+                        PojoMascotas mascota = datos.getValue(PojoMascotas.class);
+                        listaMascotas.add(mascota);
+                    }
+                }
+            }
 
-        ///////////////////modZori
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("mascotas", "onCancelled: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    private void rellenarDatosonLoad() {
+
         etNombre.setText(usuario.getNombre());
-        ciudad = usuario.getCiudad();
-        etCiudad.setText(ciudad);
+        if (usuario.getCiudad() == null) etCiudad.setText("Introduce tu ciudad");
+        else etCiudad.setText(usuario.getCiudad());
         tvEmail.setText(email);
         uriImgGuardada = usuario.getUrlFotoUser();
-        if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
+        if (uriImgGuardada != null)
+            Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
         else ivFotoUsuario.setImageResource(R.color.colorBlanco);
 
-        ///////////////////modZori
-
-        /*comentZori
-
-        if (usuario != null){
-            //usuario = datosUsuario.get(0);
-            etNombre.setText(usuario.getNombre());
-            ciudad = usuario.getCiudad();
-            etCiudad.setText(ciudad);
-            tvEmail.setText(email);
-            uriImgGuardada = usuario.getUrlFotoUser();
-            if (!uriImgGuardada.isEmpty()) Glide.with(PerfilUsuario.this).load(uriImgGuardada).into(ivFotoUsuario);//.fitCenter().centerCrop()
-            else ivFotoUsuario.setImageResource(R.color.colorBlanco);
-
-        } else {
-            Toast.makeText(this, "No hay usuario en la base de datos, cargo datos de serie", Toast.LENGTH_SHORT).show();
-            nombre = fbUser.getDisplayName();
-            etNombre.setText(nombre);
-            tvEmail.setText(email);
-            ciudad = "";
-            etCiudad.setText(ciudad);
-            uriImgGuardada = "";
-            ivFotoUsuario.setImageResource(R.color.colorBlanco);
-
-            Toast.makeText(this, getString(R.string.toast_bienvenida), Toast.LENGTH_SHORT).show();*/
-            /*user user = datasnapshot.getValue(User.Class);
-            username.setText(user.getUsername);*/
-      //comentZori }
-        eliminarListener(); //Eliminamos el listener para que ya no siga actualizando los datos
+        eliminarListener();
     }
+
     private void recuperarDatosFirebase() {
 
-        if (vel == null){
+        if (vel == null) {
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    //PojoUsuario user;
-                    if (dataSnapshot.exists()){
-                        ///////////////////modZori
+
+                    if (dataSnapshot.exists()) {
                         usuario = dataSnapshot.getValue(PojoUser.class);
-                        ///////////////////modZori
-
-
-
-                      //comentZori  for (DataSnapshot datos : dataSnapshot.getChildren()){
-                           // if (datos.getKey().equals(clave)) usuario = datos.getValue(PojoUser.class);
-                            //Log.d("Usuario", "Nombre recopilado " + usuario.getNombre());
-                            /*if (user.getEmail().equals(email)){
-                                //datosUsuario.add(user);
-                                usuario = user;
-                                Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
-                            }comentZori*/
-                      //comentZori  }
                         rellenarDatosonLoad();
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
@@ -214,28 +171,6 @@ public class PerfilUsuario extends AppCompatActivity {
             ref.addValueEventListener(vel);
         }
     }
-
-    /*private void recuperarDatosFirebase() {
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot datos : dataSnapshot.getChildren()){
-                        PojoUsuario user = datos.getValue(PojoUsuario.class);
-                        Log.d("Usuario", "Nombre recopilado " + user.getNombre());
-                        datosUsuario.add(user);
-                        Log.d("Usuario", "Tamaño arraylist " + datosUsuario.size());
-                    }
-                    rellenarDatosonLoad();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
-            }
-        });
-    }*/
-
 
     public void modificarPerfil(View view) {
         uriImgNueva = uriImgGuardada;
@@ -246,44 +181,42 @@ public class PerfilUsuario extends AppCompatActivity {
 
         String nombreModif = etNombre.getText().toString();
         String ciudadModif = etCiudad.getText().toString();
-        if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()){
-            if (!nombreModif.equals(nombre) | !ciudadModif.equals(ciudad) | !uriImgNueva.equals(uriImgGuardada)){
-               //comentZori PojoUser usuarioModif = new PojoUser(nombreModif, email, ciudadModif, uriImgNueva);
-                //Guardar en FireCloud
+        if (!nombreModif.isEmpty() & !ciudadModif.isEmpty()) {
+            if (!nombreModif.equals(usuario.getNombre()) | !ciudadModif.equals(usuario.getCiudad())) {
 
-               // comentZoriref.child(clave).setValue(usuarioModif); //ref.child("perfilesUsuarios").setValue(usuarioModif); genera nodo
-
-                ///////////////////modZori
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("nombre", nombreModif);
                 hashMap.put("status", "offline");
                 hashMap.put("ciudad", ciudadModif);
                 hashMap.put("search", nombreModif.toLowerCase());
                 ref.updateChildren(hashMap);
-                ///////////////////modZori
+
             }
-
-
             deshabilitarEditext(true);
         } else {
-            Toast.makeText(this, getString(R.string.toast_faltanDatos), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toast_datos_vacios), Toast.LENGTH_SHORT).show();
         }
     }
 
     public void cambiarFoto(View view) {
         Intent i = new Intent(Intent.ACTION_PICK);
-        i.setType("image/*"); //Si quisiéramos que sólo cogiera imágenes png o jpg lo especificaríamos
+        i.setType("image/*");
         startActivityForResult(i, REFERENCIA_FOTO);
     }
 
     public void agregarMascota(View view) {
+        Intent i = new Intent(this, ActAgregarMascota.class);
+        i.putExtra("userId", userId);
+        startActivity(i);
+        PerfilUsuario.this.finish();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REFERENCIA_FOTO & resultCode == RESULT_OK){
+        if (requestCode == REFERENCIA_FOTO & resultCode == RESULT_OK) {
 
             progres.setTitle("Subiendo foto...");
             progres.setMessage("Subiendo foto a Base de Datos");
@@ -291,7 +224,7 @@ public class PerfilUsuario extends AppCompatActivity {
             progres.show();
 
             Uri uri = data.getData();
-            final StorageReference filePath = referenciaStor.child("fotosPerfil").child(userid)
+            final StorageReference filePath = referenciaStor.child("fotosPerfil").child(userId)
                     .child(uri.getLastPathSegment());
 
             Log.d("foto", "mostramos la uri en el movil " + uri.toString());
@@ -307,16 +240,14 @@ public class PerfilUsuario extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             uriImgNueva = uri.toString();
-                            //Log.d("foto", "uri en Storage " + uri.toString());
+
                             Glide.with(PerfilUsuario.this).load(uriImgNueva)
                                     //.fitCenter().centerCrop()
                                     .into(ivFotoUsuario);
 
-                            ///////////////////modZori
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("urlFotoUser", uriImgNueva);
                             ref.updateChildren(hashMap);
-                            ///////////////////modZori
 
                         }
                     });
@@ -327,58 +258,49 @@ public class PerfilUsuario extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //Log.d("foto", e.getMessage());
+
                             Toast.makeText(PerfilUsuario.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+
         } else {
             Log.d("foto", "El activityResult no fue OK");
             Toast.makeText(PerfilUsuario.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    private void deshabilitarEditext(Boolean hd){
+    private void deshabilitarEditext(Boolean hd) {
         etNombre.setFocusable(!hd);
         etNombre.setFocusableInTouchMode(!hd);
+        etNombre.setCursorVisible(!hd);
         etNombre.setClickable(!hd);
         etCiudad.setFocusable(!hd);
         etCiudad.setFocusableInTouchMode(!hd);
+        etCiudad.setCursorVisible(!hd);
         etCiudad.setClickable(!hd);
         tvEmail.setEnabled(hd);
-        btnAgregarPet.setEnabled(hd);
-        btnEditarP.setEnabled(hd);
-        btnGuardarCambios.setEnabled(!hd);
-        btnCambiarFoto.setEnabled(!hd);
+        gFase1.setEnabled(!hd);
+        gFase2.setEnabled(!hd);
         rv.setEnabled(hd);
         if (hd) {
-            btnEditarP.setVisibility(View.VISIBLE);
-            btnAgregarPet.setVisibility(View.VISIBLE);
-            btnGuardarCambios.setVisibility(View.INVISIBLE);
-            btnCambiarFoto.setVisibility(View.INVISIBLE);
+            gFase1.setVisibility(View.VISIBLE);
+            gFase2.setVisibility(View.INVISIBLE);
             etNombre.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             rv.setVisibility(View.VISIBLE);
-        } else{
-            btnEditarP.setVisibility(View.INVISIBLE);
-            btnAgregarPet.setVisibility(View.INVISIBLE);
-            btnGuardarCambios.setVisibility(View.VISIBLE);
-            btnCambiarFoto.setVisibility(View.VISIBLE);
+        } else {
+            gFase1.setVisibility(View.INVISIBLE);
+            gFase2.setVisibility(View.VISIBLE);
             etNombre.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             rv.setVisibility(View.GONE);
         }
     }
-    private void eliminarListener(){
-        if(vel != null){ //quitar el listener
+
+    private void eliminarListener() {
+        if (vel != null) {
             ref.removeEventListener(vel);
-            vel = null; //y lo anulamos
+            vel = null;
         }
-    }
-    private String obtenerClave(){
-        int indice = email.indexOf('.');
-        System.out.println(indice);
-        String clave = email.substring(0, indice) + email.substring(indice+1);
-        return clave;
     }
 }

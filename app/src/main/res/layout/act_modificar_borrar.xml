@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding"
+    tools:context=".perfil_usuario.ActModificarBorrar">
+
+    <TextView
+        android:id="@+id/tvMod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_modif_mascota"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/violetaDeep"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivMascM"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/img_perro_pet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMod" />
+
+    <Button
+        android:id="@+id/btnSubirFotoM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cambiar_fotoM"
+        android:textAllCaps="false"
+        android:layout_marginStart="@dimen/padding"
+        android:onClick="cambiarImagen"
+        app:layout_constraintBottom_toBottomOf="@+id/ivMascM"
+        app:layout_constraintStart_toEndOf="@+id/ivMascM" />
+
+    <EditText
+        android:id="@+id/etNomMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_nombre_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMascM" />
+
+    <Spinner
+        android:id="@+id/spinnerEspeciesM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascM"/>
+
+    <EditText
+        android:id="@+id/etTipoMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:hint="@string/hint_especie_mascota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinnerEspecies"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascM" />
+    <EditText
+        android:id="@+id/etRazaMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_raza_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEspeciesM" />
+    <EditText
+        android:id="@+id/etColorMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_color_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRazaMascM" />
+    <EditText
+        android:id="@+id/etIdMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_identificacion_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etColorMascM" />
+    <TextView
+        android:id="@+id/etFechaMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:onClick="mostrarCalendario"
+        android:hint="@string/hint_fechaNac_mascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etIdMascM" />
+
+    <RadioGroup
+        android:id="@+id/radiogroupMod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescMascM"
+        tools:layout_editor_absoluteX="16dp">
+
+        <RadioButton
+            android:id="@+id/rdbtMachoM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rdbtn_macho" />
+
+        <RadioButton
+            android:id="@+id/rdbtHembraM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding"
+            android:text="@string/rdbtn_hembra" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etDescMascM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/hint_descripcion_mascota"
+        android:minLines="2"
+        android:maxLines="3"
+        android:maxLength="150"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaMascM" />
+
+    <Button
+        android:id="@+id/btnGuardarMascM"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_guardar_mascM"
+        android:onClick="guardarCambiosM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnEliminarMascM"/>
+    <Button
+        android:id="@+id/btnEliminarMascM"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_eliminar_mascA"
+        android:onClick="eliminarMascota"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGuardarMascM"
+        app:layout_constraintEnd_toStartOf="@id/btnCancelarMascM"/>
+
+    <Button
+        android:id="@+id/btnCancelarMascM"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cancelar_mascM"
+        android:onClick="cancelarM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnEliminarMascM" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

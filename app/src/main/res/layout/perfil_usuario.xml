@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<!--<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorFondoPerfil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorFondoPerfil">
+    >-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"-->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:padding="@dimen/padding"
+        android:background="@color/colorFondoPerfil"
         tools:context=".perfil_usuario.PerfilUsuario">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/roundCardView"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
             app:cardCornerRadius="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.04"
@@ -30,7 +36,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/usuario" />
+                 /><!--android:src="@drawable/usuario"-->
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -42,7 +48,7 @@
             android:text="@string/btn_cambiar_foto"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="@id/roundCardView"
-            app:layout_constraintStart_toEndOf="@id/roundCardView"/>
+            app:layout_constraintStart_toEndOf="@id/roundCardView" />
 
         <Button
             android:id="@+id/btnModifPerfil"
@@ -75,7 +81,7 @@
             android:id="@+id/tvNomUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="@string/tv_nom_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -87,17 +93,17 @@
             android:id="@+id/etValNomUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Pepito"
+            android:text="Nombre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNomUsuario" />
+
 
         <TextView
             android:id="@+id/tvEmailUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
             android:text="@string/tv_email_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -119,7 +125,7 @@
             android:id="@+id/tvCiudadUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/tv_ciudad_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -131,8 +137,7 @@
             android:id="@+id/etValCiudadUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Madrid"
+            android:text="Ciudad"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
@@ -141,11 +146,9 @@
             android:id="@+id/tvMascotasUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/tv_mascotas_usuario"
             android:textSize="20sp"
             android:textStyle="bold"
-
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,34 +167,50 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerProfilPets"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             android:clipToPadding="false"
-            android:paddingBottom="60dp"
+            android:paddingBottom="2dp"
             app:layout_constrainedHeight="true"
-            app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" /><!--android:nestedScrollingEnabled="false"-->
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAclaracPerfil" />
+        <!--android:nestedScrollingEnabled="false"-->
+        <!--android:clipToPadding="false"
+        android:paddingBottom="60dp"-->
 
-        <Button
-            android:id="@+id/btnAgregarMasc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="agregarMascota"
-            android:padding="5dp"
-            android:text="@string/btn_agregar_mascota"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario" />
+    <Button
+        android:id="@+id/btnAgregarMasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="agregarMascota"
+        android:padding="5dp"
+        android:text="@string/btn_agregar_mascota"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/etValCiudadUsuario" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="193dp"
             app:layout_constraintDimensionRatio=""
-            app:layout_constraintGuide_end="493dp"/>
+            app:layout_constraintGuide_begin="193dp"
+            app:layout_constraintGuide_end="493dp" />
 
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="btnAgregarMasc,btnModifPerfil"/>
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="btnCambiarFoto,btnGuardarCambios"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+<!--</ScrollView>-->

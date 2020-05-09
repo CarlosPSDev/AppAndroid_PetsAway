@@ -6,11 +6,13 @@
 
     <color name="ColorPrimarySlides">#109689</color>
     <color name="ColorAccentSlides">#B5E577</color>
+    <color name="violetaDeep">#6200EA</color>
 
     <!-- Paleta de colores -->
     <color name="colorMagenta">#993955</color>
     <color name="colorPurpura">#AE76A6</color>
     <color name="colorAzul">#A3C3D9</color>
+    <color name="colorAzulTranspar">#66A3C3D9</color>
     <color name="colorGris">#CCD6EB</color>
     <color name="colorGrisClaro">#E9ECF5</color>
 

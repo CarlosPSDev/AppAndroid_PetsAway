@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.sip.SipSession;
 import android.net.sip.SipSession.Listener;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -208,6 +209,28 @@ public class LoginActivity extends AppCompatActivity  {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(customToast);
         toast.show();
+    }
+
+    private void guardarDatosUserSP(String nombre, String email, String userId){
+        /*LLamar a este método cuando se valide el login, ya sea con firebase, google o facebook)!!*/
+        SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        editor.putString("nombreUser", nombre);
+        editor.putString("emailUser", email);
+        editor.putString("idUser", userId);
+
+        editor.commit();
+    }
+
+    private void recuperarDatosUserSP(){
+        /*LLamar a este método desde cualquier activity para recuperar los datos dle usuario sin importar
+         si se logó con firebase, google o facebook)!!*/
+        SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
+
+        String nombre = sharedPrefs.getString("nombreUser", "Nombre no disponible");
+        String email = sharedPrefs.getString("emailUser", "xxxxxx@...com");
+        String id = sharedPrefs.getString("idUser", "0");
     }
 
 }

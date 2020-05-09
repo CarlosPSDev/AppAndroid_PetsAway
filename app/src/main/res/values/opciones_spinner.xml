@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="especies_animales">
+        <item>-*especie-</item>
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Ave</item>
+        <item>Conejo</item>
+        <item>Hurón</item>
+        <item>Chinchilla</item>
+        <item>Otro</item>
+    </string-array>
+</resources>

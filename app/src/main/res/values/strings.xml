@@ -88,12 +88,23 @@
     <string name="borrarCuenta">Borrar mi cuenta</string>
     <string name="notif">Notificaciones</string>
 
-    <string name="hint_mail_recuperar_password">Introduce tu e-mail</string>
     <string name="toast_recuperar_password">Debes introducir tu email</string>
     <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
     <string name="toast_revisa_email">¡Revisa tu correo!</string>
     <string name="toast_error_envio_correo">Se ha producido un error</string>
     <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
+    <string name="hint_nombre_mascota">*Nombre de la mascota</string>
+    <string name="tv_aniadir_mascota">Añadir Mascota</string>
+    <string name="hint_especie_mascota">*Otro (serpiente, cerdo, etc.)</string>
+    <string name="hint_raza_mascota">Raza (bull dog, persa, cotorra del sol)</string>
+    <string name="hint_color_mascota">*Color o colores principales</string>
+    <string name="hint_identificacion_mascota">Nº de identificación (chip, anilla, etc.)</string>
+    <string name="hint_fechaNac_mascota">*Fecha de nacimiento (ejemplo 12/05/2020)</string>
+    <string name="hint_descripcion_mascota">Descripción o comentarios</string>
+    <string name="btn_guardar_mascA">Guarda tu Mascota</string>
+    <string name="btn_cancelar_mascA">Cancelar</string>
+    <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
+    <string name="toast_guardado_ok">Se han guardado los datos de la mascota correctamente</string>
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
@@ -123,5 +134,13 @@
     El usuario tiene a su disposición un servicio de alerta en caso de pérdida de su mascota.</string>
     <string name="texto_inferior_acerca_de">Madrid (España) PetsAway \npetsawaypfc@gmail.com</string>
     <string name="toast_msj_error_google">ERROR al acceder a tu cuenta de Google</string>
+    <string name="btn_subir_fotoM">Subir Imagen</string>
+    <string name="rdbtn_macho">Macho</string>
+    <string name="rdbtn_hembra">Hembra</string>
+    <string name="tv_modif_mascota">Modificar Mascota</string>
+    <string name="btn_cambiar_fotoM">Subir nueva imagen</string>
+    <string name="btn_eliminar_mascA">Eliminar Mascota</string>
+    <string name="btn_cancelar_mascM">Cancelar y Volver</string>
+    <string name="btn_guardar_mascM">Guardar Cambios</string>
 
 </resources>
