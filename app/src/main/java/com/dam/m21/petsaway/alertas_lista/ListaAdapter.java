@@ -1,17 +1,22 @@
 package com.dam.m21.petsaway.alertas_lista;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -23,20 +28,27 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListViewHold
 
 private View.OnClickListener ocListener;
 private ArrayList<AlertasList> datos;
-public ListaAdapter(ArrayList<AlertasList> datos) {
+    static final String CLAVE_LAT = "LAT_A";
+    static final String CLAVE_LON = "LON_A";
+    static final String CLAVE_TA = "TA";
+    AlertDialog.Builder ad;
+
+    public ListaAdapter(ArrayList<AlertasList> datos) {
         this.datos = datos;
         }
 
 public static class ListViewHolder extends RecyclerView.ViewHolder{
     private ImageView image_elap;
     private TextView nombre_elap;
-    private TextView desc_elap;
+    private TextView fecha_elap;
+    ImageButton bt_goMap;
 
     public ListViewHolder(View v) {
         super(v);
         image_elap = v.findViewById(R.id.image_elap);
         nombre_elap = v.findViewById(R.id.nombre_elap);
-        desc_elap = v.findViewById(R.id.desc_elap);
+        fecha_elap = v.findViewById(R.id.fecha_elap);
+        bt_goMap=v.findViewById(R.id.bt_goMap);
     }
 
     public void bindAList(AlertasList il){
@@ -50,8 +62,10 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                         .into(image_elap);
             }
         });
+
+
         nombre_elap.setText(il.getTipoAnimal());
-        desc_elap.setText(il.getDesc());
+        fecha_elap.setText(il.getFecha());
     }
 }
 
@@ -66,9 +80,60 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
         holder.bindAList(datos.get(position));
+        holder.bt_goMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), AlertasMapaActivity.class);
+                Double latitude=datos.get(position).getLatitude();
+                Double longitude=datos.get(position).getLongitude();
+                intent.putExtra(CLAVE_LAT, latitude);
+                intent.putExtra(CLAVE_LON, longitude);
+                intent.putExtra(CLAVE_TA, datos.get(position).getTipoAletra());
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.image_elap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater LI=LayoutInflater.from(holder.itemView.getContext());
+                final View vista=LI.inflate(R.layout.detalle_alerta,null);
+                ad = new AlertDialog.Builder(holder.itemView.getContext());
+                ad.setCancelable(false);
+                final AlertDialog adC=ad.create();
 
+                Button bt_close_dialog=vista.findViewById(R.id.bt_close_dialog);
+                TextView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
+                TextView detalle_tipoAnimal=vista.findViewById(R.id.detalle_tipoAnimal);
+                TextView detalle_color=vista.findViewById(R.id.detalle_color);
+                TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
+                TextView detalle_raza=vista.findViewById(R.id.detalle_raza);
+                TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
+                TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
+                TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
+
+                detalle_tipoAletra.setText(datos.get(position).getTipoAletra());
+                detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());
+                detalle_color.setText(datos.get(position).getColor());
+                detalle_fecha.setText(datos.get(position).getFecha());
+                detalle_raza.setText(datos.get(position).getRaza());
+                detalle_desc.setText(datos.get(position).getDesc());
+                detalle_fPush.setText(datos.get(position).getfPush());
+                detalle_userPush.setText(datos.get(position).getUserPush());
+                bt_close_dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        adC.cancel();
+                    }
+                });
+                if(vista.getParent() != null) {
+                    ((ViewGroup)vista.getParent()).removeView(vista);
+                }
+                adC.setView(vista);
+                adC.show();
+            }
+        });
     }
 
     @Override

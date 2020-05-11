@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,6 +26,8 @@ import com.dam.m21.petsaway.formulario.FormularioActivity;
 import com.dam.m21.petsaway.model.PojoFormulario;
 import com.dam.m21.petsaway.model.PojoUser;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,6 +38,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +48,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback { Button bt_encuentra,bt_busca;
 ImageButton bt_add;
@@ -52,6 +63,8 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     static final String CLAVE_LAT = "LAT";
     static final String CLAVE_LONG = "LONG";
     String ta;
+    String add;
+    private FusedLocationProviderClient flpc;
     private StorageReference msr;
     private FirebaseAuth fa;
     private FirebaseUser fu;
@@ -70,14 +83,15 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alertas_mapa);
-      /*  if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION}, PETICION_PERMISO_LOCALIZACION);
         } else {
             Log.i("LOC", "with permission");
-        }*/
+        }
+        flpc = LocationServices.getFusedLocationProviderClient(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -98,6 +112,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         dbr = FirebaseDatabase.getInstance().getReference();
 
         ta=getIntent().getStringExtra("TA");
+        add=getIntent().getStringExtra("ADD");
         bottomSheet = findViewById(R.id.bottomJsoft);
         bsb = BottomSheetBehavior.from(bottomSheet);
         bsb.setPeekHeight(0);
@@ -124,6 +139,22 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         });
         datosUser();
     }
+
+    private void goMiUbi() {
+        flpc.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                Log.i("LOC", "onSuccess de location");
+                if (location != null) {
+                    double lon=location.getLongitude();
+                    double lat=location.getLatitude();
+                    miLoc = new LatLng(lat, lon);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+                }
+            }
+        });
+    }
+
     public void datosUser() {
         dbr.child("PETSAWAYusers").child(idUser).addValueEventListener(new ValueEventListener() {
             @Override
@@ -134,11 +165,26 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                     dMP = findViewById(R.id.dMP);
                     int idColor = R.color.colorPurpura;
                     if(temaActual!=null) {
-                    if (temaActual.equals("oscuro")) {
-                        dMP.setBackgroundResource(idColor);
-                        bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
-                        bt_add.setImageResource(R.drawable.ic_add_tema_oscuro);
-                    } }
+                        View view=findViewById(android.R.id.content);
+                        if (temaActual.equals("oscuro")) {
+                            dMP.setBackgroundResource(idColor);
+
+                            if (add!=null) {
+                                Snackbar.make(view, R.string.toast_puntoMap, Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
+                            }else{
+                                bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
+                            }
+                            bt_add.setImageResource(R.drawable.ic_add_tema_oscuro);
+                        }else{
+                            if (add!=null) {
+                                Snackbar.make(view, R.string.toast_puntoMap, Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+                            }
+                        }
+                    }
                 }
             }
             @Override
@@ -157,6 +203,11 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 b();
             }
         }else{e();}
+
+        if (add!=null){
+            goMiUbi();
+            goFormBla();
+        }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -189,8 +240,14 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     }
 
     public void goForm(View view) {
+        goFormBla();
+    }
+    public void goFormBla() {
         cont=cont+1;
         if(cont%2!=0) {
+            View view=findViewById(android.R.id.content);
+            Snackbar.make(view, R.string.toast_puntoMap, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             if(temaActual!=null) {
                 if (temaActual.equals("oscuro")) {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
@@ -203,15 +260,13 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 public void onMapClick(LatLng latLng) {
                     if(cont%2!=0) {
                         mark = mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .title("Nueva posición")
+                                .position(latLng).title("Nueva posición")
                                 .snippet("Lat: " + latLng.latitude + ", Long: " + latLng.longitude)
                                 .icon(BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_GREEN))
                         );
                         finish();
                         startActivity(new Intent(getApplicationContext(), FormularioActivity.class).putExtra(CLAVE_LAT, mark.getPosition().latitude).putExtra(CLAVE_LONG, mark.getPosition().longitude));
-
                         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                     }
                 }
@@ -235,23 +290,27 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         bt_encuentra.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_busca.setBackgroundResource(R.drawable.toolbar_style);
         mMap.clear();
-        dbr.child("alertas").child("encontrado").addValueEventListener(new ValueEventListener() {
+        dbr.child("alertas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                    PojoFormulario pf=childDataSnapshot.getValue(PojoFormulario.class);
-                    double longitude=pf.getLongitude();
-                    double latitude=pf.getLatitude();
-                    String tipoAnimal=pf.getTipoAnimal();
-                    miLoc=new LatLng(latitude,longitude);
-                    mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
-                            BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
-                    if (ta != null) {
-                        Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
-                        Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
-                        LatLng locA = new LatLng(latAletra, lonAletra);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
-                    }else{ mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));}
+                    PojoFormulario pf = childDataSnapshot.getValue(PojoFormulario.class);
+                    if(pf.getTipoAletra().equals("encontrado")){
+                        double longitude = pf.getLongitude();
+                        double latitude = pf.getLatitude();
+                        String tipoAnimal = pf.getTipoAnimal();
+                        miLoc = new LatLng(latitude, longitude);
+                        mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
+                                BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
+                        if (ta != null) {
+                            Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                            Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+                            LatLng locA = new LatLng(latAletra, lonAletra);
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+                        } else {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+                        }
+                    }
                 }
             }
             @Override
@@ -269,24 +328,28 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         bt_busca.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_encuentra.setBackgroundResource(R.drawable.toolbar_style);
         mMap.clear();
-        dbr.child("alertas").child("buscado").addValueEventListener(new ValueEventListener() {
+        dbr.child("alertas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                    PojoFormulario pf=childDataSnapshot.getValue(PojoFormulario.class);
-                    double longitude=pf.getLongitude();
-                    double latitude=pf.getLatitude();
-                    String tipoAnimal=pf.getTipoAnimal();
-                    miLoc=new LatLng(latitude,longitude);
-                    mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
-                            BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
+                    PojoFormulario pf = childDataSnapshot.getValue(PojoFormulario.class);
+                    if (pf.getTipoAletra().equals("buscado")) {
+                        double longitude = pf.getLongitude();
+                        double latitude = pf.getLatitude();
+                        String tipoAnimal = pf.getTipoAnimal();
+                        miLoc = new LatLng(latitude, longitude);
+                        mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
+                                BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
 
-                    if (ta != null) {
-                        Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
-                        Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
-                        LatLng locA = new LatLng(latAletra, lonAletra);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
-                    }else{ mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));}
+                        if (ta != null) {
+                            Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                            Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+                            LatLng locA = new LatLng(latAletra, lonAletra);
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+                        } else {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+                        }
+                    }
                 }
             }
             @Override

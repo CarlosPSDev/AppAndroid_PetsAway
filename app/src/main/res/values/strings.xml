@@ -143,5 +143,6 @@
     <string name="tv_especie">Especie:</string>
     <string name="toast_cambios_ok">¡Guardado!</string>
     <string name="toast_foto_guardada">¡Guardada!</string>
+    <string name="toast_puntoMap">Elige una ubicacion en el mapa</string>
 
 </resources>

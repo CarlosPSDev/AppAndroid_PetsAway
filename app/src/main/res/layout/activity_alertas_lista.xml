@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alertas_lista.AlertasListaActivity">
+    tools:context=".alertas_lista.AlertasListaActivity"
+    android:background="@color/colorFondoPerfil">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_la"
         android:layout_width="match_parent"

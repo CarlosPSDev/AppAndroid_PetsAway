@@ -54,12 +54,25 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:hint="@string/h_color"/>
-    <EditText
-        android:id="@+id/fecha"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_fecha_p_e"/>
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginVertical="10dp"
+            android:hint="@string/h_fecha_p_e"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_my_calendar"
+            android:onClick="calendario"/>
+    </LinearLayout>
+
     <EditText
         android:id="@+id/raza"
         android:layout_width="match_parent"
