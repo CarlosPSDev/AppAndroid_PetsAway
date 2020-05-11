@@ -10,7 +10,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/roundCardView"
@@ -34,12 +36,10 @@
         android:id="@+id/roundCardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="100dp"
         app:cardCornerRadius="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/roundCardView"
+        app:layout_constraintTop_toTopOf="@+id/roundCardView">
 
         <ImageView
             android:id="@+id/ivIconoCamara"
@@ -50,11 +50,11 @@
             android:src="@drawable/estilo_icono_camara" />
     </androidx.cardview.widget.CardView>
 
+
     <ImageView
         android:id="@+id/btnGuardarCambios"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         android:onClick="guardarCambios"
@@ -62,63 +62,65 @@
         android:src="@drawable/ic_guardar"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/lineaSeparadora"
+        app:layout_constraintStart_toEndOf="@+id/roundCardView2"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <View
-        android:id="@+id/lineaSeparadora"
-        android:layout_width="365dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/colorGris"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roundCardView2" />
+        <View
+            android:id="@+id/lineaSeparadora"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorGris"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roundCardView2" />
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/llNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora">
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora">-->
 
         <EditText
             android:id="@+id/etValNomUsuario"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
             android:fontFamily="@font/robotomedium"
             android:text="Daniel"
             android:textColor="@color/colorBack"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/ivLapizN"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora"/>
 
         <ImageView
+            android:id="@+id/ivLapizN"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginRight="25dp"
             android:onClick="modificarPerfil"
-            android:src="@drawable/ic_lapiz" />
-    </LinearLayout>
+            android:src="@drawable/ic_lapiz"
+            app:layout_constraintTop_toTopOf="@+id/etValNomUsuario"
+            app:layout_constraintStart_toEndOf="@id/etValNomUsuario"
+            app:layout_constraintBottom_toBottomOf="@id/etValNomUsuario"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <!--</LinearLayout>-->
 
     <View
         android:id="@+id/lineaSeparadora2"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/etValNomUsuario" />
 
     <TextView
         android:id="@+id/tvEmailUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/tv_email_usuario"
         android:textSize="16sp"
@@ -132,7 +134,6 @@
         android:id="@+id/tvValEmailUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="3dp"
         android:text="danielPetsawayPFC@gmail.com"
         android:textSize="16sp"
@@ -144,7 +145,7 @@
 
     <View
         android:id="@+id/lineaSeparadora3"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorGris"
@@ -156,7 +157,6 @@
         android:id="@+id/tvCiudadUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/robotolight"
         android:text="@string/tv_ciudad_usuario"
@@ -166,47 +166,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora3" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/llCiudad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario">
+        app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario">-->
 
         <EditText
             android:id="@+id/etValCiudadUsuario"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="38dp"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
             android:fontFamily="@font/robotomedium"
             android:text="Madrid"
             android:textColor="@color/colorBack"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/ivLapizC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCiudadUsuario"/>
 
         <ImageView
+            android:id="@+id/ivLapizC"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginBottom="12dp"
             android:onClick="modificarPerfil"
-            android:src="@drawable/ic_lapiz" />
-    </LinearLayout>
+            android:src="@drawable/ic_lapiz"
+            app:layout_constraintStart_toEndOf="@id/etValCiudadUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/etValCiudadUsuario"
+            app:layout_constraintBottom_toBottomOf="@id/etValCiudadUsuario"/>
+    <!--</LinearLayout>-->
 
     <View
         android:id="@+id/lineaSeparadora4"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llCiudad" />
+        app:layout_constraintTop_toBottomOf="@+id/etValCiudadUsuario" />
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/llMascotas"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -237,7 +240,26 @@
                 android:layout_height="32dp"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_huella" />
-        </LinearLayout>
+        </LinearLayout>-->
+
+        <Button
+            android:id="@+id/btnAddMasc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/estilo_titulo_mascotas"
+            android:drawableEnd="@drawable/ic_huella"
+            android:layout_marginTop="16dp"
+            android:paddingEnd="40dp"
+            android:paddingStart="40dp"
+            android:text="@string/tv_mascotas_usuario2"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="18sp"
+            android:onClick="agregarMascota"
+            app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="473dp" />
 
         <TextView
             android:id="@+id/tvAclaracPerfil"
@@ -247,8 +269,8 @@
             android:textSize="14sp"
             android:layout_marginLeft="6dp"
             android:fontFamily="@font/robotolight"
-            app:layout_constraintStart_toStartOf="@id/llMascotas"
-            app:layout_constraintTop_toBottomOf="@+id/llMascotas"
+            app:layout_constraintStart_toStartOf="@id/btnAddMasc"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddMasc"
             android:gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView

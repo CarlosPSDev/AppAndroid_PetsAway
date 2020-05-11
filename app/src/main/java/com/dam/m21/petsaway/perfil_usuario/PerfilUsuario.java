@@ -18,6 +18,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -58,7 +59,8 @@ public class PerfilUsuario extends AppCompatActivity {
     EditText etNombre;
     EditText etCiudad;
     TextView tvEmail;
-    LinearLayout llMascotas;
+    //LinearLayout llMascotas;
+    Button llMascotas;
 
     String email;
     String uriImgGuardada;
@@ -86,7 +88,8 @@ public class PerfilUsuario extends AppCompatActivity {
         ivFotoUsuario = findViewById(R.id.ivImgUser);
         ivGuardarCambios = findViewById(R.id.btnGuardarCambios);
         ivIconoCamara = findViewById(R.id.ivIconoCamara);
-        llMascotas = findViewById(R.id.llMascotas);
+        //llMascotas = findViewById(R.id.llMascotas);
+        llMascotas = findViewById(R.id.btnAddMasc);
 
         rv = findViewById(R.id.recyclerProfilPets);
 
