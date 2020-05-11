@@ -107,7 +107,7 @@
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
-
+    <string name="tv_mascotas_usuario">Mascotas\t</string>
     <string name="toast_datos_vacios">Se deben rellenar los datos</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="hint_pass_ant">Anterior %1$s</string>
@@ -135,12 +135,11 @@
     <string name="btn_cancelar_mascM">Cancelar y Volver</string>
     <string name="btn_guardar_mascM">Guardar Cambios</string>
 
-
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
     <string name="tv_color">Color:</string>
     <string name="tv_especie">Especie:</string>
     <string name="toast_cambios_ok">¡Guardado!</string>
     <string name="toast_foto_guardada">¡Guardada!</string>
-    <string name="tv_mascotas_usuario">Mascotas\t</string>
+
 
 </resources>
