@@ -251,7 +251,7 @@
             android:layout_marginTop="16dp"
             android:paddingEnd="40dp"
             android:paddingStart="40dp"
-            android:text="@string/tv_mascotas_usuario2"
+            android:text="@string/tv_mascotas_usuario"
             android:textAllCaps="false"
             android:textColor="@color/colorBlanco"
             android:textSize="18sp"
