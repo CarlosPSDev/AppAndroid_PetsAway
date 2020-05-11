@@ -5,10 +5,14 @@ import android.os.Parcelable;
 
 public class AlertasList implements Parcelable {
 
-    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto;
+    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto,sexo;
     private Double latitude,longitude;
 
     public AlertasList() {
+    }
+
+    public String getSexo() {
+        return sexo;
     }
 
     public String getTipoAletra() {
@@ -69,6 +73,7 @@ public class AlertasList implements Parcelable {
         fPush = in.readString();
         userPush = in.readString();
         idFoto = in.readString();
+        sexo = in.readString();
         if (in.readByte() == 0) {
             latitude = null;
         } else {
@@ -109,6 +114,7 @@ public class AlertasList implements Parcelable {
         dest.writeString(fPush);
         dest.writeString(userPush);
         dest.writeString(idFoto);
+        dest.writeString(sexo);
         if (latitude == null) {
             dest.writeByte((byte) 0);
         } else {

@@ -38,10 +38,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
         </LinearLayout>
+        <ImageView
+            android:id="@+id/sexo_elap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
         <ImageButton
             android:id="@+id/bt_goMap"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:src="@drawable/maps_icon"/>
     </LinearLayout>

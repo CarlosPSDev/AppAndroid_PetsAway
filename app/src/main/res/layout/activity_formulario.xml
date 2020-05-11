@@ -85,6 +85,28 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:hint="@string/h_desc"/>
+    <RadioGroup
+        android:id="@+id/rg_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="16dp">
+
+        <RadioButton
+            android:id="@+id/rbM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rdbtn_macho" />
+
+        <RadioButton
+            android:id="@+id/rbH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/padding"
+            android:text="@string/rdbtn_hembra" />
+    </RadioGroup>
     <Button
         android:id="@+id/bt_guardar"
         android:layout_width="match_parent"
@@ -92,6 +114,7 @@
         android:background="@color/colorAzul"
         android:text="@string/bt_guardar"
         android:onClick="guardar"/>
+
 </LinearLayout>
 
 </RelativeLayout>

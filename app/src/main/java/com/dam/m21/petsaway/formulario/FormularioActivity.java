@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,9 +37,9 @@ public class FormularioActivity extends AppCompatActivity {
     EditText tipoAnimal,color,fecha,raza,desc;
     ImageButton btAddFoto;
     Button bt_buscado,bt_encontrado;
-    String tipoAletra;
+    String tipoAletra,sexo;
     private double latitud,longitud;
-
+    RadioButton rbM,rbH;
     Map<String, Object> ubiPunto;
 
     private StorageReference msr;
@@ -60,6 +61,10 @@ public class FormularioActivity extends AppCompatActivity {
         bt_buscado=findViewById(R.id.bt_buscado);
         bt_encontrado=findViewById(R.id.bt_encontrado);
         btAddFoto=findViewById(R.id.bt_add_foto);
+        rbM=findViewById(R.id.rbM);
+        rbH=findViewById(R.id.rbH);
+        if (rbM.isChecked()) sexo = "m";
+        if (rbH.isChecked()) sexo = "h";
         msr= FirebaseStorage.getInstance().getReference();
         fa = FirebaseAuth.getInstance();
         fu = fa.getCurrentUser();
@@ -82,6 +87,7 @@ public class FormularioActivity extends AppCompatActivity {
             ubiPunto.put("fecha", fecha.getText().toString());
             ubiPunto.put("raza", raza.getText().toString());
             ubiPunto.put("desc", desc.getText().toString());
+            ubiPunto.put("sexo", sexo);
             ubiPunto.put("idFoto",  miPath.getLastPathSegment());
             ubiPunto.put("fPush", fPush);
             ubiPunto.put("userPush", fu.getEmail());

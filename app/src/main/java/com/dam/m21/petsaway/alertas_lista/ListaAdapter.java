@@ -42,6 +42,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     private TextView nombre_elap;
     private TextView fecha_elap;
     ImageButton bt_goMap;
+    ImageView sexo_elap;
 
     public ListViewHolder(View v) {
         super(v);
@@ -49,6 +50,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         nombre_elap = v.findViewById(R.id.nombre_elap);
         fecha_elap = v.findViewById(R.id.fecha_elap);
         bt_goMap=v.findViewById(R.id.bt_goMap);
+        sexo_elap=v.findViewById(R.id.sexo_elap);
     }
 
     public void bindAList(AlertasList il){
@@ -63,7 +65,11 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
             }
         });
 
-
+        if (il.getSexo().equals("m")){
+            sexo_elap.setImageResource(R.drawable.ic_macho);
+        }else{
+            sexo_elap.setImageResource(R.drawable.ic_hembra);
+        }
         nombre_elap.setText(il.getTipoAnimal());
         fecha_elap.setText(il.getFecha());
     }
