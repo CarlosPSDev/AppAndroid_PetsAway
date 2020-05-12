@@ -142,5 +142,6 @@
     <string name="tv_especie">Especie:</string>
     <string name="toast_cambios_ok">¡Guardado!</string>
     <string name="toast_foto_guardada">¡Guardada!</string>
+    <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
 
 </resources>
