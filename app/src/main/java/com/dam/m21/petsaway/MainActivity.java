@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvInfoEmail = findViewById(R.id.textViewPrueba);
         imageViewPrueba = findViewById(R.id.imageViewPrueba);
 
+        //En esta línea extraigo los valores del usuario que se ha logeado con Google
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
