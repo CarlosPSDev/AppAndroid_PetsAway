@@ -191,7 +191,7 @@
         <Button
             android:id="@+id/btnAddMasc"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:background="@drawable/estilo_titulo_mascotas"
             android:drawableEnd="@drawable/ic_huella"
             android:layout_marginTop="16dp"

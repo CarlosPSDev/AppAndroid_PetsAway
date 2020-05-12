@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPurpuraTransparente"
-    tools:context=".perfil_usuario.ActAgregarMascota">
+    tools:context=".perfil_usuario.ActAgregarMascota"
+    android:paddingStart="22dp"
+    android:paddingEnd="22dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/roundCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,12 +32,10 @@
         android:id="@+id/roundCardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="100dp"
         app:cardCornerRadius="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/roundCardView"
+        app:layout_constraintTop_toTopOf="@id/roundCardView">
 
         <ImageView
             android:id="@+id/ivIconoCamara"
@@ -48,7 +48,7 @@
 
     <View
         android:id="@+id/lineaSeparadora"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorGris"
@@ -58,9 +58,8 @@
 
     <EditText
         android:id="@+id/etNomMascA"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
         android:hint="@string/hint_nombre_mascota"
@@ -71,7 +70,7 @@
 
     <View
         android:id="@+id/lineaSeparadora2"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="24dp"
         android:prompt="@drawable/estilo_boton_guardar_mascota"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora2"/>
@@ -92,7 +90,6 @@
         android:id="@+id/etTipoMascA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
         android:enabled="false"
         android:fontFamily="@font/robotolight"
         android:hint="@string/hint_especie_mascota"
@@ -104,7 +101,7 @@
 
     <View
         android:id="@+id/lineaSeparadora3"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,9 +110,8 @@
 
     <EditText
         android:id="@+id/etRazaMascA"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
         android:hint="@string/hint_raza_mascota"
@@ -126,7 +122,7 @@
 
     <View
         android:id="@+id/lineaSeparadora4"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,9 +131,8 @@
 
     <EditText
         android:id="@+id/etColorMascA"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
         android:hint="@string/hint_color_mascota"
@@ -148,7 +143,7 @@
 
     <View
         android:id="@+id/lineaSeparadora5"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,9 +152,8 @@
 
     <EditText
         android:id="@+id/etIdMascA"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
         android:hint="@string/hint_identificacion_mascota"
@@ -170,7 +164,7 @@
 
     <View
         android:id="@+id/lineaSeparadora6"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -179,9 +173,8 @@
 
     <TextView
         android:id="@+id/etFechaMascA"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:fontFamily="@font/robotolight"
@@ -193,7 +186,7 @@
 
     <View
         android:id="@+id/lineaSeparadora7"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorGris"
@@ -203,9 +196,8 @@
 
     <EditText
         android:id="@+id/etDescMascA"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
         android:hint="@string/hint_descripcion_mascota"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
@@ -219,7 +211,7 @@
 
     <View
         android:id="@+id/lineaSeparadora8"
-        android:layout_width="365dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
@@ -259,18 +251,17 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp">
 
         <Button
             android:id="@+id/btnCancelarMascA"
             android:layout_width="160dp"
             android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/estilo_boton_cancelar_mascota"
             android:onClick="cancelarG"
             android:text="@string/btn_cancelar_mascA"
