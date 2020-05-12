@@ -190,7 +190,6 @@ public class ActAgregarMascota extends AppCompatActivity {
                             Glide.with(ActAgregarMascota.this).load(urlM)
                                     //.fitCenter().centerCrop()
                                     .into(imagenMascota);
-
                            /* HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("urlFotoMascota", urlM);  */
 
