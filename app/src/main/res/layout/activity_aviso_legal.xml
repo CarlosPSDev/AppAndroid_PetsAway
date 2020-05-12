@@ -5,58 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding"
-    tools:context=".aviso_legal.AvisoLegal">
+    tools:context=".aviso_legal.AvisoLegal"
+    android:background="@color/colorGrisClaro">
 
     <ImageView
         android:id="@+id/ivAvLegal"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_perro"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/aviso_legal" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvAvLegal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/robotomedium"
         android:text="@string/tv_aviso_legal"
-        android:textSize="22sp"
-        android:textColor="@color/colorBack"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/ivAvLegal"
-        />
+        android:textColor="@color/colorBack"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivAvLegal" />
 
-    <com.codesgood.views.JustifiedTextView
+    <TextView
         android:id="@+id/tvTextAvLegal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/robotolight"
         android:text="@string/tv_aviso_legal_text"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvAvLegal"
-         />
+        android:textAlignment="center"
+        android:textColor="@color/colorBack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAvLegal" />
 
     <TextView
         android:id="@+id/tvPolitPriv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/robotomedium"
         android:text="@string/tv_polit_privacidad"
-        android:textSize="22sp"
-        android:textColor="@color/colorBack"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tvTextAvLegal"
-        />
+        android:textColor="@color/colorBack"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextAvLegal" />
 
-    <com.codesgood.views.JustifiedTextView
+    <TextView
+        android:id="@+id/justifiedTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/robotolight"
         android:text="@string/tv_polit_privacidad_text"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/tvPolitPriv"/>
+        android:textAlignment="center"
+        android:textColor="@color/colorBack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPolitPriv" />
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_git_hub"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
