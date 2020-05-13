@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding"
+    android:paddingStart="22dp"
+    android:paddingEnd="22dp"
     tools:context=".perfil_usuario.ActModificarBorrar">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tvMod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,42 +18,82 @@
         android:fontFamily="@font/lato_bold"
         android:textColor="@color/violetaDeep"
         android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"/>-->
 
-    <ImageView
-        android:id="@+id/ivMascM"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/img_perro_pet"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMod" />
-
-    <Button
-        android:id="@+id/btnSubirFotoM"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/roundCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_cambiar_fotoM"
-        android:textAllCaps="false"
-        android:layout_marginStart="@dimen/padding"
-        android:onClick="cambiarImagen"
-        app:layout_constraintBottom_toBottomOf="@+id/ivMascM"
-        app:layout_constraintStart_toEndOf="@+id/ivMascM" />
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivMascM"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_perro_pet" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/roundCardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:cardCornerRadius="60dp"
+        app:layout_constraintEnd_toEndOf="@id/roundCardView"
+        app:layout_constraintTop_toTopOf="@id/roundCardView">
+
+        <ImageView
+            android:id="@+id/ivIconoCamara"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:onClick="cambiarImagen"
+            android:scaleType="centerCrop"
+            android:src="@drawable/estilo_icono_camara" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/lineaSeparadora"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roundCardView2" />
 
     <EditText
         android:id="@+id/etNomMascM"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/robotolight"
+        android:textSize="16sp"
+        android:textColor="@color/colorBack"
+        android:drawableEnd="@drawable/ic_lapiz_16"
         android:hint="@string/hint_nombre_mascota"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivMascM" />
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora" />
+
+    <View
+        android:id="@+id/lineaSeparadora2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascM" />
 
     <Spinner
         android:id="@+id/spinnerEspeciesM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:prompt="@drawable/estilo_boton_guardar_mascota"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNomMascM"/>
 
@@ -62,50 +103,139 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:visibility="invisible"
+        android:fontFamily="@font/robotolight"
         android:hint="@string/hint_especie_mascota"
+        android:textColor="@color/colorBack"
+        android:textSize="16sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinnerEspecies"
         app:layout_constraintTop_toBottomOf="@+id/etNomMascM" />
+
+    <View
+        android:id="@+id/lineaSeparadora3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTipoMascM" />
+
     <EditText
         android:id="@+id/etRazaMascM"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/robotolight"
+        android:textSize="16sp"
         android:hint="@string/hint_raza_mascota"
+        android:textColor="@color/colorBack"
+        android:drawableEnd="@drawable/ic_lapiz_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerEspeciesM" />
-    <EditText
-        android:id="@+id/etColorMascM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/hint_color_mascota"
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora3" />
+
+    <View
+        android:id="@+id/lineaSeparadora4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRazaMascM" />
+
     <EditText
-        android:id="@+id/etIdMascM"
-        android:layout_width="wrap_content"
+        android:id="@+id/etColorMascM"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/hint_identificacion_mascota"
+        android:fontFamily="@font/robotolight"
+        android:textSize="16sp"
+        android:hint="@string/hint_color_mascota"
+        android:textColor="@color/colorBack"
+        android:drawableEnd="@drawable/ic_lapiz_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora4" />
+
+    <View
+        android:id="@+id/lineaSeparadora5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etColorMascM" />
-    <TextView
-        android:id="@+id/etFechaMascM"
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/etIdMascM"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        android:onClick="mostrarCalendario"
-        android:hint="@string/hint_fechaNac_mascota"
+        android:fontFamily="@font/robotolight"
+        android:textSize="16sp"
+        android:hint="@string/hint_identificacion_mascota"
+        android:textColor="@color/colorBack"
+        android:drawableEnd="@drawable/ic_lapiz_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora5" />
+
+    <View
+        android:id="@+id/lineaSeparadora6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIdMascM" />
+
+    <TextView
+        android:id="@+id/etFechaMascM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/robotolight"
+        android:onClick="mostrarCalendario"
+        android:hint="@string/hint_fechaNac_mascota"
+        android:textColor="@color/colorBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora6" />
+
+    <View
+        android:id="@+id/lineaSeparadora7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaMascM" />
+
+    <EditText
+        android:id="@+id/etDescMascM"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/hint_descripcion_mascota"
+        android:fontFamily="@font/robotolight"
+        android:textSize="16sp"
+        android:textColor="@color/colorBack"
+        android:drawableEnd="@drawable/ic_lapiz_16"
+        android:minLines="2"
+        android:maxLines="3"
+        android:maxLength="150"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora7" />
+
+    <View
+        android:id="@+id/lineaSeparadora8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescMascM" />
 
     <RadioGroup
         android:id="@+id/radiogroupMod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,55 +246,65 @@
             android:id="@+id/rdbtMachoM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rdbtn_macho" />
+            android:text="@string/rdbtn_macho"
+            android:textSize="14sp"
+            android:fontFamily="@font/robotolight"/>
 
         <RadioButton
             android:id="@+id/rdbtHembraM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding"
-            android:text="@string/rdbtn_hembra" />
+            android:text="@string/rdbtn_hembra"
+            android:textSize="14sp"
+            android:fontFamily="@font/robotolight"/>
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/etDescMascM"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/hint_descripcion_mascota"
-        android:minLines="2"
-        android:maxLines="3"
-        android:maxLength="150"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaMascM" />
-
-    <Button
-        android:id="@+id/btnGuardarMascM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_guardar_mascM"
-        android:onClick="guardarCambiosM"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnEliminarMascM"/>
-    <Button
-        android:id="@+id/btnEliminarMascM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_eliminar_mascA"
-        android:onClick="eliminarMascota"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnGuardarMascM"
-        app:layout_constraintEnd_toStartOf="@id/btnCancelarMascM"/>
-
-    <Button
-        android:id="@+id/btnCancelarMascM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_cancelar_mascM"
-        android:onClick="cancelarM"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnEliminarMascM" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCancelarMascM"
+            android:layout_width="160dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="6dp"
+            android:onClick="cancelarM"
+            android:text="@string/btn_cancelar_mascA"
+            android:textAllCaps="false"
+            android:textColor="@color/colorMagenta"
+            android:fontFamily="@font/robotomedium"
+            android:background="@drawable/estilo_boton_cancelar_mascota"/>
+
+        <Button
+            android:id="@+id/btnEliminarMascM"
+            android:layout_width="160dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/btn_eliminar_mascA"
+            android:onClick="eliminarMascota"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:fontFamily="@font/robotomedium"
+            android:background="@drawable/estilo_boton_eliminar_mascota"/>
+
+        <Button
+            android:id="@+id/btnGuardarMascM"
+            android:layout_width="160dp"
+            android:layout_height="35dp"
+            android:text="@string/btn_guardar_mascM"
+            android:onClick="guardarCambiosM"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:fontFamily="@font/robotomedium"
+            android:background="@drawable/estilo_boton_guardar_mascota"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

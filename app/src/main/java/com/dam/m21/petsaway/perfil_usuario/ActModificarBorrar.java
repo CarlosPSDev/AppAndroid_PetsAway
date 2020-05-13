@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -136,18 +137,18 @@ public class ActModificarBorrar extends AppCompatActivity {
             }
 
             ref.child(userId+"-"+nombreM).updateChildren(mapaMascota);
-            t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            t.show();
+            toastPersonalizado(getString(R.string.toast_guardado_ok));
 
             cancelarM(view);
         } else {
-            t = Toast.makeText(this, getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            t.show();
+            toastPersonalizado(getString(R.string.toast_datos_vacios_m));
         }
     }
 
     public void eliminarMascota(View view) {
         ref.child(userId + "-" + mascotaSel.getNombre()).removeValue();
+        finish();
+        toastPersonalizado(getString(R.string.toast_eliminar_mascota_ok));
     }
 
     public void mostrarCalendario(View view) {
@@ -208,19 +209,19 @@ public class ActModificarBorrar extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(ActModificarBorrar.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
+                    toastPersonalizado(getString(R.string.toast_foto_guardada));
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ActModificarBorrar.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            toastPersonalizado(e.getMessage());
                         }
                     });
 
         } else {
             Log.d("foto", "El activityResult no fue OK");
-            Toast.makeText(ActModificarBorrar.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
+            //toastPersonalizado("El activityResult no fue OK");
         }
     }
 
@@ -267,5 +268,17 @@ public class ActModificarBorrar extends AppCompatActivity {
         Intent i = new Intent(this, PerfilUsuario.class);
         startActivity(i);
         ActModificarBorrar.this.finish();
+    }
+
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(ActModificarBorrar.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
     }
 }

@@ -13,7 +13,7 @@
         android:id="@+id/roundCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +197,7 @@
     <EditText
         android:id="@+id/etDescMascA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:hint="@string/hint_descripcion_mascota"
         android:fontFamily="@font/robotolight"
         android:textSize="16sp"
@@ -222,19 +222,19 @@
         android:id="@+id/radiogroupM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora8"
-        tools:layout_editor_absoluteX="16dp"
-        android:layout_marginTop="8dp">
+        tools:layout_editor_absoluteX="16dp">
 
         <RadioButton
             android:id="@+id/rdbtMacho"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rdbtn_macho"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:fontFamily="@font/robotolight"/>
 
         <RadioButton
@@ -243,7 +243,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding"
             android:text="@string/rdbtn_hembra"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:fontFamily="@font/robotolight"/>
     </RadioGroup>
 
@@ -255,7 +255,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="10dp">
 
         <Button
             android:id="@+id/btnCancelarMascA"
@@ -266,7 +266,8 @@
             android:onClick="cancelarG"
             android:text="@string/btn_cancelar_mascA"
             android:textAllCaps="false"
-            android:textColor="@color/colorMagenta" />
+            android:textColor="@color/colorMagenta"
+            android:fontFamily="@font/robotomedium"/>
 
         <Button
             android:id="@+id/btnGuardarMascA"
@@ -277,7 +278,8 @@
             android:onClick="guardarMascota"
             android:text="@string/btn_guardar_mascA"
             android:textAllCaps="false"
-            android:textColor="@color/colorBlanco" />
+            android:textColor="@color/colorBlanco"
+            android:fontFamily="@font/robotomedium"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
