@@ -63,8 +63,6 @@ public class FormularioActivity extends AppCompatActivity {
         btAddFoto=findViewById(R.id.bt_add_foto);
         rbM=findViewById(R.id.rbM);
         rbH=findViewById(R.id.rbH);
-        if (rbM.isChecked()) sexo = "m";
-        if (rbH.isChecked()) sexo = "h";
         msr= FirebaseStorage.getInstance().getReference();
         fa = FirebaseAuth.getInstance();
         fu = fa.getCurrentUser();
@@ -74,30 +72,34 @@ public class FormularioActivity extends AppCompatActivity {
 
     public void guardar(View view) {
         if(!tipoAnimal.getText().toString().isEmpty()&&!color.getText().toString().isEmpty()) {
-            latitud = getIntent().getExtras().getDouble("LAT", 1);
-            longitud = getIntent().getExtras().getDouble("LONG", 1);
-            Date fechaAct = new Date();
-            String fPush = fechaAct.toString();
-            ubiPunto = new HashMap<>();
-            ubiPunto.put("latitude", latitud);
-            ubiPunto.put("longitude", longitud);
-            ubiPunto.put("tipoAletra", tipoAletra);
-            ubiPunto.put("tipoAnimal", tipoAnimal.getText().toString());
-            ubiPunto.put("color", color.getText().toString());
-            ubiPunto.put("fecha", fecha.getText().toString());
-            ubiPunto.put("raza", raza.getText().toString());
-            ubiPunto.put("desc", desc.getText().toString());
-            ubiPunto.put("sexo", sexo);
-            ubiPunto.put("idFoto",  miPath.getLastPathSegment());
-            ubiPunto.put("fPush", fPush);
-            ubiPunto.put("userPush", fu.getEmail());
+        	if(rbM.isChecked()||rbH.isChecked()) {
+		        if (rbM.isChecked()) sexo = "m";
+		        if (rbH.isChecked()) sexo = "h";
+		        latitud = getIntent().getExtras().getDouble("LAT", 1);
+		        longitud = getIntent().getExtras().getDouble("LONG", 1);
+		        Date fechaAct = new Date();
+		        String fPush = fechaAct.toString();
+		        ubiPunto = new HashMap<>();
+		        ubiPunto.put("latitude", latitud);
+		        ubiPunto.put("longitude", longitud);
+		        ubiPunto.put("tipoAletra", tipoAletra);
+		        ubiPunto.put("tipoAnimal", tipoAnimal.getText().toString());
+		        ubiPunto.put("color", color.getText().toString());
+		        ubiPunto.put("fecha", fecha.getText().toString());
+		        ubiPunto.put("raza", raza.getText().toString());
+		        ubiPunto.put("desc", desc.getText().toString());
+		        ubiPunto.put("sexo", sexo);
+		        ubiPunto.put("idFoto", miPath.getLastPathSegment());
+		        ubiPunto.put("fPush", fPush);
+		        ubiPunto.put("userPush", fu.getEmail());
 
-            StorageReference sr = msr.child("fotosAnimales").child(miPath.getLastPathSegment());
-            sr.putFile(miPath);
-            dbr = FirebaseDatabase.getInstance().getReference();
-            dbr.child("alertas").push().setValue(ubiPunto);
-            finish();
-            startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+		        StorageReference sr = msr.child("fotosAnimales").child(miPath.getLastPathSegment());
+		        sr.putFile(miPath);
+		        dbr = FirebaseDatabase.getInstance().getReference();
+		        dbr.child("alertas").push().setValue(ubiPunto);
+		        finish();
+		        startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+	        }
         }else{
             Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
 

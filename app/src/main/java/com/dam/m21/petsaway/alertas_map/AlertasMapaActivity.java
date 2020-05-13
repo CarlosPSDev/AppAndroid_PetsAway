@@ -22,8 +22,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.alertas_lista.AlertasList;
 import com.dam.m21.petsaway.formulario.FormularioActivity;
-import com.dam.m21.petsaway.model.PojoFormulario;
 import com.dam.m21.petsaway.model.PojoUser;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -73,12 +73,9 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     private LatLng miLoc;
     private Marker mark;
     String temaActual,idUser;
-
-    Toolbar toolbar;
-
     private BottomSheetBehavior bsb;
     View bottomSheet;
-    PojoFormulario pf;
+    AlertasList pf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,7 +208,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                pf = (PojoFormulario) marker.getTag();
+                pf = (AlertasList) marker.getTag();
                 if (pf.getTipoAnimal() != null) {
                     tipoAnimalM.setText(pf.getTipoAnimal());
                     fechaEPAnimalM.setText(pf.getFecha());
@@ -294,22 +291,27 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                    PojoFormulario pf = childDataSnapshot.getValue(PojoFormulario.class);
-                    if(pf.getTipoAletra().equals("encontrado")){
-                        double longitude = pf.getLongitude();
-                        double latitude = pf.getLatitude();
-                        String tipoAnimal = pf.getTipoAnimal();
-                        miLoc = new LatLng(latitude, longitude);
-                        mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
-                        if (ta != null) {
-                            Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
-                            Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
-                            LatLng locA = new LatLng(latAletra, lonAletra);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
-                        } else {
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
-                        }
+	                AlertasList pf = childDataSnapshot.getValue(AlertasList.class);
+                    if(pf!=null) {
+                    	String tA=pf.getTipoAletra();
+                    	if(tA!=null) {
+		                    if (tA.equals("encontrado")) {
+			                    String tipoAnimal = pf.getTipoAnimal();
+			                    double longitude = pf.getLongitude();
+			                    double latitude = pf.getLatitude();
+			                    miLoc = new LatLng(latitude, longitude);
+			                    mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
+					                    BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
+			                    if (ta != null) {
+				                    Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+				                    Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+				                    LatLng locA = new LatLng(latAletra, lonAletra);
+				                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+			                    } else {
+				                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+			                    }
+		                    }
+	                    }
                     }
                 }
             }
@@ -332,24 +334,29 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                    PojoFormulario pf = childDataSnapshot.getValue(PojoFormulario.class);
-                    if (pf.getTipoAletra().equals("buscado")) {
-                        double longitude = pf.getLongitude();
-                        double latitude = pf.getLatitude();
-                        String tipoAnimal = pf.getTipoAnimal();
-                        miLoc = new LatLng(latitude, longitude);
-                        mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
-                                BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
+	                AlertasList pf = childDataSnapshot.getValue(AlertasList.class);
+	                if(pf!=null) {
+		                String tA=pf.getTipoAletra();
+		                if(tA!=null) {
+			                if (tA.equals("buscado")) {
+				                String tipoAnimal = pf.getTipoAnimal();
+				                double longitude = pf.getLongitude();
+				                double latitude = pf.getLatitude();
+				                miLoc = new LatLng(latitude, longitude);
+				                mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
+						                BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
 
-                        if (ta != null) {
-                            Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
-                            Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
-                            LatLng locA = new LatLng(latAletra, lonAletra);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
-                        } else {
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
-                        }
-                    }
+				                if (ta != null) {
+					                Double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+					                Double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
+					                LatLng locA = new LatLng(latAletra, lonAletra);
+					                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
+				                } else {
+					                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
+				                }
+			                }
+                         }
+	                }
                 }
             }
             @Override
