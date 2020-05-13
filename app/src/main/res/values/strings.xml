@@ -108,6 +108,7 @@
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
+
     <string name="toast_datos_vacios">Se deben rellenar los datos</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="hint_pass_ant">Anterior %1$s</string>
@@ -134,6 +135,7 @@
     <string name="btn_eliminar_mascA">Eliminar Mascota</string>
     <string name="btn_cancelar_mascM">Cancelar y Volver</string>
     <string name="btn_guardar_mascM">Guardar Cambios</string>
+    <string name="tx_detalle_verEnMapa">Ver en el mapa</string>
 
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
     <string name="tv_color">Color:</string>
@@ -142,5 +144,6 @@
     <string name="toast_foto_guardada">¡Guardada!</string>
     <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
+    <string name="toast_puntoMap">Elige una ubicacion en el mapa</string>
 
 </resources>

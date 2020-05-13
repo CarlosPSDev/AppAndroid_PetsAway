@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,8 +13,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +37,9 @@ public class FormularioActivity extends AppCompatActivity {
     EditText tipoAnimal,color,fecha,raza,desc;
     ImageButton btAddFoto;
     Button bt_buscado,bt_encontrado;
-    String tipoAletra;
+    String tipoAletra,sexo;
     private double latitud,longitud;
-
+    RadioButton rbM,rbH;
     Map<String, Object> ubiPunto;
 
     private StorageReference msr;
@@ -57,6 +61,10 @@ public class FormularioActivity extends AppCompatActivity {
         bt_buscado=findViewById(R.id.bt_buscado);
         bt_encontrado=findViewById(R.id.bt_encontrado);
         btAddFoto=findViewById(R.id.bt_add_foto);
+        rbM=findViewById(R.id.rbM);
+        rbH=findViewById(R.id.rbH);
+        if (rbM.isChecked()) sexo = "m";
+        if (rbH.isChecked()) sexo = "h";
         msr= FirebaseStorage.getInstance().getReference();
         fa = FirebaseAuth.getInstance();
         fu = fa.getCurrentUser();
@@ -79,6 +87,7 @@ public class FormularioActivity extends AppCompatActivity {
             ubiPunto.put("fecha", fecha.getText().toString());
             ubiPunto.put("raza", raza.getText().toString());
             ubiPunto.put("desc", desc.getText().toString());
+            ubiPunto.put("sexo", sexo);
             ubiPunto.put("idFoto",  miPath.getLastPathSegment());
             ubiPunto.put("fPush", fPush);
             ubiPunto.put("userPush", fu.getEmail());
@@ -86,7 +95,8 @@ public class FormularioActivity extends AppCompatActivity {
             StorageReference sr = msr.child("fotosAnimales").child(miPath.getLastPathSegment());
             sr.putFile(miPath);
             dbr = FirebaseDatabase.getInstance().getReference();
-            dbr.child("alertas").child(tipoAletra).push().setValue(ubiPunto);
+            dbr.child("alertas").push().setValue(ubiPunto);
+            finish();
             startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
         }else{
             Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
@@ -125,5 +135,17 @@ public class FormularioActivity extends AppCompatActivity {
         bt_buscado.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_encontrado.setBackgroundResource(R.drawable.toolbar_style);
         tipoAletra="buscado";
+    }
+    public void calendario(View view) {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog dpd = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        fecha.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        dpd.setCancelable(false);
+        dpd.show();
     }
 }
