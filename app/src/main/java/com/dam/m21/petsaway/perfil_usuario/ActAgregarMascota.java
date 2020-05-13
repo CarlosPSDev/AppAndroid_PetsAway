@@ -172,7 +172,6 @@ public class ActAgregarMascota extends AppCompatActivity {
             Uri uri = data.getData();
             final StorageReference filePath = referenciaStor.child("fotosMascotasUser").child(userId)
                     .child(uri.getLastPathSegment());
-
             Log.d("foto", "mostramos la uri en el movil " + uri.toString());
 
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
