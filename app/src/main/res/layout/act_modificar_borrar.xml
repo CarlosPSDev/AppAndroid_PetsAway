@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:paddingStart="22dp"
     android:paddingEnd="22dp"
-    tools:context=".perfil_usuario.ActModificarBorrar">
+    tools:context=".perfil_usuario.ActModificarBorrar"
+    android:background="@color/colorPurpuraTransparente">
 
     <!--<TextView
         android:id="@+id/tvMod"
