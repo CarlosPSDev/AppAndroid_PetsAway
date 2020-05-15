@@ -51,7 +51,7 @@
     <string name="tv_slide3_tit">Para finalizar</string>
     <string name="tv_email_usuario">Email</string>
     <string name="tv_ciudad_usuario">Ciudad</string>
-    <string name="tv_mascotas_usuario">Mascotas</string>
+    <string name="tv_mascotas_usuario">Añadir Mascotas  </string>
     <string name="btn_editar_perfil">Editar Perfil</string>
     <string name="tv_aclaracion_perfil">(Pulsa para añadir, editar o borrar)</string>
 
@@ -137,12 +137,13 @@
     <string name="btn_guardar_mascM">Guardar Cambios</string>
     <string name="tx_detalle_verEnMapa">Ver en el mapa</string>
 
-
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
     <string name="tv_color">Color:</string>
     <string name="tv_especie">Especie:</string>
     <string name="toast_cambios_ok">¡Guardado!</string>
     <string name="toast_foto_guardada">¡Guardada!</string>
+    <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
+    <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
     <string name="toast_puntoMap">Elige una ubicacion en el mapa</string>
 
 </resources>

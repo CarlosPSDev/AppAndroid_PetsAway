@@ -11,21 +11,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -86,7 +84,6 @@ public class ActAgregarMascota extends AppCompatActivity {
     }
 
     public void guardarMascota(View view) {
-        Toast t;
         String especieOtro = "";
         String sexoM = "";
         boolean especieOk = true;
@@ -116,12 +113,11 @@ public class ActAgregarMascota extends AppCompatActivity {
             if (!urlM.isEmpty()) mapaMascota.put("urlImg", urlM);
 
             ref.child(userId + "-" + nombreM).updateChildren(mapaMascota);
-            t = Toast.makeText(this, getString(R.string.toast_guardado_ok), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            t.show();
+            toastPersonalizado(getString(R.string.toast_guardado_ok));
+
             cancelarG(view);
         } else {
-            t = Toast.makeText(this, getString(R.string.toast_datos_vacios_m), Toast.LENGTH_SHORT); t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-            t.show();
+            toastPersonalizado(getString(R.string.toast_datos_vacios_m));
         }
     }
 
@@ -176,7 +172,6 @@ public class ActAgregarMascota extends AppCompatActivity {
             Uri uri = data.getData();
             final StorageReference filePath = referenciaStor.child("fotosMascotasUser").child(userId)
                     .child(uri.getLastPathSegment());
-
             Log.d("foto", "mostramos la uri en el movil " + uri.toString());
 
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -194,26 +189,24 @@ public class ActAgregarMascota extends AppCompatActivity {
                             Glide.with(ActAgregarMascota.this).load(urlM)
                                     //.fitCenter().centerCrop()
                                     .into(imagenMascota);
-
                            /* HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("urlFotoMascota", urlM);  */
 
                         }
                     });
-
-                    Toast.makeText(ActAgregarMascota.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
+                    toastPersonalizado(getString(R.string.toast_foto_guardada));
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ActAgregarMascota.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            toastPersonalizado(e.getMessage());
                         }
                     });
 
         } else {
             Log.d("foto", "El activityResult no fue OK");
-            Toast.makeText(ActAgregarMascota.this, "El activityResult no fue OK", Toast.LENGTH_SHORT).show();
+            //toastPersonalizado("El activityResult no fue OK");
         }
     }
 
@@ -238,4 +231,15 @@ public class ActAgregarMascota extends AppCompatActivity {
         });
     }
 
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(ActAgregarMascota.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
+    }
 }
