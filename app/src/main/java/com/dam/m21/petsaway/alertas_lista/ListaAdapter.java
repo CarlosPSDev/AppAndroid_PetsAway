@@ -68,18 +68,21 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                         .into(image_elap);
             }
         });
-        if(il.getTipoAletra().equals("buscado")){
-            ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
-            tipoAl_elap.setImageResource(R.drawable.ic_bus);
-        }else {
-            ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
-            tipoAl_elap.setImageResource(R.drawable.ic_enc);
+        if (il.getTipoAletra() != null) {
+            if(il.getTipoAletra().equals("buscado")){
+                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
+                tipoAl_elap.setImageResource(R.drawable.ic_bus);
+            }else {
+                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
+                tipoAl_elap.setImageResource(R.drawable.ic_enc);
+            }
         }
         if (il.getSexo().equals("m")){
             sexo_elap.setImageResource(R.drawable.ic_macho);
         }else{
             sexo_elap.setImageResource(R.drawable.ic_hembra);
         }
+
         nombre_elap.setText(il.getTipoAnimal());
         fecha_elap.setText(il.getFecha());
     }
