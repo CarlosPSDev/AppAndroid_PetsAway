@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,8 +42,9 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     private ImageView image_elap;
     private TextView nombre_elap;
     private TextView fecha_elap;
+    LinearLayout ll_elap;
     ImageButton bt_goMap;
-    ImageView sexo_elap;
+    ImageView sexo_elap,tipoAl_elap;
 
     public ListViewHolder(View v) {
         super(v);
@@ -51,6 +53,8 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         fecha_elap = v.findViewById(R.id.fecha_elap);
         bt_goMap=v.findViewById(R.id.bt_goMap);
         sexo_elap=v.findViewById(R.id.sexo_elap);
+        ll_elap=v.findViewById(R.id.ll_elap);
+        tipoAl_elap=v.findViewById(R.id.tipoAl_elap);
     }
 
     public void bindAList(AlertasList il){
@@ -64,7 +68,13 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                         .into(image_elap);
             }
         });
-
+        if(il.getTipoAletra().equals("buscado")){
+            ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
+            tipoAl_elap.setImageResource(R.drawable.ic_bus);
+        }else {
+            ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
+            tipoAl_elap.setImageResource(R.drawable.ic_enc);
+        }
         if (il.getSexo().equals("m")){
             sexo_elap.setImageResource(R.drawable.ic_macho);
         }else{

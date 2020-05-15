@@ -4,83 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGrisClaro"
     tools:context=".ajustes.AjustesActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="24sp"
-            android:layout_marginHorizontal="10dp"
-            android:text="@string/modTema"/>
-        <Button
-            android:id="@+id/bt_tC"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
-            android:onClick="temaClaro"
-            android:background="@drawable/bt_tema1_style"/>
-        <Button
-            android:id="@+id/bt_tO"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
-            android:onClick="temaOscuro"
-            android:background="@drawable/bt_tema2_style"/>
+            android:background="@android:color/transparent"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="5dp"
+                android:background="@drawable/style_ajustes"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10dp"
+                    android:textSize="18sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/black"
+                    android:text="@string/modTema"/>
+                <Button
+                    android:id="@+id/bt_tC"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:onClick="temaClaro"
+                    android:background="@drawable/bt_tema1_style"/>
+                <Button
+                    android:id="@+id/bt_tO"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:onClick="temaOscuro"
+                    android:background="@drawable/bt_tema2_style"/>
 
-    </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/te"
+                android:text="@string/modPass"
+                android:onClick="cambiarPass"
+                style="@style/btAjustesStyle"/>
+            <Button
+                android:text="@string/modEmail"
+                android:onClick="cambiarCorreo"
+                style="@style/btAjustesStyle"/>
+
+            <Button
+                android:id="@+id/btModFondoDelChat"
+                android:text="@string/modFondoChat"
+                android:onClick="modFondoDelChat"
+                style="@style/btAjustesStyle"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/modPass"
-                android:onClick="cambiarPass"
-                android:background="@color/colorPurpura"/>
+                android:background="@android:color/transparent"/>
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/modEmail"
-            android:onClick="cambiarCorreo"
-            android:background="@color/colorGris"/>
+                android:text="@string/invitAm"
+                style="@style/btAjustesStyle"
+            android:background="@drawable/style_ajustes"/>
 
-        <Button
-            android:id="@+id/btModFondoDelChat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/modFondoChat"
-            android:background="@color/colorPurpura"
-            android:onClick="modFondoDelChat"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/invitAm"
-            android:background="@android:color/transparent"/>
+            <Button
+                android:text="@string/notif"
+                style="@style/btAjustesStyle"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/notif"
-            android:background="@android:color/transparent"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/borrarCuenta"
-            android:onClick="borrarMiCuenta"
-            android:background="@color/colorGris"/>
+            <Button
+                android:text="@string/borrarCuenta"
+                android:onClick="borrarMiCuenta"
+                style="@style/btAjustesStyle"/>
     </LinearLayout>
 
 </RelativeLayout>
