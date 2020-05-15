@@ -27,7 +27,6 @@
         <activity android:name=".perfil_usuario.ActAgregarMascota" />
         <activity android:name=".ajustes.ModEmailPass" />
         <activity android:name=".alertas_lista.AlertasListaActivity" />
-        <activity android:name=".registro.SignWithGoogleActivity" />
         <activity android:name=".registro.reset_password.ResetPasswordActivity" />
         <activity android:name=".perfil_usuario.PerfilUsuario" />
         <activity android:name=".aviso_legal.AvisoLegal" />
