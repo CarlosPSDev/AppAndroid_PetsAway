@@ -1,7 +1,6 @@
 package com.dam.m21.petsaway.ajustes;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,11 +13,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.model.PojoUser;
-import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,7 +41,6 @@ public class AjustesActivity extends AppCompatActivity {
     private FirebaseAuth fa;
     private FirebaseUser fu;
     Map<String, Object> userAjustes;
-    EditText nuevoEmail;
     private StorageReference msr;
     Uri miPath;
     DatabaseReference dbr;
@@ -217,4 +213,6 @@ public class AjustesActivity extends AppCompatActivity {
 
     }
 
+	public void invitarAmigos(View view) {
+	}
 }

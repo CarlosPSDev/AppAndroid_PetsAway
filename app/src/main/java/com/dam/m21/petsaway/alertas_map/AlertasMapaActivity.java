@@ -3,7 +3,6 @@ package com.dam.m21.petsaway.alertas_map;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -23,7 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.alertas_lista.AlertasList;
-import com.dam.m21.petsaway.formulario.FormularioActivity;
+import com.dam.m21.petsaway.alertas_lista.FormularioActivity;
 import com.dam.m21.petsaway.model.PojoUser;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -48,9 +47,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback { Button bt_encuentra,bt_busca;
 ImageButton bt_add;

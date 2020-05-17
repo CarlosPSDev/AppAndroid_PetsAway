@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.formulario;
+package com.dam.m21.petsaway.alertas_lista;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alertas_adoptar.FormularioAdoptaActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_fotos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                />
+
+            <ImageButton
+                android:id="@+id/bt_add_foto_adopta"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add_photo"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="-20dp"
+                android:paddingHorizontal="20dp"
+                android:background="@android:color/transparent"
+                android:onClick="addFoto"/>
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/nik_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_nombre"/>
+        <EditText
+            android:id="@+id/tipoAnimal_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_tipo_animal"/>
+        <EditText
+            android:id="@+id/color_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edad_adopta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/h_edad"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                android:onClick="calendario"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/raza_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_raza"/>
+        <EditText
+            android:id="@+id/desc_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_desc"/>
+        <RadioGroup
+            android:id="@+id/rg_form_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="16dp">
+
+            <RadioButton
+                android:id="@+id/rbM_adopta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rdbtn_macho" />
+
+            <RadioButton
+                android:id="@+id/rbH_adopta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/padding"
+                android:text="@string/rdbtn_hembra" />
+        </RadioGroup>
+        <Button
+            android:id="@+id/bt_guardar_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorAzul"
+            android:text="@string/bt_guardar"
+            android:onClick="guardar"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

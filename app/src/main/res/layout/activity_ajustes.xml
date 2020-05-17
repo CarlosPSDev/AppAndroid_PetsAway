@@ -72,6 +72,7 @@
         <Button
                 android:text="@string/invitAm"
                 style="@style/btAjustesStyle"
+            android:onClick="invitarAmigos"
             android:background="@drawable/style_ajustes"/>
 
             <Button

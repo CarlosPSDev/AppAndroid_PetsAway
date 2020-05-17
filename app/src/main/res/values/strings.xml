@@ -145,5 +145,7 @@
     <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
     <string name="toast_puntoMap">Elige una ubicacion en el mapa</string>
+    <string name="h_edad">fecha de nacimiento</string>
+    <string name="h_nombre">nik de mascota</string>
 
 </resources>
