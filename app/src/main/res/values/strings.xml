@@ -147,5 +147,8 @@
     <string name="toast_puntoMap">Elige una ubicacion en el mapa</string>
     <string name="h_edad">fecha de nacimiento</string>
     <string name="h_nombre">nik de mascota</string>
+    <string name="msjDialogborrarCuenta">Estas seguro que quieres borrar esta cuenta?</string>
+    <string name="msjBtDialogSI">Si, seguro</string>
+    <string name="msjBtDialogNo">Cancelar</string>
 
 </resources>
