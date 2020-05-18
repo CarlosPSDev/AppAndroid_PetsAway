@@ -30,8 +30,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 
 public class DetalleAdoptaActivity extends AppCompatActivity {
-		TextView tipoAnimal_adopta,color_adopta,edad_adopta,raza_adopta,desc_adopta,nik_adopta, sexo_adopta_d;
-		ImageView foto_d;
+		TextView tipoAnimal_adopta,color_adopta,edad_adopta,raza_adopta,desc_adopta,nik_adopta;
+		ImageView foto_d, sexo_adopta_d;
 		ArrayList<Fotos> listaFotos= new ArrayList<>();
 		RecyclerView rv_la;
 		LinearLayoutManager llm;
@@ -42,7 +42,6 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			setContentView(R.layout.activity_detalle_adopta);
 			foto_d=findViewById(R.id.foto_d);
 			rv_la=findViewById(R.id.rv_fotos_d);
-			nik_adopta=findViewById(R.id.nik_adopta_d);
 			tipoAnimal_adopta=findViewById(R.id.tipoAnimal_adopta_d);
 			color_adopta=findViewById(R.id.color_adopta_d);
 			edad_adopta=findViewById(R.id.edad_adopta_d);
@@ -56,7 +55,11 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			edad_adopta.setText(alad.getEdad());
 			raza_adopta.setText(alad.getRaza());
 			desc_adopta.setText(alad.getDesc());
-			sexo_adopta_d.setText(alad.getSexo());
+			if(alad.getSexo().equals("h")) {
+				sexo_adopta_d.setImageResource(R.drawable.ic_hembra);
+			}else{
+				sexo_adopta_d.setImageResource(R.drawable.ic_macho);
+			}
 			Glide.with(getApplicationContext())
 					.load(listaFotos.get(0).getUrl())
 					.into(foto_d);
