@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class AlertasList implements Parcelable {
 
-    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto,sexo;
+    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto,sexo,idUserPush;
     private Double latitude,longitude;
     private String edad;
     private ArrayList<Fotos> fotos;
@@ -27,6 +27,7 @@ public class AlertasList implements Parcelable {
         userPush = in.readString();
         idFoto = in.readString();
         sexo = in.readString();
+        idUserPush= in.readString();
         if (in.readByte() == 0) {
             latitude = null;
         } else {
@@ -52,6 +53,7 @@ public class AlertasList implements Parcelable {
         dest.writeString(userPush);
         dest.writeString(idFoto);
         dest.writeString(sexo);
+        dest.writeString(idUserPush);
         if (latitude == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -86,6 +88,10 @@ public class AlertasList implements Parcelable {
 
     public ArrayList<Fotos> getFotos() {
         return fotos;
+    }
+
+    public String getIdUserPush() {
+        return idUserPush;
     }
 
     public String getEdad() {

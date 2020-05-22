@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.alertas_lista.AlertasList;
+import com.dam.m21.petsaway.chat.MessageActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -34,6 +37,7 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 		ImageView foto_d, sexo_adopta_d;
 		ArrayList<Fotos> listaFotos= new ArrayList<>();
 		RecyclerView rv_la;
+		AlertasList alad;
 		LinearLayoutManager llm;
 		FotosAdapter la;
 		@Override
@@ -48,7 +52,7 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			raza_adopta=findViewById(R.id.raza_adopta_d);
 			desc_adopta=findViewById(R.id.desc_adopta_d);
 			sexo_adopta_d=findViewById(R.id.sexo_adopta_d);
-			AlertasList alad=getIntent().getParcelableExtra("ADOPTA");
+			alad=getIntent().getParcelableExtra("ADOPTA");
 			listaFotos=getIntent().getParcelableArrayListExtra("FOTOS");
 			tipoAnimal_adopta.setText(alad.getTipoAnimal());
 			color_adopta.setText(alad.getColor());
@@ -69,4 +73,9 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			rv_la.setAdapter(la);
 		}
 
+	public void abrirChat(View view) {
+		Intent intent = new Intent(getApplicationContext(),MessageActivity.class);
+		intent.putExtra("userid", alad.getIdUserPush());
+		startActivity(intent);
+	}
 }

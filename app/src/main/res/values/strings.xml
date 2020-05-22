@@ -150,5 +150,6 @@
     <string name="msjDialogborrarCuenta">Estas seguro que quieres borrar esta cuenta?</string>
     <string name="msjBtDialogSI">Si, seguro</string>
     <string name="msjBtDialogNo">Cancelar</string>
+    <string name="tx_bt_abrir_chat">Abrir chat</string>
 
 </resources>

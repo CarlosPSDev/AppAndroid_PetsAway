@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
+import com.dam.m21.petsaway.chat.MessageActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -141,6 +142,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
                 TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
                 TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
+                Button btAbrChat=vista.findViewById(R.id.btAbrChat);
 
                 detalle_tipoAletra.setText(datos.get(position).getTipoAletra());
                 detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());
@@ -150,6 +152,15 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 detalle_desc.setText(datos.get(position).getDesc());
                 detalle_fPush.setText(datos.get(position).getfPush());
                 detalle_userPush.setText(datos.get(position).getUserPush());
+                btAbrChat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(v.getContext(), MessageActivity.class);
+                        AlertasList alertaPos=datos.get(position);
+                        intent.putExtra("userid", alertaPos.getIdUserPush());
+                        holder.itemView.getContext().startActivity(intent);
+                    }
+                });
                 bt_close_dialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -174,7 +185,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                             AlertasList alertaPos=datos.get(position);
                             if(alerta.getDesc().equals(alertaPos.getDesc())){
                                 childDataSnapshot.getRef().removeValue();
-                                v.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
+                                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
                             }
                         }
                     }
@@ -186,6 +197,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
 
             }
         });
+
     }
 
     @Override

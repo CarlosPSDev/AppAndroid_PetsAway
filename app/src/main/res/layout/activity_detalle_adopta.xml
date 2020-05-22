@@ -8,7 +8,7 @@
     tools:context=".alertas_adoptar.DetalleAdoptaActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <FrameLayout
             android:layout_width="match_parent"
@@ -124,9 +124,10 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingHorizontal="15dp"
         android:paddingVertical="8dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/d_adopta_d"
@@ -135,13 +136,23 @@
             android:textSize="20sp"
             android:textColor="@color/colorMagenta"
             android:text="@string/h_desc"/>
-        <TextView
-            android:id="@+id/desc_adopta_d"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/desc_adopta_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorGrisClaro"
+                    android:layout_weight="1"/>
+        </androidx.core.widget.NestedScrollView>
+</LinearLayout>
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorGrisClaro"
-            android:layout_weight="1"/>
-    </LinearLayout>
+            android:text="@string/tx_bt_abrir_chat"
+            android:onClick="abrirChat"
+            />
     </LinearLayout>
  </RelativeLayout>

@@ -159,6 +159,7 @@ public class FormularioAdoptaActivity extends AppCompatActivity {
 				adopta.put("sexo", sexo_adopta);
 				adopta.put("fPush", fPush);
 				adopta.put("userPush", fu.getEmail());
+				adopta.put("idUserPush", fu.getUid());
 				adopta.put("fotos", listaFotos);
 				dbr.child("adoptar").push().updateChildren(adopta);
 				finish();
