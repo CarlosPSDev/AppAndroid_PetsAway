@@ -23,9 +23,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".perfil_usuario.ActModificarBorrar"></activity>
+        <activity android:name=".alertas_adoptar.FormularioAdoptaActivity"/>
+        <activity android:name=".alertas_adoptar.DetalleAdoptaActivity" />
+        <activity android:name=".alertas_adoptar.AdoptaListaActivity" />
+        <activity android:name=".perfil_usuario.ActModificarBorrar" />
         <activity android:name=".perfil_usuario.ActAgregarMascota" />
-        <activity android:name=".ajustes.ModEmailPass" />
+        <activity android:name=".ajustes.ModEmailPass" >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="example.com/link" android:scheme="http"/>
+                <data android:host="example.com/link" android:scheme="https"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".alertas_lista.AlertasListaActivity" />
         <activity android:name=".registro.reset_password.ResetPasswordActivity" />
         <activity android:name=".perfil_usuario.PerfilUsuario" />
@@ -35,7 +46,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".acerca_de.AcercaDeActivity" />
         <activity android:name=".ajustes.AjustesActivity" />
-        <activity android:name=".formulario.FormularioActivity" />
+        <activity android:name=".alertas_lista.FormularioActivity" />
         <activity android:name=".alertas_map.AlertasMapaActivity" />
         <activity android:name=".registro.RegistroActivity" />
         <activity android:name=".chat.MainActivityChat" />

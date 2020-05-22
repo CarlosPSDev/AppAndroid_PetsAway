@@ -1,4 +1,4 @@
-package com.dam.m21.petsaway.formulario;
+package com.dam.m21.petsaway.alertas_lista;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -92,6 +92,7 @@ public class FormularioActivity extends AppCompatActivity {
 		        ubiPunto.put("idFoto", miPath.getLastPathSegment());
 		        ubiPunto.put("fPush", fPush);
 		        ubiPunto.put("userPush", fu.getEmail());
+		        ubiPunto.put("idUserPush", fu.getUid());
 
 		        StorageReference sr = msr.child("fotosAnimales").child(miPath.getLastPathSegment());
 		        sr.putFile(miPath);

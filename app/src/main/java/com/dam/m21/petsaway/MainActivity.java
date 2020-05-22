@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
+import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_adoptar){
 
+            startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));
 

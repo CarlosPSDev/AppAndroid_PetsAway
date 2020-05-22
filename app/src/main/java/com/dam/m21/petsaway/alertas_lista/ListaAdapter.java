@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
+import com.dam.m21.petsaway.chat.MessageActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -41,8 +48,9 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     private ImageView image_elap;
     private TextView nombre_elap;
     private TextView fecha_elap;
-    ImageButton bt_goMap;
-    ImageView sexo_elap;
+    LinearLayout ll_elap;
+    ImageButton bt_goMap,bt_borrarAlerta;
+    ImageView sexo_elap,tipoAl_elap;
 
     public ListViewHolder(View v) {
         super(v);
@@ -51,6 +59,9 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         fecha_elap = v.findViewById(R.id.fecha_elap);
         bt_goMap=v.findViewById(R.id.bt_goMap);
         sexo_elap=v.findViewById(R.id.sexo_elap);
+        ll_elap=v.findViewById(R.id.ll_elap);
+        tipoAl_elap=v.findViewById(R.id.tipoAl_elap);
+        bt_borrarAlerta=v.findViewById(R.id.bt_borrarAlerta);
     }
 
     public void bindAList(AlertasList il){
@@ -64,11 +75,24 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                         .into(image_elap);
             }
         });
-
+        if(il.getTipoAletra()!=null) {
+            if (il.getTipoAletra().equals("buscado")) {
+                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
+                tipoAl_elap.setImageResource(R.drawable.ic_bus);
+            } else {
+                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
+                tipoAl_elap.setImageResource(R.drawable.ic_enc);
+            }
+        }
         if (il.getSexo().equals("m")){
             sexo_elap.setImageResource(R.drawable.ic_macho);
         }else{
             sexo_elap.setImageResource(R.drawable.ic_hembra);
+        }
+        if(il.getUserPush().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
+            bt_borrarAlerta.setVisibility(View.VISIBLE);
+        }else {
+            bt_borrarAlerta.setVisibility(View.GONE);
         }
         nombre_elap.setText(il.getTipoAnimal());
         fecha_elap.setText(il.getFecha());
@@ -118,6 +142,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
                 TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
                 TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
+                Button btAbrChat=vista.findViewById(R.id.btAbrChat);
 
                 detalle_tipoAletra.setText(datos.get(position).getTipoAletra());
                 detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());
@@ -127,6 +152,15 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 detalle_desc.setText(datos.get(position).getDesc());
                 detalle_fPush.setText(datos.get(position).getfPush());
                 detalle_userPush.setText(datos.get(position).getUserPush());
+                btAbrChat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(v.getContext(), MessageActivity.class);
+                        AlertasList alertaPos=datos.get(position);
+                        intent.putExtra("userid", alertaPos.getIdUserPush());
+                        holder.itemView.getContext().startActivity(intent);
+                    }
+                });
                 bt_close_dialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -140,6 +174,30 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 adC.show();
             }
         });
+        holder.bt_borrarAlerta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                FirebaseDatabase.getInstance().getReference().child("alertas").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                            AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
+                            AlertasList alertaPos=datos.get(position);
+                            if(alerta.getDesc().equals(alertaPos.getDesc())){
+                                childDataSnapshot.getRef().removeValue();
+                                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        throw databaseError.toException();
+                    }
+                });
+
+            }
+        });
+
     }
 
     @Override

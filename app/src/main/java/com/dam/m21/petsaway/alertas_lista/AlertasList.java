@@ -3,12 +3,99 @@ package com.dam.m21.petsaway.alertas_lista;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.dam.m21.petsaway.alertas_adoptar.Fotos;
+
+import java.util.ArrayList;
+
 public class AlertasList implements Parcelable {
 
-    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto,sexo;
+    private String tipoAletra,tipoAnimal,color,fecha,raza,desc,fPush,userPush,idFoto,sexo,idUserPush;
     private Double latitude,longitude;
-
+    private String edad;
+    private ArrayList<Fotos> fotos;
     public AlertasList() {
+    }
+
+    protected AlertasList(Parcel in) {
+        tipoAletra = in.readString();
+        tipoAnimal = in.readString();
+        color = in.readString();
+        fecha = in.readString();
+        raza = in.readString();
+        desc = in.readString();
+        fPush = in.readString();
+        userPush = in.readString();
+        idFoto = in.readString();
+        sexo = in.readString();
+        idUserPush= in.readString();
+        if (in.readByte() == 0) {
+            latitude = null;
+        } else {
+            latitude = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            longitude = null;
+        } else {
+            longitude = in.readDouble();
+        }
+        edad = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(tipoAletra);
+        dest.writeString(tipoAnimal);
+        dest.writeString(color);
+        dest.writeString(fecha);
+        dest.writeString(raza);
+        dest.writeString(desc);
+        dest.writeString(fPush);
+        dest.writeString(userPush);
+        dest.writeString(idFoto);
+        dest.writeString(sexo);
+        dest.writeString(idUserPush);
+        if (latitude == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(latitude);
+        }
+        if (longitude == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(longitude);
+        }
+        dest.writeString(edad);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<AlertasList> CREATOR = new Creator<AlertasList>() {
+        @Override
+        public AlertasList createFromParcel(Parcel in) {
+            return new AlertasList(in);
+        }
+
+        @Override
+        public AlertasList[] newArray(int size) {
+            return new AlertasList[size];
+        }
+    };
+
+    public ArrayList<Fotos> getFotos() {
+        return fotos;
+    }
+
+    public String getIdUserPush() {
+        return idUserPush;
+    }
+
+    public String getEdad() {
+        return edad;
     }
 
     public String getSexo() {
@@ -59,73 +146,4 @@ public class AlertasList implements Parcelable {
         return longitude;
     }
 
-    public static Creator<AlertasList> getCREATOR() {
-        return CREATOR;
-    }
-
-    protected AlertasList(Parcel in) {
-        tipoAletra = in.readString();
-        tipoAnimal = in.readString();
-        color = in.readString();
-        fecha = in.readString();
-        raza = in.readString();
-        desc = in.readString();
-        fPush = in.readString();
-        userPush = in.readString();
-        idFoto = in.readString();
-        sexo = in.readString();
-        if (in.readByte() == 0) {
-            latitude = null;
-        } else {
-            latitude = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            longitude = null;
-        } else {
-            longitude = in.readDouble();
-        }
-    }
-
-    public static final Creator<AlertasList> CREATOR = new Creator<AlertasList>() {
-        @Override
-        public AlertasList createFromParcel(Parcel in) {
-            return new AlertasList(in);
-        }
-
-        @Override
-        public AlertasList[] newArray(int size) {
-            return new AlertasList[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(tipoAletra);
-        dest.writeString(tipoAnimal);
-        dest.writeString(color);
-        dest.writeString(fecha);
-        dest.writeString(raza);
-        dest.writeString(desc);
-        dest.writeString(fPush);
-        dest.writeString(userPush);
-        dest.writeString(idFoto);
-        dest.writeString(sexo);
-        if (latitude == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(latitude);
-        }
-        if (longitude == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(longitude);
-        }
-    }
 }

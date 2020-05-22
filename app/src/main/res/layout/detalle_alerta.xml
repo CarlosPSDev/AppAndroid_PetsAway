@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/style_detalle_alerta"
-    android:layout_margin="20dp">
+    android:background="@android:color/transparent"
+    android:layout_margin="25dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
+        android:background="@drawable/toolbar_style"
         android:orientation="vertical">
         <TextView
             android:id="@+id/detalle_tipoAletra"
@@ -52,7 +53,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-
+<Button
+    android:id="@+id/btAbrChat"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/tx_bt_abrir_chat"/>
     </LinearLayout>
     <Button
         android:id="@+id/bt_close_dialog"
