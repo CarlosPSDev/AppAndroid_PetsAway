@@ -77,11 +77,11 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         });
         if(il.getTipoAletra()!=null) {
             if (il.getTipoAletra().equals("buscado")) {
-                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
-                tipoAl_elap.setImageResource(R.drawable.ic_bus);
+                //ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
+                tipoAl_elap.setImageResource(R.drawable.ic_mascota_perdida);
             } else {
-                ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
-                tipoAl_elap.setImageResource(R.drawable.ic_enc);
+                //ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
+                tipoAl_elap.setImageResource(R.drawable.ic_mascota_encontrada);
             }
         }
         if (il.getSexo().equals("m")){
@@ -133,25 +133,31 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 ad.setCancelable(false);
                 final AlertDialog adC=ad.create();
 
-                Button bt_close_dialog=vista.findViewById(R.id.bt_close_dialog);
-                TextView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
+                ImageButton bt_close_dialog=vista.findViewById(R.id.bt_close_dialog);
+                ImageView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
                 TextView detalle_tipoAnimal=vista.findViewById(R.id.detalle_tipoAnimal);
                 TextView detalle_color=vista.findViewById(R.id.detalle_color);
-                TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
+                //TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
                 TextView detalle_raza=vista.findViewById(R.id.detalle_raza);
                 TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
                 TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
                 TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
                 Button btAbrChat=vista.findViewById(R.id.btAbrChat);
 
-                detalle_tipoAletra.setText(datos.get(position).getTipoAletra());
+                if (datos.get(position).getTipoAletra().equalsIgnoreCase("buscado")) {
+                    detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_perdida);
+                } else {
+                    detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_encontrada);
+                }
+
                 detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());
-                detalle_color.setText(datos.get(position).getColor());
-                detalle_fecha.setText(datos.get(position).getFecha());
-                detalle_raza.setText(datos.get(position).getRaza());
-                detalle_desc.setText(datos.get(position).getDesc());
-                detalle_fPush.setText(datos.get(position).getfPush());
-                detalle_userPush.setText(datos.get(position).getUserPush());
+                detalle_color.setText("Color: " + datos.get(position).getColor());
+                //detalle_fecha.setText("Fecha: " + datos.get(position).getFecha());
+                detalle_raza.setText("Raza: " + datos.get(position).getRaza());
+                detalle_desc.setText("Descripción: " + datos.get(position).getDesc());
+                //detalle_fPush.setText("Fecha de publicación: " + datos.get(position).getfPush());
+                detalle_fPush.setText("Fecha de publicación: " + datos.get(position).getFecha());
+                detalle_userPush.setText("Contacto: " + datos.get(position).getUserPush());
                 btAbrChat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

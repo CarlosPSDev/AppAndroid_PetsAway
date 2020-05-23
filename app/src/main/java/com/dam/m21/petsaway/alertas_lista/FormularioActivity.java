@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +35,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FormularioActivity extends AppCompatActivity {
-    EditText tipoAnimal,color,fecha,raza,desc;
+    EditText tipoAnimal,color,raza,desc;
+    TextView fecha;
     ImageButton btAddFoto;
     Button bt_buscado,bt_encontrado;
     String tipoAletra,sexo;

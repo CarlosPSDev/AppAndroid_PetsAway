@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dam.m21.petsaway.R;
@@ -48,6 +49,7 @@ public class AlertasListaActivity extends AppCompatActivity {
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rv_la.clearOnChildAttachStateChangeListeners();
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
                     listaDatos.add(alerta);
@@ -65,20 +67,25 @@ public class AlertasListaActivity extends AppCompatActivity {
                         ad.setCancelable(false);
                         final AlertDialog adC=ad.create();
 
-                        Button bt_close_dialog=vista.findViewById(R.id.bt_close_dialog);
-                        TextView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
+                        ImageButton bt_close_dialog=vista.findViewById(R.id.bt_close_dialog);
+                        ImageView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
                         TextView detalle_tipoAnimal=vista.findViewById(R.id.detalle_tipoAnimal);
                         TextView detalle_color=vista.findViewById(R.id.detalle_color);
-                        TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
+                        //TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
                         TextView detalle_raza=vista.findViewById(R.id.detalle_raza);
                         TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
                         TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
                         TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
 
-                        detalle_tipoAletra.setText(alerta.getTipoAletra());
+                        if (alerta.getTipoAletra().equalsIgnoreCase("buscado")) {
+                            detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_perdida);
+                        } else {
+                            detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_encontrada);
+                        }
+
                         detalle_tipoAnimal.setText(alerta.getTipoAnimal());
                         detalle_color.setText(alerta.getColor());
-                        detalle_fecha.setText(alerta.getFecha());
+                        //detalle_fecha.setText(alerta.getFecha());
                         detalle_raza.setText(alerta.getRaza());
                         detalle_desc.setText(alerta.getDesc());
                         detalle_fPush.setText(alerta.getfPush());

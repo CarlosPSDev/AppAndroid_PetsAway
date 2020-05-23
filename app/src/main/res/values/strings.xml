@@ -158,5 +158,10 @@
     <string name="msjBtDialogSI">Si, seguro</string>
     <string name="msjBtDialogNo">Cancelar</string>
     <string name="tx_bt_abrir_chat">Abrir chat</string>
+    <string name="tv_bienvenida_alertas">Últimas Alertas</string>
+    <string name="tv_aclaracion_alertas">(pulsa sobre el botón para añadir una alerta)</string>
+    <string name="tv_tipo_alerta">perdido</string>
+    <string name="tv_tipo_alerta_enc">encontrado</string>
+    <string name="btn_contacto">Contacto</string>
 
 </resources>

@@ -1,121 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".alertas_lista.FormularioActivity"
     android:background="@color/colorGris">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="10dp"
-    android:orientation="vertical">
-    <ImageButton
-        android:id="@+id/bt_add_foto"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginVertical="10dp"
-        android:src="@drawable/ic_add_photo"
-        android:background="@color/colorBlanco"
-        android:onClick="addFoto"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/bt_encontrado"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:background="@drawable/toolbar_style"
-            android:onClick="encontrado"
-            android:text="@string/encontrado"/>
-        <Button
-            android:id="@+id/bt_buscado"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:background="@drawable/toolbar_style"
-            android:onClick="buscado"
-            android:text="@string/buscado"/>
-    </LinearLayout>
 
-    <EditText
-        android:id="@+id/tipoAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_tipo_animal"/>
-    <EditText
-        android:id="@+id/color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_color"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/bt_add_foto"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/colorBlanco"
+            android:onClick="addFoto"
+            android:src="@drawable/ic_add_photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_encontrado"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/toolbar_style"
+                android:onClick="encontrado"
+                android:text="@string/encontrado" />
+
+            <Button
+                android:id="@+id/bt_buscado"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/toolbar_style"
+                android:onClick="buscado"
+                android:text="@string/buscado" />
+        </LinearLayout>
+
         <EditText
+            android:id="@+id/tipoAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:hint="@string/h_tipo_animal" />
+
+        <EditText
+            android:id="@+id/color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:hint="@string/h_color" />
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/fecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginVertical="10dp"
+                android:hint="@string/h_fecha_p_e"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                android:onClick="calendario"/>
+        </LinearLayout>-->
+        <TextView
             android:id="@+id/fecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginVertical="10dp"
-            android:hint="@string/h_fecha_p_e"/>
-        <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/robotolight"
+            android:hint="@string/hint_fechaNac_mascota"
+            android:onClick="calendario"
+            android:textColor="@color/colorBack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora6" />
+        <!--android:drawableEnd="@android:drawable/ic_menu_my_calendar"-->
+
+        <EditText
+            android:id="@+id/raza"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_my_calendar"
-            android:onClick="calendario"/>
+            android:layout_marginVertical="10dp"
+            android:hint="@string/h_raza" />
+
+        <EditText
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:hint="@string/h_desc" />
+
+        <RadioGroup
+            android:id="@+id/rg_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="16dp">
+
+            <RadioButton
+                android:id="@+id/rbM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rdbtn_macho" />
+
+            <RadioButton
+                android:id="@+id/rbH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding"
+                android:layout_weight="1"
+                android:text="@string/rdbtn_hembra" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/bt_guardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAzul"
+            android:onClick="guardar"
+            android:text="@string/bt_guardar" />
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/raza"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_raza"/>
-    <EditText
-        android:id="@+id/desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="@string/h_desc"/>
-    <RadioGroup
-        android:id="@+id/rg_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="16dp">
-
-        <RadioButton
-            android:id="@+id/rbM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/rdbtn_macho" />
-
-        <RadioButton
-            android:id="@+id/rbH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/padding"
-            android:text="@string/rdbtn_hembra" />
-    </RadioGroup>
-    <Button
-        android:id="@+id/bt_guardar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAzul"
-        android:text="@string/bt_guardar"
-        android:onClick="guardar"/>
-
-</LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

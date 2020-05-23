@@ -1,70 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:layout_margin="25dp">
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbar_style">
+
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:background="@drawable/toolbar_style"
-        android:orientation="vertical">
-        <TextView
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
             android:id="@+id/detalle_tipoAletra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_tipoAnimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_fecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_raza"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_fPush"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/detalle_userPush"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-<Button
-    android:id="@+id/btAbrChat"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/tx_bt_abrir_chat"/>
+        <TextView
+            android:id="@+id/detalle_tipoAnimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotomedium"
+            android:textColor="@color/colorBack"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/detalle_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>
+
+        <!--<TextView
+            android:id="@+id/detalle_fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>-->
+
+        <TextView
+            android:id="@+id/detalle_raza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/detalle_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/detalle_fPush"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/detalle_userPush"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/colorBack"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/btAbrChat"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/estilo_titulo_mascotas"
+            android:drawableEnd="@drawable/ic_correo_blanco"
+            android:paddingEnd="20dp"
+            android:paddingStart="30dp"
+            android:text="@string/btn_contacto"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
     </LinearLayout>
-    <Button
+
+    <ImageButton
         android:id="@+id/bt_close_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_margin="16dp"
         android:background="@android:color/transparent"
-        android:textSize="25sp"
-        android:text="X"/>
-</RelativeLayout>
+        android:src="@drawable/ic_cerrar"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
