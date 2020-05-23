@@ -257,6 +257,8 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 } else {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
                 }
+            }else{
+                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
             }
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
@@ -281,6 +283,8 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 } else {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add);
                 }
+            }else{
+                bt_add.setBackgroundResource(R.drawable.style_bt_add);
             }
         }
     }

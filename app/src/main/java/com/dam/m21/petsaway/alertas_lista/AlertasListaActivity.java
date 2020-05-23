@@ -48,6 +48,7 @@ public class AlertasListaActivity extends AppCompatActivity {
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rv_la.clearOnChildAttachStateChangeListeners();
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
                     listaDatos.add(alerta);
