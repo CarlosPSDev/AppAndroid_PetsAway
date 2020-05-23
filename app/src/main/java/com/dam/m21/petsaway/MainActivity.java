@@ -23,6 +23,9 @@ import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth fbAuth;
     static final String CLAVE_EMAIL = "EMAIL";
 
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navController.setNavigationItemSelectedListener(this);
 
         navController.setItemIconTintList(null);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
@@ -118,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
             finish();
             fbAuth.signOut();
+            mGoogleSignInClient.signOut();
             //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
