@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        /*comprobarOnBoarding();*/ //Carlos---- Comprobamos si lanzar el onboarding o no
+                                       /* comprobarOnBoarding();*/ //Carlos---- Comprobamos si lanzar el onboarding o no
 
                                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(i);
@@ -157,11 +157,11 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else {
-            numVeces++;
+            /* numVeces++;
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putInt("vecesEjecutado", numVeces);
-            editor.commit();
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            editor.commit();*/
+            Intent i = new Intent(LoginActivity.this, LanzadorOnBoard.class);
             startActivity(i);
             finish();
         }

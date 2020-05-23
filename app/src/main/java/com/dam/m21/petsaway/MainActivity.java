@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));
 
+        } else if (id == R.id.nav_noticias){
+            startActivity(new Intent(MainActivity.this, NoticiasActivity.class));
+
         } else if (id == R.id.nav_ajustes){
             startActivity(new Intent(MainActivity.this, AjustesActivity.class));
 

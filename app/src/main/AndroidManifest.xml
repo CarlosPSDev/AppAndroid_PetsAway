@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".perfil_usuario.ActModificarBorrar"></activity>
+        <activity android:name=".NoticiasActivity"></activity>
+        <activity android:name=".perfil_usuario.ActModificarBorrar" />
         <activity android:name=".perfil_usuario.ActAgregarMascota" />
         <activity android:name=".ajustes.ModEmailPass" />
         <activity android:name=".alertas_lista.DetalleAlerta" />
