@@ -18,6 +18,7 @@
         android:layout_weight="1"
         android:textSize="14sp"
         android:textColor="@color/colorMagenta"
-        android:fontFamily="@font/robotomedium" />
+        android:fontFamily="@font/robotomedium"
+        android:textAlignment="center"/>
 
 </LinearLayout>

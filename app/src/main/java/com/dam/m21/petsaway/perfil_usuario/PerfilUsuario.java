@@ -59,7 +59,6 @@ public class PerfilUsuario extends AppCompatActivity {
     EditText etNombre;
     EditText etCiudad;
     TextView tvEmail;
-    //LinearLayout llMascotas;
     Button llMascotas;
 
     String email;
@@ -88,7 +87,6 @@ public class PerfilUsuario extends AppCompatActivity {
         ivFotoUsuario = findViewById(R.id.ivImgUser);
         ivGuardarCambios = findViewById(R.id.btnGuardarCambios);
         ivIconoCamara = findViewById(R.id.ivIconoCamara);
-        //llMascotas = findViewById(R.id.llMascotas);
         llMascotas = findViewById(R.id.btnAddMasc);
 
         rv = findViewById(R.id.recyclerProfilPets);
@@ -198,8 +196,8 @@ public class PerfilUsuario extends AppCompatActivity {
                 hashMap.put("ciudad", ciudadModif);
                 hashMap.put("search", nombreModif.toLowerCase());
                 ref.updateChildren(hashMap);
-
             }
+
             toastPersonalizado(getString(R.string.toast_cambios_ok));
             deshabilitarEditext(true);
         } else {
