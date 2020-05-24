@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,8 +35,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Implementaciones Navigation Drawer !
@@ -47,12 +52,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth fbAuth;
     PojoUser usuario;
     String userid;
+    String email;
+    String uriImgGuardada;
     DatabaseReference ref;
+    FirebaseUser fbUser;
 
     static final String CLAVE_EMAIL = "EMAIL";
     static String EMAIL_GOOGLE = "";
     TextView tvInfoEmail;
-    ImageView imageViewPrueba;
+    ImageView imageViewUSerNav;
+    TextView tvNameNav;
+    TextView tvEmailNav;
+    ValueEventListener vel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +76,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         fbAuth = FirebaseAuth.getInstance();
-        userid = String.valueOf(googleSignInClient.getInstanceId());
+        fbUser = fbAuth.getCurrentUser();
+        userid = fbUser.getUid();
         ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
+        recuperarDatosFirebase();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,11 +105,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navController.setItemIconTintList(null);
 
-        tvInfoEmail = findViewById(R.id.textViewPrueba);
-        imageViewPrueba = findViewById(R.id.imageViewPrueba);
+        View navHeader = navController.getHeaderView(0);
+        imageViewUSerNav = navHeader.findViewById(R.id.imageViewUser);
+        tvNameNav = navHeader.findViewById(R.id.tvNameUserHeader);
+        tvEmailNav = navHeader.findViewById(R.id.textViewEmailUser);
 
-        //En esta línea extraigo los valores del usuario que se ha logeado con Google
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        /**GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
             EMAIL_GOOGLE = acct.getEmail();
@@ -107,8 +121,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Glide.with(MainActivity.this).load(personPhoto).into(imageViewPrueba);
 
-        }
+        }**/
     }
+
+    private void rellenarDatosNavHeader() {
+        tvNameNav.setText(usuario.getNombre());
+        email = fbUser.getEmail();
+        tvEmailNav.setText(email);
+        uriImgGuardada = usuario.getUrlFotoUser();
+        if (uriImgGuardada != null)
+            Glide.with(MainActivity.this).load(uriImgGuardada).into(imageViewUSerNav);
+        else imageViewUSerNav.setImageResource(R.color.colorBlanco);
+
+        eliminarListener();
+    }
+
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
      */
@@ -168,5 +195,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void eliminarListener() {
+        if (vel != null) {
+            ref.removeEventListener(vel);
+            vel = null;
+        }
+    }
+
+    private void recuperarDatosFirebase() {
+        if (vel == null) {
+            vel = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        usuario = dataSnapshot.getValue(PojoUser.class);
+                        rellenarDatosNavHeader();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("Usuario", "onCancelled: " + databaseError.getMessage());
+                }
+            };
+            ref.addValueEventListener(vel);
+        }
+    }
+
 
 }
