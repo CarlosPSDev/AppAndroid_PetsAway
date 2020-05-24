@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -28,8 +27,8 @@ import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
+import com.dam.m21.petsaway.social_media.TwitterActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -172,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_noticias){
             startActivity(new Intent(MainActivity.this, NoticiasActivity.class));
+
+        } else if (id == R.id.nav_twitter){
+            startActivity(new Intent(MainActivity.this, TwitterActivity.class));
 
         } else if (id == R.id.nav_ajustes){
             startActivity(new Intent(MainActivity.this, AjustesActivity.class));

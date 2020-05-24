@@ -152,5 +152,6 @@
     <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
     <string name="menu_noticias">Noticias</string>
+    <string name="menu_twitter">Twitter</string>
 
 </resources>
