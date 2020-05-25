@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.dam.m21.petsaway.login.LoginActivity;
@@ -49,7 +48,7 @@ public class AjustesActivity extends AppCompatActivity {
     Uri miPath;
     DatabaseReference dbr;
     String tema,idUser;
-    Button bt_tO,bt_tC;
+   // Button bt_tO,bt_tC;
     AlertDialog.Builder bd1;
 
     static final int REQUEST_CODE_PASS =1;
@@ -68,8 +67,10 @@ public class AjustesActivity extends AppCompatActivity {
 
         idUser = fu.getUid();
         dbr = FirebaseDatabase.getInstance().getReference();
+        /*
         bt_tO=findViewById(R.id.bt_tO);
         bt_tC=findViewById(R.id.bt_tC);
+        */
         tema="";
         datosUser();
         FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
@@ -94,11 +95,13 @@ public class AjustesActivity extends AppCompatActivity {
                 if(pUser!=null) {
                     String temaActual = pUser.getTema();
                     if(temaActual!=null) {
+                        /*
                         if (temaActual.equals("oscuro")) {
                             bt_tO.setBackgroundResource(R.drawable.bt_tema2_style_habilitado);
                         } else {
                             bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
                         }
+                        */
                     }
                 }
             }
@@ -108,12 +111,12 @@ public class AjustesActivity extends AppCompatActivity {
             }
         });
     }
+/*
     public void modTema() {
         userAjustes = new HashMap<>();
         userAjustes.put("tema", tema);
         dbr.child("PETSAWAYusers").child(idUser).updateChildren(userAjustes);
     }
-
     public void temaClaro(View view) {
         bt_tO.setBackgroundResource(R.drawable.bt_tema2_style);
         bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
@@ -127,7 +130,7 @@ public class AjustesActivity extends AppCompatActivity {
         tema="oscuro";
         modTema();
     }
-
+*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
