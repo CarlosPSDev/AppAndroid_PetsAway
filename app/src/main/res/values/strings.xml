@@ -151,5 +151,6 @@
     <string name="msjBtDialogSI">Si, seguro</string>
     <string name="msjBtDialogNo">Cancelar</string>
     <string name="tx_bt_abrir_chat">Abrir chat</string>
+    <string name="msjDialogBorrarAlerta">Seguro quiere borrar esa alerta?</string>
 
 </resources>

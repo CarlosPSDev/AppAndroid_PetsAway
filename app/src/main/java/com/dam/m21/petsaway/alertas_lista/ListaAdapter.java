@@ -1,5 +1,6 @@
 package com.dam.m21.petsaway.alertas_lista;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -17,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.dam.m21.petsaway.chat.MessageActivity;
+import com.dam.m21.petsaway.login.LoginActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -177,26 +180,39 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         holder.bt_borrarAlerta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                FirebaseDatabase.getInstance().getReference().child("alertas").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-                            AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
-                            AlertasList alertaPos=datos.get(position);
-                            if(alerta.getDesc().equals(alertaPos.getDesc())){
-                                childDataSnapshot.getRef().removeValue();
-                                holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
+                ad=new AlertDialog.Builder(holder.itemView.getContext());
+                ad.setCancelable(false);
+                ad.setMessage(R.string.msjDialogBorrarAlerta);
+                ad.setPositiveButton(R.string.msjBtDialogSI, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FirebaseDatabase.getInstance().getReference().child("alertas").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (final DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                                    AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
+                                    AlertasList alertaPos=datos.get(position);
+                                    if(alerta.getDesc().equals(alertaPos.getDesc())){
+                                        childDataSnapshot.getRef().removeValue();
+                                        holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
+                                    }
+                                }
                             }
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        throw databaseError.toException();
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                throw databaseError.toException();
+                            }
+                        });
                     }
                 });
+                ad.setNegativeButton(R.string.msjBtDialogNo, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                ad.create().show();
 
-            }
-        });
+                    }
+                });
 
     }
 
