@@ -23,6 +23,7 @@
     <color name="colorBack">#000000</color>
 
     <color name="colorFondoPerfil">#40ae75ae</color>
+    <color name="colorBackTransparente">#80000000</color>
 
 
 </resources>

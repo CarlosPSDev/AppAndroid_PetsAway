@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".alertas_lista.AlertasListaActivity"
-    android:background="@color/colorAzulTranspar">
+    android:background="@color/colorGris">
 
     <TextView
         android:id="@+id/tv_bienvenida_alertas"

@@ -43,7 +43,7 @@
         <activity android:name=".aviso_legal.AvisoLegal" />
         <activity android:name=".on_boarding.LanzadorOnBoard" />
         <activity android:name=".splash_screen.SplashScreen" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".acerca_de.AcercaDeActivity" />
         <activity android:name=".ajustes.AjustesActivity" />
         <activity android:name=".alertas_lista.FormularioActivity" />
@@ -66,7 +66,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

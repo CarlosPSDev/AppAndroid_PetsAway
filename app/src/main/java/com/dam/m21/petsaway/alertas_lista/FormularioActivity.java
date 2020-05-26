@@ -8,9 +8,13 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.dam.m21.petsaway.R;
@@ -70,6 +75,11 @@ public class FormularioActivity extends AppCompatActivity {
         fu = fa.getCurrentUser();
         fotoDesc=false;
 
+        tipoAnimal.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        color.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        raza.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        desc.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+
     }
 
     public void guardar(View view) {
@@ -104,7 +114,8 @@ public class FormularioActivity extends AppCompatActivity {
 		        startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
 	        }
         }else{
-            Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
+            toastPersonalizado(getString(R.string.toast_faltanDatos));
+            //Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
 
         }
     }
@@ -116,7 +127,6 @@ public class FormularioActivity extends AppCompatActivity {
             fotoDesc=true;
             miPath=data.getData();
             btAddFoto.setImageURI(miPath);
-
         }
     }
 
@@ -152,5 +162,17 @@ public class FormularioActivity extends AppCompatActivity {
                 }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
         dpd.setCancelable(false);
         dpd.show();
+    }
+
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(FormularioActivity.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
     }
 }

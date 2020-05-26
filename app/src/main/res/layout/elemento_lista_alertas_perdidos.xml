@@ -10,9 +10,8 @@
         android:id="@+id/image_elap"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:background="@color/colorGris"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        android:elevation="10dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,13 +21,14 @@
         android:id="@+id/ll_elap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:layout_marginLeft="80dp"
+        android:layout_marginTop="280dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/style_detalle_alerta_enc"
-        android:elevation="15dp"
         android:orientation="horizontal"
         android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/image_elap"
         app:layout_constraintStart_toStartOf="@+id/image_elap"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/robotomedium"
                     android:textColor="@color/colorBack"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/sexo_elap"
@@ -68,7 +68,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
 
         <ImageButton
@@ -78,7 +78,7 @@
             android:layout_marginTop="9dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_borrar_alerta"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/tipoAl_elap"

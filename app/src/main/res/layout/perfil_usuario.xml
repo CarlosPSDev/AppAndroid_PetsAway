@@ -204,6 +204,7 @@
             android:textAllCaps="false"
             android:textColor="@color/colorBlanco"
             android:textSize="16sp"
+            android:fontFamily="@font/robotomedium"
             android:onClick="agregarMascota"
             app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora4"
             app:layout_constraintEnd_toEndOf="parent"
