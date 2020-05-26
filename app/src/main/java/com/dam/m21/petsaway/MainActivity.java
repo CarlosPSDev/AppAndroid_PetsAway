@@ -9,24 +9,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
-import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
-import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -34,8 +28,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Implementaciones Navigation Drawer !

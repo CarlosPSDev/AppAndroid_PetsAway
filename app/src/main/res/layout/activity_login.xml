@@ -115,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorGrisClaro"
+            android:onClick="loginGmail"
             app:srcCompat="@drawable/google" />
 
         <ImageButton
