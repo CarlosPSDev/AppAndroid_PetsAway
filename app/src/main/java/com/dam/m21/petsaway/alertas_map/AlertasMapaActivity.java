@@ -50,11 +50,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback { Button bt_encuentra,bt_busca;
-ImageButton bt_add;
-ImageView ImgM;
-Button btAbrChat_mark;
-LinearLayout dMP;
-TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
+    ImageButton bt_add;
+    ImageView ImgM;
+    Button btAbrChat_mark;
+    LinearLayout dMP;
+    TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     private GoogleMap mMap;
     private static final int PETICION_PERMISO_LOCALIZACION = 101;
 
@@ -70,7 +70,7 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
     DatabaseReference dbr;
     private LatLng miLoc;
     private Marker mark;
-    String temaActual,idUser;
+    String /*temaActual,*/idUser;
     private BottomSheetBehavior bsb;
     View bottomSheet;
     AlertasList pf;
@@ -157,11 +157,12 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
                 if(pUser!=null) {
-                    temaActual = pUser.getTema();
+                    //temaActual = pUser.getTema();
                     dMP = findViewById(R.id.dMP);
                     int idColor = R.color.colorPurpura;
+                    View view=findViewById(android.R.id.content);
+                    /*
                     if(temaActual!=null) {
-                        View view=findViewById(android.R.id.content);
                         if (temaActual.equals("oscuro")) {
                             dMP.setBackgroundResource(idColor);
 
@@ -173,14 +174,14 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                                 bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
                             }
                             bt_add.setImageResource(R.drawable.ic_add_tema_oscuro);
-                        }else{
+                        }else{ */
                             if (add!=null) {
                                 Snackbar.make(view, R.string.toast_puntoMap, Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                                 bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
                             }
-                        }
-                    }
+                      //  }
+                   // }
                 }
             }
             @Override
@@ -251,13 +252,16 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
             View view=findViewById(android.R.id.content);
             Snackbar.make(view, R.string.toast_puntoMap, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            /*
             if(temaActual!=null) {
                 if (temaActual.equals("oscuro")) {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado_tema_oscuro);
                 } else {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
                 }
-            }
+            }else{*/
+                bt_add.setBackgroundResource(R.drawable.style_bt_add_habilitado);
+            //}
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -275,13 +279,16 @@ TextView tipoAnimalM,fechaEPAnimalM,colorAnimalM,userPushM;
                 }
             });
         }else{
+            /*
             if(temaActual!=null) {
                 if (temaActual.equals("oscuro")) {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add_tema_oscuro);
                 } else {
                     bt_add.setBackgroundResource(R.drawable.style_bt_add);
                 }
-            }
+            }else{*/
+                bt_add.setBackgroundResource(R.drawable.style_bt_add);
+            //}
         }
     }
 

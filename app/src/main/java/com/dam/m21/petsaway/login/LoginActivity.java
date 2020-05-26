@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
 import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
@@ -30,22 +31,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity  {
-
-    //Login con Google
-    private static final String TAG = "LoginActivity";
-    private static final int RC_SIGN_IN = 1001;
-    GoogleSignInClient googleSignInClient;
-    ImageButton signInGoogle;
-    DatabaseReference reference;
+public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth fbAuth;
     private FirebaseUser fbUser;
@@ -57,6 +57,10 @@ public class LoginActivity extends AppCompatActivity  {
 
     static final String CLAVE_EMAIL = "MAIL";
 
+    private static final String TAG = "GoogleActivity";
+
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,57 +80,12 @@ public class LoginActivity extends AppCompatActivity  {
         if (fbUser != null) {
             etEmail.setText(fbUser.getEmail());
         }
-
-        signInGoogle = findViewById(R.id.imgBtnGoogle);
-        signInGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                signIn();
-            }
-        });
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
-    }
-
-    private void signIn() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            String userGoogleId = account.getId();
-            reference = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userGoogleId);
-
-            HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put("nombre", account.getDisplayName());
-            hashMap.put("id", userGoogleId);
-            hashMap.put("urlFotoUser", String.valueOf(account.getPhotoUrl()));
-            hashMap.put("status", "offline");
-            hashMap.put("ciudad", "default");
-            hashMap.put("search", account.getDisplayName().toLowerCase());
-
-            reference.setValue(hashMap);
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        } catch (ApiException e) {
-           toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_error_google));
-        }
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     public void contraseniaOlvidada(View view) {
@@ -150,9 +109,11 @@ public class LoginActivity extends AppCompatActivity  {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
                                 //TODO: Animaciones
                                 //Animation rotarIcono = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.rotate_icon);
                                 //ivLogo.startAnimation(rotarIcono);
+
                                 fbUser = fbAuth.getCurrentUser();
                                 guardarDatosUserSP(fbUser.getDisplayName(), fbUser.getEmail(), fbUser.getUid()); //Carlos Guardamos los datos en shared
 
@@ -179,6 +140,59 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
+    public void loginGmail(View view) {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+
+            } catch (ApiException e) {
+                Log.w(TAG, "Google sign in failed", e);
+            }
+        }
+    }
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        fbAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "signInWithCredential:success");
+                    fbUser = fbAuth.getCurrentUser();
+                    FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fbUser.getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final PojoUser datosUser=dataSnapshot.getValue(PojoUser.class);
+                            if (datosUser==null){
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("id", fbUser.getUid());
+                                hashMap.put("urlFotoUser", "default");
+                                hashMap.put("status", "offline");
+                                hashMap.put("ciudad", "default");
+                                dataSnapshot.getRef().setValue(hashMap);
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            throw databaseError.toException();
+                        }
+                    });
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    Log.w(TAG, "signInWithCredential:failure", task.getException());
+                }
+            }
+        });
+
+    }
     public void loginFacebook(View view) {
     }
 
@@ -254,5 +268,4 @@ public class LoginActivity extends AppCompatActivity  {
         String email = sharedPrefs.getString("emailUser", "xxxxxx@...com");
         String id = sharedPrefs.getString("idUser", "0");
     }
-
 }

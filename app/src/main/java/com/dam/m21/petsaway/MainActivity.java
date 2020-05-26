@@ -29,7 +29,6 @@ import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
 import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,35 +43,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
-    GoogleSignInClient googleSignInClient;
-    FirebaseAuth fbAuth;
-    PojoUser usuario;
-    String userid;
-    DatabaseReference ref;
-
+    private FirebaseAuth fbAuth;
     static final String CLAVE_EMAIL = "EMAIL";
-    static String EMAIL_GOOGLE = "";
-    TextView tvInfoEmail;
-    ImageView imageViewPrueba;
 
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         fbAuth = FirebaseAuth.getInstance();
-        userid = String.valueOf(googleSignInClient.getInstanceId());
-        ref = FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(userid);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
         toogle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
 
@@ -92,23 +79,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navController.setNavigationItemSelectedListener(this);
 
         navController.setItemIconTintList(null);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
-        tvInfoEmail = findViewById(R.id.textViewPrueba);
-        imageViewPrueba = findViewById(R.id.imageViewPrueba);
-
-        //En esta línea extraigo los valores del usuario que se ha logeado con Google
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            EMAIL_GOOGLE = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
-
-            tvInfoEmail.setText(EMAIL_GOOGLE + personName + personId);
-
-            Glide.with(MainActivity.this).load(personPhoto).into(imageViewPrueba);
-
-        }
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
@@ -155,11 +131,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_salir){
             Intent i = new Intent(this, LoginActivity.class);
-            i.putExtra(CLAVE_EMAIL, EMAIL_GOOGLE);
+            i.putExtra(CLAVE_EMAIL, fbAuth.getCurrentUser().getEmail());
             startActivity(i);
             finish();
             fbAuth.signOut();
-            googleSignInClient.signOut();
+            mGoogleSignInClient.signOut();
+            //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
