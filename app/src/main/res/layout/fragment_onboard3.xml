@@ -43,7 +43,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/robotolight"
             android:gravity="center"
-            android:text="@string/tv_slide1_desc"
+            android:text="@string/tv_slide3_desc"
             android:textColor="@color/colorGrisClaro"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
