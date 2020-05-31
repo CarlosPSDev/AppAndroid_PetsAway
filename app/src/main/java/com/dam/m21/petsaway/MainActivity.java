@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         // ============================================================ //
-
     }
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
