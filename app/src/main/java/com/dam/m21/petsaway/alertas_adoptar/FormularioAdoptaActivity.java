@@ -11,15 +11,20 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -80,7 +85,16 @@ public class FormularioAdoptaActivity extends AppCompatActivity {
 		fotoDesc=false;
 		dbr = FirebaseDatabase.getInstance().getReference();
 		listaFotos = new ArrayList<>();
-	}
+
+        tipoAnimal_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        color_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        raza_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        desc_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        edad_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        desc_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+        nik_adopta.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
+
+    }
 
 
 	@Override
@@ -166,8 +180,21 @@ public class FormularioAdoptaActivity extends AppCompatActivity {
 				startActivity(new Intent(getApplicationContext(), AdoptaListaActivity.class));
 			}
 		}else{
-			Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
+            toastPersonalizado(getString(R.string.toast_faltanDatos));
+			//Toast.makeText(getApplicationContext(),R.string.toast_faltanDatos, Toast.LENGTH_LONG).show();
 
 		}
 	}
+
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(FormularioAdoptaActivity.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
+    }
 }

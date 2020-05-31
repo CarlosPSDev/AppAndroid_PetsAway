@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/toolbar_style">
+    android:background="@drawable/estilo_detalle_alerta">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -20,14 +19,14 @@
         <ImageView
             android:id="@+id/detalle_tipoAletra"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/detalle_tipoAnimal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotomedium"
             android:textColor="@color/colorBack"
             android:textSize="16sp"
@@ -37,7 +36,7 @@
             android:id="@+id/detalle_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
             android:textSize="14sp"/>
@@ -55,7 +54,7 @@
             android:id="@+id/detalle_raza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
             android:textSize="14sp"/>
@@ -64,7 +63,7 @@
             android:id="@+id/detalle_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
             android:textSize="14sp"/>
@@ -73,7 +72,7 @@
             android:id="@+id/detalle_fPush"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
             android:textSize="14sp"/>
@@ -82,7 +81,7 @@
             android:id="@+id/detalle_userPush"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
             android:textSize="14sp"/>

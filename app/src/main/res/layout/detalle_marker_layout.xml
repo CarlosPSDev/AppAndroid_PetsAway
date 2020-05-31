@@ -9,12 +9,13 @@
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,TextFields,UselessParent,UnusedAttribute,VectorDrawableCompat,ContentDescription,RtlSymmetry,InefficientWeight">
 
-<LinearLayout
-    android:id="@+id/dMP"
+    <LinearLayout
+        android:id="@+id/dMP"
         android:orientation="vertical"
-    android:background="@color/colorBlanco"
+        android:background="@color/colorGris"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -25,46 +26,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="18sp"/>
+
             <ImageView
                 android:id="@+id/ImgM"
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimary"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop" />
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                android:background="@color/colorGrisClaro"/>
 
             <TextView
                 android:id="@+id/fechaEPAnimalM"
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp"/>
+
             <TextView
-                android:id="@+id/colorAnimalM"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="20dp"
-                android:textSize="20dp"
-                android:paddingBottom="20dp"
+                android:id="@+id/razaAnimalM"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                />
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/userPushM"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="20dp"
-                android:textSize="20dp"
-                android:paddingBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                />
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btAbrChat_mark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tx_bt_abrir_chat"/>
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/estilo_titulo_mascotas"
+                android:drawableEnd="@drawable/ic_correo_blanco"
+                android:paddingEnd="20dp"
+                android:paddingStart="30dp"
+                android:text="@string/btn_contacto"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlanco"
+                android:textSize="16sp"
+                android:layout_gravity="center"/>
         </LinearLayout>
+
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

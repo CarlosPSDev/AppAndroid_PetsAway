@@ -43,7 +43,7 @@ public class AlertasListaActivity extends AppCompatActivity {
 
         DatabaseReference dbr = FirebaseDatabase.getInstance().getReference().child("alertas");
         listaDatos = new ArrayList<>();
-        rv_la = findViewById(R.id.rv_la);
+        rv_la = findViewById(R.id.rv_alertas);
         llm = new LinearLayoutManager(getApplicationContext());
         rv_la.setLayoutManager(llm);
         dbr.addValueEventListener(new ValueEventListener() {

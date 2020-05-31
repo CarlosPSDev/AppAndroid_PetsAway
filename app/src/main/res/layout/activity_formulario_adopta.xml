@@ -1,119 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alertas_adoptar.FormularioAdoptaActivity">
+    tools:context=".alertas_adoptar.FormularioAdoptaActivity"
+    android:background="@color/colorGrisClaro">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="vertical">
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_fotos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:id="@+id/bt_add_foto_adopta"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_add_photo"
-                android:layout_gravity="right|bottom"
-                android:layout_marginBottom="-20dp"
-                android:paddingHorizontal="20dp"
-                android:background="@android:color/transparent"
-                android:onClick="addFoto"/>
-        </FrameLayout>
+        <ImageButton
+            android:id="@+id/bt_add_foto_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAzulTranspar"
+            android:onClick="addFoto"
+            android:src="@drawable/ic_camara_grande"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGris" />
 
         <EditText
             android:id="@+id/nik_adopta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/h_nombre"/>
+            android:hint="@string/h_nombre"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
         <EditText
             android:id="@+id/tipoAnimal_adopta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/h_tipo_animal"/>
+            android:hint="@string/h_tipo_animal"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
         <EditText
             android:id="@+id/color_adopta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/h_color"/>
-        <LinearLayout
+            android:hint="@string/h_color"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
+        <EditText
+            android:id="@+id/edad_adopta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/h_edad"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
-            <EditText
-                android:id="@+id/edad_adopta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/h_edad"/>
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                android:onClick="calendario"/>
-        </LinearLayout>
+                android:onClick="calendario"
+                android:src="@android:drawable/ic_menu_my_calendar" />
+        </LinearLayout>-->
 
         <EditText
             android:id="@+id/raza_adopta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/h_raza"/>
+            android:hint="@string/h_raza"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
         <EditText
             android:id="@+id/desc_adopta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/h_desc"/>
+            android:hint="@string/h_desc"
+            android:fontFamily="@font/robotolight"
+            android:textSize="16sp"
+            android:textColor="@color/colorBack"
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGris" />
+
         <RadioGroup
             android:id="@+id/rg_form_adopta"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
-            tools:layout_editor_absoluteX="16dp">
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp">
 
             <RadioButton
                 android:id="@+id/rbM_adopta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/rdbtn_macho" />
+                android:text="@string/rdbtn_macho"
+                android:textSize="14sp"
+                android:fontFamily="@font/robotolight"
+                android:buttonTint="@color/colorBackTransparente"/>
 
             <RadioButton
                 android:id="@+id/rbH_adopta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="@dimen/padding"
-                android:text="@string/rdbtn_hembra" />
+                android:layout_weight="1"
+                android:text="@string/rdbtn_hembra"
+                android:textSize="14sp"
+                android:fontFamily="@font/robotolight"
+                android:buttonTint="@color/colorBackTransparente"/>
         </RadioGroup>
+
         <Button
-            android:id="@+id/bt_guardar_adopta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorAzul"
+            android:id="@+id/bt_guardar"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/estilo_boton_mascota_perdida_encontrada"
+            android:onClick="guardar"
             android:text="@string/bt_guardar"
-            android:onClick="guardar"/>
-
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="16sp"
+            android:fontFamily="@font/robotomedium"
+            android:layout_gravity="center"/>
     </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

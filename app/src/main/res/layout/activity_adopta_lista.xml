@@ -1,26 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".alertas_adoptar.AdoptaListaActivity"
-    android:background="@color/colorGrisClaro">
+    android:background="@color/colorPurpuraClaro">
+
+    <TextView
+        android:id="@+id/tv_bienvenida_adopciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/robotomedium"
+        android:text="@string/tv_bienvenida_adopcion"
+        android:textColor="@color/colorBack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_aclaracion_adopciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/robotolight"
+        android:text="@string/tv_aclaracion_adopciones"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_bienvenida_adopciones" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_la"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_aclaracion_adopciones" />
 
     <ImageButton
-        android:id="@+id/bt_add_adopt"
+        android:id="@+id/bt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_add"
+        android:layout_margin="6dp"
         android:background="@drawable/style_bt_add"
+        android:onClick="addAlertaA"
         android:scaleType="centerCrop"
-        android:onClick="addAlertaA"/>
-</RelativeLayout>
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,6 +52,7 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			raza_adopta=findViewById(R.id.raza_adopta_d);
 			desc_adopta=findViewById(R.id.desc_adopta_d);
 			sexo_adopta_d=findViewById(R.id.sexo_adopta_d);
+			nik_adopta = findViewById(R.id.nik_adopta_d);
 			alad=getIntent().getParcelableExtra("ADOPTA");
 			listaFotos=getIntent().getParcelableArrayListExtra("FOTOS");
 			tipoAnimal_adopta.setText(alad.getTipoAnimal());
@@ -59,6 +60,7 @@ public class DetalleAdoptaActivity extends AppCompatActivity {
 			edad_adopta.setText(alad.getEdad());
 			raza_adopta.setText(alad.getRaza());
 			desc_adopta.setText(alad.getDesc());
+			nik_adopta.setText(alad.getUserPush());
 			if(alad.getSexo().equals("h")) {
 				sexo_adopta_d.setImageResource(R.drawable.ic_hembra);
 			}else{

@@ -2,22 +2,32 @@ package com.dam.m21.petsaway;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
+import com.dam.m21.petsaway.alertas_lista.AlertasList;
 import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
+import com.dam.m21.petsaway.alertas_lista.ListaAdapter;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
@@ -28,6 +38,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Implementaciones Navigation Drawer !
@@ -39,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     static final String CLAVE_EMAIL = "EMAIL";
 
     private GoogleSignInClient mGoogleSignInClient;
+
+    RecyclerView rvAlertas;
+    LinearLayoutManager llm;
+    ListaAdapter adapter;
+    private ArrayList<AlertasList> listaDatos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toogle);
         toogle.syncState();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        ImageButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override
@@ -77,6 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // ============================================================ //
+
     }
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
@@ -134,6 +160,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void abrirAdopta(View v){
+        startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
+    }
+    public void abrirAlertas(View v){
+        startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
     }
 
 }

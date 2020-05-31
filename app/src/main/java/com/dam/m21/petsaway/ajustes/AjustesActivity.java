@@ -11,9 +11,13 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.m21.petsaway.alertas_adoptar.FormularioAdoptaActivity;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.model.PojoUser;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -145,12 +149,15 @@ public class AjustesActivity extends AppCompatActivity {
                     if(texto1.equals(fu.getEmail())) {
                         if (texto2.equals(texto3)) {
                             fu.updateEmail(texto3);
-                            Toast.makeText(getApplicationContext(), R.string.msg_newEmail, Toast.LENGTH_LONG).show();
+                            toastPersonalizado(getString(R.string.msg_newEmail));
+                            //Toast.makeText(getApplicationContext(), R.string.msg_newEmail, Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(getApplicationContext(), R.string.msg_newEmailDist, Toast.LENGTH_LONG).show();
+                            toastPersonalizado(getString(R.string.msg_newEmailDist));
+                            //Toast.makeText(getApplicationContext(), R.string.msg_newEmailDist, Toast.LENGTH_LONG).show();
                         }
                     }else{
-                        Toast.makeText(getApplicationContext(), R.string.msg_wrongEmail, Toast.LENGTH_LONG).show();
+                        toastPersonalizado(getString(R.string.msg_wrongEmail));
+                        //Toast.makeText(getApplicationContext(), R.string.msg_wrongEmail, Toast.LENGTH_LONG).show();
                     }
 
                 } else {
@@ -161,18 +168,22 @@ public class AjustesActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 if (texto2.equals(texto3)) {
                                     fu.updatePassword(texto3);
-                                    Toast.makeText(getApplicationContext(), R.string.msg_newPass, Toast.LENGTH_LONG).show();
+                                    toastPersonalizado(getString(R.string.msg_newPass));
+                                    //Toast.makeText(getApplicationContext(), R.string.msg_newPass, Toast.LENGTH_LONG).show();
                                 }else{
-                                    Toast.makeText(getApplicationContext(), R.string.msg_newPassDist, Toast.LENGTH_LONG).show();
+                                    toastPersonalizado(getString(R.string.msg_newPassDist));
+                                    //Toast.makeText(getApplicationContext(), R.string.msg_newPassDist, Toast.LENGTH_LONG).show();
                                 }
                             } else{
-                                Toast.makeText(getApplicationContext(), R.string.msg_wrongPass, Toast.LENGTH_LONG).show();
+                                toastPersonalizado(getString(R.string.msg_wrongPass));
+                                //Toast.makeText(getApplicationContext(), R.string.msg_wrongPass, Toast.LENGTH_LONG).show();
                                 }
                             } });
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, R.string.msg_cancel, Toast.LENGTH_LONG).show();
+                toastPersonalizado(getString(R.string.msg_cancel));
+                //Toast.makeText(this, R.string.msg_cancel, Toast.LENGTH_LONG).show();
             }
         }
         if (resultCode==RESULT_OK && requestCode==10){
@@ -192,14 +203,15 @@ public class AjustesActivity extends AppCompatActivity {
                             dbr.child("PETSAWAYusers").child(idUser).updateChildren(userAjustes);
                         }
                     });
-
-                    Toast.makeText(AjustesActivity.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
+                    toastPersonalizado(getString(R.string.toast_foto_guardada));
+                    //Toast.makeText(AjustesActivity.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AjustesActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            toastPersonalizado(e.getMessage());
+                            //Toast.makeText(AjustesActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -280,4 +292,16 @@ public class AjustesActivity extends AppCompatActivity {
                 }
             });
 	}
+    private void toastPersonalizado(String text) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customToast = inflater.inflate(R.layout.custom_toast, null);
+        TextView texto = customToast.findViewById(R.id.tvTextoToast);
+        texto.setText(text);
+        Toast toast = new Toast(AjustesActivity.this);
+        toast.setGravity(Gravity.TOP, Gravity.CENTER , 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+        toast.show();
+    }
+
 }
