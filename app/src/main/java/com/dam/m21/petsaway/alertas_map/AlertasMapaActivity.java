@@ -183,9 +183,9 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                 pf = (AlertasList) marker.getTag();
                 if (pf.getTipoAnimal() != null) {
                     tipoAnimalM.setText(pf.getTipoAnimal());
-                    fechaEPAnimalM.setText("Fecha de publicación: " + pf.getFecha());
-                    razaAnimalM.setText("Raza: " + pf.getRaza());
-                    userPushM.setText("Contacto: " + pf.getUserPush());
+                    fechaEPAnimalM.setText(pf.getFecha());
+                    razaAnimalM.setText(pf.getRaza());
+                    userPushM.setText(pf.getUserPush());
                     String idF = pf.getIdFoto();
                     StorageReference sr = msr.child("fotosAnimales").child(idF);
                     sr.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

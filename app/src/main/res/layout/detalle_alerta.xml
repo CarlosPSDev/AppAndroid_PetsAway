@@ -29,62 +29,127 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/robotomedium"
             android:textColor="@color/colorBack"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/detalle_color"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>
+            android:orientation="horizontal">
 
-        <!--<TextView
-            android:id="@+id/detalle_fecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"
+                android:text="@string/tv_color"/>
 
-        <TextView
-            android:id="@+id/detalle_raza"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/detalle_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/detalle_desc"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/detalle_fPush"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"
+                android:text="@string/tv_raza"/>
 
-        <TextView
-            android:id="@+id/detalle_userPush"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/detalle_raza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotolight"
-            android:textColor="@color/colorBack"
-            android:textSize="14sp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"
+                android:text="@string/tv_descripcion"/>
+
+            <TextView
+                android:id="@+id/detalle_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"
+                android:text="@string/tv_fecha_publicacion"/>
+
+            <TextView
+                android:id="@+id/detalle_fPush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"
+                android:text="@string/tv_email"/>
+
+            <TextView
+                android:id="@+id/detalle_userPush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="14sp"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btAbrChat"

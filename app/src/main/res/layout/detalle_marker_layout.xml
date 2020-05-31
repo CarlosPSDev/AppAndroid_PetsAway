@@ -16,76 +16,119 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tipoAnimalM"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/robotomedium"
+            android:textColor="@color/colorBack"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/ImgM"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            android:background="@color/colorGrisClaro"/>
+
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tipoAnimalM"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/robotomedium"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:id="@+id/ImgM"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                android:background="@color/colorGrisClaro"/>
+                android:textSize="16sp"
+                android:text="@string/tv_fecha_publicacion"/>
 
             <TextView
                 android:id="@+id/fechaEPAnimalM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/robotolight"
+                android:fontFamily="@font/robotomedium"
                 android:textColor="@color/colorBack"
                 android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp"
+                android:text="@string/tv_raza"/>
 
             <TextView
                 android:id="@+id/razaAnimalM"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:fontFamily="@font/robotolight"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/robotomedium"
                 android:textColor="@color/colorBack"
                 android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp"
+                android:text="@string/tv_email"/>
 
             <TextView
                 android:id="@+id/userPushM"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:fontFamily="@font/robotolight"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotomedium"
                 android:textColor="@color/colorBack"
                 android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/btAbrChat_mark"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/estilo_titulo_mascotas"
-                android:drawableEnd="@drawable/ic_correo_blanco"
-                android:paddingEnd="20dp"
-                android:paddingStart="30dp"
-                android:text="@string/btn_contacto"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlanco"
-                android:textSize="16sp"
-                android:layout_gravity="center"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btAbrChat_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/estilo_titulo_mascotas"
+            android:drawableEnd="@drawable/ic_correo_blanco"
+            android:paddingEnd="20dp"
+            android:paddingStart="30dp"
+            android:text="@string/btn_contacto"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+
 
     </LinearLayout>
 

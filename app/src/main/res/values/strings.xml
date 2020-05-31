@@ -180,5 +180,10 @@
 
     <string name="tx_alertas">Encuentralo</string>
     <string name="tx_adopta">Adoptalo</string>
+    <string name="texto_inferior_home">PETSAWAY</string>
+    <string name="tv_fecha_publicacion">Fecha de publicación:</string>
+    <string name="tv_raza">Raza:</string>
+    <string name="tv_email">Email:</string>
+    <string name="tv_descripcion">Descripción:</string>
 
 </resources>

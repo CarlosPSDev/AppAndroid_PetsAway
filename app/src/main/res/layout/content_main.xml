@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/app_bar_main"
-        android:background="@color/colorGrisClaro">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main"
+    android:background="@color/colorGrisClaro">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             android:id="@+id/tvAlertas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="10dp"
             android:text="@string/tv_alertas"
             android:fontFamily="@font/robotomedium"
             android:textSize="16sp"
@@ -122,7 +122,7 @@
             android:id="@+id/tvAdopciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="10dp"
             android:text="@string/tv_adopciones"
             android:fontFamily="@font/robotomedium"
             android:textSize="16sp"
@@ -174,27 +174,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rlAdopciones" />
 
-        <ImageView
-            android:id="@+id/imageViewPrueba"
+        <TextView
+            android:id="@+id/tvPets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:src="@drawable/ic_perro"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rlAdopciones" />
-
-        <TextView
-            android:id="@+id/textViewPrueba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
             android:fontFamily="@font/robotolight"
-            android:text="@string/tv_home"
-            android:textSize="24sp"
+            android:text="@string/texto_inferior_home"
+            android:textAlignment="center"
+            android:textColor="@color/colorBack"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/linea3"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/linea4"
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="40dp"
+            android:background="@color/colorGris"
+            app:layout_constraintEnd_toEndOf="@id/tvPets"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageViewPrueba" />
+            app:layout_constraintTop_toBottomOf="@id/linea3"/>
+
+        <View
+            android:id="@+id/linea5"
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/colorGris"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvPets"
+            app:layout_constraintTop_toBottomOf="@id/linea3"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -38,14 +38,14 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListViewHold
 
 private View.OnClickListener ocListener;
 private ArrayList<AlertasList> datos;
-    static final String CLAVE_LAT = "LAT_A";
-    static final String CLAVE_LON = "LON_A";
-    static final String CLAVE_TA = "TA";
-    AlertDialog.Builder ad;
+    private static final String CLAVE_LAT = "LAT_A";
+    private static final String CLAVE_LON = "LON_A";
+    private static final String CLAVE_TA = "TA";
+    private AlertDialog.Builder ad;
 
     public ListaAdapter(ArrayList<AlertasList> datos) {
         this.datos = datos;
-        }
+    }
 
 public static class ListViewHolder extends RecyclerView.ViewHolder{
     private ImageView image_elap;
@@ -140,7 +140,6 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 ImageView detalle_tipoAletra=vista.findViewById(R.id.detalle_tipoAletra);
                 TextView detalle_tipoAnimal=vista.findViewById(R.id.detalle_tipoAnimal);
                 TextView detalle_color=vista.findViewById(R.id.detalle_color);
-                //TextView detalle_fecha=vista.findViewById(R.id.detalle_fecha);
                 TextView detalle_raza=vista.findViewById(R.id.detalle_raza);
                 TextView detalle_desc=vista.findViewById(R.id.detalle_desc);
                 TextView detalle_fPush=vista.findViewById(R.id.detalle_fPush);
@@ -154,13 +153,11 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 }
 
                 detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());
-                detalle_color.setText("Color: " + datos.get(position).getColor());
-                //detalle_fecha.setText("Fecha: " + datos.get(position).getFecha());
-                detalle_raza.setText("Raza: " + datos.get(position).getRaza());
-                detalle_desc.setText("Descripción: " + datos.get(position).getDesc());
-                //detalle_fPush.setText("Fecha de publicación: " + datos.get(position).getfPush());
-                detalle_fPush.setText("Fecha de publicación: " + datos.get(position).getFecha());
-                detalle_userPush.setText("Contacto: " + datos.get(position).getUserPush());
+                detalle_color.setText(datos.get(position).getColor());
+                detalle_raza.setText(datos.get(position).getRaza());
+                detalle_desc.setText(datos.get(position).getDesc());
+                detalle_fPush.setText(datos.get(position).getFecha());
+                detalle_userPush.setText(datos.get(position).getUserPush());
                 btAbrChat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
