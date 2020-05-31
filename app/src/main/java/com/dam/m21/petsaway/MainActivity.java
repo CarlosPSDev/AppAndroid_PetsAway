@@ -171,5 +171,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void abrirAlertas(View v){
         startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
     }
-
 }
