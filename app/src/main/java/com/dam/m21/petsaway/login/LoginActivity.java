@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.sip.SipSession;
-import android.net.sip.SipSession.Listener;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,10 +12,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.model.PojoUser;
@@ -38,12 +34,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -121,11 +114,11 @@ public class LoginActivity extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                       /* comprobarOnBoarding();*/ //Carlos---- Comprobamos si lanzar el onboarding o no
+                                        comprobarOnBoarding(); //Carlos---- Comprobamos si lanzar el onboarding o pasamos al Main
 
-                                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                       /* Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(i);
-                                        finish();
+                                        finish();*/
                                         overridePendingTransition(R.anim.leftin, R.anim.leftout);
                                     }
                                 }, 2000);
@@ -237,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else {
-            /* numVeces++;
+            /* numVeces++;  //Descomentar este bloque al lanzar la aplicación
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putInt("vecesEjecutado", numVeces);
             editor.commit();*/
