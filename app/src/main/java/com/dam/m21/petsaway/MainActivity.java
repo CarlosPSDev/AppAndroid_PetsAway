@@ -2,30 +2,36 @@ package com.dam.m21.petsaway;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
-import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
+import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
+import com.dam.m21.petsaway.alertas_lista.AlertasList;
 import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
+import com.dam.m21.petsaway.alertas_lista.ListaAdapter;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
-import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.dam.m21.petsaway.social_media.TwitterActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -34,11 +40,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     NavigationView navController;
 
+    private FirebaseAuth fbAuth;
     GoogleSignInClient googleSignInClient;
     FirebaseAuth fbAuth;
     PojoUser usuario;
@@ -57,6 +69,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseUser fbUser;
 
     static final String CLAVE_EMAIL = "EMAIL";
+
+    private GoogleSignInClient mGoogleSignInClient;
+
+    RecyclerView rvAlertas;
+    LinearLayoutManager llm;
+    ListaAdapter adapter;
+    private ArrayList<AlertasList> listaDatos;
     static String EMAIL_GOOGLE = "";
     TextView tvInfoEmail;
     ImageView imageViewUSerNav;
@@ -68,11 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
@@ -84,13 +98,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        //drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
         toogle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
 
         drawer.addDrawerListener(toogle);
         toogle.syncState();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        ImageButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override
@@ -108,33 +124,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imageViewUSerNav = navHeader.findViewById(R.id.imageViewUser);
         tvNameNav = navHeader.findViewById(R.id.tvNameUserHeader);
         tvEmailNav = navHeader.findViewById(R.id.textViewEmailUser);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
-        /**GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            EMAIL_GOOGLE = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-            tvInfoEmail.setText(EMAIL_GOOGLE + personName + personId);
-
-            Glide.with(MainActivity.this).load(personPhoto).into(imageViewPrueba);
-
-        }**/
+        // ============================================================ //
     }
-
-    private void rellenarDatosNavHeader() {
-        tvNameNav.setText(usuario.getNombre());
-        email = fbUser.getEmail();
-        tvEmailNav.setText(email);
-        uriImgGuardada = usuario.getUrlFotoUser();
-        if (uriImgGuardada != null)
-            Glide.with(MainActivity.this).load(uriImgGuardada).into(imageViewUSerNav);
-        else imageViewUSerNav.setImageResource(R.color.colorBlanco);
-
-        eliminarListener();
-    }
-
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
      */
@@ -161,11 +159,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, PerfilUsuario.class));
 
         } else if (id == R.id.nav_alerta){
-            startActivity(new Intent(MainActivity.this, AlertasMapaActivity.class));
-
-        } else if (id == R.id.nav_adoptar){
             startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
 
+        } else if (id == R.id.nav_adoptar){
+
+            startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));
 
@@ -186,11 +184,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_salir){
             Intent i = new Intent(this, LoginActivity.class);
-            i.putExtra(CLAVE_EMAIL, EMAIL_GOOGLE);
+            i.putExtra(CLAVE_EMAIL, fbAuth.getCurrentUser().getEmail());
             startActivity(i);
             finish();
             fbAuth.signOut();
-            googleSignInClient.signOut();
+            mGoogleSignInClient.signOut();
+            //overridePendingTransition(R.anim.rightin, R.anim.rightout);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -226,4 +225,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    public void abrirAdopta(View v){
+        startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
+    }
+    public void abrirAlertas(View v){
+        startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
+    }
 }

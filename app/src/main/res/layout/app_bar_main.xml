@@ -24,13 +24,13 @@
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        app:backgroundTint="@android:color/transparent"
-        app:elevation="0dp"
-        app:srcCompat="@drawable/hamburguer_icon" />
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/magenta_style"
+        android:padding="@dimen/padding"
+        app:srcCompat="@drawable/ic_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

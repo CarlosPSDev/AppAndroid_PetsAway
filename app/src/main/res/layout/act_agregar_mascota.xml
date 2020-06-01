@@ -9,15 +9,27 @@
     android:paddingStart="22dp"
     android:paddingEnd="22dp">
 
+    <TextView
+        android:id="@+id/tvBienvenidaRegistroMascotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/robotomedium"
+        android:text="@string/tv_activity_agregar"
+        android:textColor="@color/colorBack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/roundCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvBienvenidaRegistroMascotas">
 
         <ImageView
             android:id="@+id/ivMascA"
@@ -50,7 +62,7 @@
         android:id="@+id/lineaSeparadora"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorGris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +78,8 @@
         android:textColor="@color/colorBack"
         android:drawableEnd="@drawable/ic_lapiz_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora" />
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora2"
@@ -97,7 +110,8 @@
         android:textSize="16sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomMascA" />
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascA"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora3"
@@ -118,7 +132,8 @@
         android:textColor="@color/colorBack"
         android:drawableEnd="@drawable/ic_lapiz_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora3" />
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora3"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora4"
@@ -139,7 +154,8 @@
         android:textColor="@color/colorBack"
         android:drawableEnd="@drawable/ic_lapiz_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRazaMascA" />
+        app:layout_constraintTop_toBottomOf="@+id/etRazaMascA"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora5"
@@ -160,7 +176,8 @@
         android:textColor="@color/colorBack"
         android:drawableEnd="@drawable/ic_lapiz_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etColorMascA" />
+        app:layout_constraintTop_toBottomOf="@+id/etColorMascA"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora6"
@@ -207,7 +224,8 @@
         android:maxLines="3"
         android:maxLength="150"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora7" />
+        app:layout_constraintTop_toBottomOf="@+id/lineaSeparadora7"
+        android:inputType="text"/>
 
     <View
         android:id="@+id/lineaSeparadora8"
@@ -258,10 +276,21 @@
         android:layout_marginBottom="10dp">
 
         <Button
-            android:id="@+id/btnCancelarMascA"
+            android:id="@+id/btnGuardarMascA"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_marginBottom="6dp"
+            android:background="@drawable/estilo_boton_guardar_mascota"
+            android:onClick="guardarMascota"
+            android:text="@string/btn_guardar_mascA"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlanco"
+            android:fontFamily="@font/robotomedium"/>
+
+        <Button
+            android:id="@+id/btnCancelarMascA"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
             android:background="@drawable/estilo_boton_cancelar_mascota"
             android:onClick="cancelarG"
             android:text="@string/btn_cancelar_mascA"
@@ -269,17 +298,6 @@
             android:textColor="@color/colorMagenta"
             android:fontFamily="@font/robotomedium"/>
 
-        <Button
-            android:id="@+id/btnGuardarMascA"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="4dp"
-            android:background="@drawable/estilo_boton_guardar_mascota"
-            android:onClick="guardarMascota"
-            android:text="@string/btn_guardar_mascA"
-            android:textAllCaps="false"
-            android:textColor="@color/colorBlanco"
-            android:fontFamily="@font/robotomedium"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,7 +53,7 @@
     <string name="tv_slide3_tit">Para finalizar</string>
     <string name="tv_email_usuario">Email</string>
     <string name="tv_ciudad_usuario">Ciudad</string>
-    <string name="tv_mascotas_usuario">Añadir Mascotas\t</string>
+    <string name="tv_mascotas_usuario">Añadir Mascotas  </string>
     <string name="btn_editar_perfil">Editar Perfil</string>
     <string name="tv_aclaracion_perfil">(Pulsa para añadir, editar o borrar)</string>
 
@@ -61,13 +61,13 @@
     <string name="h_menu_search">Search</string>
     <string name="mascEncontradas">Encuentra</string>
     <string name="mascBuscadas">Busca</string>
-    <string name="h_tipo_alerta">Tipo de alerta</string>
-    <string name="h_tipo_animal">Tipo de animal</string>
-    <string name="h_color">Color</string>
+    <string name="h_tipo_alerta">Tipo de alerta: </string>
+    <string name="h_tipo_animal">Tipo de animal: </string>
+    <string name="h_color">Color de mascota: </string>
     <string name="h_fecha_p_e">Fecha de Perdida/Encuentro</string>
-    <string name="h_raza">Raza de mascota</string>
+    <string name="h_raza">Raza de mascota: </string>
     <string name="bt_guardar">Guardar</string>
-    <string name="h_desc">Descripcion</string>
+    <string name="h_desc">Descripción: </string>
     <string name="hint_mail">email</string>
     <string name="btn_crear_cuenta">Crear cuenta</string>
 
@@ -110,18 +110,19 @@
     <string name="btn_agregar_mascota">Agregar Mascota</string>
     <string name="btn_guardar_cambios">Guardar Cambios</string>
     <string name="btn_cambiar_foto">Cambiar Foto</string>
+
     <string name="toast_datos_vacios">Se deben rellenar los datos</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="hint_pass_ant">Anterior %1$s</string>
     <string name="hint_pass_new">Nueva %1$s</string>
     <string name="hint_pass_new_rep">Repetir nueva %1$s</string>
-    <string name="msg_cancel">Los cambios no guardados</string>
-    <string name="msg_wrongPass">tienes que introducir tu ultima contraseña correctamente</string>
-    <string name="msg_newPass">la contraseña cambiada correctamente</string>
-    <string name="msg_newPassDist">Tu nueva contraseña no esta bien repetida</string>
-    <string name="msg_newEmailDist">Tu nuevo email no esta bien repetido</string>
-    <string name="msg_newEmail">Tu nuevo email se ha cambiado correctamente</string>
-    <string name="msg_wrongEmail">Tu email Antiguo no es correcto</string>
+    <string name="msg_cancel">Los cambios no se han guardado</string>
+    <string name="msg_wrongPass">La contraseña antigua no es correcta</string>
+    <string name="msg_newPass">Contraseña actualizada correctamente</string>
+    <string name="msg_newPassDist">La contraseña debe coincidir</string>
+    <string name="msg_newEmailDist">El email debe coincidir</string>
+    <string name="msg_newEmail">Email actualizado correctamente</string>
+    <string name="msg_wrongEmail">El email antiguo no es correcto</string>
 
     <string name="toast_msj_error_datos_registro">Email o contraseña inválido</string>
     <string name="mensaje_chat_visto">Visto</string>
@@ -143,6 +144,7 @@
     <string name="btn_eliminar_mascA">Eliminar Mascota</string>
     <string name="btn_cancelar_mascM">Cancelar y Volver</string>
     <string name="btn_guardar_mascM">Guardar Cambios</string>
+    <string name="tx_detalle_verEnMapa">Ver en el mapa</string>
 
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
     <string name="tv_color">Color:</string>
@@ -153,5 +155,39 @@
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
     <string name="menu_noticias">Noticias</string>
     <string name="menu_twitter">Twitter</string>
+    <string name="toast_puntoMap">Pulsa sobre el mapa para elegir la ubicación</string>
+    <string name="h_edad">Fecha de nacimiento: </string>
+    <string name="h_nombre">Nombre de mascota: </string>
+    <string name="msjDialogborrarCuenta">¿Seguro que deseas eliminar la cuenta?</string>
+    <string name="msjBtDialogSI">Sí, seguro</string>
+    <string name="msjBtDialogNo">Cancelar</string>
+    <string name="tx_bt_abrir_chat">Abrir chat</string>
+    <string name="msjDialogBorrarAlerta">¿Seguro que deseas eliminar la alerta?</string>
+    <string name="tv_bienvenida_alertas">Últimas Alertas</string>
+    <string name="tv_aclaracion_alertas">(pulsa sobre el botón para añadir una alerta)</string>
+    <string name="tv_tipo_alerta">perdido</string>
+    <string name="tv_tipo_alerta_enc">encontrado</string>
+    <string name="btn_contacto">Contacto</string>
+    <string name="btn_mascota_encontrada">Mascotas perdidas</string>
+    <string name="btn_mascota_perdida">Mascotas encontradas</string>
+    <string name="tv_bienvenida">Bienvenido a Petsaway</string>
+    <string name="tv_texto_inicio">¡La aplicación de tus mascotas!</string>
+    <string name="tv_contenido">Contenido</string>
+    <string name="tv_alertas">Alertas</string>
+    <string name="tv_adopciones">Adopciones</string>
+    <string name="tv_bienvenida_adopcion">Adopciones</string>
+    <string name="tv_aclaracion_adopciones">(pulsa sobre el botón para añadir una adopción)</string>
+    <string name="n_raza">Correo de contacto:</string>
+    <string name="tv_bienvenida_ajustes">Configuración</string>
+    <string name="tv_activity_agregar">Registro de mascotas</string>
+    <string name="tv_activity_modificar">Modifica tu mascota</string>
+
+    <string name="tx_alertas">Encuentralo</string>
+    <string name="tx_adopta">Adoptalo</string>
+    <string name="texto_inferior_home">PETSAWAY</string>
+    <string name="tv_fecha_publicacion">Fecha de publicación:</string>
+    <string name="tv_raza">Raza:</string>
+    <string name="tv_email">Email:</string>
+    <string name="tv_descripcion">Descripción:</string>
 
 </resources>

@@ -12,6 +12,8 @@
     <color name="colorMagenta">#993955</color>
     <color name="colorMagentaTransparente">#80993955</color>
     <color name="colorPurpura">#AE76A6</color>
+    <color name="colorPurpuraClaro">#95CA91CA</color>
+    <color name="colorPurpuraClaro2">#FBDFFB</color>
     <color name="colorPurpuraTransparente">#10AE76A6</color>
     <color name="colorAzul">#A3C3D9</color>
     <color name="colorAzulTranspar">#20A3C3D9</color>
@@ -23,6 +25,7 @@
     <color name="colorBack">#000000</color>
 
     <color name="colorFondoPerfil">#40ae75ae</color>
+    <color name="colorBackTransparente">#80000000</color>
 
 
 </resources>
