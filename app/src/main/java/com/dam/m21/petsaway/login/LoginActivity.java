@@ -241,9 +241,6 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putInt("vecesEjecutado", numVeces);
             editor.commit();
-            /*Intent i = new Intent(LoginActivity.this, LanzadorOnBoard.class);
-            startActivity(i);
-            finish();*/
         }
     }
 
