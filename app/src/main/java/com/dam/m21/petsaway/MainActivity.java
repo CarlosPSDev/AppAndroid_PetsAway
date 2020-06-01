@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void abrirAdopta(View v){
         startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
     }
+
     public void abrirAlertas(View v){
         startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
     }

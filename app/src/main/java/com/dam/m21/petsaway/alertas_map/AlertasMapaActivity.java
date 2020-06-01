@@ -150,6 +150,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                     dMP = findViewById(R.id.dMP);
                     if (add != null) {
                         goFormBla();
+                        add=null;
                     }
                 }
             }
