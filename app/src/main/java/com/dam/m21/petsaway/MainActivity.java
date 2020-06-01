@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.openDrawer(Gravity.START);
             }
         });
-        
+
         navController = findViewById(R.id.nav_view);
         navController.setNavigationItemSelectedListener(this);
 
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, AlertasListaActivity.class));
 
         } else if (id == R.id.nav_adoptar){
-
             startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));
+
         } else if (id == R.id.nav_chat){
             startActivity(new Intent(MainActivity.this, MainActivityChat.class));
 
