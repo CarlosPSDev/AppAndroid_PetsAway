@@ -24,6 +24,7 @@
         android:id="@+id/tvNameUserHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/tv_nombre_usuario_header"
         android:fontFamily="@font/robotobold"
@@ -33,6 +34,7 @@
         android:id="@+id/textViewEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:text="@string/tv_mail_usuario_header"
         android:fontFamily="@font/robotomedium"
         android:textColor="@color/colorBlanco"/>

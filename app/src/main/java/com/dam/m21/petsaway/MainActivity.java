@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,10 +21,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
-import com.dam.m21.petsaway.alertas_lista.AlertasList;
 import com.dam.m21.petsaway.alertas_lista.AlertasListaActivity;
 import com.dam.m21.petsaway.ajustes.AjustesActivity;
-import com.dam.m21.petsaway.alertas_lista.ListaAdapter;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
@@ -45,9 +41,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import com.google.firebase.database.ValueEventListener;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Implementaciones Navigation Drawer !
     DrawerLayout drawer;
@@ -55,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navController;
 
     private FirebaseAuth fbAuth;
-    GoogleSignInClient googleSignInClient;
     PojoUser usuario;
     String userid;
     String email;
@@ -67,12 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private GoogleSignInClient mGoogleSignInClient;
 
-    RecyclerView rvAlertas;
-    LinearLayoutManager llm;
-    ListaAdapter adapter;
-    private ArrayList<AlertasList> listaDatos;
-    static String EMAIL_GOOGLE = "";
-    TextView tvInfoEmail;
     ImageView imageViewUSerNav;
     TextView tvNameNav;
     TextView tvEmailNav;
@@ -229,7 +215,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ref.addValueEventListener(vel);
         }
     }
-
 
     public void abrirAdopta(View v){
         startActivity(new Intent(MainActivity.this, AdoptaListaActivity.class));

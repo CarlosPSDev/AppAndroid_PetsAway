@@ -29,7 +29,6 @@
         <activity android:name=".alertas_adoptar.DetalleAdoptaActivity" />
         <activity android:name=".alertas_adoptar.AdoptaListaActivity" />
         <activity android:name=".perfil_usuario.ActModificarBorrar" />
-        <activity android:name=".NoticiasActivity"></activity>
         <activity android:name=".perfil_usuario.ActAgregarMascota" />
         <activity android:name=".ajustes.ModEmailPass" >
             <intent-filter android:autoVerify="true">
