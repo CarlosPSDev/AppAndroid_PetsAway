@@ -2,7 +2,6 @@ package com.dam.m21.petsaway;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -15,14 +14,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.acerca_de.AcercaDeActivity;
 import com.dam.m21.petsaway.alertas_adoptar.AdoptaListaActivity;
 import com.dam.m21.petsaway.alertas_lista.AlertasList;
@@ -32,19 +30,17 @@ import com.dam.m21.petsaway.alertas_lista.ListaAdapter;
 import com.dam.m21.petsaway.chat.MainActivityChat;
 import com.dam.m21.petsaway.login.LoginActivity;
 import com.dam.m21.petsaway.aviso_legal.AvisoLegal;
+import com.dam.m21.petsaway.model.PojoUser;
 import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.dam.m21.petsaway.social_media.TwitterActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -60,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FirebaseAuth fbAuth;
     GoogleSignInClient googleSignInClient;
-    FirebaseAuth fbAuth;
     PojoUser usuario;
     String userid;
     String email;
@@ -131,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // ============================================================ //
     }
     /**
      * Este método se utiliza para la manipulación del open and close del DrawerLayout
@@ -202,6 +196,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ref.removeEventListener(vel);
             vel = null;
         }
+    }
+
+    private void rellenarDatosNavHeader() {
+        tvNameNav.setText(usuario.getNombre());
+        email = fbUser.getEmail();
+        tvEmailNav.setText(email);
+        uriImgGuardada = usuario.getUrlFotoUser();
+        if (uriImgGuardada != null)
+            Glide.with(MainActivity.this).load(uriImgGuardada).into(imageViewUSerNav);
+        else imageViewUSerNav.setImageResource(R.color.colorBlanco);
+
+        eliminarListener();
     }
 
     private void recuperarDatosFirebase() {
