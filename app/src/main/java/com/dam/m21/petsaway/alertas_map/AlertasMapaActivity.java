@@ -53,17 +53,18 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback { Button bt_encuentra,bt_busca;
+public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
+    Button bt_encuentra, bt_busca;
     ImageView ImgM;
     Button btAbrChat_mark;
     LinearLayout dMP;
-    TextView tipoAnimalM,fechaEPAnimalM,razaAnimalM,userPushM;
+    TextView tipoAnimalM, fechaEPAnimalM, razaAnimalM, userPushM;
     private GoogleMap mMap;
     private static final int PETICION_PERMISO_LOCALIZACION = 101;
 
     static final String CLAVE_LAT = "LAT";
     static final String CLAVE_LONG = "LONG";
-    String ta,add,idUser;
+    String ta, add, idUser;
     private FusedLocationProviderClient flpc;
     private StorageReference msr;
     private FirebaseAuth fa;
@@ -74,14 +75,15 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
     private BottomSheetBehavior bsb;
     View bottomSheet;
     AlertasList pf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alertas_mapa);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION}, PETICION_PERMISO_LOCALIZACION);
         } else {
             Log.i("LOC", "with permission");
@@ -90,23 +92,23 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        bt_encuentra=findViewById(R.id.bt_encuentra);
-        bt_busca=findViewById(R.id.bt_busca);
-        tipoAnimalM=findViewById(R.id.tipoAnimalM);
-        fechaEPAnimalM=findViewById(R.id.fechaEPAnimalM);
-        razaAnimalM=findViewById(R.id.razaAnimalM);
-        userPushM=findViewById(R.id.userPushM);
-        ImgM=findViewById(R.id.ImgM);
-        btAbrChat_mark=findViewById(R.id.btAbrChat_mark);
+        bt_encuentra = findViewById(R.id.bt_encuentra);
+        bt_busca = findViewById(R.id.bt_busca);
+        tipoAnimalM = findViewById(R.id.tipoAnimalM);
+        fechaEPAnimalM = findViewById(R.id.fechaEPAnimalM);
+        razaAnimalM = findViewById(R.id.razaAnimalM);
+        userPushM = findViewById(R.id.userPushM);
+        ImgM = findViewById(R.id.ImgM);
+        btAbrChat_mark = findViewById(R.id.btAbrChat_mark);
 
         fa = FirebaseAuth.getInstance();
         fu = fa.getCurrentUser();
         idUser = fu.getUid();
-        msr= FirebaseStorage.getInstance().getReference();
+        msr = FirebaseStorage.getInstance().getReference();
         dbr = FirebaseDatabase.getInstance().getReference();
 
-        ta=getIntent().getStringExtra("TA");
-        add=getIntent().getStringExtra("ADD");
+        ta = getIntent().getStringExtra("TA");
+        add = getIntent().getStringExtra("ADD");
         bottomSheet = findViewById(R.id.bottomJsoft);
         bsb = BottomSheetBehavior.from(bottomSheet);
         bsb.setPeekHeight(0);
@@ -115,13 +117,23 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void goMiUbi() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         flpc.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
                 Log.i("LOC", "onSuccess de location");
                 if (location != null) {
-                    double lon=location.getLongitude();
-                    double lat=location.getLatitude();
+                    double lon = location.getLongitude();
+                    double lat = location.getLatitude();
                     miLoc = new LatLng(lat, lon);
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miLoc, 14));
                 }
@@ -134,14 +146,14 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
-                if(pUser!=null) {
+                if (pUser != null) {
                     dMP = findViewById(R.id.dMP);
-                    if (add!=null) {
-                        toastPersonalizado(getString(R.string.toast_puntoMap));
+                    if (add != null) {
                         goFormBla();
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 throw databaseError.toException();
@@ -149,20 +161,31 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         });
     }
 
-    private void toastPersonalizado(String text) {
+    private void toastPersonalizado1(String text) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);
         texto.setText(text);
         Toast toast = new Toast(AlertasMapaActivity.this);
-        toast.setGravity(Gravity.CENTER, Gravity.CENTER , 30);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, Gravity.CENTER, 30);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(customToast);
         toast.show();
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true);
         mMap.setPadding(0, 200, 0, 0);
         if (ta != null) {
@@ -215,11 +238,10 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         });
     }
     public void goFormBla() {
-        toastPersonalizado(getString(R.string.toast_puntoMap));
+        toastPersonalizado1(getString(R.string.toast_puntoMap));
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                // if(cont%2!=0) {
                 mark = mMap.addMarker(new MarkerOptions()
                         .position(latLng).title("Nueva posición")
                         .snippet("Lat: " + latLng.latitude + ", Long: " + latLng.longitude)

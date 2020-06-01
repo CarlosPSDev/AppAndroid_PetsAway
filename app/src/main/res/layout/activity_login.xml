@@ -94,7 +94,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/robotomedium"
-        android:onClick="abrirOnBoarding"
         android:text="@string/tv_conectar_con"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,14 +117,14 @@
             android:onClick="loginGmail"
             app:srcCompat="@drawable/google" />
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/imgBtnFacebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/colorGrisClaro"
             android:onClick="loginFacebook"
-            app:srcCompat="@drawable/facebook" />
+            app:srcCompat="@drawable/facebook" />-->
     </LinearLayout>
 
     <TextView

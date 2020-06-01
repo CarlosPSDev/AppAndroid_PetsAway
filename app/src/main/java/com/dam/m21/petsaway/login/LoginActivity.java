@@ -178,7 +178,14 @@ public class LoginActivity extends AppCompatActivity {
                             throw databaseError.toException();
                         }
                     });
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            comprobarOnBoarding();
+                            overridePendingTransition(R.anim.leftin, R.anim.leftout);
+                        }
+                    }, 2000);
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.getException());
                 }
@@ -189,10 +196,10 @@ public class LoginActivity extends AppCompatActivity {
     public void loginFacebook(View view) {
     }
 
-    public void abrirOnBoarding(View view) {
+    /*public void abrirOnBoarding(View view) {
         Intent i = new Intent(this, LanzadorOnBoard.class);
         startActivity(i);
-    }
+    }*/
 
     private boolean validarDatos() {
         email = etEmail.getText().toString().trim();
@@ -230,19 +237,19 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else {
-            /* numVeces++;  //Descomentar este bloque al lanzar la aplicación
+            numVeces++;  //Descomentar este bloque al lanzar la aplicación
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putInt("vecesEjecutado", numVeces);
-            editor.commit();*/
-            Intent i = new Intent(LoginActivity.this, LanzadorOnBoard.class);
+            editor.commit();
+            /*Intent i = new Intent(LoginActivity.this, LanzadorOnBoard.class);
             startActivity(i);
-            finish();
+            finish();*/
         }
     }
 
     private void guardarDatosUserSP(String nombre, String email, String userId){
-        /*LLamar a este método cuando se valide el login, ya sea con firebase, google o facebook)!!*/
-        SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
+        //LLamar a este método cuando se valide el login, ya sea con firebase, google o facebook)!!//
+                SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
         editor.putString("nombreUser", nombre);
