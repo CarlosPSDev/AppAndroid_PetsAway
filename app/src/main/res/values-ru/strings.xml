@@ -82,7 +82,6 @@
     <string name="msjBtDialogImage">Elige</string>
     <string name="encontrados">Encontrados</string>
     <string name="encontrado">encontrado</string>
-    <string name="buscado">buscado</string>
     <string name="modTema">Modificar el tema</string>
     <string name="modPass">Cambiar contraseña</string>
     <string name="modEmail">Cambiar correo electronico</string>
@@ -104,7 +103,6 @@
     <string name="hint_identificacion_mascota">Nº de identificación (chip, anilla, etc.)</string>
     <string name="hint_fechaNac_mascota">*Fecha de nacimiento (ejemplo 12/05/2020)</string>
     <string name="hint_descripcion_mascota">Descripción o comentarios</string>
-    <string name="btn_guardar_mascA">Guarda tu Mascota</string>
     <string name="btn_cancelar_mascA">Cancelar</string>
     <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
     <string name="toast_guardado_ok">Se han guardado los datos de la mascota correctamente</string>
@@ -146,5 +144,8 @@
     <string name="btn_recuperar_contrasenia">Recuperar contraseña</string>
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
     <string name="menu_noticias">Noticias</string>
+    <string name="btn_contacto">contacto</string>
+    <string name="btn_guardar_mascA">Guarda tu mascota</string>
+    <string name="buscado">buscado</string>
 
 </resources>
