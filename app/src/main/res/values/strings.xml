@@ -64,7 +64,7 @@
     <string name="h_tipo_alerta">Tipo de alerta: </string>
     <string name="h_tipo_animal">Tipo de animal: </string>
     <string name="h_color">Color de mascota: </string>
-    <string name="h_fecha_p_e">Fecha de Perdida/Encuentro</string>
+    <string name="h_fecha_p_e">Fecha de Pérdida/Encuentro</string>
     <string name="h_raza">Raza de mascota: </string>
     <string name="bt_guardar">Guardar</string>
     <string name="h_desc">Descripción: </string>
