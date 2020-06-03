@@ -15,7 +15,6 @@ public class LanzadorOnBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lanzador_onboard);
-
         viewpager = findViewById(R.id.viewPager);
         OnBoardAdapter oba = new OnBoardAdapter(getSupportFragmentManager());
         viewpager.setAdapter(oba);
