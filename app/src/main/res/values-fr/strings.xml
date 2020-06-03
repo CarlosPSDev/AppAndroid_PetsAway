@@ -1,0 +1,154 @@
+<resources>
+    <string name="app_name">Petsaway</string>
+    <string name="btn_nuevo_usuario">Nouvel Usager</string>
+    <string name="btn_entrar">Accéder</string>
+    <string name="hint_usuario">usager</string>
+    <string name="hint_password">mot de passe</string>
+    <string name="tv_olvidado_contrasenia">¿Has olvidado la contraseña?</string>
+    <string name="tv_conectar_con">-o inicia sesión con-</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Name User</string>
+    <string name="nav_header_subtitle">xxx@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="open_drawer">Open Navigation Drawer</string>
+    <string name="close_drawer">Close Navigation Drawer</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_alerta">Alertas</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_adoptar">Adopta una masota</string>
+    <string name="nav_otros">Otros</string>
+    <string name="menu_ajustes">Ajustes</string>
+    <string name="menu_aviso_legal">Aviso legal</string>
+    <string name="menu_acerca_de">Acerca de PetsAway</string>
+    <string name="menu_salir">Salir</string>
+    <string name="menu_chat">Chat</string>
+    <string name="tv_home">Home</string>
+    <string name="tv_nombre_usuario_header">Nombre de usuario</string>
+    <string name="tv_mail_usuario_header">xxxxxx@gmail.com</string>
+
+    <string name="tv_aviso_legal">Aviso Legal</string>
+    <string name="tv_aviso_legal_text">PETSAWAY no se hace responsable del uso fraudulento que puedan realizar los usuarios suplantando identidades
+        y pertenencias de las mascotas. Compruebe siempre los datos facilitados para asegurarse de a quién se le entrega la mascota o con quién queda.</string>
+    <string name="tv_polit_privacidad">Política de Privacidad</string>
+    <string name="tv_polit_privacidad_text">PETSAWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de
+        registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales en petsawaypfc@gmail.com indicando sus datos de registro</string>
+    <string name="tv_nom_usuario">Nombre de Usuario</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_slide1_tit">Bienvenido a Petsaway</string>
+    <string name="tv_slide1_desc">Te damos la bienvenida a tu nueva aplicación con la que ya no temerás que tu mascota se extravíe, y además con la que podrás conocer a otras personas amantes de las mascotas</string>
+    <string name="tv_slide2_desc">Dentro de la aplicación encontrarás diversas funciones como editar perfil, registrar tus mascotas, consultar alertas y noticias, incluso chatear con otros usuarios con mascota</string>
+    <string name="tv_slide3_desc">Si encuentras una mascota perdida, trátala con cuidado pues estará asustada. Si sabes qué come puedes darle su comida, si no, puedes buscar en internet o consultar a un veterinario</string>
+    <string name="tv_slide2_tit">Conoce todas las funciones</string>
+    <string name="tv_slide3_tit">Para finalizar</string>
+    <string name="tv_email_usuario">Email</string>
+    <string name="tv_ciudad_usuario">Ciudad</string>
+    <string name="tv_mascotas_usuario">Añadir Mascotas\t</string>
+    <string name="btn_editar_perfil">Éditer le profil</string>
+    <string name="tv_aclaracion_perfil">(Pulsa para añadir, editar o borrar)</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="h_menu_search">Search</string>
+    <string name="mascEncontradas">Trouver</string>
+    <string name="mascBuscadas">Chercher</string>
+    <string name="h_tipo_alerta">Type d\'alerte:</string>
+    <string name="h_tipo_animal">Genre d\'animal:</string>
+    <string name="h_color">Couleur de l\'animal:</string>
+    <string name="h_fecha_p_e">Date de Perte/Rencontre</string>
+    <string name="h_raza">Race de l\'animal</string>
+    <string name="bt_guardar">Enregistrer</string>
+    <string name="h_desc">Description:</string>
+    <string name="hint_mail">email</string>
+    <string name="btn_crear_cuenta">Créer un compte</string>
+
+    <string name="toast_faltanDatos">Faltan Datos</string>
+    <string name="toast_registro_correcto">¡Registrado!</string>
+    <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
+    <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
+    <string name="toast_error_acceso">Error de acceso</string>
+
+    <string name="maarker_encontrado">trouvé</string>
+    <string name="msjBtDialogImage">Elige</string>
+    <string name="encontrados">Trouvés</string>
+    <string name="encontrado">trouvé</string>
+    <string name="buscado">cherché</string>
+    <string name="modTema">Modificar el tema</string>
+    <string name="modPass">Cambiar contraseña</string>
+    <string name="modEmail">Cambiar correo electronico</string>
+    <string name="modFondoChat">Modificar fondo del chat</string>
+    <string name="invitAm">Inviter des amis</string>
+    <string name="borrarCuenta">Supprimer mon compte</string>
+    <string name="notif">Notificaciones</string>
+
+    <string name="toast_recuperar_password">Debes introducir tu email</string>
+    <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
+    <string name="toast_revisa_email">¡Revisa tu correo!</string>
+    <string name="toast_error_envio_correo">Se ha producido un error</string>
+    <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
+    <string name="hint_nombre_mascota">*Nom de l\'animal</string>
+    <string name="tv_aniadir_mascota">Añadir Mascota</string>
+    <string name="hint_especie_mascota">*Autre (serpent, cochon, etc.)</string>
+    <string name="hint_raza_mascota">Race (bull dog, persan, perroquet du soleil)</string>
+    <string name="hint_color_mascota">*Couleur ou couleurs principales</string>
+    <string name="hint_identificacion_mascota">Numéro d\'identification (puce, anneau, etc.)</string>
+    <string name="hint_fechaNac_mascota">*Date de naissance (exemple 12/05/2020)</string>
+    <string name="hint_descripcion_mascota">Description ou commentaires</string>
+    <string name="btn_guardar_mascA">Enregistrer les données</string>
+    <string name="btn_cancelar_mascA">Annuler</string>
+    <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
+    <string name="toast_guardado_ok">Se han guardado los datos de la mascota correctamente</string>
+    <string name="btn_agregar_mascota">Ajouter un Animal</string>
+    <string name="btn_guardar_cambios">Enregistrer les Modifications</string>
+    <string name="btn_cambiar_foto">Changer la Photo</string>
+    <string name="toast_datos_vacios">Se deben rellenar los datos</string>
+    <string name="btn_cancelar">Annuler</string>
+    <string name="hint_pass_ant">Antérieur %1$s</string>
+    <string name="hint_pass_new">Nouveau %1$s</string>
+    <string name="hint_pass_new_rep">Répéter le nouveau %1$s</string>
+    <string name="msg_cancel">Los cambios no guardados</string>
+    <string name="msg_wrongPass">tienes que introducir tu ultima contraseña correctamente</string>
+    <string name="msg_newPass">la contraseña cambiada correctamente</string>
+    <string name="msg_newPassDist">Tu nueva contraseña no esta bien repetida</string>
+    <string name="msg_newEmailDist">Tu nuevo email no esta bien repetido</string>
+    <string name="msg_newEmail">Tu nuevo email se ha cambiado correctamente</string>
+    <string name="msg_wrongEmail">Tu email Antiguo no es correcto</string>
+
+    <string name="toast_msj_error_datos_registro">Email o contraseña inválido</string>
+    <string name="mensaje_chat_visto">Visto</string>
+    <string name="mensaje_chat_enviado">Envoyé</string>
+    <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
+    <string name="msg_error_enviar_notif">¡Ha fallado!</string>
+    <string name="btn_subir_fotoM">Télécharger photo</string>
+    <string name="rdbtn_macho">Macho</string>
+    <string name="rdbtn_hembra">Hembra</string>
+    <string name="tv_modif_mascota">Modificar Mascota</string>
+    <string name="btn_cambiar_fotoM">Télécharger nouvelle photo</string>
+    <string name="btn_eliminar_mascA">Supprimer Animal</string>
+    <string name="btn_cancelar_mascM">Annuler et retourner</string>
+    <string name="btn_guardar_mascM">Enregistrer les Modifications</string>
+
+    <string name="tv_fecha_nac_mascota">Nacimiento:</string>
+    <string name="tv_color">Color:</string>
+    <string name="tv_especie">Especie:</string>
+    <string name="toast_cambios_ok">¡Guardado!</string>
+    <string name="toast_foto_guardada">¡Guardada!</string>
+    <string name="btn_recuperar_contrasenia">Récupérer mot de passe</string>
+    <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
+     <string name="menu_noticias">Nouvelles</string>
+    <string name="btn_contacto">Contacter</string>
+    <string name="btn_mascota_encontrada">Animalux perdus</string>
+    <string name="btn_mascota_perdida">Animaux trouvés</string>
+    <string name="h_edad">Date de naissance:</string>
+    <string name="h_nombre">Nom de l\'animal</string>
+
+</resources>
