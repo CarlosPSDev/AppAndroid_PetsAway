@@ -9,7 +9,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Name User</string>
+    <string name="nav_header_title">Username</string>
     <string name="nav_header_subtitle">xxx@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -21,15 +21,13 @@
     <string name="menu_send">Send</string>
     <string name="open_drawer">Open Navigation Drawer</string>
     <string name="close_drawer">Close Navigation Drawer</string>
-    <string name="menu_perfil">Perfil</string>
-    <string name="menu_alerta">Alertas</string>
-    <string name="menu_mapa">Mapa</string>
-    <string name="menu_adoptar">Adopta una masota</string>
-    <string name="nav_otros">Otros</string>
-    <string name="menu_ajustes">Ajustes</string>
-    <string name="menu_aviso_legal">Aviso legal</string>
-    <string name="menu_acerca_de">Acerca de PetsAway</string>
-    <string name="menu_salir">Salir</string>
+    <string name="menu_perfil">Profile</string>
+    <string name="menu_alerta">Alerts</string>
+    <string name="menu_mapa">Map</string>
+    <string name="nav_otros">Others</string>
+    <string name="menu_ajustes">Settings</string>
+    <string name="menu_acerca_de">About PetsAway</string>
+    <string name="menu_salir">Exit</string>
     <string name="menu_chat">Chat</string>
     <string name="tv_home">Home</string>
     <string name="tv_nombre_usuario_header">Nombre de usuario</string>
@@ -78,23 +76,23 @@
     <string name="toast_error_acceso">Error de acceso</string>
 
     <string name="maarker_encontrado">found</string>
-    <string name="msjBtDialogImage">Elige</string>
+    <string name="msjBtDialogImage">Choose</string>
     <string name="encontrados">Found</string>
     <string name="encontrado">found</string>
     <string name="buscado">wanted</string>
-    <string name="modTema">Modificar el tema</string>
-    <string name="modPass">Cambiar contraseña</string>
-    <string name="modEmail">Cambiar correo electronico</string>
-    <string name="modFondoChat">Modificar fondo del chat</string>
+    <string name="modTema">Modify theme</string>
+    <string name="modPass">Change password</string>
+    <string name="modEmail">Change email</string>
+    <string name="modFondoChat">Modify chat background</string>
     <string name="invitAm">Invite friends</string>
     <string name="borrarCuenta">Delete my account</string>
-    <string name="notif">Notificaciones</string>
+    <string name="notif">Notifications</string>
 
     <string name="toast_recuperar_password">Debes introducir tu email</string>
     <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
     <string name="toast_revisa_email">¡Revisa tu correo!</string>
     <string name="toast_error_envio_correo">Se ha producido un error</string>
-    <string name="toast_bienvenida">Bienvenid@ Te recomendamos rellenar y personalizar tu perfil</string>
+    <string name="toast_bienvenida">Welcome! We recommend you fill out and personalize your profile</string>
     <string name="hint_nombre_mascota">*Pet\'s name</string>
     <string name="tv_aniadir_mascota">Añadir Mascota</string>
     <string name="hint_raza_mascota">Breed (bull dog, Persian, parrot of the sun)</string>
@@ -114,22 +112,21 @@
     <string name="hint_pass_ant">Previous %1$s</string>
     <string name="hint_pass_new">New %1$s</string>
     <string name="hint_pass_new_rep">Repeat new %1$s</string>
-    <string name="msg_cancel">Los cambios no guardados</string>
-    <string name="msg_wrongPass">tienes que introducir tu ultima contraseña correctamente</string>
-    <string name="msg_newPass">la contraseña cambiada correctamente</string>
-    <string name="msg_newPassDist">Tu nueva contraseña no esta bien repetida</string>
-    <string name="msg_newEmailDist">Tu nuevo email no esta bien repetido</string>
-    <string name="msg_newEmail">Tu nuevo email se ha cambiado correctamente</string>
-    <string name="msg_wrongEmail">Tu email Antiguo no es correcto</string>
+    <string name="msg_cancel">Changes haven\'t been saved</string>
+    <string name="msg_wrongPass">Old password isn\'t correct</string>
+    <string name="msg_newPass">Password updated correctly</string>
+    <string name="msg_newPassDist">Passwords must match</string>
+    <string name="msg_newEmail">Email successfully updated</string>
+    <string name="msg_wrongEmail">Old email isn\'t correct</string>
 
     <string name="toast_msj_error_datos_registro">Email o contraseña inválido</string>
-    <string name="mensaje_chat_visto">Visto</string>
+    <string name="mensaje_chat_visto">Seen</string>
     <string name="mensaje_chat_enviado">Sent</string>
-    <string name="mensaje_chat_vacio">No puedes enviar un mensaje vacío</string>
-    <string name="msg_error_enviar_notif">¡Ha fallado!</string>
+    <string name="mensaje_chat_vacio">You can\'t send an empty message</string>
+    <string name="msg_error_enviar_notif">Failed!!</string>
     <string name="btn_subir_fotoM">Upload Image</string>
-    <string name="rdbtn_macho">Macho</string>
-    <string name="rdbtn_hembra">Hembra</string>
+    <string name="rdbtn_macho">Male</string>
+    <string name="rdbtn_hembra">Female</string>
     <string name="tv_modif_mascota">Modificar Mascota</string>
     <string name="btn_cambiar_fotoM">Upload new image</string>
     <string name="btn_eliminar_mascA">Delete Pet</string>
@@ -139,7 +136,7 @@
     <string name="tv_fecha_nac_mascota">Nacimiento:</string>
     <string name="tv_color">Color:</string>
     <string name="tv_especie">Especie:</string>
-    <string name="toast_cambios_ok">¡Guardado!</string>
+    <string name="toast_cambios_ok">Saved!</string>
     <string name="toast_foto_guardada">¡Guardada!</string>
     <string name="btn_recuperar_contrasenia">Recover password</string>
     <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
@@ -150,5 +147,17 @@
     <string name="h_edad">Birthdate:</string>
     <string name="h_nombre">Pet\'s name:</string>
     <string name="hint_especie_mascota">*Other (snake, pig, etc.)</string>
+    <string name="menu_adoptar">Adopt a pet</string>
+    <string name="menu_aviso_legal">Legal Information</string>
+    <string name="menu_twitter">Twitter</string>
+    <string name="msg_newEmailDist">Emails must match</string>
+    <string name="msjBtDialogNo">Cancel</string>
+    <string name="msjBtDialogSI">Yes, sure</string>
+    <string name="msjDialogBorrarAlerta">Are you sure you want to delete this alert?</string>
+    <string name="msjDialogborrarCuenta">Are you sure you want to delete your account?</string>
+    <string name="n_raza">Contact email:</string>
+    <string name="texto_acerca_de">PetsAway es una marca creada y registrada por un grupo de cuatro alumnos de la Universidad Europea de Madrid. Con ella queremos acercar a todos los propietarios de cualquier tipo de mascota de una manera rápida, dinámica y sencilla. A través de sus diferentes funciones, nuestro objetivo es desarrollar una comunicación entre todos los usuarios mediante el chat del que dispone nuestra App. Además de las diferentes opciones entre las que disponemos de un innovador servicio de alertas personalizadas o o la posibilidad de compartir este servicio con cualquier persona. El usuario tiene a su disposición un servicio de alerta en caso de pérdida de su mascota.</string>
+    <string name="texto_inferior_acerca_de">Madrid (Spain) PetsAway  petsawaypfc@gmail.com</string>
+    <string name="texto_inferior_home">PETSAWAY</string>
 
 </resources>
