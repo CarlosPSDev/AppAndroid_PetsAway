@@ -4,8 +4,8 @@
     <string name="btn_entrar">Access</string>
     <string name="hint_usuario">user</string>
     <string name="hint_password">password</string>
-    <string name="tv_olvidado_contrasenia">¿Has olvidado la contraseña?</string>
-    <string name="tv_conectar_con">-o inicia sesión con-</string>
+    <string name="tv_olvidado_contrasenia">Forgot your password?</string>
+    <string name="tv_conectar_con">-or login with-</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -30,30 +30,24 @@
     <string name="menu_salir">Exit</string>
     <string name="menu_chat">Chat</string>
     <string name="tv_home">Home</string>
-    <string name="tv_nombre_usuario_header">Nombre de usuario</string>
+    <string name="tv_nombre_usuario_header">Username</string>
     <string name="tv_mail_usuario_header">xxxxxx@gmail.com</string>
 
-    <string name="tv_aviso_legal">Aviso Legal</string>
-    <string name="tv_aviso_legal_text">PETSAWAY no se hace responsable del uso fraudulento que puedan realizar los usuarios suplantando identidades
-        y pertenencias de las mascotas. Compruebe siempre los datos facilitados para asegurarse de a quién se le entrega la mascota o con quién queda.</string>
-    <string name="tv_polit_privacidad">Política de Privacidad</string>
-    <string name="tv_polit_privacidad_text">PETSAWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de
-        registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales en petsawaypfc@gmail.com indicando sus datos de registro</string>
-    <string name="tv_nom_usuario">Nombre de Usuario</string>
+    <string name="tv_polit_privacidad">Privacy Policy</string>
+    <string name="tv_polit_privacidad_text">PETSAWAY does not collect any type of information beyond that provided by the user at the time of registration and his profile. At any time you can exercise your rights to cancel your personal data by deleting your account. Any query: petsawaypfc@gmail.com indicating your registration data</string>
+    <string name="tv_nom_usuario">Username</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tv_slide1_tit">Bienvenido a Petsaway</string>
-    <string name="tv_slide1_desc">Te damos la bienvenida a tu nueva aplicación con la que ya no temerás que tu mascota se extravíe, y además con la que podrás conocer a otras personas amantes de las mascotas</string>
-    <string name="tv_slide2_desc">Dentro de la aplicación encontrarás diversas funciones como editar perfil, registrar tus mascotas, consultar alertas y noticias, incluso chatear con otros usuarios con mascota</string>
-    <string name="tv_slide3_desc">Si encuentras una mascota perdida, trátala con cuidado pues estará asustada. Si sabes qué come puedes darle su comida, si no, puedes buscar en internet o consultar a un veterinario</string>
-    <string name="tv_slide2_tit">Conoce todas las funciones</string>
-    <string name="tv_slide3_tit">Para finalizar</string>
+    <string name="tv_slide1_tit">Welcome to Petsaway</string>
+    <string name="tv_slide3_desc">If you find a lost pet, treat it carefully as it will be scared. If you know what he eats you can give him his food, if not, you can search the internet or consult a vet</string>
+    <string name="tv_slide2_tit">Discover all the features</string>
+    <string name="tv_slide3_tit">To finish</string>
     <string name="tv_email_usuario">Email</string>
-    <string name="tv_ciudad_usuario">Ciudad</string>
-    <string name="tv_mascotas_usuario">Añadir Mascotas\t</string>
+    <string name="tv_ciudad_usuario">City</string>
+    <string name="tv_mascotas_usuario">Add Pets</string>
     <string name="btn_editar_perfil">Editar Perfil</string>
-    <string name="tv_aclaracion_perfil">(Pulsa para añadir, editar o borrar)</string>
+    <string name="tv_aclaracion_perfil">(Click to add, edit or delete)</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="h_menu_search">Search</string>
@@ -69,11 +63,10 @@
     <string name="hint_mail">email</string>
     <string name="btn_crear_cuenta">Create account</string>
 
-    <string name="toast_faltanDatos">Faltan Datos</string>
-    <string name="toast_registro_correcto">¡Registrado!</string>
-    <string name="toast_msj_no_datos">Debes rellenar todos los campos</string>
-    <string name="toast_user_no_registrado">No se ha podido realizar el registro</string>
-    <string name="toast_error_acceso">Error de acceso</string>
+    <string name="toast_faltanDatos">Missing data</string>
+    <string name="toast_registro_correcto">Registered!</string>
+    <string name="toast_user_no_registrado">Registration failed</string>
+    <string name="toast_error_acceso">Access failure</string>
 
     <string name="maarker_encontrado">found</string>
     <string name="msjBtDialogImage">Choose</string>
@@ -88,13 +81,11 @@
     <string name="borrarCuenta">Delete my account</string>
     <string name="notif">Notifications</string>
 
-    <string name="toast_recuperar_password">Debes introducir tu email</string>
-    <string name="tv_reset_contrasenia">Te enviaremos un E-mail a tu cuenta de correo electrónico para restablecer tu contraseña</string>
-    <string name="toast_revisa_email">¡Revisa tu correo!</string>
-    <string name="toast_error_envio_correo">Se ha producido un error</string>
+    <string name="toast_revisa_email">Check your email!</string>
+    <string name="toast_error_envio_correo">An error has occurred</string>
     <string name="toast_bienvenida">Welcome! We recommend you fill out and personalize your profile</string>
     <string name="hint_nombre_mascota">*Pet\'s name</string>
-    <string name="tv_aniadir_mascota">Añadir Mascota</string>
+    <string name="tv_aniadir_mascota">Add Pet</string>
     <string name="hint_raza_mascota">Breed (bull dog, Persian, parrot of the sun)</string>
     <string name="hint_color_mascota">* Main color or colors</string>
     <string name="hint_identificacion_mascota">Identification number (chip, ring, etc.)</string>
@@ -102,12 +93,12 @@
     <string name="hint_descripcion_mascota">Description or comments</string>
     <string name="btn_guardar_mascA">Save Pet</string>
     <string name="btn_cancelar_mascA">Dismiss</string>
-    <string name="toast_datos_vacios_m">Debes rellenar los campos con asterisco</string>
-    <string name="toast_guardado_ok">Se han guardado los datos de la mascota correctamente</string>
+    <string name="toast_datos_vacios_m">You must fill in the fields with an asterisk</string>
+    <string name="toast_guardado_ok">Pet data has been saved successfully</string>
     <string name="btn_agregar_mascota">Add New Pet</string>
     <string name="btn_guardar_cambios">Save Changes</string>
     <string name="btn_cambiar_foto">Change Pic</string>
-    <string name="toast_datos_vacios">Se deben rellenar los datos</string>
+    <string name="toast_datos_vacios">The data must be filled</string>
     <string name="btn_cancelar">Cancel</string>
     <string name="hint_pass_ant">Previous %1$s</string>
     <string name="hint_pass_new">New %1$s</string>
@@ -119,7 +110,7 @@
     <string name="msg_newEmail">Email successfully updated</string>
     <string name="msg_wrongEmail">Old email isn\'t correct</string>
 
-    <string name="toast_msj_error_datos_registro">Email o contraseña inválido</string>
+    <string name="toast_msj_error_datos_registro">Invalid email or password</string>
     <string name="mensaje_chat_visto">Seen</string>
     <string name="mensaje_chat_enviado">Sent</string>
     <string name="mensaje_chat_vacio">You can\'t send an empty message</string>
@@ -127,19 +118,19 @@
     <string name="btn_subir_fotoM">Upload Image</string>
     <string name="rdbtn_macho">Male</string>
     <string name="rdbtn_hembra">Female</string>
-    <string name="tv_modif_mascota">Modificar Mascota</string>
+    <string name="tv_modif_mascota">Modify Pet</string>
     <string name="btn_cambiar_fotoM">Upload new image</string>
     <string name="btn_eliminar_mascA">Delete Pet</string>
     <string name="btn_cancelar_mascM">Dismiss and return</string>
     <string name="btn_guardar_mascM">Save Changes</string>
 
-    <string name="tv_fecha_nac_mascota">Nacimiento:</string>
+    <string name="tv_fecha_nac_mascota">Birthdate:</string>
     <string name="tv_color">Color:</string>
-    <string name="tv_especie">Especie:</string>
+    <string name="tv_especie">Species:</string>
     <string name="toast_cambios_ok">Saved!</string>
-    <string name="toast_foto_guardada">¡Guardada!</string>
+    <string name="toast_foto_guardada">Saved!</string>
     <string name="btn_recuperar_contrasenia">Recover password</string>
-    <string name="toast_eliminar_mascota_ok">¡Eliminada!</string>
+    <string name="toast_eliminar_mascota_ok">¡Deleted!</string>
     <string name="menu_noticias">News</string>
     <string name="btn_contacto">Contact</string>
     <string name="btn_mascota_encontrada">Lost Pets</string>
@@ -159,5 +150,36 @@
     <string name="texto_acerca_de">PetsAway es una marca creada y registrada por un grupo de cuatro alumnos de la Universidad Europea de Madrid. Con ella queremos acercar a todos los propietarios de cualquier tipo de mascota de una manera rápida, dinámica y sencilla. A través de sus diferentes funciones, nuestro objetivo es desarrollar una comunicación entre todos los usuarios mediante el chat del que dispone nuestra App. Además de las diferentes opciones entre las que disponemos de un innovador servicio de alertas personalizadas o o la posibilidad de compartir este servicio con cualquier persona. El usuario tiene a su disposición un servicio de alerta en caso de pérdida de su mascota.</string>
     <string name="texto_inferior_acerca_de">Madrid (Spain) PetsAway  petsawaypfc@gmail.com</string>
     <string name="texto_inferior_home">PETSAWAY</string>
+    <string name="toast_msj_error_google">Your Google account can\'t be accessed</string>
+    <string name="toast_msj_no_datos">You must fill all the fields</string>
+    <string name="toast_puntoMap">Click on the map to choose the location</string>
+    <string name="toast_recuperar_password">You must enter your email</string>
+    <string name="tv_aclaracion_adopciones">(click on the button to add an adoption)</string>
+    <string name="tv_aclaracion_alertas">(click on the button to add an alert)</string>
+    <string name="tv_activity_agregar">Pet registration</string>
+    <string name="tv_activity_modificar">Modify your pet</string>
+    <string name="tv_adopciones">Adoptions</string>
+    <string name="tv_alertas">Alerts</string>
+    <string name="tv_aviso_legal">Legal Information</string>
+    <string name="tv_aviso_legal_text">PETSAWAY is not responsible for the fraudulent use that users may make by impersonating identities and belongings of pets. Always check the information provided to ensure who the pet is delivered to or who you meet in person.</string>
+    <string name="tv_bienvenida">Welcome to Petsaway</string>
+    <string name="tv_bienvenida_adopcion">Adoptions</string>
+    <string name="tv_bienvenida_ajustes">Settings</string>
+    <string name="tv_bienvenida_alertas">Lasts Alerts</string>
+    <string name="tv_contenido">Content</string>
+    <string name="tv_descripcion">Description:</string>
+    <string name="tv_email">Email:</string>
+    <string name="tv_fecha_publicacion">Publication date:</string>
+    <string name="tv_raza">Breed:</string>
+    <string name="tv_reset_contrasenia">We will send an E-mail to your email account to reset your password</string>
+    <string name="tv_slide1_desc">We welcome you to your new application with which you will no longer fear that your pet is lost, and also with which you can meet other people who love pets</string>
+    <string name="tv_slide2_desc">Within the application you will find various functions such as editing profile, registering your pets, checking alerts and news, even chatting with other users having pets</string>
+    <string name="tv_texto_inicio">Your pet\'s app!</string>
+    <string name="tv_tipo_alerta">lost</string>
+    <string name="tv_tipo_alerta_enc">found</string>
+    <string name="tx_adopta">Adopt it</string>
+    <string name="tx_alertas">Found it</string>
+    <string name="tx_bt_abrir_chat">Open chat</string>
+    <string name="tx_detalle_verEnMapa">See on the map</string>
 
 </resources>

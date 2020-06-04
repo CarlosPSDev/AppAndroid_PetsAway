@@ -39,8 +39,6 @@
     <string name="tv_aviso_legal_text">PETSAWAY no se hace responsable del uso fraudulento que puedan realizar los usuarios suplantando identidades
         y pertenencias de las mascotas. Compruebe siempre los datos facilitados para asegurarse de a quién se le entrega la mascota o con quién queda.</string>
     <string name="tv_polit_privacidad">Política de Privacidad</string>
-    <string name="tv_polit_privacidad_text">PETSAWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de
-        registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales en petsawaypfc@gmail.com indicando sus datos de registro</string>
     <string name="tv_nom_usuario">Nombre de Usuario</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -183,11 +181,12 @@
     <string name="tv_activity_modificar">Modifica tu mascota</string>
 
     <string name="tx_alertas">Encuentralo</string>
-    <string name="tx_adopta">Adoptalo</string>
+    <string name="tx_adopta">Adóptalo</string>
     <string name="texto_inferior_home">PETSAWAY</string>
     <string name="tv_fecha_publicacion">Fecha de publicación:</string>
     <string name="tv_raza">Raza:</string>
     <string name="tv_email">Email:</string>
     <string name="tv_descripcion">Descripción:</string>
+    <string name="tv_polit_privacidad_text">PETSAWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales eliminando su cuenta. Cualquier consulta:  petsawaypfc@gmail.com indicando sus datos de registro</string>
 
 </resources>
