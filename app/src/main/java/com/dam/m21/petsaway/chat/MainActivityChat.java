@@ -33,7 +33,6 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivityChat extends AppCompatActivity {
-
     CircleImageView profile_image;
     TextView username;
     FirebaseUser firebaseUser;
