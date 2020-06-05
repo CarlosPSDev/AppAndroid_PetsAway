@@ -6,38 +6,38 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@drawable/user"
+            android:icon="@drawable/ic_user_menu"
             android:title="@string/menu_perfil"/>
 
         <item
             android:id="@+id/nav_alerta"
-            android:icon="@drawable/alerta_icon"
+            android:icon="@drawable/ic_alerta_menu"
             android:title="@string/menu_alerta" />
 
 
         <item
             android:id="@+id/nav_adoptar"
-            android:icon="@drawable/adopta_icon"
+            android:icon="@drawable/ic_adopcion_menu"
             android:title="@string/menu_adoptar" />
 
         <item
             android:id="@+id/nav_noticias"
-            android:icon="@drawable/noticias_icon"
+            android:icon="@drawable/ic_noticias_menu"
             android:title="@string/menu_noticias" />
 
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/chat_icon"
+            android:icon="@drawable/ic_chat_menu2"
             android:title="@string/menu_chat" />
 
         <item
             android:id="@+id/nav_twitter"
-            android:icon="@drawable/icon_twitter"
+            android:icon="@drawable/ic_twitter_menu"
             android:title="@string/menu_twitter" />
 
         <item
             android:id="@+id/nav_ajustes"
-            android:icon="@drawable/ajustes_icon"
+            android:icon="@drawable/ic_ajustes_menu"
             android:title="@string/menu_ajustes" />
 
     </group>
@@ -47,7 +47,7 @@
 
             <item
                 android:id="@+id/nav_aviso_legal"
-                android:icon="@drawable/aviso_legal_icon"
+                android:icon="@drawable/ic_aviso_legal"
                 android:title="@string/menu_aviso_legal" />
 
             <item
@@ -57,7 +57,7 @@
 
             <item
                 android:id="@+id/nav_salir"
-                android:icon="@drawable/logout_icon"
+                android:icon="@drawable/ic_salir_menu"
                 android:title="@string/menu_salir" />
 
         </menu>

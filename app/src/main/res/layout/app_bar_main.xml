@@ -28,7 +28,7 @@
         android:id="@+id/fab"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:layout_margin="6dp"
+        android:layout_margin="8dp"
         android:background="@drawable/magenta_style"
         android:padding="@dimen/padding"
         app:srcCompat="@drawable/ic_menu" />
