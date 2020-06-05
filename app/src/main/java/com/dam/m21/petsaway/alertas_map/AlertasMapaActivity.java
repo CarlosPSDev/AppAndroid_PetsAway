@@ -299,6 +299,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
     public void busca(View view) {
         b();
     }
+
     public void b(){
         bt_busca.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
         bt_encuentra.setBackgroundResource(R.drawable.estilo_boton_alertas_mapa);

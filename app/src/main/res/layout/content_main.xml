@@ -32,7 +32,7 @@
             android:id="@+id/tvApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
             android:text="@string/tv_texto_inicio"
             android:fontFamily="@font/robotolight"
             android:textColor="@color/colorBack"
@@ -44,7 +44,7 @@
             android:id="@+id/tvContenido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="26dp"
             android:fontFamily="@font/robotomedium"
             android:text="@string/tv_contenido"
             android:textColor="@color/colorBack"
@@ -66,7 +66,7 @@
             android:id="@+id/tvAlertas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="14dp"
             android:text="@string/tv_alertas"
             android:fontFamily="@font/robotomedium"
             android:textSize="16sp"
@@ -78,7 +78,7 @@
             android:id="@+id/rlAlertas"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAlertas"
             android:background="@drawable/estilo_alertas">
@@ -102,9 +102,9 @@
                 android:fontFamily="@font/hellobunny"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/alerta_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_alerta_menu"
                 android:layout_margin="5dp"/>
         </RelativeLayout>
 
@@ -112,7 +112,7 @@
             android:id="@+id/linea2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="14dp"
             android:background="@color/colorGris"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,7 @@
             android:id="@+id/tvAdopciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="14dp"
             android:text="@string/tv_adopciones"
             android:fontFamily="@font/robotomedium"
             android:textSize="16sp"
@@ -134,7 +134,7 @@
             android:id="@+id/rlAdopciones"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAdopciones"
             android:background="@drawable/estilo_alertas">
@@ -158,9 +158,10 @@
                 android:fontFamily="@font/hellobunny"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/adopta_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp
+"
+                android:src="@drawable/ic_adopcion_menu"
                 android:layout_margin="5dp"/>
         </RelativeLayout>
 
@@ -168,7 +169,7 @@
             android:id="@+id/linea3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="14dp"
             android:background="@color/colorGris"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
