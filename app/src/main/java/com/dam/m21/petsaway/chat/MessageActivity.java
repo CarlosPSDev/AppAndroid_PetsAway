@@ -141,7 +141,7 @@ public class MessageActivity extends AppCompatActivity {
                 userstatus.setText(user.getStatus());
 
                 if (user.getUrlFotoUser().equals("default")){
-                    profile_image.setImageResource(R.mipmap.ic_launcher);
+                    profile_image.setImageResource(R.mipmap.ic_lanzador);
                 } else {
                     //and this
                     Glide.with(getApplicationContext()).load(user.getUrlFotoUser()).into(profile_image);
@@ -244,7 +244,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "Nuevo mensaje",
+                    Data data = new Data(fuser.getUid(), R.mipmap.ic_lanzador, username+": "+message, "Nuevo mensaje",
                             userid);
 
                     Sender sender = new Sender(data, token.getToken());

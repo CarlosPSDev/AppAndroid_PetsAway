@@ -52,7 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         final PojoUser user = mUsers.get(position);
         holder.username.setText(user.getNombre());
         if (user.getUrlFotoUser().equals("default")){
-            holder.profile_image.setImageResource(R.mipmap.ic_launcher);
+            holder.profile_image.setImageResource(R.mipmap.ic_lanzador);
         } else {
             Glide.with(mContext).load(user.getUrlFotoUser()).into(holder.profile_image);
         }
