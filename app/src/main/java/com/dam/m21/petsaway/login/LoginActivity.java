@@ -196,11 +196,7 @@ public class LoginActivity extends AppCompatActivity {
     public void loginFacebook(View view) {
     }
 
-    /*public void abrirOnBoarding(View view) {
-        Intent i = new Intent(this, LanzadorOnBoard.class);
-        startActivity(i);
-    }*/
-
+    
     private boolean validarDatos() {
         email = etEmail.getText().toString().trim();
         password = etContrasenia.getText().toString().trim();
