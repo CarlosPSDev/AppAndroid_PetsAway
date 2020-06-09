@@ -2,9 +2,7 @@ package com.dam.m21.petsaway.on_boarding;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.on_boarding.adapter.OnBoardAdapter;
 

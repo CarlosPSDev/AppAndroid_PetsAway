@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.dam.m21.petsaway.MainActivity;
 import com.dam.m21.petsaway.R;
 import com.dam.m21.petsaway.model.PojoUser;
+import com.dam.m21.petsaway.on_boarding.LanzadorOnBoard;
 import com.dam.m21.petsaway.registro.RegistroActivity;
 import com.dam.m21.petsaway.registro.reset_password.ResetPasswordActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -240,6 +241,9 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putInt("vecesEjecutado", numVeces);
             editor.commit();
+            Intent i = new Intent(LoginActivity.this, LanzadorOnBoard.class);
+            startActivity(i);
+            finish();
         }
     }
 
