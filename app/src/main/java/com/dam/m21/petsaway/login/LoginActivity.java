@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
     public void loginFacebook(View view) {
     }
 
-    
+
     private boolean validarDatos() {
         email = etEmail.getText().toString().trim();
         password = etContrasenia.getText().toString().trim();
