@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class ActModificarBorrar extends AppCompatActivity {
     private static final int REFERENCIA_IMG = 3;
@@ -58,6 +59,7 @@ public class ActModificarBorrar extends AppCompatActivity {
     PojoMascotas mascotaSel;
     ProgressDialog progres;
     String userId;
+    String idiomaActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class ActModificarBorrar extends AppCompatActivity {
         etTipoM = findViewById(R.id.etTipoMascM);
         urlM = "";
         progres = new ProgressDialog(this);
+        idiomaActual = Locale.getDefault().getLanguage();  //
 
         userId = getIntent().getStringExtra("userUid");
         mascotaSel = getIntent().getParcelableExtra("mascotaSelecc");
@@ -111,9 +114,9 @@ public class ActModificarBorrar extends AppCompatActivity {
         String descripM = etDescripcion.getText().toString();
         String fechaM = etFecha.getText().toString();
         especieOtro = etTipoM.getText().toString();
-        if (especieSeleccionada.equals("Otro") & especieOtro.isEmpty()) especieOk = false;
+        if (especieSeleccionada.equals("Otro/Other") & especieOtro.isEmpty()) especieOk = false;
 
-        if (!especieSeleccionada.equals("-*especie-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
+        if (!especieSeleccionada.equals("-*especie/species-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
             if (!especieOtro.isEmpty()) especieSeleccionada = especieOtro;
             PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, sexoM, fechaM);
 
@@ -147,8 +150,8 @@ public class ActModificarBorrar extends AppCompatActivity {
 
     public void eliminarMascota(View view) {
         ref.child(userId + "-" + mascotaSel.getNombre()).removeValue();
-        finish();
         toastPersonalizado(getString(R.string.toast_eliminar_mascota_ok));
+        finish();
     }
 
     public void mostrarCalendario(View view) {
@@ -226,17 +229,33 @@ public class ActModificarBorrar extends AppCompatActivity {
     }
 
     private void cargarSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales,
-                android.R.layout.simple_spinner_item);
+
+        ArrayAdapter<CharSequence> adapter = null; //Cargamos el spinner según el idioma del smartphone
+        String[] especies = null;
+        if (idiomaActual.equals("es")) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales, android.R.layout.simple_spinner_item);
+            especies = new String[]{"Perro", "Gato", "Ave", "Conejo", "Hurón", "Chinchilla"};
+        } else if (idiomaActual.equals("fr")) {
+            adapter = ArrayAdapter.createFromResource(this, R.array.espece_animale, android.R.layout.simple_spinner_item);
+            especies = new String[]{"Chien", "Chat", "Oiseau", "Lapin", "Furet", "Chinchilla"};
+        } else {
+            adapter = ArrayAdapter.createFromResource(this, R.array.animal_species, android.R.layout.simple_spinner_item);
+            especies = new String[]{"Dog", "Cat", "Bird", "Rabbit", "Ferret", "Chinchilla"};
+        }
         spinEspecie.setAdapter(adapter);
-        String[] especies = new String[]{"Perro", "Gato", "Ave", "Conejo", "Hurón", "Chinchilla"};
+
+
+        /*ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales,
+                android.R.layout.simple_spinner_item);
+        spinEspecie.setAdapter(adapter);*/
+        //String[] especies = new String[]{"Perro", "Gato", "Ave", "Conejo", "Hurón", "Chinchilla"};
 
         List<String> list = Arrays.asList(especies);
         String especieGuardada = mascotaSel.getEspecie();
         if(list.contains(especieGuardada)){
             spinEspecie.setSelection(adapter.getPosition(especieGuardada));
         } else {
-            spinEspecie.setSelection(adapter.getPosition("Otro"));
+            spinEspecie.setSelection(adapter.getPosition("Otro/Other"));
             etTipoM.setText(especieGuardada);
         }
 
@@ -246,7 +265,7 @@ public class ActModificarBorrar extends AppCompatActivity {
                 String seleccion = (String) parent.getItemAtPosition(position);
                 especieSeleccionada = seleccion;
 
-                if (seleccion.equals("Otro")) habilitarEditext(true);
+                if (seleccion.equals("Otro/Other")) habilitarEditext(true);
                 else habilitarEditext(false);
             }
             @Override

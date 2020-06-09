@@ -50,7 +50,7 @@
     <string name="tv_slide3_tit">Pour finir</string>
     <string name="tv_email_usuario">Email</string>
     <string name="tv_ciudad_usuario">Ville</string>
-    <string name="tv_mascotas_usuario">Ajouter Animaux</string>
+    <string name="tv_mascotas_usuario">Ajouter Animaux\t</string>
     <string name="btn_editar_perfil">Éditer le profil</string>
     <string name="tv_aclaracion_perfil">(Clique afin d\'ajouter, modifier ou supprimer)</string>
 
@@ -102,7 +102,7 @@
     <string name="hint_descripcion_mascota">Description ou commentaires</string>
     <string name="btn_guardar_mascA">Enregistrer les données</string>
     <string name="btn_cancelar_mascA">Annuler</string>
-    <string name="toast_datos_vacios_m">Tu dois remplir les champs avec un astérisque</string>
+    <string name="toast_datos_vacios_m">Tu dois remplir les champs marqués d\'un astérisque</string>
     <string name="toast_guardado_ok">Les données de l\'animal ont été enregistrés correctement</string>
     <string name="btn_agregar_mascota">Ajouter un Animal</string>
     <string name="btn_guardar_cambios">Enregistrer les Modifications</string>

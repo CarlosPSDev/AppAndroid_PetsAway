@@ -36,6 +36,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class ActAgregarMascota extends AppCompatActivity {
     private static final int REFERENCIA_FOTO = 2;
@@ -53,7 +54,7 @@ public class ActAgregarMascota extends AppCompatActivity {
     EditText etTipoM;
     String especieSeleccionada;
     String urlM;
-
+    String idiomaActual; //
     ProgressDialog progres;
     String userId;
 
@@ -75,6 +76,8 @@ public class ActAgregarMascota extends AppCompatActivity {
         etTipoM = findViewById(R.id.etTipoMascA);
         etFecha.setPaintFlags(View.INVISIBLE);
         progres = new ProgressDialog(this);
+        idiomaActual = Locale.getDefault().getLanguage();  //
+
 
         userId = getIntent().getStringExtra("userId");
         referenciaStor = FirebaseStorage.getInstance().getReference();
@@ -97,7 +100,7 @@ public class ActAgregarMascota extends AppCompatActivity {
         especieOtro = etTipoM.getText().toString();
         if (especieSeleccionada.equals("Otro") & especieOtro.isEmpty()) especieOk = false;
 
-        if (!especieSeleccionada.equals("-*especie-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
+        if (!especieSeleccionada.equals("-*especie/species-") & !nombreM.isEmpty() & !fechaM.isEmpty() & especieOk){
             if (!especieOtro.isEmpty()) especieSeleccionada = especieOtro;
             PojoMascotas mascotaGuardar = new PojoMascotas(nombreM, especieSeleccionada, razaM, colorM, idM, descripM, sexoM, fechaM);
 
@@ -211,8 +214,14 @@ public class ActAgregarMascota extends AppCompatActivity {
     }
 
     private void cargarSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales,
+        ArrayAdapter<CharSequence> adapter = null; //Cargamos el spinner según el idioma del smartphone
+        if (idiomaActual.equals("es")) adapter = ArrayAdapter.createFromResource(this, R.array.especies_animales,
                 android.R.layout.simple_spinner_item);
+        else if (idiomaActual.equals("fr")) adapter = ArrayAdapter.createFromResource(this, R.array.espece_animale,
+                android.R.layout.simple_spinner_item);
+        else adapter = ArrayAdapter.createFromResource(this, R.array.animal_species,
+                    android.R.layout.simple_spinner_item);
+
         spinEspecie.setAdapter(adapter);
 
         spinEspecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -221,7 +230,7 @@ public class ActAgregarMascota extends AppCompatActivity {
                 String seleccion = (String) parent.getItemAtPosition(position);
                 especieSeleccionada = seleccion;
 
-                if (seleccion.equals("Otro")) habilitarEditext(true);
+                if (seleccion.equals("Otro/Other")) habilitarEditext(true);
                 else habilitarEditext(false);
             }
             @Override

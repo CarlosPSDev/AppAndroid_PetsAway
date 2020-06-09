@@ -107,13 +107,14 @@
         android:enabled="false"
         android:fontFamily="@font/robotolight"
         android:hint="@string/hint_especie_mascota"
+        android:gravity="center"
         android:textColor="@color/colorBack"
         android:textSize="16sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinnerEspecies"
-        app:layout_constraintTop_toBottomOf="@+id/etNomMascM"
-        android:inputType="text"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spinnerEspeciesM"
+        app:layout_constraintTop_toBottomOf="@+id/etNomMascM" />
 
     <View
         android:id="@+id/lineaSeparadora3"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animal_species">
+        <item>-*especie/species-</item>
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Bird</item>
+        <item>Rabbit</item>
+        <item>Ferret</item>
+        <item>Chinchilla</item>
+        <item>Otro/Other</item>
+    </string-array>s>
+</resources>
