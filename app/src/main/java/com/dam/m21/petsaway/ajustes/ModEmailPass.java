@@ -24,10 +24,14 @@ public class ModEmailPass extends AppCompatActivity {
         et_new_rep=findViewById(R.id.etPassNewRep);
 
         String dato=getIntent().getStringExtra(AjustesActivity.CODE_DATO);
+        String o_a=" ";
+        if (dato.equals("contraseña")){o_a="a ";}
+        else if (dato.equals("correo")){o_a="o ";}
+        else{o_a=" ";}
         et_ant.setHint(String.format(getString(R.string.hint_pass_ant),dato));
-        et_new.setHint(String.format(getString(R.string.hint_pass_new),dato));
-        et_new_rep.setHint(String.format(getString(R.string.hint_pass_new_rep),dato));
-        if(dato.equals("contraseña")){
+        et_new.setHint(getString(R.string.hint_pass_new)+o_a+dato);
+        et_new_rep.setHint(getString(R.string.hint_pass_new_rep)+o_a+dato);
+        if(dato.equals("contraseña")||dato.equals("password")||dato.equals("passe")||dato.equals("пароль")){
             et_ant.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icono_candado, 0, 0, 0);
             et_new.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icono_candado, 0, 0, 0);
             et_new_rep.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icono_candado, 0, 0, 0);

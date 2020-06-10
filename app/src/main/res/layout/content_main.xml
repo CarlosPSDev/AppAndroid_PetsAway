@@ -24,6 +24,7 @@
             android:fontFamily="@font/hellobunny"
             android:textColor="@color/colorMagenta"
             android:textSize="46sp"
+            android:gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -159,8 +160,7 @@
 
             <ImageView
                 android:layout_width="32dp"
-                android:layout_height="32dp
-"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_adopcion_menu"
                 android:layout_margin="5dp"/>
         </RelativeLayout>
