@@ -100,9 +100,9 @@
     <string name="btn_cambiar_foto">Change Pic</string>
     <string name="toast_datos_vacios">The data must be filled</string>
     <string name="btn_cancelar">Cancel</string>
-    <string name="hint_pass_ant">Previous %1$s</string>
-    <string name="hint_pass_new">New %1$s</string>
-    <string name="hint_pass_new_rep">Repeat new %1$s</string>
+    <string name="hint_pass_ant">Previous  %1$s </string>
+    <string name="hint_pass_new">New </string>
+    <string name="hint_pass_new_rep">Repeat new </string>
     <string name="msg_cancel">Changes haven\'t been saved</string>
     <string name="msg_wrongPass">Old password isn\'t correct</string>
     <string name="msg_newPass">Password updated correctly</string>
@@ -181,5 +181,7 @@
     <string name="tx_alertas">Found it</string>
     <string name="tx_bt_abrir_chat">Open chat</string>
     <string name="tx_detalle_verEnMapa">See on the map</string>
+    <string name="email">email</string>
+    <string name="contraseña">password</string>
 
 </resources>

@@ -109,9 +109,9 @@
     <string name="btn_cambiar_foto">Changer la Photo</string>
     <string name="toast_datos_vacios">Tu dois compléter les données</string>
     <string name="btn_cancelar">Annuler</string>
-    <string name="hint_pass_ant">Antérieur %1$s</string>
-    <string name="hint_pass_new">Nouveau %1$s</string>
-    <string name="hint_pass_new_rep">Répéter le nouveau %1$s</string>
+    <string name="hint_pass_ant">Antérieur  %1$s </string>
+    <string name="hint_pass_new">Nouveau </string>
+    <string name="hint_pass_new_rep">Répéter le nouveau </string>
     <string name="msg_cancel">Les modifications n\'ont pas été enregistrées</string>
     <string name="msg_wrongPass">Le dernier mot de passe n\'est pas correct</string>
     <string name="msg_newPass">Mot de passe mis à jour correctement</string>
@@ -170,7 +170,7 @@
     <string name="tv_bienvenida_alertas">Dernières Alertes</string>
     <string name="tv_contenido">Contenu</string>
     <string name="tv_descripcion">Description:</string>
-    <string name="tv_email">Email:</string>
+    <string name="tv_email">E-mail:</string>
     <string name="tv_fecha_publicacion">Date de publication:</string>
     <string name="tv_raza">Race:</string>
     <string name="tv_texto_inicio">L\'application de ton animal de compagnie!</string>
@@ -181,5 +181,7 @@
     <string name="tx_bt_abrir_chat">Entrer dans le chat</string>
     <string name="tx_detalle_verEnMapa">Voir sur la carte</string>
     <string name="tv_polit_privacidad_text">PETSAWAY ne collecte aucun type d\'informations au-delà de celles fournies par l\'utilisateur au moment de l\'inscription et de son profil. Vous pouvez à tout moment exercer vos droits d\'annuler vos données personnelles en supprimant votre compte. Toute requête: petsawaypfc@gmail.com indiquant vos données d\'inscription</string>
+    <string name="email">e-mail</string>
+    <string name="contraseña">passe</string>
 
 </resources>
