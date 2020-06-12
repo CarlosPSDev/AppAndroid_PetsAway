@@ -248,7 +248,7 @@ public class AjustesActivity extends AppCompatActivity {
 
     public void cambiarCorreo(View view) {
         Intent intent= new Intent(this,ModEmailPass.class);
-        intent.putExtra(CODE_DATO,"email");
+        intent.putExtra(CODE_DATO,getString(R.string.email));
         startActivityForResult(intent, REQUEST_CODE_EMAIL);
 
     }
@@ -256,7 +256,7 @@ public class AjustesActivity extends AppCompatActivity {
     public void cambiarPass(View view) {
 
         Intent intent= new Intent(this,ModEmailPass.class);
-        intent.putExtra(CODE_DATO,"contraseña");
+        intent.putExtra(CODE_DATO,getString(R.string.contraseña));
         startActivityForResult(intent, REQUEST_CODE_PASS);
 
     }
