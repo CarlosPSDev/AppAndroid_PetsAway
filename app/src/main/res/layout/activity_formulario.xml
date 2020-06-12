@@ -33,23 +33,6 @@
             android:layout_marginTop="4dp">
 
             <Button
-                android:id="@+id/bt_encontrado"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:drawableEnd="@drawable/ic_mascota_encontrada"
-                android:background="@drawable/estilo_boton_mascota_perdida_encontrada"
-                android:text="@string/tv_tipo_alerta_enc"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlanco"
-                android:textSize="16sp"
-                android:fontFamily="@font/robotomedium"
-                android:onClick="encontrado" />
-
-            <Button
                 android:id="@+id/bt_buscado"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -57,14 +40,33 @@
                 android:layout_weight="1"
                 android:paddingEnd="20dp"
                 android:paddingStart="20dp"
-                android:drawableEnd="@drawable/ic_mascota_perdida"
+                android:drawableEnd="@drawable/ic_logo_perdido_mapa"
                 android:background="@drawable/estilo_boton_mascota_perdida_encontrada"
                 android:text="@string/tv_tipo_alerta"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlanco"
                 android:textSize="16sp"
                 android:fontFamily="@font/robotomedium"
-                android:onClick="buscado" />
+                android:onClick="buscado"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:id="@+id/bt_encontrado"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:drawableEnd="@drawable/ic_logo_encontrado_mapa"
+                android:background="@drawable/estilo_boton_mascota_perdida_encontrada"
+                android:text="@string/tv_tipo_alerta_enc"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlanco"
+                android:textSize="16sp"
+                android:fontFamily="@font/robotomedium"
+                android:onClick="encontrado"
+                style="?android:attr/buttonBarButtonStyle"/>
         </LinearLayout>
 
         <View
@@ -81,7 +83,8 @@
             android:fontFamily="@font/robotolight"
             android:textSize="16sp"
             android:textColor="@color/colorBack"
-            android:drawableEnd="@drawable/ic_lapiz_16"/>
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
 
         <View
             android:layout_width="match_parent"
@@ -96,7 +99,8 @@
             android:fontFamily="@font/robotolight"
             android:textSize="16sp"
             android:textColor="@color/colorBack"
-            android:drawableEnd="@drawable/ic_lapiz_16"/>
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
 
         <View
             android:layout_width="match_parent"
@@ -129,7 +133,8 @@
             android:fontFamily="@font/robotolight"
             android:textSize="16sp"
             android:textColor="@color/colorBack"
-            android:drawableEnd="@drawable/ic_lapiz_16"/>
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
 
         <View
             android:layout_width="match_parent"
@@ -144,7 +149,8 @@
             android:fontFamily="@font/robotolight"
             android:textSize="16sp"
             android:textColor="@color/colorBack"
-            android:drawableEnd="@drawable/ic_lapiz_16"/>
+            android:drawableEnd="@drawable/ic_lapiz_16"
+            android:inputType="text"/>
 
         <View
             android:layout_width="match_parent"

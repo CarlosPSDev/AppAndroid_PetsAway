@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -17,7 +16,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +40,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -55,7 +52,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
     Button bt_encuentra, bt_busca;
-    ImageView ImgM;
+    ImageView ImgM, ivAlerta;
     Button btAbrChat_mark;
     LinearLayout dMP;
     TextView tipoAnimalM, fechaEPAnimalM, razaAnimalM, userPushM;
@@ -99,6 +96,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         razaAnimalM = findViewById(R.id.razaAnimalM);
         userPushM = findViewById(R.id.userPushM);
         ImgM = findViewById(R.id.ImgM);
+        ivAlerta = findViewById(R.id.ivAlerta);
         btAbrChat_mark = findViewById(R.id.btAbrChat_mark);
 
         fa = FirebaseAuth.getInstance();
@@ -187,8 +185,8 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        mMap.setMyLocationEnabled(true);
-        mMap.setPadding(0, 200, 0, 0);
+        //mMap.setMyLocationEnabled(true);
+        //mMap.setPadding(0, 200, 0, 0);
         if (ta != null) {
             if (ta.equals("encontrado")) {
                 e();
@@ -207,6 +205,11 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                 pf = (AlertasList) marker.getTag();
                 if (pf.getTipoAnimal() != null) {
                     tipoAnimalM.setText(pf.getTipoAnimal());
+                    if (pf.getTipoAletra().equalsIgnoreCase("buscado")) {
+                        ivAlerta.setImageResource(R.drawable.ic_logo_encontrado_mapa);
+                    } else {
+                        ivAlerta.setImageResource(R.drawable.ic_logo_perdido_mapa);
+                    }
                     fechaEPAnimalM.setText(pf.getFecha());
                     razaAnimalM.setText(pf.getRaza());
                     userPushM.setText(pf.getUserPush());
@@ -261,7 +264,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
     }
     public void e(){
         bt_encuentra.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
-        bt_busca.setBackgroundResource(R.drawable.estilo_boton_alertas_mapa);
+        bt_busca.setBackgroundResource(R.drawable.toolbar_style);
         mMap.clear();
         dbr.child("alertas").addValueEventListener(new ValueEventListener() {
             @Override
@@ -302,7 +305,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
 
     public void b(){
         bt_busca.setBackgroundResource(R.drawable.bt_tipo_de_alertas_habilitado);
-        bt_encuentra.setBackgroundResource(R.drawable.estilo_boton_alertas_mapa);
+        bt_encuentra.setBackgroundResource(R.drawable.toolbar_style);
         mMap.clear();
         dbr.child("alertas").addValueEventListener(new ValueEventListener() {
             @Override

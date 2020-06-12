@@ -160,7 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithCredential:success");
                     fbUser = fbAuth.getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fbUser.getUid()).addValueEventListener(new ValueEventListener() {
+                    FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(
+                            fbUser.getUid()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             final PojoUser datosUser=dataSnapshot.getValue(PojoUser.class);
