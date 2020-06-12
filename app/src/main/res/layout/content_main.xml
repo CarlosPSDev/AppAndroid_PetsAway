@@ -78,7 +78,7 @@
         <RelativeLayout
             android:id="@+id/rlAlertas"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAlertas"
@@ -86,9 +86,9 @@
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="200sp"
+                android:layout_height="220sp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/gatito"
+                android:src="@drawable/img_gato"
                 android:onClick="abrirAlertas"
                 android:scaleType="centerCrop"/>
 
@@ -98,8 +98,9 @@
                 android:text="@string/tx_alertas"
                 android:textColor="@color/colorMagenta"
                 android:textSize="50sp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/hellobunny"/>
 
             <ImageView
@@ -155,7 +156,7 @@
                 android:textColor="@color/colorMagenta"
                 android:textSize="50sp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/hellobunny"/>
 
             <ImageView

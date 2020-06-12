@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             } else {
-                                toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_error_acceso));
+                                toastPersonalizado(getString(R.string.toast_error_acceso));
                             }
                         }
                     }
@@ -160,7 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithCredential:success");
                     fbUser = fbAuth.getCurrentUser();
-                    FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(fbUser.getUid()).addValueEventListener(new ValueEventListener() {
+                    FirebaseDatabase.getInstance().getReference("PETSAWAYusers").child(
+                            fbUser.getUid()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             final PojoUser datosUser=dataSnapshot.getValue(PojoUser.class);
@@ -203,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean continuar;
 
         if (email.isEmpty() ||  password.isEmpty()) {
-            toastPersonalizado(getString(R.string.app_name), getString(R.string.toast_msj_no_datos));
+            toastPersonalizado(getString(R.string.toast_msj_no_datos));
             continuar = false;
 
         } else {
@@ -212,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         return continuar;
     }
 
-    private void toastPersonalizado(String tit, String text) {
+    private void toastPersonalizado(String text) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View customToast = inflater.inflate(R.layout.custom_toast, null);
         TextView texto = customToast.findViewById(R.id.tvTextoToast);

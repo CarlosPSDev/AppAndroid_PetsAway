@@ -18,10 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dam.m21.petsaway.R;
-import com.dam.m21.petsaway.ajustes.AjustesActivity;
 import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.dam.m21.petsaway.chat.MessageActivity;
-import com.dam.m21.petsaway.login.LoginActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -81,10 +79,10 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         if(il.getTipoAletra()!=null) {
             if (il.getTipoAletra().equals("buscado")) {
                 //ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta);
-                tipoAl_elap.setImageResource(R.drawable.ic_mascota_perdida);
+                tipoAl_elap.setImageResource(R.drawable.ic_logo);
             } else {
                 //ll_elap.setBackgroundResource(R.drawable.style_detalle_alerta_enc);
-                tipoAl_elap.setImageResource(R.drawable.ic_mascota_encontrada);
+                tipoAl_elap.setImageResource(R.drawable.ic_logo_enc);
             }
         }
         if (il.getSexo().equals("m")){
@@ -147,9 +145,9 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                 Button btAbrChat=vista.findViewById(R.id.btAbrChat);
 
                 if (datos.get(position).getTipoAletra().equalsIgnoreCase("buscado")) {
-                    detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_perdida);
+                    detalle_tipoAletra.setImageResource(R.drawable.ic_logo_perdido_mapa);
                 } else {
-                    detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_encontrada);
+                    detalle_tipoAletra.setImageResource(R.drawable.ic_logo_encontrado_mapa);
                 }
 
                 detalle_tipoAnimal.setText(datos.get(position).getTipoAnimal());

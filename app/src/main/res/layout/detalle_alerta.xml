@@ -16,30 +16,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/detalle_tipoAletra"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/detalle_tipoAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/robotomedium"
-            android:textColor="@color/colorBack"
-            android:textSize="16sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/detalle_tipoAletra"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
             <TextView
+                android:id="@+id/detalle_tipoAnimal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotomedium"
+                android:textColor="@color/colorBack"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
                 android:textSize="14sp"
@@ -63,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
                 android:textSize="14sp"
@@ -87,7 +93,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
                 android:textSize="14sp"
@@ -111,7 +117,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
                 android:textSize="14sp"
@@ -135,7 +141,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/robotolight"
                 android:textColor="@color/colorBack"
                 android:textSize="14sp"

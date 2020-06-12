@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -78,9 +77,9 @@ public class AlertasListaActivity extends AppCompatActivity {
                         TextView detalle_userPush=vista.findViewById(R.id.detalle_userPush);
 
                         if (alerta.getTipoAletra().equalsIgnoreCase("buscado")) {
-                            detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_perdida);
+                            detalle_tipoAletra.setImageResource(R.drawable.ic_logo_perdido_mapa);
                         } else {
-                            detalle_tipoAletra.setImageResource(R.drawable.ic_mascota_encontrada);
+                            detalle_tipoAletra.setImageResource(R.drawable.ic_logo_encontrado_mapa);
                         }
 
                         detalle_tipoAnimal.setText(alerta.getTipoAnimal());
