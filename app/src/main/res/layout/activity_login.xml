@@ -24,7 +24,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:drawableLeft="@drawable/icono_usuario"
+        android:drawableStart="@drawable/icono_usuario"
         android:ems="12"
         android:fontFamily="@font/robotolight"
         android:hint="@string/hint_mail"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:drawableLeft="@drawable/icono_candado"
+        android:drawableStart="@drawable/icono_candado"
         android:ems="12"
         android:fontFamily="@font/robotolight"
         android:hint="@string/hint_password"
@@ -85,7 +85,7 @@
             android:onClick="accesoAplicacion"
             android:text="@string/btn_entrar"
             android:textColor="@color/colorBlanco"
-            android:layout_weight="1.4"/>
+            android:layout_weight="1.3"/>
     </LinearLayout>
 
     <TextView
@@ -99,33 +99,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ImageButton
+        android:id="@+id/imgBtnGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorGrisClaro"
+        android:onClick="loginGmail"
+        app:srcCompat="@drawable/google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvConectarCon">
-
-        <ImageButton
-            android:id="@+id/imgBtnGoogle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorGrisClaro"
-            android:onClick="loginGmail"
-            app:srcCompat="@drawable/google" />
-
-        <!--<ImageButton
-            android:id="@+id/imgBtnFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorGrisClaro"
-            android:onClick="loginFacebook"
-            app:srcCompat="@drawable/facebook" />-->
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tvConectarCon"/>
 
     <TextView
         android:id="@+id/tvContraseniaOlvidada"
