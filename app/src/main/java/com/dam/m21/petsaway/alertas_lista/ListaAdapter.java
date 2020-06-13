@@ -22,6 +22,7 @@ import com.dam.m21.petsaway.alertas_map.AlertasMapaActivity;
 import com.dam.m21.petsaway.chat.MessageActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,10 +32,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListViewHolder>
-        implements View.OnClickListener {
+public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListViewHolder>{
 
-private View.OnClickListener ocListener;
 private ArrayList<AlertasList> datos;
     private static final String CLAVE_LAT = "LAT_A";
     private static final String CLAVE_LON = "LON_A";
@@ -68,6 +67,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     public void bindAList(AlertasList il){
         StorageReference msr= FirebaseStorage.getInstance().getReference();
         StorageReference sr = msr.child("fotosAnimales").child(il.getIdFoto());
+        FirebaseUser fu=FirebaseAuth.getInstance().getCurrentUser();
         sr.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -90,7 +90,8 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
         }else{
             sexo_elap.setImageResource(R.drawable.ic_hembra);
         }
-        if(il.getUserPush().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
+        assert fu != null;
+        if(il.getUserPush().equals(fu.getEmail())){
             bt_borrarAlerta.setVisibility(View.VISIBLE);
         }else {
             bt_borrarAlerta.setVisibility(View.GONE);
@@ -105,9 +106,7 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         v = LayoutInflater.from(parent.getContext()).inflate(R.layout.elemento_lista_alertas_perdidos, parent, false);
-        v.setOnClickListener(this);
-        ListViewHolder avh = new ListViewHolder(v);
-        return avh;
+        return new ListViewHolder(v);
     }
 
     @Override
@@ -192,8 +191,10 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
                                 for (final DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                                     AlertasList alerta=childDataSnapshot.getValue(AlertasList.class);
                                     AlertasList alertaPos=datos.get(position);
+                                    assert alerta!=null;
                                     if(alerta.getDesc().equals(alertaPos.getDesc())){
                                         childDataSnapshot.getRef().removeValue();
+                                        ((AlertasListaActivity)holder.itemView.getContext()).finish();
                                         holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AlertasListaActivity.class));
                                     }
                                 }
@@ -220,17 +221,6 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
     @Override
     public int getItemCount() {
         return datos.size();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (ocListener != null) {
-            ocListener.onClick(v);
-        }
-    }
-
-    public void asignacionOnClickListener(View.OnClickListener listener) {
-        ocListener = listener;
     }
 
 }

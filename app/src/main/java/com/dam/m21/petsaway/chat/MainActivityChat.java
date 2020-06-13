@@ -89,12 +89,12 @@ public class MainActivityChat extends AppCompatActivity {
                 }
 
                 if (unread == 0){
-                    viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
+                    viewPagerAdapter.addFragment(new ChatsFragment(), getString(R.string.tit_chats));
                 } else {
                     viewPagerAdapter.addFragment(new ChatsFragment(), "("+unread+") Chats");
                 }
 
-                viewPagerAdapter.addFragment(new UsersFragment(),"Usuarios");
+                viewPagerAdapter.addFragment(new UsersFragment(),getString(R.string.tit_users));
 
                 viewPager.setAdapter(viewPagerAdapter);
 

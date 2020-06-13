@@ -183,5 +183,7 @@
     <string name="tx_detalle_verEnMapa">See on the map</string>
     <string name="email">email</string>
     <string name="contraseña">password</string>
+    <string name="tit_chats">Chats</string>
+    <string name="tit_users">Users</string>
 
 </resources>

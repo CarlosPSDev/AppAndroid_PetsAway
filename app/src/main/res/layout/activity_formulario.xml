@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:hint="@string/hint_fechaNac_mascota"
+            android:hint="@string/h_fecha_p_e"
             android:onClick="calendario"
             android:fontFamily="@font/robotolight"
             android:textSize="16sp"

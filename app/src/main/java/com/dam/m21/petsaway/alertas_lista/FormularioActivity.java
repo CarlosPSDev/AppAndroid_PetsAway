@@ -24,7 +24,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.m21.petsaway.perfil_usuario.PerfilUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.dam.m21.petsaway.R;
@@ -111,7 +110,7 @@ public class FormularioActivity extends AppCompatActivity {
 		        dbr = FirebaseDatabase.getInstance().getReference();
 		        dbr.child("alertas").push().setValue(ubiPunto);
 		        finish();
-		        startActivity(new Intent(getApplicationContext(), AlertasMapaActivity.class));
+		        startActivity(new Intent(getApplicationContext(), AlertasListaActivity.class));
 	        }
         }else{
             toastPersonalizado(getString(R.string.toast_faltanDatos));

@@ -190,5 +190,7 @@
     <string name="tv_polit_privacidad_text">PETSAWAY no recopila ningún tipo de información más allá de la facilitada por el usuario en el momento de registro y su perfil. En todo momento puede ejercer sus derechos de cancelación de sus datos personales eliminando su cuenta. Cualquier consulta:  petsawaypfc@gmail.com indicando sus datos de registro</string>
     <string name="email">correo</string>
     <string name="contraseña">contraseña</string>
+    <string name="tit_chats">Chats</string>
+    <string name="tit_users">Usuarios</string>
 
 </resources>

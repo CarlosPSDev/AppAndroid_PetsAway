@@ -23,9 +23,9 @@
     <string name = "open_drawer"> Открыть ящик навигации </string>
     <string name = "close_drawer"> Закрыть ящик навигации </string>
     <string name = "menu_perfil"> Профиль </string>
-    <string name = "menu_alerta"> Оповещения </string>
+    <string name = "menu_alerta"> Объявления </string>
     <string name = "menu_mapa"> карта</string>
-    <string name = "menu_adoptar"> Принять к сведению</string>
+    <string name = "menu_adoptar"> Приютить</string>
     <string name = "nav_otros"> Другие</string>
     <string name = "menu_ajustes"> Настройки </string>
     <string name = "menu_aviso_legal"> Официальное уведомление</string>
@@ -38,7 +38,7 @@
 
     <string name = "tv_aviso_legal"> Официальное уведомление </string>
     <string name = "tv_aviso_legal_text"> PETSAWAY не несет ответственности за мошенническую деительность пользователей, которой может быть - выдавание себя за другую личность.
-        Всегда проверяйте предоставленные данные, чтобы удостовериться, кому отдаете домашнее животное или у с кем его оставляете. </string>
+        Всегда проверяйте предоставленные данные, чтобы удостовериться, кому отдаете домашнее животное и с кем его оставляете. </string>
     <string name = "tv_polit_privacidad"> Политика конфиденциальности </string>
     <string name = "tv_nom_usuario"> Имя пользователя </string>
 
@@ -47,7 +47,7 @@
     <string name = "tv_slide1_tit"> Добро пожаловать в Petsaway </string>
     <string name = "tv_slide1_desc"> Мы приветствуем вас в вашем новом приложении, с которым вы больше не будете бояться что ваш питомец потеряется, а также с к
         оторым вы сможете встретить других людей, которые любят домашних животных </string>
-    <string name = "tv_slide2_desc"> В приложении вы найдете различные функции, такие как редактирование профиля, регистрация ваших питомцев, проверка предупреждений и новостей,
+    <string name = "tv_slide2_desc"> В приложении вы найдете различные функции, такие как редактирование профиля, регистрация ваших питомцев, проверка объявлений и новостей,
         даже общение с другими пользователями у которих есть домашние животные </string>
     <string name = "tv_slide3_desc"> Если вы нашли потерянного питомца, относитесь к нему осторожно, так как он будет напуган. Если вы знаете, что он ест, вы можете дать ему еду,
         если нет, вы можете поискать в Интернете или проконсультироваться с ветеринаром. </string>
@@ -73,7 +73,7 @@
     <string name = "hint_mail"> электронная почта </string>
     <string name = "btn_crear_cuenta"> Создать учетную запись </string>
 
-    <string name = "toast_faltanDatos"> Отсутствующие данные </string>
+    <string name = "toast_faltanDatos"> Отсутствуют некоторое данные </string>
     <string name = "toast_registro_correcto"> Зарегистрировано! </string>
     <string name = "toast_msj_no_datos"> Вы должны заполнить все поля </string>
     <string name = "toast_user_no_registrado"> Не удалось зарегистрировать </string>
@@ -92,7 +92,7 @@
     <string name = "borrarCuenta"> Удалить мою учетную запись </string>
     <string name = "notif"> Уведомления </string>
     <string name = "toast_recuperar_password"> Вы должны ввести свой адрес электронной почты </string>
-    <string name = "tv_reset_contrasenia"> Мы отправим электронное письмо на вашу учетную запись электронной почты, чтобы сбросить пароль </string>
+    <string name = "tv_reset_contrasenia"> Мы отправим электронное письмо на вашу электронную почту, чтобы сбросить пароль </string>
     <string name = "toast_revisa_email"> Проверьте свою электронную почту! </string>
     <string name = "toast_error_envio_correo"> Произошла ошибка </string>
     <string name = "toast_bienvenida"> Добро пожаловать Мы рекомендуем вам заполнить и персонализировать свой профиль </string>
@@ -103,7 +103,7 @@
     <string name = "hint_color_mascota"> * Цвет или основные цвета </string>
     <string name = "hint_identificacion_mascota"> Идентификационный номер (чип, кольцо и т. д.) </string>
     <string name = "hint_fechaNac_mascota"> * Дата рождения (пример 12/12/2020) </string>
-    <string name = "hint_descripcion_mascota"> Описание или комментарии </string>
+    <string name = "hint_descripcion_mascota"> Описание или комментарий </string>
     <string name = "btn_guardar_mascA"> Сохранить вашего питомца </string>
     <string name = "btn_cancelar_mascA"> Отмена </string>
     <string name = "toast_datos_vacios_m"> Вы должны заполнить поля со звездочкой </string>
@@ -126,7 +126,7 @@
     <string name = "msg_wrongEmail"> Старый адрес электронной почты неверен </string>
 
     <string name = "toast_msj_error_datos_registro"> Неверный адрес электронной почты или пароль </string>
-    <string name = "mensaje_chat_visto"> Seen </string>
+    <string name = "mensaje_chat_visto"> Увидено </string>
     <string name = "mensaje_chat_enviado"> Отправлено </string>
     <string name = "mensaje_chat_vacio"> Вы не можете отправить пустое сообщение </string>
     <string name = "msg_error_enviar_notif"> Не удалось! </string>
@@ -163,9 +163,9 @@
     <string name = "msjBtDialogSI"> Да, конечно </string>
     <string name = "msjBtDialogNo"> Отмена </string>
     <string name = "tx_bt_abrir_chat"> Открыть чат </string>
-    <string name = "msjDialogBorrarAlerta"> Вы уверены, что хотите удалить предупреждение? </string>
-    <string name = "tv_bienvenida_alertas"> Последние оповещения </string>
-    <string name = "tv_aclaracion_alertas"> (нажмите кнопку, чтобы добавить предупреждение) </string>
+    <string name = "msjDialogBorrarAlerta"> Вы уверены, что хотите удалить объявления? </string>
+    <string name = "tv_bienvenida_alertas"> Последние объявления </string>
+    <string name = "tv_aclaracion_alertas"> (нажмите "+", чтобы добавить объявления) </string>
     <string name = "tv_tipo_alerta"> потерянный </string>
     <string name = "tv_tipo_alerta_enc"> найденный </string>
     <string name = "btn_contacto"> Контакт </string>
@@ -177,22 +177,24 @@
     <string name = "tv_alertas"> Оповещения </string>
     <string name = "tv_adopciones"> Приютить </string>
     <string name = "tv_bienvenida_adopcion"> Приютить </string>
-    <string name = "tv_aclaracion_adopciones"> (нажмите кнопку, чтобы добавить усыновление) </string>
+    <string name = "tv_aclaracion_adopciones"> (нажмите "+", чтобы добавить питомца) </string>
     <string name = "n_raza"> Контактный адрес электронной почты: </string>
     <string name = "tv_bienvenida_ajustes"> Конфигурация </string>
     <string name = "tv_activity_agregar"> Реестр домашних животных </string>
-    <string name = "tv_activity_modificar"> Изменить вашего питомца </string>
+    <string name = "tv_activity_modificar"> Изменить данные вашего питомца </string>
 
     <string name = "tx_alertas"> Найти его </string>
-    <string name = "tx_adopta"> Принять его </string>
+    <string name = "tx_adopta"> Приютить</string>
     <string name = "texto_inferior_home"> PETSAWAY </string>
     <string name = "tv_fecha_publicacion"> Дата публикации: </string>
     <string name = "tv_raza"> Раса: </string>
     <string name = "tv_email"> Электронная почта: </string>
     <string name = "tv_descripcion"> Описание: </string>
-    <string name = "tv_polit_privacidad_text"> PETSAWAY не собирает никакой информации, кроме той, которая была предоставлена ​​пользователем во время регистрации и
+    <string name = "tv_polit_privacidad_text"> PETSAWAY не собирает никакой информации, кроме той, которая была предоставлена ​​пользователем во время регистрации
         его профиля. В любое время вы можете воспользоваться своими правами на удаления ваших личных данных,
         удалив свою учетную запись. С любыми вопросами обращайтесь по електронной почте: petsawaypfc@gmail.com с указанием ваших регистрационных данных</string>
     <string name="email">електронный адрес</string>
     <string name="contraseña">пароль</string>
+    <string name="tit_chats">Чаты</string>
+    <string name="tit_users">Пользователи</string>
 </resources>
