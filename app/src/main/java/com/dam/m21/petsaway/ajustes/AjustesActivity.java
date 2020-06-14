@@ -17,9 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dam.m21.petsaway.alertas_adoptar.FormularioAdoptaActivity;
 import com.dam.m21.petsaway.login.LoginActivity;
-import com.dam.m21.petsaway.model.PojoUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,11 +26,8 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
@@ -51,8 +46,7 @@ public class AjustesActivity extends AppCompatActivity {
     private StorageReference msr;
     Uri miPath;
     DatabaseReference dbr;
-    String tema,idUser;
-   // Button bt_tO,bt_tC;
+    String idUser;
     AlertDialog.Builder bd1;
 
     static final int REQUEST_CODE_PASS =1;
@@ -71,12 +65,6 @@ public class AjustesActivity extends AppCompatActivity {
 
         idUser = fu.getUid();
         dbr = FirebaseDatabase.getInstance().getReference();
-        /*
-        bt_tO=findViewById(R.id.bt_tO);
-        bt_tC=findViewById(R.id.bt_tC);
-        */
-        tema="";
-        datosUser();
         FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent())
                 .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
                     @Override
@@ -90,52 +78,6 @@ public class AjustesActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {}
                 });
     }
-
-    public void datosUser() {
-        dbr.child("PETSAWAYusers").child(idUser).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PojoUser pUser = dataSnapshot.getValue(PojoUser.class);
-                if(pUser!=null) {
-                    String temaActual = pUser.getTema();
-                    if(temaActual!=null) {
-                        /*
-                        if (temaActual.equals("oscuro")) {
-                            bt_tO.setBackgroundResource(R.drawable.bt_tema2_style_habilitado);
-                        } else {
-                            bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
-                        }
-                        */
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        });
-    }
-/*
-    public void modTema() {
-        userAjustes = new HashMap<>();
-        userAjustes.put("tema", tema);
-        dbr.child("PETSAWAYusers").child(idUser).updateChildren(userAjustes);
-    }
-    public void temaClaro(View view) {
-        bt_tO.setBackgroundResource(R.drawable.bt_tema2_style);
-        bt_tC.setBackgroundResource(R.drawable.bt_tema1_style_habilitado);
-        tema="claro";
-        modTema();
-    }
-
-    public void temaOscuro(View view) {
-        bt_tO.setBackgroundResource(R.drawable.bt_tema2_style_habilitado);
-        bt_tC.setBackgroundResource(R.drawable.bt_tema1_style);
-        tema="oscuro";
-        modTema();
-    }
-*/
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,14 +92,11 @@ public class AjustesActivity extends AppCompatActivity {
                         if (texto2.equals(texto3)) {
                             fu.updateEmail(texto3);
                             toastPersonalizado(getString(R.string.msg_newEmail));
-                            //Toast.makeText(getApplicationContext(), R.string.msg_newEmail, Toast.LENGTH_LONG).show();
                         }else{
                             toastPersonalizado(getString(R.string.msg_newEmailDist));
-                            //Toast.makeText(getApplicationContext(), R.string.msg_newEmailDist, Toast.LENGTH_LONG).show();
                         }
                     }else{
                         toastPersonalizado(getString(R.string.msg_wrongEmail));
-                        //Toast.makeText(getApplicationContext(), R.string.msg_wrongEmail, Toast.LENGTH_LONG).show();
                     }
 
                 } else {
@@ -169,21 +108,17 @@ public class AjustesActivity extends AppCompatActivity {
                                 if (texto2.equals(texto3)) {
                                     fu.updatePassword(texto3);
                                     toastPersonalizado(getString(R.string.msg_newPass));
-                                    //Toast.makeText(getApplicationContext(), R.string.msg_newPass, Toast.LENGTH_LONG).show();
                                 }else{
                                     toastPersonalizado(getString(R.string.msg_newPassDist));
-                                    //Toast.makeText(getApplicationContext(), R.string.msg_newPassDist, Toast.LENGTH_LONG).show();
                                 }
                             } else{
                                 toastPersonalizado(getString(R.string.msg_wrongPass));
-                                //Toast.makeText(getApplicationContext(), R.string.msg_wrongPass, Toast.LENGTH_LONG).show();
                                 }
                             } });
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
                 toastPersonalizado(getString(R.string.msg_cancel));
-                //Toast.makeText(this, R.string.msg_cancel, Toast.LENGTH_LONG).show();
             }
         }
         if (resultCode==RESULT_OK && requestCode==10){
@@ -204,14 +139,12 @@ public class AjustesActivity extends AppCompatActivity {
                         }
                     });
                     toastPersonalizado(getString(R.string.toast_foto_guardada));
-                    //Toast.makeText(AjustesActivity.this, "Se subió exitosamente la foto", Toast.LENGTH_SHORT).show();
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             toastPersonalizado(e.getMessage());
-                            //Toast.makeText(AjustesActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 

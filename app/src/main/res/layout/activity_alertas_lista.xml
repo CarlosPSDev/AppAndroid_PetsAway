@@ -7,78 +7,79 @@
     tools:context=".alertas_lista.AlertasListaActivity"
     android:background="@color/colorGris">
 
-    <TextView
-        android:id="@+id/tv_bienvenida_alertas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/robotomedium"
-        android:text="@string/tv_bienvenida_alertas"
-        android:textColor="@color/colorBack"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/llAlertas"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="42dp"
-                android:src="@drawable/ic_logo" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_logo_enc" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_bienvenida_alertas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotomedium"
+                android:paddingLeft="10dp"
+                android:text="@string/tv_bienvenida_alertas"
+                android:textColor="@color/colorBack"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_aclaracion_alertas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/robotolight"
+                android:text="@string/tv_aclaracion_alertas"
+                android:textSize="13sp"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llAlertas">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_logo" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/robotolight"
+                android:text="@string/tv_tipo_alerta"
+                android:textColor="@color/colorBack"
+                android:textSize="12sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:fontFamily="@font/robotolight"
-            android:text="@string/tv_tipo_alerta"
-            android:textColor="@color/colorBack"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotolight"
-            android:text="@string/tv_tipo_alerta_enc"
-            android:textColor="@color/colorBack"
-            android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_logo_enc" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/tv_tipo_alerta_enc"
+                    android:textColor="@color/colorBack"
+                    android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_aclaracion_alertas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/robotolight"
-        android:text="@string/tv_aclaracion_alertas"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_bienvenida_alertas" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_alertas"
         android:layout_width="match_parent"
@@ -86,17 +87,16 @@
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_aclaracion_alertas" />
+        app:layout_constraintTop_toBottomOf="@id/llAlertas" />
 
     <ImageButton
         android:id="@+id/bt_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_margin="6dp"
         android:background="@drawable/style_bt_add"
         android:onClick="addAlerta"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_huella"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

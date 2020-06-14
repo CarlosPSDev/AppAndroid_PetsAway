@@ -50,6 +50,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 public class AlertasMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
     Button bt_encuentra, bt_busca;
     ImageView ImgM, ivAlerta;
@@ -64,8 +66,6 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
     String ta, add, idUser;
     private FusedLocationProviderClient flpc;
     private StorageReference msr;
-    private FirebaseAuth fa;
-    private FirebaseUser fu;
     DatabaseReference dbr;
     private LatLng miLoc;
     private Marker mark;
@@ -87,6 +87,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         }
         flpc = LocationServices.getFusedLocationProviderClient(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
         bt_encuentra = findViewById(R.id.bt_encuentra);
@@ -99,8 +100,9 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
         ivAlerta = findViewById(R.id.ivAlerta);
         btAbrChat_mark = findViewById(R.id.btAbrChat_mark);
 
-        fa = FirebaseAuth.getInstance();
-        fu = fa.getCurrentUser();
+        FirebaseAuth fa = FirebaseAuth.getInstance();
+        FirebaseUser fu = fa.getCurrentUser();
+        assert fu != null;
         idUser = fu.getUid();
         msr = FirebaseStorage.getInstance().getReference();
         dbr = FirebaseDatabase.getInstance().getReference();
@@ -203,12 +205,13 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
             @Override
             public boolean onMarkerClick(Marker marker) {
                 pf = (AlertasList) marker.getTag();
+                assert pf != null;
                 if (pf.getTipoAnimal() != null) {
                     tipoAnimalM.setText(pf.getTipoAnimal());
                     if (pf.getTipoAletra().equalsIgnoreCase("buscado")) {
-                        ivAlerta.setImageResource(R.drawable.ic_logo_encontrado_mapa);
-                    } else {
                         ivAlerta.setImageResource(R.drawable.ic_logo_perdido_mapa);
+                    } else {
+                        ivAlerta.setImageResource(R.drawable.ic_logo_encontrado_mapa);
                     }
                     fechaEPAnimalM.setText(pf.getFecha());
                     razaAnimalM.setText(pf.getRaza());
@@ -282,7 +285,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                                 mMap.addMarker(new MarkerOptions().position(miLoc).title(tipoAnimal).icon(BitmapDescriptorFactory.defaultMarker(
                                         BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
                                 if (ta != null) {
-                                    double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                                    double latAletra = Objects.requireNonNull(getIntent().getExtras()).getDouble("LAT_A", 1);
                                     double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
                                     LatLng locA = new LatLng(latAletra, lonAletra);
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));
@@ -324,7 +327,7 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                                         BitmapDescriptorFactory.HUE_GREEN))).setTag(pf);
 
                                 if (ta != null) {
-                                    double latAletra = getIntent().getExtras().getDouble("LAT_A", 1);
+                                    double latAletra = Objects.requireNonNull(getIntent().getExtras()).getDouble("LAT_A", 1);
                                     double lonAletra = getIntent().getExtras().getDouble("LON_A", 1);
                                     LatLng locA = new LatLng(latAletra, lonAletra);
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locA, 14));

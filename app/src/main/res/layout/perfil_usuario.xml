@@ -217,11 +217,12 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_aclaracion_perfil"
             android:textSize="14sp"
-            android:layout_marginLeft="6dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/robotolight"
-            app:layout_constraintStart_toStartOf="@id/btnAddMasc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAddMasc"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerProfilPets"
             android:gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView
