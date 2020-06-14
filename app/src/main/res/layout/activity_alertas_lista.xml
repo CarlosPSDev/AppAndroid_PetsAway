@@ -32,6 +32,7 @@
                 android:id="@+id/tv_aclaracion_alertas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/robotolight"
                 android:text="@string/tv_aclaracion_alertas"
                 android:textSize="13sp"/>
