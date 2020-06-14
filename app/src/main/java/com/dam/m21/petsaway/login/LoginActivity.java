@@ -234,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
         toast.show();
     }
 
-    private void comprobarOnBoarding() { //Metodo para comprobar si lanzar el onBoarding o no. Llamarmlo desde las 3 opciones de login!
+    private void comprobarOnBoarding() { //Metodo para comprobar si lanzar el onBoarding o no. Llamarlo desde las 3 opciones de login!
         SharedPreferences sharedPrefs = getSharedPreferences("ArchivoVeces", MODE_PRIVATE);
         int numVeces = sharedPrefs.getInt("vecesEjecutado", 0);
 

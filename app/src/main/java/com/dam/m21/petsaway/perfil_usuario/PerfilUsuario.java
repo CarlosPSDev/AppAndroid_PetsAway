@@ -3,6 +3,7 @@ package com.dam.m21.petsaway.perfil_usuario;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
@@ -21,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -60,6 +60,8 @@ public class PerfilUsuario extends AppCompatActivity {
     EditText etCiudad;
     TextView tvEmail;
     Button llMascotas;
+    CardView cVIvCamara; /*                   */
+    TextView tvAclarPerfil; //
 
     String email;
     String uriImgGuardada;
@@ -88,11 +90,12 @@ public class PerfilUsuario extends AppCompatActivity {
         ivGuardarCambios = findViewById(R.id.btnGuardarCambios);
         ivIconoCamara = findViewById(R.id.ivIconoCamara);
         llMascotas = findViewById(R.id.btnAddMasc);
+        cVIvCamara = findViewById(R.id.roundCardView2); /*                    */
+        tvAclarPerfil = findViewById(R.id.tvAclaracPerfil); //
 
         rv = findViewById(R.id.recyclerProfilPets);
 
         deshabilitarEditext(true);
-        //TODO Recopilar el nombre del usuario según si el login ha sido con firebase, facebook o google
 
         fbAuth = FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
@@ -298,13 +301,18 @@ public class PerfilUsuario extends AppCompatActivity {
             etNombre.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
             ivGuardarCambios.setVisibility(View.INVISIBLE);
+            cVIvCamara.setVisibility(View.VISIBLE); //
+            llMascotas.setVisibility(View.VISIBLE); //
+            tvAclarPerfil.setVisibility(View.VISIBLE); //
 
         } else {
             etNombre.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
             etCiudad.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
             ivGuardarCambios.setVisibility(View.VISIBLE);
             rv.setVisibility(View.GONE);
-            llMascotas.setEnabled(hd);
+            cVIvCamara.setVisibility(View.INVISIBLE); //
+            llMascotas.setVisibility(View.INVISIBLE); //
+            tvAclarPerfil.setVisibility(View.INVISIBLE); //
         }
     }
 
