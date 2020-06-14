@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.dam.m21.petsaway.MainActivity;
@@ -48,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
     String email;
     String password;
 
+    ImageView ivLogo;
+    Animation animacionLogo;
+
     static final String CLAVE_EMAIL = "MAIL";
 
     private static final String TAG = "GoogleActivity";
@@ -79,6 +85,10 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        ivLogo = findViewById(R.id.ivLogoLogin);
+        animacionLogo = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotar_y_leftout);
+
     }
 
     public void contraseniaOlvidada(View view) {
@@ -102,10 +112,8 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-
-                                //TODO: Animaciones
-                                //Animation rotarIcono = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.rotate_icon);
-                                //ivLogo.startAnimation(rotarIcono);
+                                ivLogo.startAnimation(animacionLogo);
+                                ivLogo.setVisibility(View.INVISIBLE);
 
                                 fbUser = fbAuth.getCurrentUser();
                                 guardarDatosUserSP(fbUser.getDisplayName(), fbUser.getEmail(), fbUser.getUid()); //Carlos Guardamos los datos en shared
@@ -116,10 +124,8 @@ public class LoginActivity extends AppCompatActivity {
                                     public void run() {
                                         comprobarOnBoarding(); //Carlos---- Comprobamos si lanzar el onboarding o pasamos al Main
 
-                                       /* Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(i);
-                                        finish();*/
-                                        overridePendingTransition(R.anim.leftin, R.anim.leftout);
+
+                                       overridePendingTransition(R.anim.leftin, R.anim.leftout);
                                     }
                                 }, 2000);
 
@@ -145,6 +151,9 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                ivLogo.startAnimation(animacionLogo);
+                ivLogo.setVisibility(View.INVISIBLE);
+
 
             } catch (ApiException e) {
                 Log.w(TAG, "Google sign in failed", e);

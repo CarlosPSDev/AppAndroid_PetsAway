@@ -116,8 +116,8 @@ public static class ListViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), AlertasMapaActivity.class);
-                Double latitude=datos.get(position).getLatitude();
-                Double longitude=datos.get(position).getLongitude();
+                double latitude=datos.get(position).getLatitude();
+                double longitude=datos.get(position).getLongitude();
                 intent.putExtra(CLAVE_LAT, latitude);
                 intent.putExtra(CLAVE_LON, longitude);
                 intent.putExtra(CLAVE_TA, datos.get(position).getTipoAletra());

@@ -209,9 +209,9 @@ public class AlertasMapaActivity extends AppCompatActivity implements OnMapReady
                 if (pf.getTipoAnimal() != null) {
                     tipoAnimalM.setText(pf.getTipoAnimal());
                     if (pf.getTipoAletra().equalsIgnoreCase("buscado")) {
-                        ivAlerta.setImageResource(R.drawable.ic_logo_encontrado_mapa);
-                    } else {
                         ivAlerta.setImageResource(R.drawable.ic_logo_perdido_mapa);
+                    } else {
+                        ivAlerta.setImageResource(R.drawable.ic_logo_encontrado_mapa);
                     }
                     fechaEPAnimalM.setText(pf.getFecha());
                     razaAnimalM.setText(pf.getRaza());
